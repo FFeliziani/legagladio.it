@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BusinessLogic
+namespace LegaGladio.BusinessLogic
 {
     public class Team
     {
@@ -16,6 +16,11 @@ namespace BusinessLogic
         public static List<LegaGladio.Entities.Team> list()
         {
             return DataAccessLayer.Team.listTeam();
+        }
+
+        public static List<LegaGladio.Entities.Team> list(int coachID)
+        {
+            return DataAccessLayer.Team.listTeam(coachID);
         }
 
         public static LegaGladio.Entities.Team get(int id)

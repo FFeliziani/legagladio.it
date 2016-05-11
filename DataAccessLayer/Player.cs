@@ -47,6 +47,37 @@ namespace DataAccessLayer
             return playerList;
         }
 
+        public static List<LegaGladio.Entities.Player> listPlayer(int teamID)
+        {
+            LegaGladioDS.playerDataTable pdt = new LegaGladioDS.playerDataTable();
+            LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();
+            pta.FillByTeamId(pdt, teamID);
+            List<LegaGladio.Entities.Player> playerList = new List<LegaGladio.Entities.Player>();
+            foreach (LegaGladioDS.playerRow playerRow in pdt.Rows)
+            {
+                LegaGladio.Entities.Player player = new LegaGladio.Entities.Player();
+                player.Ag = playerRow.ag;
+                player.Av = playerRow.av;
+                player.Cas = playerRow.cas;
+                player.Cat = playerRow.cat;
+                player.Cost = playerRow.cost;
+                player.Id = (int)playerRow.id;
+                player.Ma = playerRow.ma;
+                player.MissNextGame = playerRow.missNextGame;
+                player.Name = playerRow.name;
+                player.Niggling = playerRow.niggling;
+                player.Pass = playerRow.pass;
+                player.Spp = playerRow.spp;
+                player.St = playerRow.st;
+                player.Td = playerRow.td;
+                player.ListAbility = Skill.listSkill(player.Id);
+                playerList.Add(player);
+            }
+            pta = null;
+            pdt = null;
+            return playerList;
+        }
+
         public static LegaGladio.Entities.Player getPlayer(int id)
         {
             LegaGladio.Entities.Player player = null;

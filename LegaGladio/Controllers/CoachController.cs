@@ -9,22 +9,35 @@ namespace LegaGladio.Controllers
 {
     public class CoachController : ApiController
     {
-        // GET api/<controller>
-        public IEnumerable<string> Get()
+
+        [HttpGet]
+        public List<LegaGladio.Entities.Coach> Get()
         {
-            return new string[] { "value1", "value2" };
+            return LegaGladio.BusinessLogic.Coach.list();
         }
 
-        // GET api/<controller>/5
-        public string Get(int id)
+        [HttpGet]
+        public List<LegaGladio.Entities.Coach> GetActive()
         {
-            return "value";
+            return LegaGladio.BusinessLogic.Coach.list(true);
+        }
+
+        [HttpGet]
+        public List<LegaGladio.Entities.Coach> GetInactive()
+        {
+            return LegaGladio.BusinessLogic.Coach.list(false);
+        }
+
+        // GET api/<controller>/5   
+        public LegaGladio.Entities.Coach Get(int coachId)
+        {
+            return LegaGladio.BusinessLogic.Coach.get(coachId);
         }
 
         // POST api/<controller>
         public void Post([FromBody]string value)
         {
-            LegaGladio.BusinessLogic.
+            //LegaGladio.BusinessLogic.
         }
 
         // PUT api/<controller>/5

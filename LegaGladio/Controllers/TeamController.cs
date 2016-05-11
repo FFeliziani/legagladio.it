@@ -11,16 +11,23 @@ namespace LegaGladio.Controllers
     {
         // GET api/team
         [HttpGet]
-        public IEnumerable<LegaGladio.Entities.Team> Get()
+        public List<LegaGladio.Entities.Team> Get()
         {
-            return null;
+            return LegaGladio.BusinessLogic.Team.list();
         }
 
         // GET api/team/5
         [HttpGet]
-        public string Get(int id)
+        public List<LegaGladio.Entities.Team> GetByCoach(int coachId)
         {
-            return "value";
+            return LegaGladio.BusinessLogic.Team.list(coachId);
+        }
+
+        // GET api/team/5
+        [HttpGet]
+        public LegaGladio.Entities.Team Get(int id)
+        {
+            return LegaGladio.BusinessLogic.Team.get(id);
         }
 
         // POST api/team
