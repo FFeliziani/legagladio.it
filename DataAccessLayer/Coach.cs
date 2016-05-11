@@ -21,7 +21,14 @@ namespace DataAccessLayer
         {
             LegaGladioDS.coachDataTable cdt = new LegaGladioDS.coachDataTable();
             LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
-            cta.Fill(cdt);
+            try
+            {
+                cta.Fill(cdt);
+            }
+            catch (Exception ex)
+            {
+                cdt.GetErrors();
+            }
             List<LegaGladio.Entities.Coach> coachList = new List<LegaGladio.Entities.Coach>();
             foreach(LegaGladioDS.coachRow cr in cdt.Rows)
             {
