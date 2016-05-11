@@ -28,6 +28,17 @@ namespace DataAccessLayer.Properties {
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("server=127.0.0.1;user id=root;password=Xri8jgmk!;persistsecurityinfo=True;databas" +
             "e=legagladio")]
+        public string legagladioConnectionStringLocal {
+            get {
+                return ((string)(this["legagladioConnectionStringLocal"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=127.0.0.1;user id=root;password=Xri8jgmk!;persistsecurityinfo=True;databas" +
+            "e=legagladio")]
         public string legagladioConnectionString {
             get {
                 return ((string)(this["legagladioConnectionString"]));

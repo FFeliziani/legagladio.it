@@ -15,21 +15,21 @@ namespace LegaGladio.Controllers
     public class PlayerController : ApiController
     {
         //GET: api/player
-        [HttpGet]
+        [ActionName("get")]
         public List<LegaGladio.Entities.Player> Get()
         {
             return LegaGladio.BusinessLogic.Player.list();
         }
 
         // GET api/player/5
-        [HttpGet]
+        [ActionName("get")]
         public LegaGladio.Entities.Player Get(int id)
         {
             return LegaGladio.BusinessLogic.Player.get(id);
         }
 
         // GET api/player/5
-        [HttpGet]
+        [ActionName("getByTeam")]
         public List<LegaGladio.Entities.Player> GetByTeam(int teamId)
         {
             return LegaGladio.BusinessLogic.Player.list(teamId);
