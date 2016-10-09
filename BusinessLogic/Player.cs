@@ -16,6 +16,10 @@ namespace LegaGladio.BusinessLogic
         {
             return DataAccessLayer.Player.listPlayer();
         }
+        public static List<LegaGladio.Entities.Player> list(int teamID)
+        {
+            return DataAccessLayer.Player.listPlayer(teamID);
+        }
 
         public static LegaGladio.Entities.Player get(int id)
         {

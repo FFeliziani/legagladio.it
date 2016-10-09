@@ -10,17 +10,24 @@ namespace LegaGladio.Controllers
     public class TeamController : ApiController
     {
         // GET api/team
-        [HttpGet]
-        public IEnumerable<LegaGladio.Entities.Team> Get()
+        [ActionName("get")]
+        public List<LegaGladio.Entities.Team> Get()
         {
-            return null;
+            return LegaGladio.BusinessLogic.Team.list();
         }
 
         // GET api/team/5
-        [HttpGet]
-        public string Get(int id)
+        [ActionName("getByCoach")]
+        public List<LegaGladio.Entities.Team> GetByCoach(int coachId)
         {
-            return "value";
+            return LegaGladio.BusinessLogic.Team.list(coachId);
+        }
+
+        // GET api/team/5
+        [ActionName("get")]
+        public LegaGladio.Entities.Team Get(int id)
+        {
+            return LegaGladio.BusinessLogic.Team.get(id);
         }
 
         // POST api/team
