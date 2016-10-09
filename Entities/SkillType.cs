@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 
 namespace LegaGladio.Entities
 {
-    public enum Skills
+    public enum SkillType
     {
-        NORMAL = 0,
-        DOUBLE = 1
+        GENERAL = 0,
+        AGILITY = 1,
+        PASSING = 2,
+        STRENGTH = 3,
+        MUTATION = 4,
+        EXTRAORDINARY = 5
     }
 }

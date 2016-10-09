@@ -9,6 +9,6 @@ namespace LegaGladio.Entities
 
         public String Name { get; set; }
 
-        public Skills SkillType { get; set; }
+        public SkillType SkillType { get; set; }
     }
 }

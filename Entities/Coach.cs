@@ -9,8 +9,11 @@ namespace LegaGladio.Entities
         
         public List<Team> ListTeam{ get; set; }
         public String Name{ get; set; }
-        public float Value{ get; set; }
+        public int Value{ get; set; }
         public int NafID{ get; set; }
+
+        public Boolean Active { get; set; }
+        public String nafNick { get; set; }
 
         public String Notes{ get; set; }
 

@@ -22,9 +22,9 @@ namespace LegaGladio.Controllers
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        public void Post([FromBody]LegaGladio.Entities.Coach coach)
         {
-            LegaGladio.BusinessLogic.
+            LegaGladio.BusinessLogic.Coach.newCoach(coach);
         }
 
         // PUT api/<controller>/5

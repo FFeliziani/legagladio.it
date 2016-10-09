@@ -10,7 +10,9 @@ namespace DataAccessLayer
     {
         public static int countCoach()
         {
-            return 0;
+            LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
+
+            return (int)cta.Count();
         }
 
         public static List<LegaGladio.Entities.Coach> listCoach()
@@ -22,10 +24,14 @@ namespace DataAccessLayer
         {
             return null;
         }
+
         public static Boolean newCoach(LegaGladio.Entities.Coach coach)
         {
             LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
-            cta.Insert(coach.Name, coach.Value, coach.NafID, coach.Notes);
+
+            //name, value, nafID, note, active, nafNick
+            cta.Insert(coach.Name, coach.Value, coach.NafID.ToString(), coach.Notes , Convert.ToByte(coach.Active), coach.nafNick);
+
             return false;
         }
 

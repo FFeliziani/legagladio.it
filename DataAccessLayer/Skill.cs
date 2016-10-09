@@ -10,28 +10,116 @@ namespace DataAccessLayer
     {
         public static int countSkill()
         {
-            return 0;
+            LegaGladioDSTableAdapters.skillTableAdapter sta = new LegaGladioDSTableAdapters.skillTableAdapter();
+
+            return (int)sta.Count();
         }
 
         public static List<LegaGladio.Entities.Skill> listSkill()
         {
-            return null;
+            LegaGladioDSTableAdapters.skillTableAdapter sta = new LegaGladioDSTableAdapters.skillTableAdapter();
+            List<LegaGladio.Entities.Skill> listaSkill = new List<LegaGladio.Entities.Skill>();
+
+            LegaGladioDS.skillDataTable sdt = sta.GetData();
+
+            foreach(LegaGladioDS.skillRow skillRow in sdt.Rows)
+            {
+                LegaGladio.Entities.Skill skill = Skill.getSkill(skillRow.name);
+                listaSkill.Add(skill);
+            }
+
+            return listaSkill;
         }
 
         // FF: Return all skills for player
-        public static List<LegaGladio.Entities.Skill> listSkill(int id)
+        public static List<LegaGladio.Entities.Skill> listSkill(int playerId)
         {
-            return null;
+            LegaGladioDSTableAdapters.player_skillTableAdapter psta = new LegaGladioDSTableAdapters.player_skillTableAdapter();
+            List<LegaGladio.Entities.Skill> listaSkill = new List<LegaGladio.Entities.Skill>();
+
+            LegaGladioDS.player_skillDataTable psdt = psta.GetDataByPlayerId(playerId);
+
+            foreach (LegaGladioDS.player_skillRow psr in psdt.Rows)
+            {
+                listaSkill.Add(Skill.getSkill((int)psr.skillID));
+            }
+            
+            return listaSkill;
         }
 
         public static LegaGladio.Entities.Skill getSkill(int id)
         {
-            return null;
+            LegaGladioDSTableAdapters.skillTableAdapter sta = null;
+            LegaGladioDS.skillDataTable sdt = null;
+            LegaGladio.Entities.Skill skill = null;
+
+            try
+            {
+                sdt = sta.GetDataById(id);
+                sta = new LegaGladioDSTableAdapters.skillTableAdapter();
+
+                if (sdt.Rows.Count > 1)
+                {
+                    throw new Exception("Troppe skill trovate per l'id " + id);
+                }
+
+                skill = new LegaGladio.Entities.Skill();
+
+                LegaGladioDS.skillRow sr = (LegaGladioDS.skillRow)sdt.Rows[0];
+
+                skill.Id = (int)sr.id;
+                skill.Name = sr.name;
+                skill.SkillType = (LegaGladio.Entities.SkillType)sr.type;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+
+            return skill;
+        }
+
+        public static LegaGladio.Entities.Skill getSkill(String name)
+        {
+            LegaGladioDSTableAdapters.skillTableAdapter sta = new LegaGladioDSTableAdapters.skillTableAdapter();
+
+            LegaGladioDS.skillDataTable sdt = sta.GetDataByName(name);
+
+            if (sdt.Rows.Count > 1)
+            {
+                throw new Exception("Troppe skill trovate per il nome " + name);
+            }
+
+            LegaGladio.Entities.Skill skill = new LegaGladio.Entities.Skill();
+
+            LegaGladioDS.skillRow sr = (LegaGladioDS.skillRow)sdt.Rows[0];
+
+            skill.Id = (int)sr.id;
+            skill.Name = sr.name;
+            skill.SkillType = (LegaGladio.Entities.SkillType)sr.type;
+            
+            return skill;
         }
 
         public static Boolean newSkill(LegaGladio.Entities.Skill skill)
         {
-            return false;
+            LegaGladioDSTableAdapters.skillTableAdapter sta = new LegaGladioDSTableAdapters.skillTableAdapter();
+
+            int rowNum = sta.Insert(skill.Name, (int)skill.SkillType);
+
+            return rowNum == 1;
+        }
+
+        public static Boolean newSkills(List<LegaGladio.Entities.Skill> skillList)
+        {
+            Boolean works = true;
+
+            foreach (LegaGladio.Entities.Skill skill in skillList)
+            {
+                works &= Skill.newSkill(skill);
+            }
+
+            return works;
         }
 
         public static Boolean updateSkill(LegaGladio.Entities.Skill skill, int oldID)
@@ -41,7 +129,23 @@ namespace DataAccessLayer
 
         public static Boolean deleteSkill(int id)
         {
-            return false;
+            LegaGladioDSTableAdapters.skillTableAdapter sta = new LegaGladioDSTableAdapters.skillTableAdapter();
+
+            int rowNum = sta.Delete(id);
+
+            return rowNum == 1;
+        }
+
+        public static Boolean deleteSkills(List<LegaGladio.Entities.Skill> skillList)
+        {
+            Boolean works = true;
+
+            foreach (LegaGladio.Entities.Skill skill in skillList)
+            {
+                works &= Skill.deleteSkill(skill.Id);
+            }
+
+            return works;
         }
     }
 }

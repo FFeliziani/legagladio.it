@@ -20,12 +20,12 @@ namespace LegaGladio.Entities
 
         public List<Skill> ListAbility { get; set; }
 
-        public Skills General { get; set; }
-        public Skills Agility { get; set; }
-        public Skills Strength { get; set; }
-        public Skills Passing { get; set; }
-        public Skills Mutation { get; set; }
-        public Skills Extraordinary { get; set; }
+        public List<Skill> General { get; set; }
+        public List<Skill> Agility { get; set; }
+        public List<Skill> Strength { get; set; }
+        public List<Skill> Passing { get; set; }
+        public List<Skill> Mutation { get; set; }
+        public List<Skill> Extraordinary { get; set; }
         
     }
 }
