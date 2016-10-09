@@ -45,7 +45,7 @@ namespace DataAccessLayer
         {
             LegaGladioDS.teamDataTable tdt = new LegaGladioDS.teamDataTable();
             LegaGladioDSTableAdapters.teamTableAdapter tta = new LegaGladioDSTableAdapters.teamTableAdapter();
-            tta.FillByCoachID(tdt, coachId);
+            tta.FillByCoachId(tdt, coachId);
             List<LegaGladio.Entities.Team> teamList = new List<LegaGladio.Entities.Team>();
             foreach (LegaGladioDS.teamRow tr in tdt.Rows)
             {

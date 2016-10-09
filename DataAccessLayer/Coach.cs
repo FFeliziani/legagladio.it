@@ -28,18 +28,19 @@ namespace DataAccessLayer
             catch (Exception ex)
             {
                 cdt.GetErrors();
+                throw ex;
             }
             List<LegaGladio.Entities.Coach> coachList = new List<LegaGladio.Entities.Coach>();
             foreach(LegaGladioDS.coachRow cr in cdt.Rows)
             {
                 LegaGladio.Entities.Coach coach = new LegaGladio.Entities.Coach();
-                coach.Id = (int)cr.id;
+                coach.id = (int)cr.id;
                 coach.NafID = cr.nafID;
                 coach.Name = cr.name;
                 coach.Notes = cr.note;
                 coach.Active = cr.active;
                 coach.Value = cr.value;
-                coach.ListTeam = Team.listTeam(coach.Id);
+                coach.ListTeam = Team.listTeam(coach.id);
                 coachList.Add(coach);
             }
             cta = null;
@@ -56,13 +57,13 @@ namespace DataAccessLayer
             foreach (LegaGladioDS.coachRow cr in cdt.Rows)
             {
                 LegaGladio.Entities.Coach coach = new LegaGladio.Entities.Coach();
-                coach.Id = (int)cr.id;
+                coach.id = (int)cr.id;
                 coach.NafID = cr.nafID;
                 coach.Name = cr.name;
                 coach.Notes = cr.note;
                 coach.Active = cr.active;
                 coach.Value = cr.value;
-                coach.ListTeam = Team.listTeam(coach.Id);
+                coach.ListTeam = Team.listTeam(coach.id);
                 coachList.Add(coach);
             }
             cta = null;
@@ -83,8 +84,8 @@ namespace DataAccessLayer
                 cta = new LegaGladioDSTableAdapters.coachTableAdapter();
                 cta.FillById(ctd, id);
                 coachRow = (LegaGladioDS.coachRow)ctd.Rows[0];
-                coach.Id = (int)coachRow.id;
-                coach.ListTeam = Team.listTeam(coach.Id);
+                coach.id = (int)coachRow.id;
+                coach.ListTeam = Team.listTeam(coach.id);
                 coach.NafID = coachRow.nafID;
                 coach.Name = coachRow.name;
                 coach.Notes = coachRow.note;
@@ -105,7 +106,7 @@ namespace DataAccessLayer
             String coachName = null;
             try
             {
-                coachName = cta.getCoachName(teamID).ToString();
+                coachName = cta.GetCoachName(teamID).ToString();
             }
             catch (Exception ex)
             {

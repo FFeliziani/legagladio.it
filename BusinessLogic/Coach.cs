@@ -28,17 +28,17 @@ namespace LegaGladio.BusinessLogic
             return DataAccessLayer.Coach.getCoach(id);
         }
 
-        public static Boolean newPlayer(LegaGladio.Entities.Coach coach)
+        public static Boolean newCoach(LegaGladio.Entities.Coach coach)
         {
             return DataAccessLayer.Coach.newCoach(coach);
         }
 
-        public static Boolean updatePlayer(LegaGladio.Entities.Coach coach, int oldID)
+        public static Boolean updateCoach(LegaGladio.Entities.Coach coach, int oldID)
         {
             return DataAccessLayer.Coach.updateCoach(coach, oldID);
         }
 
-        public static Boolean deletePlayer(int id)
+        public static Boolean deleteCoach(int id)
         {
             return DataAccessLayer.Coach.deleteCoach(id);
         }

@@ -2,15 +2,16 @@
 <xs:schema id="LegaGladioDS" targetNamespace="http://tempuri.org/LegaGladio.xsd" xmlns:mstns="http://tempuri.org/LegaGladio.xsd" xmlns="http://tempuri.org/LegaGladio.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="2" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionString" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionString" Provider="MySql.Data.MySqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionString1" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionString" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionStringLocal" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionStringLocal (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionStringLocal" Provider="MySql.Data.MySqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="playerTableAdapter" GeneratorDataComponentClassName="playerTableAdapter" Name="player" UserDataComponentName="playerTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="legagladioConnectionString1 (Settings)" DbObjectName="legagladio.player" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.player" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM player
@@ -113,7 +114,7 @@ WHERE        (id = @p1)</CommandText>
               <Mapping SourceColumn="av" DataSetColumn="av" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="legagladioConnectionString1 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT COUNT(id) FROM player</CommandText>
@@ -121,7 +122,7 @@ WHERE        (id = @p1)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="legagladioConnectionString1 (Settings)" DbObjectName="legagladio.player" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.player" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ag, av, cas, cat, cost, id, ma, missNextGame, name, niggling, pass, spp, st, td FROM player WHERE (id = @id)</CommandText>
@@ -131,11 +132,21 @@ WHERE        (id = @p1)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.player" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByTeamId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByTeamId" GeneratorSourceName="FillByTeamId" GetMethodModifier="Public" GetMethodName="GetDataByTeamId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByTeamId" UserSourceName="FillByTeamId">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT p.`id`, p.`name`, p.`ma`, p.`ag`, p.`av`, p.`st`, p.`cost`, p.`spp`, p.`td`, p.`cas`, p.`pass`, p.`cat`, p.`niggling`, p.`missNextGame` FROM `player` p join `team_player` tp on p.id = tp.playerid where tp.teamId = @teamID</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="teamID" ColumnName="teamID" DataSourceName="legagladio.team_player" DataTypeServer="int(11) unsigned" DbType="Int32" Direction="Input" ParameterName="@teamID" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="teamID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
             </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="player_skillTableAdapter" GeneratorDataComponentClassName="player_skillTableAdapter" Name="player_skill" UserDataComponentName="player_skillTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectName="legagladio.player_skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.player_skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `player_skill` (`playerID`, `skillID`) VALUES (@p1, @p2)</CommandText>
@@ -158,7 +169,7 @@ WHERE        (id = @p1)</CommandText>
               <Mapping SourceColumn="skillID" DataSetColumn="skillID" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectName="legagladio.player_skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByPlayerId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByPlayerId" GeneratorSourceName="FillByPlayerId" GetMethodModifier="Public" GetMethodName="GetDataByPlayerId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByPlayerId" UserSourceName="FillByPlayerId">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.player_skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByPlayerId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByPlayerId" GeneratorSourceName="FillByPlayerId" GetMethodModifier="Public" GetMethodName="GetDataByPlayerId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByPlayerId" UserSourceName="FillByPlayerId">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT `playerID`, `skillID` FROM `player_skill` where `playerID` = @playerID</CommandText>
@@ -172,7 +183,7 @@ WHERE        (id = @p1)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="skillTableAdapter" GeneratorDataComponentClassName="skillTableAdapter" Name="skill" UserDataComponentName="skillTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectName="legagladio.skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM skill
@@ -219,7 +230,7 @@ WHERE        (id = @p1)</CommandText>
               <Mapping SourceColumn="type" DataSetColumn="type" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Int64, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT COUNT(*) FROM skill</CommandText>
@@ -227,7 +238,7 @@ WHERE        (id = @p1)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectName="legagladio.skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT id, name, type FROM skill WHERE (id = @id)</CommandText>
@@ -237,7 +248,7 @@ WHERE        (id = @p1)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectName="legagladio.skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByName" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByName" GeneratorSourceName="FillByName" GetMethodModifier="Public" GetMethodName="GetDataByName" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByName" UserSourceName="FillByName">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByName" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByName" GeneratorSourceName="FillByName" GetMethodModifier="Public" GetMethodName="GetDataByName" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByName" UserSourceName="FillByName">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT id, name, type FROM skill WHERE (name = @name)</CommandText>
@@ -251,7 +262,7 @@ WHERE        (id = @p1)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="teamTableAdapter" GeneratorDataComponentClassName="teamTableAdapter" Name="team" UserDataComponentName="teamTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="legagladioConnectionString1 (Settings)" DbObjectName="legagladio.team" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.team" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `team` WHERE ((`id` = @p1) AND ((@p2 = 1 AND `value` IS NULL) OR (`value` = @p3)) AND ((@p4 = 1 AND `name` IS NULL) OR (`name` = @p5)) AND ((@p6 = 1 AND `funFactor` IS NULL) OR (`funFactor` = @p7)) AND ((@p8 = 1 AND `reroll` IS NULL) OR (`reroll` = @p9)) AND ((@p10 = 1 AND `hasMedic` IS NULL) OR (`hasMedic` = @p11)) AND ((@p12 = 1 AND `cheerleader` IS NULL) OR (`cheerleader` = @p13)) AND ((@p14 = 1 AND `assistantCoach` IS NULL) OR (`assistantCoach` = @p15)))</CommandText>
@@ -335,11 +346,41 @@ WHERE        (id = @p1)</CommandText>
               <Mapping SourceColumn="cheerleader" DataSetColumn="cheerleader" />
               <Mapping SourceColumn="assistantCoach" DataSetColumn="assistantCoach" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT COUNT(*) FROM team</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.team" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByCoachId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByCoachId" GeneratorSourceName="FillByCoachId" GetMethodModifier="Public" GetMethodName="GetDataByCoachId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByCoachId" UserSourceName="FillByCoachId">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT t.`id`, t.`value`, t.`name`, t.`funFactor`, t.`reroll`, t.`hasMedic`, t.`cheerleader`, t.`assistantCoach` FROM `team` t join coach_team ct on t.id = ct.teamid where ct.coachid = @coachId</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="coachId" ColumnName="coachID" DataSourceName="legagladio.coach_team" DataTypeServer="int(11) unsigned" DbType="Int32" Direction="Input" ParameterName="@coachId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="coachID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.team" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT `id`, `value`, `name`, `funFactor`, `reroll`, `hasMedic`, `cheerleader`, `assistantCoach` FROM `team` where id = @id
+</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="id" ColumnName="id" DataSourceName="legagladio.team" DataTypeServer="int(10) unsigned" DbType="Int32" Direction="Input" ParameterName="@id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="team_playerTableAdapter" GeneratorDataComponentClassName="team_playerTableAdapter" Name="team_player" UserDataComponentName="team_playerTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="legagladioConnectionString1 (Settings)" DbObjectName="legagladio.team_player" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.team_player" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `team_player` (`teamID`, `playerID`) VALUES (@p1, @p2)</CommandText>
@@ -365,7 +406,7 @@ WHERE        (id = @p1)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="coach_teamTableAdapter" GeneratorDataComponentClassName="coach_teamTableAdapter" Name="coach_team" UserDataComponentName="coach_teamTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="legagladioConnectionString1 (Settings)" DbObjectName="legagladio.coach_team" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.coach_team" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `coach_team` (`coachID`, `teamID`) VALUES (@p1, @p2)</CommandText>
@@ -391,7 +432,7 @@ WHERE        (id = @p1)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="raceTableAdapter" GeneratorDataComponentClassName="raceTableAdapter" Name="race" UserDataComponentName="raceTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="legagladioConnectionString1 (Settings)" DbObjectName="legagladio.race" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.race" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `race` WHERE ((`id` = @p1) AND (`name` = @p2))</CommandText>
@@ -435,7 +476,7 @@ WHERE        (id = @p1)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="positionalTableAdapter" GeneratorDataComponentClassName="positionalTableAdapter" Name="positional" UserDataComponentName="positionalTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectName="legagladio.positional" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.positional" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>DELETE FROM positional
@@ -495,7 +536,7 @@ WHERE        (id = @id)</CommandText>
               <Mapping SourceColumn="av" DataSetColumn="av" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT COUNT(id) FROM positional</CommandText>
@@ -503,7 +544,7 @@ WHERE        (id = @id)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectName="legagladio.positional" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.positional" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT id, qty, title, cost, ma, st, ag, av FROM positional where id = @id</CommandText>
@@ -513,7 +554,7 @@ WHERE        (id = @id)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertPositional" Modifier="Public" Name="InsertPositional" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertPositional">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertPositional" Modifier="Public" Name="InsertPositional" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="InsertPositional">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO `positional` (`qty`, `title`, `cost`, `ma`, `st`, `ag`, `av`) VALUES (@qty, @title, @cost, @ma, @st, @ag, @av)</CommandText>
@@ -533,7 +574,7 @@ WHERE        (id = @id)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="coachTableAdapter" GeneratorDataComponentClassName="coachTableAdapter" Name="coach" UserDataComponentName="coachTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectName="legagladio.coach" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.coach" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `coach` WHERE ((`id` = @p1) AND ((@p2 = 1 AND `name` IS NULL) OR (`name` = @p3)) AND ((@p4 = 1 AND `value` IS NULL) OR (`value` = @p5)) AND ((@p6 = 1 AND `nafID` IS NULL) OR (`nafID` = @p7)) AND ((@p8 = 1 AND `note` IS NULL) OR (`note` = @p9)) AND ((@p10 = 1 AND `active` IS NULL) OR (`active` = @p11)) AND ((@p12 = 1 AND `nafNick` IS NULL) OR (`nafNick` = @p13)))</CommandText>
@@ -611,7 +652,7 @@ WHERE        (id = @id)</CommandText>
               <Mapping SourceColumn="nafNick" DataSetColumn="nafNick" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Int64, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT COUNT(*) FROM coach </CommandText>
@@ -619,11 +660,41 @@ WHERE        (id = @id)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.coach" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByActive" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByActive" GeneratorSourceName="FillByActive" GetMethodModifier="Public" GetMethodName="GetDataByActive" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByActive" UserSourceName="FillByActive">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from coach where active = @active</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="active" ColumnName="active" DataSourceName="legagladio.coach" DataTypeServer="tinyint(1)" DbType="Object" Direction="Input" ParameterName="@active" Precision="0" ProviderType="Byte" Scale="0" Size="1024" SourceColumn="active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.coach" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from coach where id = @id</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="id" ColumnName="id" DataSourceName="legagladio.coach" DataTypeServer="int(10) unsigned" DbType="Int32" Direction="Input" ParameterName="@id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.coach" DbObjectType="Table" GenerateShortCommands="true" GeneratorSourceName="GetCoachName" Modifier="Public" Name="GetCoachName" QueryType="Scalar" ScalarCallRetval="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="GetCoachName">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select c.name from coach c join coach_team ct on c.id = ct.coachID where ct.teamId = @teamId</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="teamId" ColumnName="teamID" DataSourceName="legagladio.coach_team" DataTypeServer="int(11) unsigned" DbType="Int32" Direction="Input" ParameterName="@teamId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="teamID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
             </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="positional_skillTableAdapter" GeneratorDataComponentClassName="positional_skillTableAdapter" Name="positional_skill" UserDataComponentName="positional_skillTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectName="legagladio.positional_skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.positional_skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>INSERT INTO `positional_skill` (`positionalID`, `skillID`) VALUES (@p1, @p2)</CommandText>
@@ -647,7 +718,7 @@ FROM            positional_skill</CommandText>
               <Mapping SourceColumn="positionalID" DataSetColumn="positionalID1" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectName="legagladio.positional_skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByPositionalId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByPositionalId" GeneratorSourceName="FillByPositionalId" GetMethodModifier="Public" GetMethodName="GetDataByPositionalId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByPositionalId" UserSourceName="FillByPositionalId">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.positional_skill" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByPositionalId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByPositionalId" GeneratorSourceName="FillByPositionalId" GetMethodModifier="Public" GetMethodName="GetDataByPositionalId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByPositionalId" UserSourceName="FillByPositionalId">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT positionalID, skillID FROM positional_skill WHERE (positionalID = @positionalID)</CommandText>
@@ -657,7 +728,7 @@ FROM            positional_skill</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertPositionalSkill" Modifier="Public" Name="InsertPositionalSkill" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="InsertPositionalSkill">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="InsertPositionalSkill" Modifier="Public" Name="InsertPositionalSkill" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="InsertPositionalSkill">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO `positional_skill` (`positionalID`, `skillID`) VALUES (@positionalID, @skillID)</CommandText>
@@ -672,7 +743,7 @@ FROM            positional_skill</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="skilltypeTableAdapter" GeneratorDataComponentClassName="skilltypeTableAdapter" Name="skilltype" UserDataComponentName="skilltypeTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="legagladioConnectionString (Settings)" DbObjectName="legagladio.skilltype" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="legagladioConnectionStringLocal (Settings)" DbObjectName="legagladio.skilltype" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>DELETE FROM `skilltype` WHERE ((`id` = @p1))</CommandText>
@@ -717,7 +788,7 @@ FROM            positional_skill</CommandText>
   <xs:element name="LegaGladioDS" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="LegaGladioDS" msprop:Generator_UserDSName="LegaGladioDS">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="player" msprop:Generator_TableClassName="playerDataTable" msprop:Generator_TableVarName="tableplayer" msprop:Generator_RowChangedName="playerRowChanged" msprop:Generator_TablePropName="player" msprop:Generator_RowDeletingName="playerRowDeleting" msprop:Generator_RowChangingName="playerRowChanging" msprop:Generator_RowEvHandlerName="playerRowChangeEventHandler" msprop:Generator_RowDeletedName="playerRowDeleted" msprop:Generator_RowClassName="playerRow" msprop:Generator_UserTableName="player" msprop:Generator_RowEvArgName="playerRowChangeEvent">
+        <xs:element name="player" msprop:Generator_TableClassName="playerDataTable" msprop:Generator_TableVarName="tableplayer" msprop:Generator_TablePropName="player" msprop:Generator_RowDeletingName="playerRowDeleting" msprop:Generator_RowChangingName="playerRowChanging" msprop:Generator_RowEvHandlerName="playerRowChangeEventHandler" msprop:Generator_RowDeletedName="playerRowDeleted" msprop:Generator_UserTableName="player" msprop:Generator_RowChangedName="playerRowChanged" msprop:Generator_RowEvArgName="playerRowChangeEvent" msprop:Generator_RowClassName="playerRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:unsignedInt" />
@@ -743,7 +814,7 @@ FROM            positional_skill</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="player_skill" msprop:Generator_TableClassName="player_skillDataTable" msprop:Generator_TableVarName="tableplayer_skill" msprop:Generator_RowChangedName="player_skillRowChanged" msprop:Generator_TablePropName="player_skill" msprop:Generator_RowDeletingName="player_skillRowDeleting" msprop:Generator_RowChangingName="player_skillRowChanging" msprop:Generator_RowEvHandlerName="player_skillRowChangeEventHandler" msprop:Generator_RowDeletedName="player_skillRowDeleted" msprop:Generator_RowClassName="player_skillRow" msprop:Generator_UserTableName="player_skill" msprop:Generator_RowEvArgName="player_skillRowChangeEvent">
+        <xs:element name="player_skill" msprop:Generator_TableClassName="player_skillDataTable" msprop:Generator_TableVarName="tableplayer_skill" msprop:Generator_TablePropName="player_skill" msprop:Generator_RowDeletingName="player_skillRowDeleting" msprop:Generator_RowChangingName="player_skillRowChanging" msprop:Generator_RowEvHandlerName="player_skillRowChangeEventHandler" msprop:Generator_RowDeletedName="player_skillRowDeleted" msprop:Generator_UserTableName="player_skill" msprop:Generator_RowChangedName="player_skillRowChanged" msprop:Generator_RowEvArgName="player_skillRowChangeEvent" msprop:Generator_RowClassName="player_skillRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="playerID" msprop:Generator_ColumnVarNameInTable="columnplayerID" msprop:Generator_ColumnPropNameInRow="playerID" msprop:Generator_ColumnPropNameInTable="playerIDColumn" msprop:Generator_UserColumnName="playerID" type="xs:unsignedInt" />
@@ -751,7 +822,7 @@ FROM            positional_skill</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="skill" msprop:Generator_TableClassName="skillDataTable" msprop:Generator_TableVarName="tableskill" msprop:Generator_RowChangedName="skillRowChanged" msprop:Generator_TablePropName="skill" msprop:Generator_RowDeletingName="skillRowDeleting" msprop:Generator_RowChangingName="skillRowChanging" msprop:Generator_RowEvHandlerName="skillRowChangeEventHandler" msprop:Generator_RowDeletedName="skillRowDeleted" msprop:Generator_RowClassName="skillRow" msprop:Generator_UserTableName="skill" msprop:Generator_RowEvArgName="skillRowChangeEvent">
+        <xs:element name="skill" msprop:Generator_TableClassName="skillDataTable" msprop:Generator_TableVarName="tableskill" msprop:Generator_TablePropName="skill" msprop:Generator_RowDeletingName="skillRowDeleting" msprop:Generator_RowChangingName="skillRowChanging" msprop:Generator_RowEvHandlerName="skillRowChangeEventHandler" msprop:Generator_RowDeletedName="skillRowDeleted" msprop:Generator_UserTableName="skill" msprop:Generator_RowChangedName="skillRowChanged" msprop:Generator_RowEvArgName="skillRowChangeEvent" msprop:Generator_RowClassName="skillRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:unsignedInt" />
@@ -766,7 +837,7 @@ FROM            positional_skill</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="team" msprop:Generator_TableClassName="teamDataTable" msprop:Generator_TableVarName="tableteam" msprop:Generator_RowChangedName="teamRowChanged" msprop:Generator_TablePropName="team" msprop:Generator_RowDeletingName="teamRowDeleting" msprop:Generator_RowChangingName="teamRowChanging" msprop:Generator_RowEvHandlerName="teamRowChangeEventHandler" msprop:Generator_RowDeletedName="teamRowDeleted" msprop:Generator_RowClassName="teamRow" msprop:Generator_UserTableName="team" msprop:Generator_RowEvArgName="teamRowChangeEvent">
+        <xs:element name="team" msprop:Generator_TableClassName="teamDataTable" msprop:Generator_TableVarName="tableteam" msprop:Generator_TablePropName="team" msprop:Generator_RowDeletingName="teamRowDeleting" msprop:Generator_RowChangingName="teamRowChanging" msprop:Generator_RowEvHandlerName="teamRowChangeEventHandler" msprop:Generator_RowDeletedName="teamRowDeleted" msprop:Generator_UserTableName="team" msprop:Generator_RowChangedName="teamRowChanged" msprop:Generator_RowEvArgName="teamRowChangeEvent" msprop:Generator_RowClassName="teamRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:unsignedInt" />
@@ -786,7 +857,7 @@ FROM            positional_skill</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="team_player" msprop:Generator_TableClassName="team_playerDataTable" msprop:Generator_TableVarName="tableteam_player" msprop:Generator_RowChangedName="team_playerRowChanged" msprop:Generator_TablePropName="team_player" msprop:Generator_RowDeletingName="team_playerRowDeleting" msprop:Generator_RowChangingName="team_playerRowChanging" msprop:Generator_RowEvHandlerName="team_playerRowChangeEventHandler" msprop:Generator_RowDeletedName="team_playerRowDeleted" msprop:Generator_RowClassName="team_playerRow" msprop:Generator_UserTableName="team_player" msprop:Generator_RowEvArgName="team_playerRowChangeEvent">
+        <xs:element name="team_player" msprop:Generator_TableClassName="team_playerDataTable" msprop:Generator_TableVarName="tableteam_player" msprop:Generator_TablePropName="team_player" msprop:Generator_RowDeletingName="team_playerRowDeleting" msprop:Generator_RowChangingName="team_playerRowChanging" msprop:Generator_RowEvHandlerName="team_playerRowChangeEventHandler" msprop:Generator_RowDeletedName="team_playerRowDeleted" msprop:Generator_UserTableName="team_player" msprop:Generator_RowChangedName="team_playerRowChanged" msprop:Generator_RowEvArgName="team_playerRowChangeEvent" msprop:Generator_RowClassName="team_playerRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="teamID" msprop:Generator_ColumnVarNameInTable="columnteamID" msprop:Generator_ColumnPropNameInRow="teamID" msprop:Generator_ColumnPropNameInTable="teamIDColumn" msprop:Generator_UserColumnName="teamID" type="xs:unsignedInt" />
@@ -794,7 +865,7 @@ FROM            positional_skill</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="coach_team" msprop:Generator_TableClassName="coach_teamDataTable" msprop:Generator_TableVarName="tablecoach_team" msprop:Generator_RowChangedName="coach_teamRowChanged" msprop:Generator_TablePropName="coach_team" msprop:Generator_RowDeletingName="coach_teamRowDeleting" msprop:Generator_RowChangingName="coach_teamRowChanging" msprop:Generator_RowEvHandlerName="coach_teamRowChangeEventHandler" msprop:Generator_RowDeletedName="coach_teamRowDeleted" msprop:Generator_RowClassName="coach_teamRow" msprop:Generator_UserTableName="coach_team" msprop:Generator_RowEvArgName="coach_teamRowChangeEvent">
+        <xs:element name="coach_team" msprop:Generator_TableClassName="coach_teamDataTable" msprop:Generator_TableVarName="tablecoach_team" msprop:Generator_TablePropName="coach_team" msprop:Generator_RowDeletingName="coach_teamRowDeleting" msprop:Generator_RowChangingName="coach_teamRowChanging" msprop:Generator_RowEvHandlerName="coach_teamRowChangeEventHandler" msprop:Generator_RowDeletedName="coach_teamRowDeleted" msprop:Generator_UserTableName="coach_team" msprop:Generator_RowChangedName="coach_teamRowChanged" msprop:Generator_RowEvArgName="coach_teamRowChangeEvent" msprop:Generator_RowClassName="coach_teamRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="coachID" msprop:Generator_ColumnVarNameInTable="columncoachID" msprop:Generator_ColumnPropNameInRow="coachID" msprop:Generator_ColumnPropNameInTable="coachIDColumn" msprop:Generator_UserColumnName="coachID" type="xs:unsignedInt" />
@@ -802,7 +873,7 @@ FROM            positional_skill</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="race" msprop:Generator_TableClassName="raceDataTable" msprop:Generator_TableVarName="tablerace" msprop:Generator_TablePropName="race" msprop:Generator_RowDeletingName="raceRowDeleting" msprop:Generator_RowChangingName="raceRowChanging" msprop:Generator_RowEvHandlerName="raceRowChangeEventHandler" msprop:Generator_RowDeletedName="raceRowDeleted" msprop:Generator_UserTableName="race" msprop:Generator_RowChangedName="raceRowChanged" msprop:Generator_RowEvArgName="raceRowChangeEvent" msprop:Generator_RowClassName="raceRow">
+        <xs:element name="race" msprop:Generator_TableClassName="raceDataTable" msprop:Generator_TableVarName="tablerace" msprop:Generator_RowChangedName="raceRowChanged" msprop:Generator_TablePropName="race" msprop:Generator_RowDeletingName="raceRowDeleting" msprop:Generator_RowChangingName="raceRowChanging" msprop:Generator_RowEvHandlerName="raceRowChangeEventHandler" msprop:Generator_RowDeletedName="raceRowDeleted" msprop:Generator_RowClassName="raceRow" msprop:Generator_UserTableName="race" msprop:Generator_RowEvArgName="raceRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:unsignedInt" />
@@ -816,7 +887,7 @@ FROM            positional_skill</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="positional" msprop:Generator_TableClassName="positionalDataTable" msprop:Generator_TableVarName="tablepositional" msprop:Generator_TablePropName="positional" msprop:Generator_RowDeletingName="positionalRowDeleting" msprop:Generator_RowChangingName="positionalRowChanging" msprop:Generator_RowEvHandlerName="positionalRowChangeEventHandler" msprop:Generator_RowDeletedName="positionalRowDeleted" msprop:Generator_UserTableName="positional" msprop:Generator_RowChangedName="positionalRowChanged" msprop:Generator_RowEvArgName="positionalRowChangeEvent" msprop:Generator_RowClassName="positionalRow">
+        <xs:element name="positional" msprop:Generator_TableClassName="positionalDataTable" msprop:Generator_TableVarName="tablepositional" msprop:Generator_RowChangedName="positionalRowChanged" msprop:Generator_TablePropName="positional" msprop:Generator_RowDeletingName="positionalRowDeleting" msprop:Generator_RowChangingName="positionalRowChanging" msprop:Generator_RowEvHandlerName="positionalRowChangeEventHandler" msprop:Generator_RowDeletedName="positionalRowDeleted" msprop:Generator_RowClassName="positionalRow" msprop:Generator_UserTableName="positional" msprop:Generator_RowEvArgName="positionalRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:unsignedInt" />
@@ -836,7 +907,7 @@ FROM            positional_skill</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="coach" msprop:Generator_TableClassName="coachDataTable" msprop:Generator_TableVarName="tablecoach" msprop:Generator_RowChangedName="coachRowChanged" msprop:Generator_TablePropName="coach" msprop:Generator_RowDeletingName="coachRowDeleting" msprop:Generator_RowChangingName="coachRowChanging" msprop:Generator_RowEvHandlerName="coachRowChangeEventHandler" msprop:Generator_RowDeletedName="coachRowDeleted" msprop:Generator_RowClassName="coachRow" msprop:Generator_UserTableName="coach" msprop:Generator_RowEvArgName="coachRowChangeEvent">
+        <xs:element name="coach" msprop:Generator_TableClassName="coachDataTable" msprop:Generator_TableVarName="tablecoach" msprop:Generator_TablePropName="coach" msprop:Generator_RowDeletingName="coachRowDeleting" msprop:Generator_RowChangingName="coachRowChanging" msprop:Generator_RowEvHandlerName="coachRowChangeEventHandler" msprop:Generator_RowDeletedName="coachRowDeleted" msprop:Generator_UserTableName="coach" msprop:Generator_RowChangedName="coachRowChanged" msprop:Generator_RowEvArgName="coachRowChangeEvent" msprop:Generator_RowClassName="coachRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:unsignedInt" />
@@ -873,7 +944,7 @@ FROM            positional_skill</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="positional_skill" msprop:Generator_TableClassName="positional_skillDataTable" msprop:Generator_TableVarName="tablepositional_skill" msprop:Generator_TablePropName="positional_skill" msprop:Generator_RowDeletingName="positional_skillRowDeleting" msprop:Generator_RowChangingName="positional_skillRowChanging" msprop:Generator_RowEvHandlerName="positional_skillRowChangeEventHandler" msprop:Generator_RowDeletedName="positional_skillRowDeleted" msprop:Generator_UserTableName="positional_skill" msprop:Generator_RowChangedName="positional_skillRowChanged" msprop:Generator_RowEvArgName="positional_skillRowChangeEvent" msprop:Generator_RowClassName="positional_skillRow">
+        <xs:element name="positional_skill" msprop:Generator_TableClassName="positional_skillDataTable" msprop:Generator_TableVarName="tablepositional_skill" msprop:Generator_RowChangedName="positional_skillRowChanged" msprop:Generator_TablePropName="positional_skill" msprop:Generator_RowDeletingName="positional_skillRowDeleting" msprop:Generator_RowChangingName="positional_skillRowChanging" msprop:Generator_RowEvHandlerName="positional_skillRowChangeEventHandler" msprop:Generator_RowDeletedName="positional_skillRowDeleted" msprop:Generator_RowClassName="positional_skillRow" msprop:Generator_UserTableName="positional_skill" msprop:Generator_RowEvArgName="positional_skillRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="positionalID" msprop:Generator_ColumnVarNameInTable="columnpositionalID" msprop:Generator_ColumnPropNameInRow="positionalID" msprop:Generator_ColumnPropNameInTable="positionalIDColumn" msprop:Generator_UserColumnName="positionalID" type="xs:unsignedInt" minOccurs="0" />
@@ -883,7 +954,7 @@ FROM            positional_skill</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="skilltype" msprop:Generator_TableClassName="skilltypeDataTable" msprop:Generator_TableVarName="tableskilltype" msprop:Generator_TablePropName="skilltype" msprop:Generator_RowDeletingName="skilltypeRowDeleting" msprop:Generator_RowChangingName="skilltypeRowChanging" msprop:Generator_RowEvHandlerName="skilltypeRowChangeEventHandler" msprop:Generator_RowDeletedName="skilltypeRowDeleted" msprop:Generator_UserTableName="skilltype" msprop:Generator_RowChangedName="skilltypeRowChanged" msprop:Generator_RowEvArgName="skilltypeRowChangeEvent" msprop:Generator_RowClassName="skilltypeRow">
+        <xs:element name="skilltype" msprop:Generator_TableClassName="skilltypeDataTable" msprop:Generator_TableVarName="tableskilltype" msprop:Generator_RowChangedName="skilltypeRowChanged" msprop:Generator_TablePropName="skilltype" msprop:Generator_RowDeletingName="skilltypeRowDeleting" msprop:Generator_RowChangingName="skilltypeRowChanging" msprop:Generator_RowEvHandlerName="skilltypeRowChangeEventHandler" msprop:Generator_RowDeletedName="skilltypeRowDeleted" msprop:Generator_RowClassName="skilltypeRow" msprop:Generator_UserTableName="skilltype" msprop:Generator_RowEvArgName="skilltypeRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="id" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:unsignedInt" />
@@ -928,41 +999,41 @@ FROM            positional_skill</CommandText>
       <xs:selector xpath=".//mstns:skilltype" />
       <xs:field xpath="mstns:id" />
     </xs:unique>
-    <xs:keyref name="FK_positional_skill_positional" refer="positional_skill_Constraint1" msprop:rel_Generator_UserChildTable="positional" msprop:rel_Generator_ChildPropName="GetpositionalRows" msprop:rel_Generator_UserRelationName="FK_positional_skill_positional" msprop:rel_Generator_RelationVarName="relationFK_positional_skill_positional" msprop:rel_Generator_UserParentTable="positional_skill" msprop:rel_Generator_ParentPropName="positional_skillRow">
+    <xs:keyref name="FK_positional_skill_positional" refer="positional_skill_Constraint1" msprop:rel_Generator_UserChildTable="positional" msprop:rel_Generator_ChildPropName="GetpositionalRows" msprop:rel_Generator_UserRelationName="FK_positional_skill_positional" msprop:rel_Generator_ParentPropName="positional_skillRow" msprop:rel_Generator_RelationVarName="relationFK_positional_skill_positional" msprop:rel_Generator_UserParentTable="positional_skill">
       <xs:selector xpath=".//mstns:positional" />
       <xs:field xpath="mstns:id" />
     </xs:keyref>
-    <xs:keyref name="FK_team_coach_team" refer="team_Constraint1" msprop:rel_Generator_UserChildTable="coach_team" msprop:rel_Generator_ChildPropName="Getcoach_teamRows" msprop:rel_Generator_UserRelationName="FK_team_coach_team" msprop:rel_Generator_RelationVarName="relationFK_team_coach_team" msprop:rel_Generator_UserParentTable="team" msprop:rel_Generator_ParentPropName="teamRow">
-      <xs:selector xpath=".//mstns:coach_team" />
-      <xs:field xpath="mstns:teamID" />
-    </xs:keyref>
-    <xs:keyref name="FK_coach_coach_team" refer="coach_Constraint1" msprop:rel_Generator_UserChildTable="coach_team" msprop:rel_Generator_ChildPropName="Getcoach_teamRows" msprop:rel_Generator_UserRelationName="FK_coach_coach_team" msprop:rel_Generator_ParentPropName="coachRow" msprop:rel_Generator_RelationVarName="relationFK_coach_coach_team" msprop:rel_Generator_UserParentTable="coach">
+    <xs:keyref name="FK_coach_coach_team" refer="coach_Constraint1" msprop:rel_Generator_UserChildTable="coach_team" msprop:rel_Generator_ChildPropName="Getcoach_teamRows" msprop:rel_Generator_UserRelationName="FK_coach_coach_team" msprop:rel_Generator_RelationVarName="relationFK_coach_coach_team" msprop:rel_Generator_UserParentTable="coach" msprop:rel_Generator_ParentPropName="coachRow">
       <xs:selector xpath=".//mstns:coach_team" />
       <xs:field xpath="mstns:coachID" />
     </xs:keyref>
-    <xs:keyref name="FK_team_team_player" refer="team_Constraint1" msprop:rel_Generator_UserChildTable="team_player" msprop:rel_Generator_ChildPropName="Getteam_playerRows" msprop:rel_Generator_UserRelationName="FK_team_team_player" msprop:rel_Generator_RelationVarName="relationFK_team_team_player" msprop:rel_Generator_UserParentTable="team" msprop:rel_Generator_ParentPropName="teamRow">
+    <xs:keyref name="FK_team_coach_team" refer="team_Constraint1" msprop:rel_Generator_UserChildTable="coach_team" msprop:rel_Generator_ChildPropName="Getcoach_teamRows" msprop:rel_Generator_UserRelationName="FK_team_coach_team" msprop:rel_Generator_ParentPropName="teamRow" msprop:rel_Generator_RelationVarName="relationFK_team_coach_team" msprop:rel_Generator_UserParentTable="team">
+      <xs:selector xpath=".//mstns:coach_team" />
+      <xs:field xpath="mstns:teamID" />
+    </xs:keyref>
+    <xs:keyref name="FK_player_team_player" refer="Constraint1" msprop:rel_Generator_UserChildTable="team_player" msprop:rel_Generator_ChildPropName="Getteam_playerRows" msprop:rel_Generator_UserRelationName="FK_player_team_player" msprop:rel_Generator_ParentPropName="playerRow" msprop:rel_Generator_RelationVarName="relationFK_player_team_player" msprop:rel_Generator_UserParentTable="player">
+      <xs:selector xpath=".//mstns:team_player" />
+      <xs:field xpath="mstns:playerID" />
+    </xs:keyref>
+    <xs:keyref name="FK_team_team_player" refer="team_Constraint1" msprop:rel_Generator_UserChildTable="team_player" msprop:rel_Generator_ChildPropName="Getteam_playerRows" msprop:rel_Generator_UserRelationName="FK_team_team_player" msprop:rel_Generator_ParentPropName="teamRow" msprop:rel_Generator_RelationVarName="relationFK_team_team_player" msprop:rel_Generator_UserParentTable="team">
       <xs:selector xpath=".//mstns:team_player" />
       <xs:field xpath="mstns:teamID" />
     </xs:keyref>
-    <xs:keyref name="FK_player_team_player" refer="Constraint1" msprop:rel_Generator_UserChildTable="team_player" msprop:rel_Generator_ChildPropName="Getteam_playerRows" msprop:rel_Generator_UserRelationName="FK_player_team_player" msprop:rel_Generator_RelationVarName="relationFK_player_team_player" msprop:rel_Generator_UserParentTable="player" msprop:rel_Generator_ParentPropName="playerRow">
-      <xs:selector xpath=".//mstns:team_player" />
-      <xs:field xpath="mstns:playerID" />
-    </xs:keyref>
-    <xs:keyref name="FK_skilltype_skill" refer="skilltype_Constraint1" msprop:rel_Generator_UserChildTable="skill" msprop:rel_Generator_ChildPropName="GetskillRows" msprop:rel_Generator_UserRelationName="FK_skilltype_skill" msprop:rel_Generator_RelationVarName="relationFK_skilltype_skill" msprop:rel_Generator_UserParentTable="skilltype" msprop:rel_Generator_ParentPropName="skilltypeRow">
-      <xs:selector xpath=".//mstns:skill" />
-      <xs:field xpath="mstns:type" />
-    </xs:keyref>
-    <xs:keyref name="FK_positional_skill_skill" refer="Constraint2" msprop:rel_Generator_UserChildTable="skill" msprop:rel_Generator_ChildPropName="GetskillRows" msprop:rel_Generator_UserRelationName="FK_positional_skill_skill" msprop:rel_Generator_RelationVarName="relationFK_positional_skill_skill" msprop:rel_Generator_UserParentTable="positional_skill" msprop:rel_Generator_ParentPropName="positional_skillRow">
+    <xs:keyref name="FK_positional_skill_skill" refer="Constraint2" msprop:rel_Generator_UserChildTable="skill" msprop:rel_Generator_ChildPropName="GetskillRows" msprop:rel_Generator_UserRelationName="FK_positional_skill_skill" msprop:rel_Generator_ParentPropName="positional_skillRow" msprop:rel_Generator_RelationVarName="relationFK_positional_skill_skill" msprop:rel_Generator_UserParentTable="positional_skill">
       <xs:selector xpath=".//mstns:skill" />
       <xs:field xpath="mstns:id" />
     </xs:keyref>
-    <xs:keyref name="FK_player_player_skill" refer="Constraint1" msprop:rel_Generator_UserChildTable="player_skill" msprop:rel_Generator_ChildPropName="Getplayer_skillRows" msprop:rel_Generator_UserRelationName="FK_player_player_skill" msprop:rel_Generator_RelationVarName="relationFK_player_player_skill" msprop:rel_Generator_UserParentTable="player" msprop:rel_Generator_ParentPropName="playerRow">
-      <xs:selector xpath=".//mstns:player_skill" />
-      <xs:field xpath="mstns:playerID" />
+    <xs:keyref name="FK_skilltype_skill" refer="skilltype_Constraint1" msprop:rel_Generator_UserChildTable="skill" msprop:rel_Generator_ChildPropName="GetskillRows" msprop:rel_Generator_UserRelationName="FK_skilltype_skill" msprop:rel_Generator_ParentPropName="skilltypeRow" msprop:rel_Generator_RelationVarName="relationFK_skilltype_skill" msprop:rel_Generator_UserParentTable="skilltype">
+      <xs:selector xpath=".//mstns:skill" />
+      <xs:field xpath="mstns:type" />
     </xs:keyref>
-    <xs:keyref name="FK_skill_player_skill" refer="skill_Constraint1" msprop:rel_Generator_UserChildTable="player_skill" msprop:rel_Generator_ChildPropName="Getplayer_skillRows" msprop:rel_Generator_UserRelationName="FK_skill_player_skill" msprop:rel_Generator_ParentPropName="skillRow" msprop:rel_Generator_RelationVarName="relationFK_skill_player_skill" msprop:rel_Generator_UserParentTable="skill">
+    <xs:keyref name="FK_skill_player_skill" refer="skill_Constraint1" msprop:rel_Generator_UserChildTable="player_skill" msprop:rel_Generator_ChildPropName="Getplayer_skillRows" msprop:rel_Generator_UserRelationName="FK_skill_player_skill" msprop:rel_Generator_RelationVarName="relationFK_skill_player_skill" msprop:rel_Generator_UserParentTable="skill" msprop:rel_Generator_ParentPropName="skillRow">
       <xs:selector xpath=".//mstns:player_skill" />
       <xs:field xpath="mstns:skillID" />
+    </xs:keyref>
+    <xs:keyref name="FK_player_player_skill" refer="Constraint1" msprop:rel_Generator_UserChildTable="player_skill" msprop:rel_Generator_ChildPropName="Getplayer_skillRows" msprop:rel_Generator_UserRelationName="FK_player_player_skill" msprop:rel_Generator_ParentPropName="playerRow" msprop:rel_Generator_RelationVarName="relationFK_player_player_skill" msprop:rel_Generator_UserParentTable="player">
+      <xs:selector xpath=".//mstns:player_skill" />
+      <xs:field xpath="mstns:playerID" />
     </xs:keyref>
   </xs:element>
 </xs:schema>
