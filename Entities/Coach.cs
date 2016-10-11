@@ -13,7 +13,7 @@ namespace LegaGladio.Entities
         public String NafID{ get; set; }
 
         public Boolean Active { get; set; }
-        public String nafNick { get; set; }
+        public String NafNick { get; set; }
 
         public String Notes{ get; set; }
 

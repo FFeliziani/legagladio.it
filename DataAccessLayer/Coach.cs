@@ -11,9 +11,9 @@ namespace DataAccessLayer
     {
         public static int countCoach()
         {
-            LegaGladioDSTableAdapters.coachTableAdapter pta = new LegaGladioDSTableAdapters.coachTableAdapter();
-            int count = (int)pta.Count();
-            pta = null;
+            LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
+            int count = (int)cta.Count();
+            cta = null;
             return count;
         }
 
@@ -117,17 +117,34 @@ namespace DataAccessLayer
 
         public static Boolean newCoach(LegaGladio.Entities.Coach coach)
         {
-            return false;
+            LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
+            int result = cta.Insert(coach.Name, coach.Value, coach.NafID, coach.Notes, coach.Active, coach.NafNick);
+            cta = null;
+            return result > 0;
         }
 
         public static Boolean updateCoach(LegaGladio.Entities.Coach coach, int oldID)
         {
-            return false;
+            LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
+            LegaGladioDS.coachDataTable cdt = new LegaGladioDS.coachDataTable();
+            LegaGladioDS.coachRow cr = (LegaGladioDS.coachRow)cdt.NewRow();
+            cr.id = (uint)oldID;
+            cr.name = coach.Name;
+            cr.active = coach.Active;
+            cr.nafID = coach.NafID;
+            cr.nafNick = coach.NafNick;
+            cr.note = coach.Notes;
+            cr.value = coach.Value;
+            int result = cta.Update(cr);
+            return result > 0;
         }
 
         public static Boolean deleteCoach(int id)
         {
-            return false;
+            LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
+            int result = cta.Delete(id);
+            cta = null;
+            return result > 0;
         }
     }
 }

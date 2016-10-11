@@ -19,18 +19,6 @@
     <Shape ID="DesignTable:skilltype" ZOrder="4" X="461" Y="681" Height="96" Width="193" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="46" />
   </Shapes>
   <Connectors>
-    <Connector ID="DesignRelation:FK_skill_player_skill" ZOrder="17" LineWidth="11">
-      <RoutePoints>
-        <Point>
-          <X>441</X>
-          <Y>568</Y>
-        </Point>
-        <Point>
-          <X>354</X>
-          <Y>568</Y>
-        </Point>
-      </RoutePoints>
-    </Connector>
     <Connector ID="DesignRelation:FK_player_player_skill" ZOrder="16" LineWidth="11">
       <RoutePoints>
         <Point>
@@ -43,15 +31,15 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_positional_skill_skill" ZOrder="7" LineWidth="11">
+    <Connector ID="DesignRelation:FK_skill_player_skill" ZOrder="17" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>737</X>
-          <Y>468</Y>
+          <X>441</X>
+          <Y>568</Y>
         </Point>
         <Point>
-          <X>671</X>
-          <Y>468</Y>
+          <X>354</X>
+          <Y>568</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -67,15 +55,15 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_player_team_player" ZOrder="15" LineWidth="11">
+    <Connector ID="DesignRelation:FK_positional_skill_skill" ZOrder="7" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>328</X>
-          <Y>234</Y>
+          <X>737</X>
+          <Y>468</Y>
         </Point>
         <Point>
-          <X>388</X>
-          <Y>234</Y>
+          <X>671</X>
+          <Y>468</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -91,15 +79,15 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_coach_coach_team" ZOrder="10" LineWidth="11">
+    <Connector ID="DesignRelation:FK_player_team_player" ZOrder="15" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>1111</X>
-          <Y>158</Y>
+          <X>328</X>
+          <Y>234</Y>
         </Point>
         <Point>
-          <X>1045</X>
-          <Y>158</Y>
+          <X>388</X>
+          <Y>234</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -112,6 +100,18 @@
         <Point>
           <X>887</X>
           <Y>248</Y>
+        </Point>
+      </RoutePoints>
+    </Connector>
+    <Connector ID="DesignRelation:FK_coach_coach_team" ZOrder="10" LineWidth="11">
+      <RoutePoints>
+        <Point>
+          <X>1111</X>
+          <Y>158</Y>
+        </Point>
+        <Point>
+          <X>1045</X>
+          <Y>158</Y>
         </Point>
       </RoutePoints>
     </Connector>
