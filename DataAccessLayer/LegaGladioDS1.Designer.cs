@@ -46,21 +46,21 @@ namespace DataAccessLayer {
         
         private skilltypeDataTable tableskilltype;
         
-        private global::System.Data.DataRelation relationFK_skill_player_skill;
-        
         private global::System.Data.DataRelation relationFK_player_player_skill;
         
-        private global::System.Data.DataRelation relationFK_positional_skill_skill;
+        private global::System.Data.DataRelation relationFK_skill_player_skill;
         
         private global::System.Data.DataRelation relationFK_skilltype_skill;
         
-        private global::System.Data.DataRelation relationFK_player_team_player;
+        private global::System.Data.DataRelation relationFK_positional_skill_skill;
         
         private global::System.Data.DataRelation relationFK_team_team_player;
         
-        private global::System.Data.DataRelation relationFK_coach_coach_team;
+        private global::System.Data.DataRelation relationFK_player_team_player;
         
         private global::System.Data.DataRelation relationFK_team_coach_team;
+        
+        private global::System.Data.DataRelation relationFK_coach_coach_team;
         
         private global::System.Data.DataRelation relationFK_positional_skill_positional;
         
@@ -452,14 +452,14 @@ namespace DataAccessLayer {
                     this.tableskilltype.InitVars();
                 }
             }
-            this.relationFK_skill_player_skill = this.Relations["FK_skill_player_skill"];
             this.relationFK_player_player_skill = this.Relations["FK_player_player_skill"];
-            this.relationFK_positional_skill_skill = this.Relations["FK_positional_skill_skill"];
+            this.relationFK_skill_player_skill = this.Relations["FK_skill_player_skill"];
             this.relationFK_skilltype_skill = this.Relations["FK_skilltype_skill"];
-            this.relationFK_player_team_player = this.Relations["FK_player_team_player"];
+            this.relationFK_positional_skill_skill = this.Relations["FK_positional_skill_skill"];
             this.relationFK_team_team_player = this.Relations["FK_team_team_player"];
-            this.relationFK_coach_coach_team = this.Relations["FK_coach_coach_team"];
+            this.relationFK_player_team_player = this.Relations["FK_player_team_player"];
             this.relationFK_team_coach_team = this.Relations["FK_team_coach_team"];
+            this.relationFK_coach_coach_team = this.Relations["FK_coach_coach_team"];
             this.relationFK_positional_skill_positional = this.Relations["FK_positional_skill_positional"];
         }
         
@@ -494,13 +494,6 @@ namespace DataAccessLayer {
             this.tableskilltype = new skilltypeDataTable();
             base.Tables.Add(this.tableskilltype);
             global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_skill_player_skill", new global::System.Data.DataColumn[] {
-                        this.tableskill.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableplayer_skill.skillIDColumn});
-            this.tableplayer_skill.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_player_player_skill", new global::System.Data.DataColumn[] {
                         this.tableplayer.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableplayer_skill.playerIDColumn});
@@ -508,10 +501,10 @@ namespace DataAccessLayer {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_positional_skill_skill", new global::System.Data.DataColumn[] {
-                        this.tablepositional_skill.skillIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableskill.idColumn});
-            this.tableskill.Constraints.Add(fkc);
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_skill_player_skill", new global::System.Data.DataColumn[] {
+                        this.tableskill.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableplayer_skill.skillIDColumn});
+            this.tableplayer_skill.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
@@ -522,10 +515,10 @@ namespace DataAccessLayer {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_player_team_player", new global::System.Data.DataColumn[] {
-                        this.tableplayer.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableteam_player.playerIDColumn});
-            this.tableteam_player.Constraints.Add(fkc);
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_positional_skill_skill", new global::System.Data.DataColumn[] {
+                        this.tablepositional_skill.skillIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableskill.idColumn});
+            this.tableskill.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
@@ -536,16 +529,23 @@ namespace DataAccessLayer {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_coach_coach_team", new global::System.Data.DataColumn[] {
-                        this.tablecoach.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablecoach_team.coachIDColumn});
-            this.tablecoach_team.Constraints.Add(fkc);
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_player_team_player", new global::System.Data.DataColumn[] {
+                        this.tableplayer.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableteam_player.playerIDColumn});
+            this.tableteam_player.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_team_coach_team", new global::System.Data.DataColumn[] {
                         this.tableteam.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablecoach_team.teamIDColumn});
+            this.tablecoach_team.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_coach_coach_team", new global::System.Data.DataColumn[] {
+                        this.tablecoach.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablecoach_team.coachIDColumn});
             this.tablecoach_team.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
@@ -557,38 +557,38 @@ namespace DataAccessLayer {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationFK_skill_player_skill = new global::System.Data.DataRelation("FK_skill_player_skill", new global::System.Data.DataColumn[] {
-                        this.tableskill.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableplayer_skill.skillIDColumn}, false);
-            this.Relations.Add(this.relationFK_skill_player_skill);
             this.relationFK_player_player_skill = new global::System.Data.DataRelation("FK_player_player_skill", new global::System.Data.DataColumn[] {
                         this.tableplayer.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableplayer_skill.playerIDColumn}, false);
             this.Relations.Add(this.relationFK_player_player_skill);
-            this.relationFK_positional_skill_skill = new global::System.Data.DataRelation("FK_positional_skill_skill", new global::System.Data.DataColumn[] {
-                        this.tablepositional_skill.skillIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableskill.idColumn}, false);
-            this.Relations.Add(this.relationFK_positional_skill_skill);
+            this.relationFK_skill_player_skill = new global::System.Data.DataRelation("FK_skill_player_skill", new global::System.Data.DataColumn[] {
+                        this.tableskill.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableplayer_skill.skillIDColumn}, false);
+            this.Relations.Add(this.relationFK_skill_player_skill);
             this.relationFK_skilltype_skill = new global::System.Data.DataRelation("FK_skilltype_skill", new global::System.Data.DataColumn[] {
                         this.tableskilltype.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableskill.typeColumn}, false);
             this.Relations.Add(this.relationFK_skilltype_skill);
-            this.relationFK_player_team_player = new global::System.Data.DataRelation("FK_player_team_player", new global::System.Data.DataColumn[] {
-                        this.tableplayer.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableteam_player.playerIDColumn}, false);
-            this.Relations.Add(this.relationFK_player_team_player);
+            this.relationFK_positional_skill_skill = new global::System.Data.DataRelation("FK_positional_skill_skill", new global::System.Data.DataColumn[] {
+                        this.tablepositional_skill.skillIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableskill.idColumn}, false);
+            this.Relations.Add(this.relationFK_positional_skill_skill);
             this.relationFK_team_team_player = new global::System.Data.DataRelation("FK_team_team_player", new global::System.Data.DataColumn[] {
                         this.tableteam.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableteam_player.teamIDColumn}, false);
             this.Relations.Add(this.relationFK_team_team_player);
-            this.relationFK_coach_coach_team = new global::System.Data.DataRelation("FK_coach_coach_team", new global::System.Data.DataColumn[] {
-                        this.tablecoach.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tablecoach_team.coachIDColumn}, false);
-            this.Relations.Add(this.relationFK_coach_coach_team);
+            this.relationFK_player_team_player = new global::System.Data.DataRelation("FK_player_team_player", new global::System.Data.DataColumn[] {
+                        this.tableplayer.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableteam_player.playerIDColumn}, false);
+            this.Relations.Add(this.relationFK_player_team_player);
             this.relationFK_team_coach_team = new global::System.Data.DataRelation("FK_team_coach_team", new global::System.Data.DataColumn[] {
                         this.tableteam.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablecoach_team.teamIDColumn}, false);
             this.Relations.Add(this.relationFK_team_coach_team);
+            this.relationFK_coach_coach_team = new global::System.Data.DataRelation("FK_coach_coach_team", new global::System.Data.DataColumn[] {
+                        this.tablecoach.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablecoach_team.coachIDColumn}, false);
+            this.Relations.Add(this.relationFK_coach_coach_team);
             this.relationFK_positional_skill_positional = new global::System.Data.DataRelation("FK_positional_skill_positional", new global::System.Data.DataColumn[] {
                         this.tablepositional_skill.positionalIDColumn}, new global::System.Data.DataColumn[] {
                         this.tablepositional.idColumn}, false);
@@ -4632,23 +4632,23 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public skillRow skillRow {
-                get {
-                    return ((skillRow)(this.GetParentRow(this.Table.ParentRelations["FK_skill_player_skill"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_skill_player_skill"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public playerRow playerRow {
                 get {
                     return ((playerRow)(this.GetParentRow(this.Table.ParentRelations["FK_player_player_skill"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_player_player_skill"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public skillRow skillRow {
+                get {
+                    return ((skillRow)(this.GetParentRow(this.Table.ParentRelations["FK_skill_player_skill"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_skill_player_skill"]);
                 }
             }
         }
@@ -4712,23 +4712,23 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public positional_skillRow positional_skillRow {
-                get {
-                    return ((positional_skillRow)(this.GetParentRow(this.Table.ParentRelations["FK_positional_skill_skill"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_positional_skill_skill"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public skilltypeRow skilltypeRow {
                 get {
                     return ((skilltypeRow)(this.GetParentRow(this.Table.ParentRelations["FK_skilltype_skill"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_skilltype_skill"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public positional_skillRow positional_skillRow {
+                get {
+                    return ((positional_skillRow)(this.GetParentRow(this.Table.ParentRelations["FK_positional_skill_skill"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_positional_skill_skill"]);
                 }
             }
             
@@ -5050,23 +5050,23 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public playerRow playerRow {
-                get {
-                    return ((playerRow)(this.GetParentRow(this.Table.ParentRelations["FK_player_team_player"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_player_team_player"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public teamRow teamRow {
                 get {
                     return ((teamRow)(this.GetParentRow(this.Table.ParentRelations["FK_team_team_player"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_team_team_player"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public playerRow playerRow {
+                get {
+                    return ((playerRow)(this.GetParentRow(this.Table.ParentRelations["FK_player_team_player"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_player_team_player"]);
                 }
             }
         }
@@ -5109,23 +5109,23 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public coachRow coachRow {
-                get {
-                    return ((coachRow)(this.GetParentRow(this.Table.ParentRelations["FK_coach_coach_team"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_coach_coach_team"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public teamRow teamRow {
                 get {
                     return ((teamRow)(this.GetParentRow(this.Table.ParentRelations["FK_team_coach_team"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_team_coach_team"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public coachRow coachRow {
+                get {
+                    return ((coachRow)(this.GetParentRow(this.Table.ParentRelations["FK_coach_coach_team"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_coach_coach_team"]);
                 }
             }
         }
@@ -9602,22 +9602,14 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM `race` WHERE ((`id` = @p1) AND (`name` = @p2))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM race\r\nWHERE        (id = @id)";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p1";
-            param.DbType = global::System.Data.DbType.UInt32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.UInt32;
+            param.ParameterName = "@id";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "id";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p2";
-            param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.IsNullable = true;
-            param.SourceColumn = "name";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
@@ -9670,11 +9662,38 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
+            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[4];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT `id`, `name` FROM `race`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT COUNT(*) FROM race";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[2] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT `id`, `name` FROM `race` where id = @id";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@id";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "id";
+            this._commandCollection[2].Parameters.Add(param);
+            this._commandCollection[3] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = "INSERT INTO `race` (`name`) VALUES (@name)";
+            this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@name";
+            param.DbType = global::System.Data.DbType.String;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.Size = 45;
+            param.IsNullable = true;
+            param.SourceColumn = "name";
+            this._commandCollection[3].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -9696,6 +9715,32 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual LegaGladioDS.raceDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
+            LegaGladioDS.raceDataTable dataTable = new LegaGladioDS.raceDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillById(LegaGladioDS.raceDataTable dataTable, int id) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual LegaGladioDS.raceDataTable GetDataById(int id) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id));
             LegaGladioDS.raceDataTable dataTable = new LegaGladioDS.raceDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -9734,14 +9779,8 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(uint p1, string p2) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((uint)(p1));
-            if ((p2 == null)) {
-                throw new global::System.ArgumentNullException("p2");
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(p2));
-            }
+        public virtual int Delete(int id) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -9817,6 +9856,63 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                     this.Adapter.UpdateCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual global::System.Nullable<long> Count() {
+            global::MySql.Data.MySqlClient.MySqlCommand command = this.CommandCollection[1];
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return new global::System.Nullable<long>();
+            }
+            else {
+                return new global::System.Nullable<long>(((long)(returnValue)));
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
+        public virtual int InsertRace(string name) {
+            global::MySql.Data.MySqlClient.MySqlCommand command = this.CommandCollection[3];
+            if ((name == null)) {
+                throw new global::System.ArgumentNullException("name");
+            }
+            else {
+                command.Parameters[0].Value = ((string)(name));
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
         }
     }
     

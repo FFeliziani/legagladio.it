@@ -134,7 +134,7 @@ namespace DataAccessLayer
             pr.cas = player.Cas;
             pr.cat = player.Cat;
             pr.cost = player.Cost;
-            pr.id = (uint)player.Id;
+            pr.id = (uint)oldID;
             pr.ma = player.Ma;
             pr.missNextGame = player.MissNextGame;
             pr.name = player.Name;
