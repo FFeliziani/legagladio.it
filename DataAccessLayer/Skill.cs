@@ -168,7 +168,14 @@ namespace DataAccessLayer
 
         public static Boolean updateSkill(LegaGladio.Entities.Skill skill, int oldID)
         {
-            return false;
+            LegaGladioDSTableAdapters.skillTableAdapter sta = new LegaGladioDSTableAdapters.skillTableAdapter();
+            LegaGladioDS.skillDataTable sdt = new LegaGladioDS.skillDataTable();
+            LegaGladioDS.skillRow sr = (LegaGladioDS.skillRow)sdt.NewRow();
+            sr.id = (uint)oldID;
+            sr.name = skill.Name;
+            sr.type = (uint)skill.SkillType;
+            int result = sta.Update(sr);
+            return result > 0;
         }
 
         public static Boolean deleteSkill(int id)
