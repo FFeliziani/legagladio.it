@@ -44,5 +44,26 @@ namespace DataAccessLayer.Properties {
                 return ((string)(this["legagladioConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=127.0.0.1;user id=f3l1x;password=aa123ss;persistsecurityinfo=True;database" +
+            "=legagladio;allowuservariables=True")]
+        public string legagladioConnectionString1 {
+            get {
+                return ((string)(this["legagladioConnectionString1"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=localhost;user id=f3l1x;password=Xri8jgmk!.1;database=legagladio")]
+        public string legagladioConnectionString2 {
+            get {
+                return ((string)(this["legagladioConnectionString2"]));
+            }
+        }
     }
 }

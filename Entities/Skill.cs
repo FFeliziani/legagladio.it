@@ -10,5 +10,7 @@ namespace LegaGladio.Entities
         public String Name { get; set; }
 
         public SkillType SkillType { get; set; }
+
+        public SkillCost SkillCost { get; set; }
     }
 }

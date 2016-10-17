@@ -100,12 +100,27 @@ namespace DataAccessLayer
 
         public static Boolean newTeam(LegaGladio.Entities.Team team)
         {
-            return false;
+            LegaGladioDSTableAdapters.teamTableAdapter tta = new LegaGladioDSTableAdapters.teamTableAdapter();
+            int result = tta.Insert(team.Value, team.Name, team.FunFactor, team.Reroll, (byte)(team.HasMedic ? 1 : 0), team.Cheerleader, team.AssistantCoach);
+            tta = null;
+            return result > 0;
         }
 
         public static Boolean updateTeam(LegaGladio.Entities.Team team, int oldID)
         {
-            return false;
+            LegaGladioDSTableAdapters.teamTableAdapter tta = new LegaGladioDSTableAdapters.teamTableAdapter();
+            LegaGladioDS.teamDataTable tdt = new LegaGladioDS.teamDataTable();
+            LegaGladioDS.teamRow tr = (LegaGladioDS.teamRow)tdt.NewRow();
+            tr.id = (uint)oldID;
+            tr.name = team.Name;
+            tr.value = team.Value;
+            tr.funFactor = team.FunFactor;
+            tr.reroll = team.Reroll;
+            tr.hasMedic = team.HasMedic;
+            tr.cheerleader = team.Cheerleader;
+            tr.assistantCoach = team.AssistantCoach;
+            int result = tta.Update(tr);
+            return result > 0;
         }
 
         public static Boolean deleteTeam(int id)

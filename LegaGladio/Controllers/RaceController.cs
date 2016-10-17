@@ -10,30 +10,38 @@ namespace LegaGladio.Controllers
     public class RaceController : ApiController
     {
         // GET api/race
-        public IEnumerable<string> Get()
+        [ActionName("get")]
+        public IEnumerable<LegaGladio.Entities.Race> Get()
         {
-            return new string[] { "value1", "value2" };
+            return LegaGladio.BusinessLogic.Race.list();
         }
 
         // GET api/race/5
-        public string Get(int id)
+        [ActionName("get")]
+        public LegaGladio.Entities.Race Get(int id)
         {
-            return "value";
+            return LegaGladio.BusinessLogic.Race.get(id);
         }
 
         // POST api/race
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public void Post([FromBody]LegaGladio.Entities.Race race)
         {
+            LegaGladio.BusinessLogic.Race.newRace(race);
         }
 
         // PUT api/race/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public void Put(int id, [FromBody]LegaGladio.Entities.Race race)
         {
+            LegaGladio.BusinessLogic.Race.updateRace(race, id);
         }
 
         // DELETE api/race/5
+        [HttpDelete]
         public void Delete(int id)
         {
+            LegaGladio.BusinessLogic.Race.deleteRace(id);
         }
     }
 }

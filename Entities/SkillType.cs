@@ -8,11 +8,11 @@ namespace LegaGladio.Entities
 {
     public enum SkillType
     {
-        GENERAL = 0,
-        AGILITY = 1,
-        PASSING = 2,
+        PASSING = 1,
+        AGILITY = 2,
         STRENGTH = 3,
-        MUTATION = 4,
-        EXTRAORDINARY = 5
+        GENERAL = 4,
+        MUTATION = 5,
+        EXTRAORDINARY = 6
     }
 }

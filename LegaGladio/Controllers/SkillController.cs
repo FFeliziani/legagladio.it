@@ -10,30 +10,38 @@ namespace LegaGladio.Controllers
     public class SkillController : ApiController
     {
         // GET api/<controller>
-        public IEnumerable<string> Get()
+        [ActionName("get")]
+        public IEnumerable<LegaGladio.Entities.Skill> Get()
         {
-            return new string[] { "value1", "value2" };
+            return LegaGladio.BusinessLogic.Skill.list();
         }
 
         // GET api/<controller>/5
-        public string Get(int id)
+        [ActionName("get")]
+        public LegaGladio.Entities.Skill Get(int id)
         {
-            return "value";
+            return LegaGladio.BusinessLogic.Skill.get(id);
         }
 
         // POST api/<controller>
-        public void Post([FromBody]string value)
+        [HttpPost]
+        public void Post([FromBody]LegaGladio.Entities.Skill skill)
         {
+            LegaGladio.BusinessLogic.Skill.newSkill(skill);
         }
 
         // PUT api/<controller>/5
-        public void Put(int id, [FromBody]string value)
+        [HttpPut]
+        public void Put(int id, [FromBody]LegaGladio.Entities.Skill skill)
         {
+            LegaGladio.BusinessLogic.Skill.updateSkill(skill, id);
         }
 
         // DELETE api/<controller>/5
+        [HttpDelete]
         public void Delete(int id)
         {
+            LegaGladio.BusinessLogic.Skill.deleteSkill(id);
         }
     }
 }
