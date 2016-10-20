@@ -42,13 +42,16 @@ namespace DataAccessLayer
             LegaGladioDS.raceRow raceRow = null;
             try
             {
-                race = new LegaGladio.Entities.Race();
                 rdt = new LegaGladioDS.raceDataTable();
                 rta = new LegaGladioDSTableAdapters.raceTableAdapter();
                 rta.FillById(rdt, id);
-                raceRow = (LegaGladioDS.raceRow)rdt.Rows[0];
-                race.Id = (int)raceRow.id;
-                race.Name = raceRow.name;
+                if (rdt.Rows.Count > 0)
+                {
+                    race = new LegaGladio.Entities.Race();
+                    raceRow = (LegaGladioDS.raceRow)rdt.Rows[0];
+                    race.Id = (int)raceRow.id;
+                    race.Name = raceRow.name;
+                }
             }
             catch (Exception ex)
             {
@@ -56,6 +59,39 @@ namespace DataAccessLayer
             }
             rta = null;
             rdt = null;
+            return race;
+        }
+
+        public static LegaGladio.Entities.Race getRaceByTeamId(int id)
+        {
+            LegaGladio.Entities.Race race = null;
+            LegaGladioDS.raceDataTable rdt = null;
+            LegaGladioDSTableAdapters.raceTableAdapter rta = null;
+            LegaGladioDS.raceRow raceRow = null;
+
+            try
+            {
+                rdt = new LegaGladioDS.raceDataTable();
+                rta = new LegaGladioDSTableAdapters.raceTableAdapter();
+                rta.FillByTeamId(rdt, id);
+                if(rdt.Rows.Count > 0)
+                {
+                    race = new LegaGladio.Entities.Race();
+                    raceRow = (LegaGladioDS.raceRow)rdt.Rows[0];
+                    race.Id = (int)raceRow.id;
+                    race.Name = raceRow.name;
+                }
+            }
+            catch(Exception ex)
+            {
+                rdt.GetErrors();
+                throw ex;
+            }
+            finally
+            {
+                rta = null;
+                rdt = null;
+            }
             return race;
         }
 

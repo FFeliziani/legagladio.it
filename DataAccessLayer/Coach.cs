@@ -106,6 +106,7 @@ namespace DataAccessLayer
             String coachName = null;
             try
             {
+                cta = new LegaGladioDSTableAdapters.coachTableAdapter();
                 coachName = cta.GetCoachName(teamID).ToString();
             }
             catch (Exception ex)

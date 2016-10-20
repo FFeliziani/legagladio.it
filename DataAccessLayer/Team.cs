@@ -56,7 +56,7 @@ namespace DataAccessLayer
                 team.coachName = Coach.getCoachName(team.Id);
                 team.ListPlayer = Player.listPlayer(team.Id);
                 team.Name = tr.name;
-                team.Race = Race.getRace(team.Id);
+                team.Race = Race.getRaceByTeamId(team.Id);
                 team.Reroll = tr.reroll;
                 team.Value = tr.value;
                 teamList.Add(team);
