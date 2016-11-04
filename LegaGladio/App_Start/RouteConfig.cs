@@ -15,7 +15,7 @@ namespace LegaGladio
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
+                url: "{controller}/{action}/{id}.aspx",
                 defaults: new { controller = "Coach", action = "Get", id = UrlParameter.Optional }
             );
         }
