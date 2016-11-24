@@ -10137,9 +10137,17 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             this._commandCollection[2].Parameters.Add(param);
             this._commandCollection[3] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT `id`, `name` FROM `race` join `team_race` on `team_race`.`raceid` = `race`" +
-                ".`id` where `team_race`.`teamid` = teamId";
+            this._commandCollection[3].CommandText = "SELECT        race.id, race.name\r\nFROM            race INNER JOIN\r\n              " +
+                "           team_race ON team_race.raceID = race.id\r\nWHERE        (team_race.team" +
+                "ID = @teamId)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@teamId";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "teamID";
+            this._commandCollection[3].Parameters.Add(param);
             this._commandCollection[4] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[4].Connection = this.Connection;
             this._commandCollection[4].CommandText = "INSERT INTO `race` (`name`) VALUES (@name)";
@@ -10208,8 +10216,9 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByTeamId(LegaGladioDS.raceDataTable dataTable) {
+        public virtual int FillByTeamId(LegaGladioDS.raceDataTable dataTable, int teamId) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(teamId));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -10221,8 +10230,9 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual LegaGladioDS.raceDataTable GetDataByTeamId() {
+        public virtual LegaGladioDS.raceDataTable GetDataByTeamId(int teamId) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(teamId));
             LegaGladioDS.raceDataTable dataTable = new LegaGladioDS.raceDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
