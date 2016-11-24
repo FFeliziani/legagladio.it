@@ -2,12 +2,13 @@
 <xs:schema id="LegaGladioDS" targetNamespace="http://tempuri.org/LegaGladio.xsd" xmlns:mstns="http://tempuri.org/LegaGladio.xsd" xmlns="http://tempuri.org/LegaGladio.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="3" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="4" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionString" Provider="MySql.Data.MySqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionString1" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionString" Provider="MySql.Data.MySqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionStringLocal" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionStringLocal (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionStringLocal" Provider="MySql.Data.MySqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionString2 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionString2" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NameFinderConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="NameFinderConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.NameFinderConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="playerTableAdapter" GeneratorDataComponentClassName="playerTableAdapter" Name="player" UserDataComponentName="playerTableAdapter">
@@ -476,7 +477,7 @@ WHERE        (id = @id)</CommandText>
               <Mapping SourceColumn="name" DataSetColumn="name" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
+              <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT COUNT(*) FROM race</CommandText>
@@ -497,10 +498,8 @@ WHERE        (id = @id)</CommandText>
               <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectName="legagladio.race" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByTeamId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByTeamId" GeneratorSourceName="FillByTeamId" GetMethodModifier="Public" GetMethodName="GetDataByTeamId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByTeamId" UserSourceName="FillByTeamId">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT `id`, `name` FROM `race` join `team_race` on `teamID` = @teamID</CommandText>
-                    <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="teamID" ColumnName="teamID" DataSourceName="legagladio.team_race" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@teamID" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="teamID" SourceColumnNullMapping="false" SourceVersion="Current" />
-                    </Parameters>
+                    <CommandText>SELECT `id`, `name` FROM `race` join `team_race` on `team_race`.`raceid` = `race`.`id` where `team_race`.`teamid` = teamId</CommandText>
+                    <Parameters />
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
