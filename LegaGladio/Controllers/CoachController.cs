@@ -23,6 +23,18 @@ namespace LegaGladio.Controllers
             return LegaGladio.BusinessLogic.Coach.get(id);
         }
 
+        [ActionName("getActive")]
+        public List<LegaGladio.Entities.Coach> GetActive()
+        {
+            return LegaGladio.BusinessLogic.Coach.list(true);
+        }
+
+        [ActionName("getInactive")]
+        public List<LegaGladio.Entities.Coach> GetInactive()
+        {
+            return LegaGladio.BusinessLogic.Coach.list(false);
+        }
+
         // POST api/<controller>
         [HttpPost]
         public void Post([FromBody]LegaGladio.Entities.Coach coach)
