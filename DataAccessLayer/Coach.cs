@@ -129,7 +129,7 @@ namespace DataAccessLayer
             LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
             LegaGladioDS.coachDataTable cdt = new LegaGladioDS.coachDataTable();
             LegaGladioDS.coachRow cr = (LegaGladioDS.coachRow)cdt.NewRow();
-            cr.id = (uint)oldID;
+            cr.id = oldID;
             cr.name = coach.Name;
             cr.active = coach.Active;
             cr.nafID = coach.NafID;

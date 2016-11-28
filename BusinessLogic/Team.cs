@@ -23,6 +23,11 @@ namespace LegaGladio.BusinessLogic
             return DataAccessLayer.Team.listTeam(coachID);
         }
 
+        public static List<LegaGladio.Entities.Team> list(Boolean active)
+        {
+            return DataAccessLayer.Team.listTeam(active);
+        }
+
         public static LegaGladio.Entities.Team get(int id)
         {
             return DataAccessLayer.Team.getTeam(id);

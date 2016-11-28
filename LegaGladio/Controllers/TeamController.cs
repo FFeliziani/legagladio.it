@@ -35,6 +35,18 @@ namespace LegaGladio.Controllers
         {
             return LegaGladio.BusinessLogic.Team.list(id);
         }
+        
+        [ActionName("getActive")]
+        public List<LegaGladio.Entities.Team> GetActive()
+        {
+            return LegaGladio.BusinessLogic.Team.list(true);
+        }
+
+        [ActionName("getInactive")]
+        public List<LegaGladio.Entities.Team> GetInactive()
+        {
+            return LegaGladio.BusinessLogic.Team.list(false);
+        }
 
         // POST api/team
         [HttpPost]

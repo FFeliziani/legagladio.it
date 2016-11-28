@@ -171,9 +171,9 @@ namespace DataAccessLayer
             LegaGladioDSTableAdapters.skillTableAdapter sta = new LegaGladioDSTableAdapters.skillTableAdapter();
             LegaGladioDS.skillDataTable sdt = new LegaGladioDS.skillDataTable();
             LegaGladioDS.skillRow sr = (LegaGladioDS.skillRow)sdt.NewRow();
-            sr.id = (uint)oldID;
+            sr.id = oldID;
             sr.name = skill.Name;
-            sr.type = (uint)skill.SkillType;
+            sr.type = (int)skill.SkillType;
             int result = sta.Update(sr);
             return result > 0;
         }

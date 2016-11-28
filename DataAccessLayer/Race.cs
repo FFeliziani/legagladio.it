@@ -108,7 +108,7 @@ namespace DataAccessLayer
             LegaGladioDSTableAdapters.raceTableAdapter rta = new LegaGladioDSTableAdapters.raceTableAdapter();
             LegaGladioDS.raceDataTable rdt = new LegaGladioDS.raceDataTable();
             LegaGladioDS.raceRow rr = (LegaGladioDS.raceRow)rdt.NewRow();
-            rr.id = (uint)oldID;
+            rr.id = oldID;
             rr.name = race.Name;
             int result = rta.Update(rr);
             return result > 0;
