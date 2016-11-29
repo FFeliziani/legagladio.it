@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Coach.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="LegaGladioDS.cs">
       <DependentUpon>LegaGladioDS.xsd</DependentUpon>
       <SubType>Component</SubType>

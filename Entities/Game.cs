@@ -5,22 +5,22 @@ using System.Text;
 
 namespace LegaGladio.Entities
 {
-    class Game
+    public class Game
     {
-        int Id { get; set; }
-        Team HomeID { get; set; }
-        Team GuestID { get; set; }
-        int TdHome { get; set; }
-        int TdGuest { get; set; }
-        int CasHome { get; set; }
-        int CasGuest { get; set; }
-        int SpHouse { get; set; }
-        int SpGuest { get; set; }
-        int EearningHome { get; set; }
-        int EarningHuest { get; set; }
-        int VarFFHouse { get; set; }
-        int VarFFGuest { get; set; }
-        String Notes { get; set; }
-        List<GameAction> ListGameAction { get; set; }
+        public int Id { get; set; }
+        public Team Home { get; set; }
+        public Team Guest { get; set; }
+        public int TdHome { get; set; }
+        public int TdGuest { get; set; }
+        public int CasHome { get; set; }
+        public int CasGuest { get; set; }
+        public int SpHome { get; set; }
+        public int SpGuest { get; set; }
+        public int EarningHome { get; set; }
+        public int EarningGuest { get; set; }
+        public int VarFFHome { get; set; }
+        public int VarFFGuest { get; set; }
+        public String Notes { get; set; }
+        public List<GameAction> ListGameAction { get; set; }
     }
 }

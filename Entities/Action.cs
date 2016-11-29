@@ -5,11 +5,11 @@ using System.Text;
 
 namespace LegaGladio.Entities
 {
-    class Action
+    public class Action
     {
-        int Id { get; set; }
-        String Description { get; set; }
-        int Spp { get; set; }
-        String Notes { get; set; }
+        public int Id { get; set; }
+        public String Description { get; set; }
+        public int Spp { get; set; }
+        public String Notes { get; set; }
     }
 }

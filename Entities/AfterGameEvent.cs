@@ -5,11 +5,11 @@ using System.Text;
 
 namespace LegaGladio.Entities
 {
-    class AfterGameEvent
+    public class AfterGameEvent
     {
-        int Id { get; set; }
-        Player Player { get; set; }
-        Skill Skill { get; set; }
-        Injury Injury { get; set; }
+        public int Id { get; set; }
+        public Player Player { get; set; }
+        public Skill Skill { get; set; }
+        public Injury Injury { get; set; }
     }
 }

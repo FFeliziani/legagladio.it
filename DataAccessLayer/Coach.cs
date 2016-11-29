@@ -34,13 +34,13 @@ namespace DataAccessLayer
             foreach(LegaGladioDS.coachRow cr in cdt.Rows)
             {
                 LegaGladio.Entities.Coach coach = new LegaGladio.Entities.Coach();
-                coach.id = (int)cr.id;
+                coach.Id = (int)cr.id;
                 coach.NafID = cr.nafID;
                 coach.Name = cr.name;
                 coach.Notes = cr.note;
                 coach.Active = cr.active;
                 coach.Value = cr.value;
-                coach.ListTeam = Team.listTeam(coach.id);
+                coach.ListTeam = Team.listTeam(coach.Id);
                 coachList.Add(coach);
             }
             cta = null;
@@ -57,13 +57,13 @@ namespace DataAccessLayer
             foreach (LegaGladioDS.coachRow cr in cdt.Rows)
             {
                 LegaGladio.Entities.Coach coach = new LegaGladio.Entities.Coach();
-                coach.id = (int)cr.id;
+                coach.Id = (int)cr.id;
                 coach.NafID = cr.nafID;
                 coach.Name = cr.name;
                 coach.Notes = cr.note;
                 coach.Active = cr.active;
                 coach.Value = cr.value;
-                coach.ListTeam = Team.listTeam(coach.id);
+                coach.ListTeam = Team.listTeam(coach.Id);
                 coachList.Add(coach);
             }
             cta = null;
@@ -84,8 +84,8 @@ namespace DataAccessLayer
                 cta = new LegaGladioDSTableAdapters.coachTableAdapter();
                 cta.FillById(ctd, id);
                 coachRow = (LegaGladioDS.coachRow)ctd.Rows[0];
-                coach.id = (int)coachRow.id;
-                coach.ListTeam = Team.listTeam(coach.id);
+                coach.Id = (int)coachRow.id;
+                coach.ListTeam = Team.listTeam(coach.Id);
                 coach.NafID = coachRow.nafID;
                 coach.Name = coachRow.name;
                 coach.Notes = coachRow.note;

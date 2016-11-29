@@ -5,9 +5,9 @@ using System.Text;
 
 namespace LegaGladio.Entities
 {
-    class Injury
+    public class Injury
     {
-        int Id { get; set; }
-        String name { get; set; }
+        public int Id { get; set; }
+        public String name { get; set; }
     }
 }
