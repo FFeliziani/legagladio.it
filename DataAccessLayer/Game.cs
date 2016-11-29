@@ -7,6 +7,30 @@ namespace DataAccessLayer
 {
     public class Game
     {
+        public static LegaGladio.Entities.Game getGame(int id)
+        {
+            LegaGladio.Entities.Game game = null;
+            LegaGladioDS.gameDataTable gtd = null;
+            LegaGladioDSTableAdapters.gameTableAdapter gta = null;
+            LegaGladioDS.gameRow gameRow = null;
+            try
+            {
+                game = new LegaGladio.Entities.Game();
+                gtd = new LegaGladioDS.gameDataTable();
+                gta = new LegaGladioDSTableAdapters.gameTableAdapter();
+                gta.FillById(gtd, id);
+                gameRow = (LegaGladioDS.gameRow)gtd.Rows[0];
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            gta = null;
+            gtd = null;
+            return game;
+        }
+
         public static List<LegaGladio.Entities.Game> listGame()
         {
             LegaGladioDS.gameDataTable gdt = new LegaGladioDS.gameDataTable();
