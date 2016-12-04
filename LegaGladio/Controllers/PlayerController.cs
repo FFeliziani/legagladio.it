@@ -30,9 +30,9 @@ namespace LegaGladio.Controllers
 
         // GET api/player/5
         [ActionName("getByTeam")]
-        public List<LegaGladio.Entities.Player> GetByTeam(int teamId)
+        public List<LegaGladio.Entities.Player> GetByTeam(int id)
         {
-            return LegaGladio.BusinessLogic.Player.list(teamId);
+            return LegaGladio.BusinessLogic.Player.list(id);
         }
 
         // POST api/player

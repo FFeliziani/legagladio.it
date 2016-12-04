@@ -47,7 +47,7 @@
       <DependentUpon>LegaGladioDS.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="LegaGladioDS1.Designer.cs">
+    <Compile Include="LegaGladioDS.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LegaGladioDS.xsd</DependentUpon>
@@ -78,7 +78,7 @@
     <None Include="LegaGladioDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LegaGladioDS1.Designer.cs</LastGenOutput>
+      <LastGenOutput>LegaGladioDS.Designer.cs</LastGenOutput>
     </None>
     <None Include="LegaGladioDS.xss">
       <DependentUpon>LegaGladioDS.xsd</DependentUpon>

@@ -25,13 +25,13 @@ namespace DataAccessLayer
             foreach (LegaGladioDS.teamRow tr in tdt.Rows)
             {
                 LegaGladio.Entities.Team team = new LegaGladio.Entities.Team();
-                team.Id = (int)tr.id;
+                team.Id = tr.id;
                 team.AssistantCoach = tr.assistantCoach;
                 team.Cheerleader = tr.cheerleader;
-                //team.coachName = Coach.getCoachName(team.Id);
+                team.coachName = Coach.getCoachName(team.Id);
                 //team.ListPlayer = Player.listPlayer(team.Id);
                 team.Name = tr.name;
-                //team.Race = Race.getRace(team.Id);
+                team.Race = Race.getRace(team.Id);
                 team.Reroll = tr.reroll;
                 team.Value = tr.value;
                 team.Active = tr.active;
@@ -51,11 +51,11 @@ namespace DataAccessLayer
             foreach (LegaGladioDS.teamRow tr in tdt.Rows)
             {
                 LegaGladio.Entities.Team team = new LegaGladio.Entities.Team();
-                team.Id = (int)tr.id;
+                team.Id = tr.id;
                 team.AssistantCoach = tr.assistantCoach;
                 team.Cheerleader = tr.cheerleader;
                 team.coachName = Coach.getCoachName(team.Id);
-                team.ListPlayer = Player.listPlayer(team.Id);
+                //team.ListPlayer = Player.listPlayer(team.Id);
                 team.Name = tr.name;
                 team.Race = Race.getRaceByTeamId(team.Id);
                 team.Reroll = tr.reroll;
@@ -79,11 +79,11 @@ namespace DataAccessLayer
                 try
                 {
                     LegaGladio.Entities.Team team = new LegaGladio.Entities.Team();
-                    team.Id = (int)tr.id;
+                    team.Id = tr.id;
                     team.AssistantCoach = tr.assistantCoach;
                     team.Cheerleader = tr.cheerleader;
                     team.coachName = Coach.getCoachName(team.Id);
-                    team.ListPlayer = Player.listPlayer(team.Id);
+                    //team.ListPlayer = Player.listPlayer(team.Id);
                     team.Name = tr.name;
                     team.Race = Race.getRaceByTeamId(team.Id);
                     team.Reroll = tr.reroll;
@@ -114,7 +114,7 @@ namespace DataAccessLayer
                 tta = new LegaGladioDSTableAdapters.teamTableAdapter();
                 tta.FillById(ttd, id);
                 teamRow = (LegaGladioDS.teamRow)ttd.Rows[0];
-                team.Id = (int)teamRow.id;
+                team.Id = teamRow.id;
                 team.AssistantCoach = teamRow.assistantCoach;
                 team.Cheerleader = teamRow.cheerleader;
                 team.coachName = Coach.getCoachName(team.Id);
@@ -137,6 +137,7 @@ namespace DataAccessLayer
         public static Boolean newTeam(LegaGladio.Entities.Team team)
         {
             LegaGladioDSTableAdapters.teamTableAdapter tta = new LegaGladioDSTableAdapters.teamTableAdapter();
+            //value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach, active
             int result = tta.Insert(team.Value, team.Name, team.FunFactor, team.Reroll, (byte)(team.HasMedic ? 1 : 0), team.Cheerleader, team.AssistantCoach, (byte)(team.Active? 1 : 0));
             tta = null;
             return result > 0;
