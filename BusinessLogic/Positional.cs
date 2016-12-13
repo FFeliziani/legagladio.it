@@ -3,40 +3,90 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NLog;
 
 namespace LegaGladio.BusinessLogic
 {
     public class Positional
     {
+        private static Logger logger = LogManager.GetCurrentClassLogger();
         
         public static int count()
         {
-            return DataAccessLayer.Positional.countPositional();
+            try
+            {
+                return DataAccessLayer.Positional.countPositional();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while counting positionals");
+                throw ex;
+            }
         }
 
         public static List<LegaGladio.Entities.Positional> list()
         {
-            return DataAccessLayer.Positional.listPositional();
+            try
+            {
+                return DataAccessLayer.Positional.listPositional();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while listing positionals");
+                throw ex;
+            }
         }
 
         public static LegaGladio.Entities.Positional get(int id)
         {
-            return DataAccessLayer.Positional.getPositional(id);
+            try
+            {
+                return DataAccessLayer.Positional.getPositional(id);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while getting positionals");
+                throw ex;
+            }
         }
 
         public static Boolean newPositional(LegaGladio.Entities.Positional positional)
         {
-            return DataAccessLayer.Positional.newPositional(positional);
+            try
+            {
+                return DataAccessLayer.Positional.newPositional(positional);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while creating positionals");
+                throw ex;
+            }
         }
 
         public static Boolean updatePositional(LegaGladio.Entities.Positional positional, int oldID)
         {
-            return DataAccessLayer.Positional.updatePositional(positional, oldID);
+            try
+            {
+                return DataAccessLayer.Positional.updatePositional(positional, oldID);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while updating positionals");
+                throw ex;
+            }
         }
 
         public static Boolean deletePositional(int id)
         {
-            return DataAccessLayer.Positional.deletePositional(id);
+            try
+            {
+                return DataAccessLayer.Positional.deletePositional(id);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while deleting positionals");
+                throw ex;
+            }
         }
     }
 }

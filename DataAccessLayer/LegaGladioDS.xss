@@ -25,18 +25,6 @@
     <Shape ID="DesignTable:after_game_event" ZOrder="8" X="325" Y="771" Height="172" Width="247" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="121" />
   </Shapes>
   <Connectors>
-    <Connector ID="DesignRelation:FK_team_player_player" ZOrder="31" LineWidth="11">
-      <RoutePoints>
-        <Point>
-          <X>390</X>
-          <Y>221</Y>
-        </Point>
-        <Point>
-          <X>346</X>
-          <Y>221</Y>
-        </Point>
-      </RoutePoints>
-    </Connector>
     <Connector ID="DesignRelation:FK_player_skill_player" ZOrder="30" LineWidth="11">
       <RoutePoints>
         <Point>
@@ -53,15 +41,15 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_positional_skill_skill" ZOrder="27" LineWidth="11">
+    <Connector ID="DesignRelation:FK_team_player_player" ZOrder="31" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>737</X>
-          <Y>505</Y>
+          <X>390</X>
+          <Y>221</Y>
         </Point>
         <Point>
-          <X>638</X>
-          <Y>505</Y>
+          <X>346</X>
+          <Y>221</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -77,15 +65,15 @@
         </Point>
       </RoutePoints>
     </Connector>
-    <Connector ID="DesignRelation:FK_coach_team_team" ZOrder="33" LineWidth="11">
+    <Connector ID="DesignRelation:FK_positional_skill_skill" ZOrder="27" LineWidth="11">
       <RoutePoints>
         <Point>
-          <X>890</X>
-          <Y>248</Y>
+          <X>737</X>
+          <Y>505</Y>
         </Point>
         <Point>
-          <X>861</X>
-          <Y>248</Y>
+          <X>638</X>
+          <Y>505</Y>
         </Point>
       </RoutePoints>
     </Connector>
@@ -98,6 +86,18 @@
         <Point>
           <X>595</X>
           <Y>233</Y>
+        </Point>
+      </RoutePoints>
+    </Connector>
+    <Connector ID="DesignRelation:FK_coach_team_team" ZOrder="33" LineWidth="11">
+      <RoutePoints>
+        <Point>
+          <X>890</X>
+          <Y>248</Y>
+        </Point>
+        <Point>
+          <X>861</X>
+          <Y>248</Y>
         </Point>
       </RoutePoints>
     </Connector>
