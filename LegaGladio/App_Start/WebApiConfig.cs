@@ -15,6 +15,11 @@ namespace LegaGladio
                 defaults: new { controller = "login" }
             );
             config.Routes.MapHttpRoute(
+                name: "LogoutApi",
+                routeTemplate: "api/logout/{token}",
+                defaults: new { controller = "logout" }
+            );
+            config.Routes.MapHttpRoute(
                 name: "WriteApi",
                 routeTemplate: "api/{controller}/{action}/{token}/{data}"
             );

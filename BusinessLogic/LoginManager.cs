@@ -40,12 +40,12 @@ namespace LegaGladio.BusinessLogic
             return token;
         }
 
-        public static Boolean checkLogged(String token)
+        public static Boolean CheckLogged(String token)
         {
             return DataAccessLayer.LoginManager.checkLogged(token);
         }
 
-        public static void logout(String token)
+        public static void Logout(String token)
         {
             DataAccessLayer.LoginManager.logout(token);
         }
