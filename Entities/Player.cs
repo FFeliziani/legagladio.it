@@ -6,6 +6,8 @@ namespace LegaGladio.Entities
 {
     public class Player
     {
+        public Positional positional { get; set; }
+
         public int Id { get; set; }
 
         public int MaPlus { get; set;}

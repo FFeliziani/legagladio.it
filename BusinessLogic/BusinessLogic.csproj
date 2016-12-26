@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Coach.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="LoginManager.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Positional.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

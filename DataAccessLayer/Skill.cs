@@ -50,27 +50,27 @@ namespace DataAccessLayer
         // FF: Return all skills for player
         public static List<LegaGladio.Entities.Skill> listSkill(int playerId)
         {
-            LegaGladioDS.player_skillDataTable psdt = new LegaGladioDS.player_skillDataTable();
-            LegaGladioDSTableAdapters.player_skillTableAdapter psta = new LegaGladioDSTableAdapters.player_skillTableAdapter();
+            LegaGladioDS.skillDataTable sdt = new LegaGladioDS.skillDataTable();
+            LegaGladioDSTableAdapters.skillTableAdapter sta = new LegaGladioDSTableAdapters.skillTableAdapter();
             List<LegaGladio.Entities.Skill> skillList = null;
             try
             {
-                psta.FillByPlayerId(psdt, playerId);
+                sta.FillByPlayerId(sdt, playerId);
                 skillList = new List<LegaGladio.Entities.Skill>();
-                foreach (LegaGladioDS.player_skillRow psr in psdt.Rows)
+                foreach (LegaGladioDS.skillRow sr in sdt.Rows)
                 {
-                    skillList.Add(Skill.getSkill((int)psr.skillID));
+                    skillList.Add(Skill.getSkill(sr.id));
                 }
             }
             catch (Exception ex)
             {
-                psdt.GetErrors();
+                sdt.GetErrors();
                 throw ex;
             }
             finally
             {
-                psta = null;
-                psdt = null;
+                sta = null;
+                sdt = null;
             }
             return skillList;
         }

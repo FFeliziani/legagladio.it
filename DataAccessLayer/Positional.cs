@@ -36,7 +36,7 @@ namespace DataAccessLayer
         public static LegaGladio.Entities.Positional getPositional(int id)
         {
             LegaGladioDSTableAdapters.positionalTableAdapter pta = null;
-            LegaGladioDSTableAdapters.positional_skillTableAdapter psta = null;
+            LegaGladioDSTableAdapters.skillTableAdapter sta = null;
             LegaGladioDS.positionalDataTable pdt = null;
             LegaGladioDS.positionalRow pr = null;
             LegaGladio.Entities.Positional positional = null;
@@ -51,9 +51,21 @@ namespace DataAccessLayer
                     throw new Exception("Troppi positional trovati per l'ID " + id);
                 }
 
+                if (pdt.Rows.Count == 0)
+                {
+                    return null;
+                }
+
                 pr = (LegaGladioDS.positionalRow)pdt.Rows[0];
-                
+
                 positional = new LegaGladio.Entities.Positional();
+
+                positional.Agility = new List<LegaGladio.Entities.Skill>();
+                positional.Extraordinary = new List<LegaGladio.Entities.Skill>();
+                positional.General = new List<LegaGladio.Entities.Skill>();
+                positional.Mutation = new List<LegaGladio.Entities.Skill>();
+                positional.Passing = new List<LegaGladio.Entities.Skill>();
+                positional.Strength = new List<LegaGladio.Entities.Skill>();
 
                 positional.Ma = pr.ma;
                 positional.St = pr.st;
@@ -62,11 +74,11 @@ namespace DataAccessLayer
                 positional.Cost = pr.cost;
                 positional.Qty = pr.qty;
                 positional.Title = pr.title;
-                psta = new LegaGladioDSTableAdapters.positional_skillTableAdapter();
-                LegaGladioDS.positional_skillDataTable psdt = psta.GetDataByPositionalId((int)pr.id);
-                foreach (LegaGladioDS.positional_skillRow psr in psdt.Rows)
+                sta = new LegaGladioDSTableAdapters.skillTableAdapter();
+                LegaGladioDS.skillDataTable sdt = sta.GetDataByPositionalId((int)pr.id);
+                foreach (LegaGladioDS.skillRow sr in sdt.Rows)
                 {
-                    LegaGladio.Entities.Skill skill = Skill.getSkill((int)psr.skillID);
+                    LegaGladio.Entities.Skill skill = Skill.getSkill(sr.id);
 
                     switch (skill.SkillType)
                     {
@@ -98,6 +110,84 @@ namespace DataAccessLayer
 
             return positional;
             
+        }
+
+        public static LegaGladio.Entities.Positional getPositional(LegaGladio.Entities.Player player)
+        {
+            LegaGladioDSTableAdapters.positionalTableAdapter pta = null;
+            LegaGladioDSTableAdapters.skillTableAdapter sta = null;
+            LegaGladioDS.positionalDataTable pdt = null;
+            LegaGladioDS.positionalRow pr = null;
+            LegaGladio.Entities.Positional positional = null;
+
+            try
+            {
+                pta = new LegaGladioDSTableAdapters.positionalTableAdapter();
+                pdt = pta.GetDataByPlayerId(player.Id);
+
+                if (pdt.Rows.Count > 1)
+                {
+                    throw new Exception("Troppi positional trovati per il Player ID " + player.Id);
+                }
+
+                if (pdt.Rows.Count == 0)
+                {
+                    return null;
+                }
+                pr = (LegaGladioDS.positionalRow)pdt.Rows[0];
+
+                positional = new LegaGladio.Entities.Positional();
+
+                positional.Agility = new List<LegaGladio.Entities.Skill>();
+                positional.Extraordinary = new List<LegaGladio.Entities.Skill>();
+                positional.General = new List<LegaGladio.Entities.Skill>();
+                positional.Mutation = new List<LegaGladio.Entities.Skill>();
+                positional.Passing = new List<LegaGladio.Entities.Skill>();
+                positional.Strength = new List<LegaGladio.Entities.Skill>();
+
+                positional.Ma = pr.ma;
+                positional.St = pr.st;
+                positional.Ag = pr.ag;
+                positional.Av = pr.av;
+                positional.Cost = pr.cost;
+                positional.Qty = pr.qty;
+                positional.Title = pr.title;
+                sta = new LegaGladioDSTableAdapters.skillTableAdapter();
+                LegaGladioDS.skillDataTable sdt = sta.GetDataByPositionalId((int)pr.id);
+                foreach (LegaGladioDS.skillRow sr in sdt.Rows)
+                {
+                    LegaGladio.Entities.Skill skill = Skill.getSkill(sr.id);
+
+                    switch (skill.SkillType)
+                    {
+                        case LegaGladio.Entities.SkillType.AGILITY:
+                            positional.Agility.Add(skill);
+                            break;
+                        case LegaGladio.Entities.SkillType.EXTRAORDINARY:
+                            positional.Extraordinary.Add(skill);
+                            break;
+                        case LegaGladio.Entities.SkillType.GENERAL:
+                            positional.General.Add(skill);
+                            break;
+                        case LegaGladio.Entities.SkillType.MUTATION:
+                            positional.Mutation.Add(skill);
+                            break;
+                        case LegaGladio.Entities.SkillType.PASSING:
+                            positional.Passing.Add(skill);
+                            break;
+                        case LegaGladio.Entities.SkillType.STRENGTH:
+                            positional.Strength.Add(skill);
+                            break;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return positional;
+
         }
 
         public static Boolean newPositional(LegaGladio.Entities.Positional positional)
@@ -144,11 +234,11 @@ namespace DataAccessLayer
         public static Boolean updatePositional(LegaGladio.Entities.Positional positional, int oldID)
         {
             LegaGladioDSTableAdapters.positionalTableAdapter pta = new LegaGladioDSTableAdapters.positionalTableAdapter();
-            LegaGladioDSTableAdapters.positional_skillTableAdapter psta = new LegaGladioDSTableAdapters.positional_skillTableAdapter();
+            LegaGladioDSTableAdapters.skillTableAdapter sta = new LegaGladioDSTableAdapters.skillTableAdapter();
 
             int rowNum = pta.Update(positional.Qty, positional.Title, (Decimal)positional.Cost, positional.Ma, positional.St, positional.Ag, positional.Av, oldID);
 
-            LegaGladioDS.positional_skillDataTable psdt =  psta.GetDataByPositionalId(positional.Id);
+            LegaGladioDS.skillDataTable sdt =  sta.GetDataByPositionalId(positional.Id);
 
             List<LegaGladio.Entities.Skill> agilityList = new List<LegaGladio.Entities.Skill>();
             List<LegaGladio.Entities.Skill> generalList = new List<LegaGladio.Entities.Skill>();
@@ -157,9 +247,9 @@ namespace DataAccessLayer
             List<LegaGladio.Entities.Skill> mutationList = new List<LegaGladio.Entities.Skill>();
             List<LegaGladio.Entities.Skill> extraordinaryList = new List<LegaGladio.Entities.Skill>();
 
-            foreach (LegaGladioDS.positional_skillRow psRow in psdt)
+            foreach (LegaGladioDS.skillRow sRow in sdt)
             {
-                LegaGladio.Entities.Skill skill = Skill.getSkill((int)psRow.skillID);
+                LegaGladio.Entities.Skill skill = Skill.getSkill(sRow.id);
 
                 switch (skill.SkillType)
                 {

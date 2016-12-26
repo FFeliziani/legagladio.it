@@ -44,8 +44,6 @@ namespace DataAccessLayer {
         
         private positional_skillDataTable tablepositional_skill;
         
-        private skilltypeDataTable tableskilltype;
-        
         private positional_raceDataTable tablepositional_race;
         
         private actionDataTable tableaction;
@@ -76,8 +74,6 @@ namespace DataAccessLayer {
         
         private global::System.Data.DataRelation relationFK_coach_team_coach;
         
-        private global::System.Data.DataRelation relationFK_skill_skilltype;
-        
         private global::System.Data.DataRelation relationpositional_race_positional;
         
         private global::System.Data.DataRelation relationFK_GAME_ACTION_ACTION;
@@ -107,6 +103,8 @@ namespace DataAccessLayer {
         private global::System.Data.DataRelation relationFK_TEAM_PLAYER_TEAM;
         
         private global::System.Data.DataRelation relationFK_COACH_TEAM_TEAM;
+        
+        private global::System.Data.DataRelation relationFK_PLAYER_POSITIONAL;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -165,9 +163,6 @@ namespace DataAccessLayer {
                 }
                 if ((ds.Tables["positional_skill"] != null)) {
                     base.Tables.Add(new positional_skillDataTable(ds.Tables["positional_skill"]));
-                }
-                if ((ds.Tables["skilltype"] != null)) {
-                    base.Tables.Add(new skilltypeDataTable(ds.Tables["skilltype"]));
                 }
                 if ((ds.Tables["positional_race"] != null)) {
                     base.Tables.Add(new positional_raceDataTable(ds.Tables["positional_race"]));
@@ -302,16 +297,6 @@ namespace DataAccessLayer {
         public positional_skillDataTable positional_skill {
             get {
                 return this.tablepositional_skill;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public skilltypeDataTable skilltype {
-            get {
-                return this.tableskilltype;
             }
         }
         
@@ -472,9 +457,6 @@ namespace DataAccessLayer {
                 if ((ds.Tables["positional_skill"] != null)) {
                     base.Tables.Add(new positional_skillDataTable(ds.Tables["positional_skill"]));
                 }
-                if ((ds.Tables["skilltype"] != null)) {
-                    base.Tables.Add(new skilltypeDataTable(ds.Tables["skilltype"]));
-                }
                 if ((ds.Tables["positional_race"] != null)) {
                     base.Tables.Add(new positional_raceDataTable(ds.Tables["positional_race"]));
                 }
@@ -586,12 +568,6 @@ namespace DataAccessLayer {
                     this.tablepositional_skill.InitVars();
                 }
             }
-            this.tableskilltype = ((skilltypeDataTable)(base.Tables["skilltype"]));
-            if ((initTable == true)) {
-                if ((this.tableskilltype != null)) {
-                    this.tableskilltype.InitVars();
-                }
-            }
             this.tablepositional_race = ((positional_raceDataTable)(base.Tables["positional_race"]));
             if ((initTable == true)) {
                 if ((this.tablepositional_race != null)) {
@@ -637,7 +613,6 @@ namespace DataAccessLayer {
             this.relationFK_positional_race_race = this.Relations["FK_positional_race_race"];
             this.relationFK_positional_skill_positional = this.Relations["FK_positional_skill_positional"];
             this.relationFK_coach_team_coach = this.Relations["FK_coach_team_coach"];
-            this.relationFK_skill_skilltype = this.Relations["FK_skill_skilltype"];
             this.relationpositional_race_positional = this.Relations["positional_race_positional"];
             this.relationFK_GAME_ACTION_ACTION = this.Relations["FK_GAME_ACTION_ACTION"];
             this.relationFK_GAME_ACTION_PLAYER = this.Relations["FK_GAME_ACTION_PLAYER"];
@@ -653,6 +628,7 @@ namespace DataAccessLayer {
             this.relationFK_TEAM_PLAYER_PLAYER = this.Relations["FK_TEAM_PLAYER_PLAYER"];
             this.relationFK_TEAM_PLAYER_TEAM = this.Relations["FK_TEAM_PLAYER_TEAM"];
             this.relationFK_COACH_TEAM_TEAM = this.Relations["FK_COACH_TEAM_TEAM"];
+            this.relationFK_PLAYER_POSITIONAL = this.Relations["FK_PLAYER_POSITIONAL"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -683,8 +659,6 @@ namespace DataAccessLayer {
             base.Tables.Add(this.tablecoach);
             this.tablepositional_skill = new positional_skillDataTable();
             base.Tables.Add(this.tablepositional_skill);
-            this.tableskilltype = new skilltypeDataTable();
-            base.Tables.Add(this.tableskilltype);
             this.tablepositional_race = new positional_raceDataTable();
             base.Tables.Add(this.tablepositional_race);
             this.tableaction = new actionDataTable();
@@ -761,13 +735,6 @@ namespace DataAccessLayer {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_skill_skilltype", new global::System.Data.DataColumn[] {
-                        this.tableskill.typeColumn}, new global::System.Data.DataColumn[] {
-                        this.tableskilltype.idColumn});
-            this.tableskilltype.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             this.relationFK_team_player_player = new global::System.Data.DataRelation("FK_team_player_player", new global::System.Data.DataColumn[] {
                         this.tableteam_player.playerIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableplayer.idColumn}, false);
@@ -804,10 +771,6 @@ namespace DataAccessLayer {
                         this.tablecoach_team.coachIDColumn}, new global::System.Data.DataColumn[] {
                         this.tablecoach.idColumn}, false);
             this.Relations.Add(this.relationFK_coach_team_coach);
-            this.relationFK_skill_skilltype = new global::System.Data.DataRelation("FK_skill_skilltype", new global::System.Data.DataColumn[] {
-                        this.tableskill.typeColumn}, new global::System.Data.DataColumn[] {
-                        this.tableskilltype.idColumn}, false);
-            this.Relations.Add(this.relationFK_skill_skilltype);
             this.relationpositional_race_positional = new global::System.Data.DataRelation("positional_race_positional", new global::System.Data.DataColumn[] {
                         this.tablepositional_race.positionalIdColumn}, new global::System.Data.DataColumn[] {
                         this.tablepositional.idColumn}, false);
@@ -868,6 +831,10 @@ namespace DataAccessLayer {
                         this.tableteam.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablecoach_team.teamIDColumn}, false);
             this.Relations.Add(this.relationFK_COACH_TEAM_TEAM);
+            this.relationFK_PLAYER_POSITIONAL = new global::System.Data.DataRelation("FK_PLAYER_POSITIONAL", new global::System.Data.DataColumn[] {
+                        this.tablepositional.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableplayer.positionalIdColumn}, false);
+            this.Relations.Add(this.relationFK_PLAYER_POSITIONAL);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -927,12 +894,6 @@ namespace DataAccessLayer {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializepositional_skill() {
-            return false;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private bool ShouldSerializeskilltype() {
             return false;
         }
         
@@ -1058,9 +1019,6 @@ namespace DataAccessLayer {
         public delegate void positional_skillRowChangeEventHandler(object sender, positional_skillRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public delegate void skilltypeRowChangeEventHandler(object sender, skilltypeRowChangeEvent e);
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void positional_raceRowChangeEventHandler(object sender, positional_raceRowChangeEvent e);
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1126,6 +1084,8 @@ namespace DataAccessLayer {
             private global::System.Data.DataColumn columndead;
             
             private global::System.Data.DataColumn columnretired;
+            
+            private global::System.Data.DataColumn columnpositionalId;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -1330,6 +1290,14 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn positionalIdColumn {
+                get {
+                    return this.columnpositionalId;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1386,7 +1354,8 @@ namespace DataAccessLayer {
                         int cat, 
                         int inter, 
                         bool dead, 
-                        bool retired) {
+                        bool retired, 
+                        positionalRow parentpositionalRowByFK_PLAYER_POSITIONAL) {
                 playerRow rowplayerRow = ((playerRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1409,9 +1378,13 @@ namespace DataAccessLayer {
                         cat,
                         inter,
                         dead,
-                        retired};
+                        retired,
+                        null};
                 if ((parentteam_playerRowByFK_team_player_player != null)) {
                     columnValuesArray[0] = parentteam_playerRowByFK_team_player_player[1];
+                }
+                if ((parentpositionalRowByFK_PLAYER_POSITIONAL != null)) {
+                    columnValuesArray[21] = parentpositionalRowByFK_PLAYER_POSITIONAL[0];
                 }
                 rowplayerRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowplayerRow);
@@ -1463,6 +1436,7 @@ namespace DataAccessLayer {
                 this.columninter = base.Columns["inter"];
                 this.columndead = base.Columns["dead"];
                 this.columnretired = base.Columns["retired"];
+                this.columnpositionalId = base.Columns["positionalId"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1510,6 +1484,8 @@ namespace DataAccessLayer {
                 base.Columns.Add(this.columndead);
                 this.columnretired = new global::System.Data.DataColumn("retired", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnretired);
+                this.columnpositionalId = new global::System.Data.DataColumn("positionalId", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpositionalId);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AllowDBNull = false;
@@ -2076,12 +2052,9 @@ namespace DataAccessLayer {
                 base.Columns.Add(this.columntype);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
-                                this.columntype}, false));
                 this.columnid.AllowDBNull = false;
                 this.columnid.Unique = true;
                 this.columnname.MaxLength = 50;
-                this.columntype.Unique = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4342,267 +4315,6 @@ namespace DataAccessLayer {
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
                 attribute2.FixedValue = "positional_skillDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
-        
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class skilltypeDataTable : global::System.Data.TypedTableBase<skilltypeRow> {
-            
-            private global::System.Data.DataColumn columnid;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public skilltypeDataTable() {
-                this.TableName = "skilltype";
-                this.BeginInit();
-                this.InitClass();
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal skilltypeDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected skilltypeDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn idColumn {
-                get {
-                    return this.columnid;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public skilltypeRow this[int index] {
-                get {
-                    return ((skilltypeRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event skilltypeRowChangeEventHandler skilltypeRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event skilltypeRowChangeEventHandler skilltypeRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event skilltypeRowChangeEventHandler skilltypeRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public event skilltypeRowChangeEventHandler skilltypeRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void AddskilltypeRow(skilltypeRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public skilltypeRow AddskilltypeRow(skillRow parentskillRowByFK_skill_skilltype) {
-                skilltypeRow rowskilltypeRow = ((skilltypeRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null};
-                if ((parentskillRowByFK_skill_skilltype != null)) {
-                    columnValuesArray[0] = parentskillRowByFK_skill_skilltype[2];
-                }
-                rowskilltypeRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowskilltypeRow);
-                return rowskilltypeRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public skilltypeRow FindByid(int id) {
-                return ((skilltypeRow)(this.Rows.Find(new object[] {
-                            id})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                skilltypeDataTable cln = ((skilltypeDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new skilltypeDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal void InitVars() {
-                this.columnid = base.Columns["id"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            private void InitClass() {
-                this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnid);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnid}, true));
-                this.columnid.AllowDBNull = false;
-                this.columnid.Unique = true;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public skilltypeRow NewskilltypeRow() {
-                return ((skilltypeRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new skilltypeRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(skilltypeRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.skilltypeRowChanged != null)) {
-                    this.skilltypeRowChanged(this, new skilltypeRowChangeEvent(((skilltypeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.skilltypeRowChanging != null)) {
-                    this.skilltypeRowChanging(this, new skilltypeRowChangeEvent(((skilltypeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.skilltypeRowDeleted != null)) {
-                    this.skilltypeRowDeleted(this, new skilltypeRowChangeEvent(((skilltypeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.skilltypeRowDeleting != null)) {
-                    this.skilltypeRowDeleting(this, new skilltypeRowChangeEvent(((skilltypeRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void RemoveskilltypeRow(skilltypeRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                LegaGladioDS ds = new LegaGladioDS();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "skilltypeDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -6963,6 +6675,22 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int positionalId {
+                get {
+                    try {
+                        return ((int)(this[this.tableplayer.positionalIdColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'positionalId\' in table \'player\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableplayer.positionalIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public team_playerRow team_playerRow {
                 get {
                     return ((team_playerRow)(this.GetParentRow(this.Table.ParentRelations["FK_team_player_player"])));
@@ -6980,6 +6708,17 @@ namespace DataAccessLayer {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_player_skill_player"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public positionalRow positionalRow {
+                get {
+                    return ((positionalRow)(this.GetParentRow(this.Table.ParentRelations["FK_PLAYER_POSITIONAL"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_PLAYER_POSITIONAL"]);
                 }
             }
             
@@ -7225,6 +6964,18 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IspositionalIdNull() {
+                return this.IsNull(this.tableplayer.positionalIdColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetpositionalIdNull() {
+                this[this.tableplayer.positionalIdColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public game_actionRow[] Getgame_actionRows() {
                 if ((this.Table.ChildRelations["FK_GAME_ACTION_PLAYER"] == null)) {
                     return new game_actionRow[0];
@@ -7439,17 +7190,6 @@ namespace DataAccessLayer {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SettypeNull() {
                 this[this.tableskill.typeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public skilltypeRow[] GetskilltypeRows() {
-                if ((this.Table.ChildRelations["FK_skill_skilltype"] == null)) {
-                    return new skilltypeRow[0];
-                }
-                else {
-                    return ((skilltypeRow[])(base.GetChildRows(this.Table.ChildRelations["FK_skill_skilltype"])));
-                }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -8232,6 +7972,17 @@ namespace DataAccessLayer {
             public void SetavNull() {
                 this[this.tablepositional.avColumn] = global::System.Convert.DBNull;
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public playerRow[] GetplayerRows() {
+                if ((this.Table.ChildRelations["FK_PLAYER_POSITIONAL"] == null)) {
+                    return new playerRow[0];
+                }
+                else {
+                    return ((playerRow[])(base.GetChildRows(this.Table.ChildRelations["FK_PLAYER_POSITIONAL"])));
+                }
+            }
         }
         
         /// <summary>
@@ -8528,43 +8279,6 @@ namespace DataAccessLayer {
                 }
                 else {
                     return ((skillRow[])(base.GetChildRows(this.Table.ChildRelations["FK_positional_skill_skill"])));
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Represents strongly named DataRow class.
-        ///</summary>
-        public partial class skilltypeRow : global::System.Data.DataRow {
-            
-            private skilltypeDataTable tableskilltype;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            internal skilltypeRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableskilltype = ((skilltypeDataTable)(this.Table));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int id {
-                get {
-                    return ((int)(this[this.tableskilltype.idColumn]));
-                }
-                set {
-                    this[this.tableskilltype.idColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public skillRow skillRow {
-                get {
-                    return ((skillRow)(this.GetParentRow(this.Table.ParentRelations["FK_skill_skilltype"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_skill_skilltype"]);
                 }
             }
         }
@@ -9984,40 +9698,6 @@ namespace DataAccessLayer {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public class skilltypeRowChangeEvent : global::System.EventArgs {
-            
-            private skilltypeRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public skilltypeRowChangeEvent(skilltypeRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public skilltypeRow Row {
-                get {
-                    return this.eventRow;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataRowAction Action {
-                get {
-                    return this.eventAction;
-                }
-            }
-        }
-        
-        /// <summary>
-        ///Row event argument class
-        ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public class positional_raceRowChangeEvent : global::System.EventArgs {
             
             private positional_raceRow eventRow;
@@ -10365,6 +10045,7 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             tableMapping.ColumnMappings.Add("inter", "inter");
             tableMapping.ColumnMappings.Add("dead", "dead");
             tableMapping.ColumnMappings.Add("retired", "retired");
+            tableMapping.ColumnMappings.Add("positionalId", "positionalId");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -10380,7 +10061,7 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO `player` (`name`, `map`, `agp`, `avp`, `stp`, `cost`, `spp`, `td`, `cas`, `pass`, `inter`, `niggling`, `missNextGame`, `mam`, `agm`, `avm`, `stm`, `retired`, `dead`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO `player` (`name`, `map`, `agp`, `avp`, `stp`, `cost`, `spp`, `td`, `cas`, `pass`, `inter`, `niggling`, `missNextGame`, `mam`, `agm`, `avm`, `stm`, `retired`, `dead`, `positionalId`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -10515,9 +10196,16 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "dead";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p20";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "positionalId";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `player` SET `name` = @p1, `map` = @p2, `agp` = @p3, `avp` = @p4, `stp` = @p5, `cost` = @p6, `spp` = @p7, `td` = @p8, `cas` = @p9, `pass` = @p10, `inter` = @p11, `niggling` = @p12, `missNextGame` = @p13, `mam` = @p14, `agm` = @p15, `avm` = @p16, `stm` = @p17, `retired` = @p18, `dead` = @p19 WHERE ((`id` = @p20) AND ((@p21 = 1 AND `name` IS NULL) OR (`name` = @p22)) AND ((@p23 = 1 AND `map` IS NULL) OR (`map` = @p24)) AND ((@p25 = 1 AND `agp` IS NULL) OR (`agp` = @p26)) AND ((@p27 = 1 AND `avp` IS NULL) OR (`avp` = @p28)) AND ((@p29 = 1 AND `stp` IS NULL) OR (`stp` = @p30)) AND ((@p31 = 1 AND `cost` IS NULL) OR (`cost` = @p32)) AND ((@p33 = 1 AND `spp` IS NULL) OR (`spp` = @p34)) AND ((@p35 = 1 AND `td` IS NULL) OR (`td` = @p36)) AND ((@p37 = 1 AND `cas` IS NULL) OR (`cas` = @p38)) AND ((@p39 = 1 AND `pass` IS NULL) OR (`pass` = @p40)) AND ((@p41 = 1 AND `inter` IS NULL) OR (`inter` = @p42)) AND ((@p43 = 1 AND `niggling` IS NULL) OR (`niggling` = @p44)) AND ((@p45 = 1 AND `missNextGame` IS NULL) OR (`missNextGame` = @p46)) AND ((@p47 = 1 AND `mam` IS NULL) OR (`mam` = @p48)) AND ((@p49 = 1 AND `agm` IS NULL) OR (`agm` = @p50)) AND ((@p51 = 1 AND `avm` IS NULL) OR (`avm` = @p52)) AND ((@p53 = 1 AND `stm` IS NULL) OR (`stm` = @p54)) AND ((@p55 = 1 AND `retired` IS NULL) OR (`retired` = @p56)) AND ((@p57 = 1 AND `dead` IS NULL) OR (`dead` = @p58)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `player` SET `name` = @p1, `map` = @p2, `agp` = @p3, `avp` = @p4, `stp` = @p5, `cost` = @p6, `spp` = @p7, `td` = @p8, `cas` = @p9, `pass` = @p10, `inter` = @p11, `niggling` = @p12, `missNextGame` = @p13, `mam` = @p14, `agm` = @p15, `avm` = @p16, `stm` = @p17, `retired` = @p18, `dead` = @p19, `positionalId` = @p20 WHERE ((`id` = @p21) AND ((@p22 = 1 AND `name` IS NULL) OR (`name` = @p23)) AND ((@p24 = 1 AND `map` IS NULL) OR (`map` = @p25)) AND ((@p26 = 1 AND `agp` IS NULL) OR (`agp` = @p27)) AND ((@p28 = 1 AND `avp` IS NULL) OR (`avp` = @p29)) AND ((@p30 = 1 AND `stp` IS NULL) OR (`stp` = @p31)) AND ((@p32 = 1 AND `cost` IS NULL) OR (`cost` = @p33)) AND ((@p34 = 1 AND `spp` IS NULL) OR (`spp` = @p35)) AND ((@p36 = 1 AND `td` IS NULL) OR (`td` = @p37)) AND ((@p38 = 1 AND `cas` IS NULL) OR (`cas` = @p39)) AND ((@p40 = 1 AND `pass` IS NULL) OR (`pass` = @p41)) AND ((@p42 = 1 AND `inter` IS NULL) OR (`inter` = @p43)) AND ((@p44 = 1 AND `niggling` IS NULL) OR (`niggling` = @p45)) AND ((@p46 = 1 AND `missNextGame` IS NULL) OR (`missNextGame` = @p47)) AND ((@p48 = 1 AND `mam` IS NULL) OR (`mam` = @p49)) AND ((@p50 = 1 AND `agm` IS NULL) OR (`agm` = @p51)) AND ((@p52 = 1 AND `avm` IS NULL) OR (`avm` = @p53)) AND ((@p54 = 1 AND `stm` IS NULL) OR (`stm` = @p55)) AND ((@p56 = 1 AND `retired` IS NULL) OR (`retired` = @p57)) AND ((@p58 = 1 AND `dead` IS NULL) OR (`dead` = @p59)) AND ((@p60 = 1 AND `positionalId` IS NULL) OR (`positionalId` = @p61)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -10657,34 +10345,32 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "id";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumn = "positionalId";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p21";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
+            param.SourceColumn = "id";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p22";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
             param.SourceColumn = "name";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p22";
+            param.ParameterName = "@p23";
             param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "name";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p23";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "map";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p24";
@@ -10693,15 +10379,15 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "map";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p25";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "agp";
+            param.SourceColumn = "map";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p26";
@@ -10710,15 +10396,15 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "agp";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p27";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "avp";
+            param.SourceColumn = "agp";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p28";
@@ -10727,15 +10413,15 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "avp";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p29";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "stp";
+            param.SourceColumn = "avp";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p30";
@@ -10744,32 +10430,32 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "stp";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p31";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
+            param.SourceColumn = "stp";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p32";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
             param.SourceColumn = "cost";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p32";
+            param.ParameterName = "@p33";
             param.DbType = global::System.Data.DbType.Single;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Float;
             param.IsNullable = true;
             param.SourceColumn = "cost";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p33";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "spp";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p34";
@@ -10778,15 +10464,15 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "spp";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p35";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "td";
+            param.SourceColumn = "spp";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p36";
@@ -10795,15 +10481,15 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "td";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p37";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "cas";
+            param.SourceColumn = "td";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p38";
@@ -10812,15 +10498,15 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "cas";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p39";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "pass";
+            param.SourceColumn = "cas";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p40";
@@ -10829,15 +10515,15 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "pass";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p41";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "inter";
+            param.SourceColumn = "pass";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p42";
@@ -10846,15 +10532,15 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "inter";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p43";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "niggling";
+            param.SourceColumn = "inter";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p44";
@@ -10863,32 +10549,32 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "niggling";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p45";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
+            param.SourceColumn = "niggling";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p46";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
             param.SourceColumn = "missNextGame";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p46";
+            param.ParameterName = "@p47";
             param.DbType = global::System.Data.DbType.SByte;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
             param.IsNullable = true;
             param.SourceColumn = "missNextGame";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p47";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "mam";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p48";
@@ -10897,15 +10583,15 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "mam";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p49";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "agm";
+            param.SourceColumn = "mam";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p50";
@@ -10914,15 +10600,15 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "agm";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p51";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "avm";
+            param.SourceColumn = "agm";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p52";
@@ -10931,15 +10617,15 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "avm";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p53";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "stm";
+            param.SourceColumn = "avm";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p54";
@@ -10948,18 +10634,27 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "stm";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p55";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
+            param.SourceColumn = "stm";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p56";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
             param.SourceColumn = "retired";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p56";
+            param.ParameterName = "@p57";
             param.DbType = global::System.Data.DbType.SByte;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
             param.IsNullable = true;
@@ -10967,7 +10662,7 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p57";
+            param.ParameterName = "@p58";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
@@ -10976,11 +10671,28 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p58";
+            param.ParameterName = "@p59";
             param.DbType = global::System.Data.DbType.SByte;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Byte;
             param.IsNullable = true;
             param.SourceColumn = "dead";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p60";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "positionalId";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p61";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "positionalId";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
         }
@@ -10989,7 +10701,7 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::DataAccessLayer.Properties.Settings.Default.legagladioConnectionStringLocal;
+            this._connection.ConnectionString = global::DataAccessLayer.Properties.Settings.Default.legagladioConnectionString2;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11001,13 +10713,14 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             this._commandCollection[0].CommandText = "SELECT * FROM player";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
-            this._commandCollection[1].Connection = new global::MySql.Data.MySqlClient.MySqlConnection(global::DataAccessLayer.Properties.Settings.Default.legagladioConnectionString2);
+            this._commandCollection[1].Connection = this.Connection;
             this._commandCollection[1].CommandText = "SELECT COUNT(id) FROM player";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::MySql.Data.MySqlClient.MySqlCommand();
-            this._commandCollection[2].Connection = new global::MySql.Data.MySqlClient.MySqlConnection(global::DataAccessLayer.Properties.Settings.Default.legagladioConnectionString2);
+            this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = "SELECT agm, agp, avm, avp, cas, cost, dead, id, inter, mam, map, missNextGame, na" +
-                "me, niggling, pass, retired, spp, stm, stp, td FROM player WHERE (id = @id)";
+                "me, niggling, pass, positionalId, retired, spp, stm, stp, td FROM player WHERE (" +
+                "id = @id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@id";
@@ -11017,8 +10730,8 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.SourceColumn = "id";
             this._commandCollection[2].Parameters.Add(param);
             this._commandCollection[3] = new global::MySql.Data.MySqlClient.MySqlCommand();
-            this._commandCollection[3].Connection = new global::MySql.Data.MySqlClient.MySqlConnection(global::DataAccessLayer.Properties.Settings.Default.legagladioConnectionString2);
-            this._commandCollection[3].CommandText = @"SELECT p.agm, p.agp, p.avm, p.avp, p.cas, p.cost, p.dead, p.id, p.inter, p.mam, p.map, p.missNextGame, p.name, p.niggling, p.pass, p.retired, p.spp, p.stm, p.stp, p.td FROM player p INNER JOIN team_player tp ON p.id = tp.playerID WHERE (tp.teamID = @teamID)";
+            this._commandCollection[3].Connection = this.Connection;
+            this._commandCollection[3].CommandText = @"SELECT p.agm, p.agp, p.avm, p.avp, p.cas, p.cost, p.dead, p.id, p.inter, p.mam, p.map, p.missNextGame, p.name, p.niggling, p.pass, p.positionalId, p.retired, p.spp, p.stm, p.stp, p.td FROM player p INNER JOIN team_player tp ON p.id = tp.playerID WHERE (tp.teamID = @teamID)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@teamID";
@@ -11179,7 +10892,8 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                     global::System.Nullable<int> p16, 
                     global::System.Nullable<int> p17, 
                     global::System.Nullable<byte> p18, 
-                    global::System.Nullable<byte> p19) {
+                    global::System.Nullable<byte> p19, 
+                    global::System.Nullable<int> p20) {
             if ((p1 == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -11294,6 +11008,12 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
+            if ((p20.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[19].Value = ((int)(p20.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[19].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -11334,26 +11054,28 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                     global::System.Nullable<int> p17, 
                     global::System.Nullable<byte> p18, 
                     global::System.Nullable<byte> p19, 
-                    int p20, 
-                    string p22, 
-                    global::System.Nullable<int> p24, 
-                    global::System.Nullable<int> p26, 
-                    global::System.Nullable<int> p28, 
-                    global::System.Nullable<int> p30, 
-                    global::System.Nullable<float> p32, 
-                    global::System.Nullable<int> p34, 
-                    global::System.Nullable<int> p36, 
-                    global::System.Nullable<int> p38, 
-                    global::System.Nullable<int> p40, 
-                    global::System.Nullable<int> p42, 
-                    global::System.Nullable<int> p44, 
-                    global::System.Nullable<byte> p46, 
-                    global::System.Nullable<int> p48, 
-                    global::System.Nullable<int> p50, 
-                    global::System.Nullable<int> p52, 
-                    global::System.Nullable<int> p54, 
-                    global::System.Nullable<byte> p56, 
-                    global::System.Nullable<byte> p58) {
+                    global::System.Nullable<int> p20, 
+                    int p21, 
+                    string p23, 
+                    global::System.Nullable<int> p25, 
+                    global::System.Nullable<int> p27, 
+                    global::System.Nullable<int> p29, 
+                    global::System.Nullable<int> p31, 
+                    global::System.Nullable<float> p33, 
+                    global::System.Nullable<int> p35, 
+                    global::System.Nullable<int> p37, 
+                    global::System.Nullable<int> p39, 
+                    global::System.Nullable<int> p41, 
+                    global::System.Nullable<int> p43, 
+                    global::System.Nullable<int> p45, 
+                    global::System.Nullable<byte> p47, 
+                    global::System.Nullable<int> p49, 
+                    global::System.Nullable<int> p51, 
+                    global::System.Nullable<int> p53, 
+                    global::System.Nullable<int> p55, 
+                    global::System.Nullable<byte> p57, 
+                    global::System.Nullable<byte> p59, 
+                    global::System.Nullable<int> p61) {
             if ((p1 == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -11468,158 +11190,172 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             else {
                 this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(p20));
-            if ((p22 == null)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
+            if ((p20.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(p20.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(p22));
+                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
             }
-            if ((p24.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((int)(p24.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
-            }
-            if ((p26.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((int)(p26.Value));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((int)(p21));
+            if ((p23 == null)) {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(p23));
             }
-            if ((p28.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[27].Value = ((int)(p28.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[27].Value = global::System.DBNull.Value;
-            }
-            if ((p30.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((int)(p30.Value));
+            if ((p25.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((int)(p25.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[28].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
             }
-            if ((p32.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((float)(p32.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
-            }
-            if ((p34.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[33].Value = ((int)(p34.Value));
+            if ((p27.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((int)(p27.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
             }
-            if ((p36.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[35].Value = ((int)(p36.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[35].Value = global::System.DBNull.Value;
-            }
-            if ((p38.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[37].Value = ((int)(p38.Value));
+            if ((p29.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((int)(p29.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[37].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
             }
-            if ((p40.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[39].Value = ((int)(p40.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[38].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[39].Value = global::System.DBNull.Value;
-            }
-            if ((p42.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[40].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[41].Value = ((int)(p42.Value));
+            if ((p31.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[30].Value = ((int)(p31.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[40].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[41].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[29].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
             }
-            if ((p44.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[42].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[43].Value = ((int)(p44.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[42].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[43].Value = global::System.DBNull.Value;
-            }
-            if ((p46.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[45].Value = ((byte)(p46.Value));
+            if ((p33.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[32].Value = ((float)(p33.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[44].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[45].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[31].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[32].Value = global::System.DBNull.Value;
             }
-            if ((p48.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[46].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[47].Value = ((int)(p48.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[46].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[47].Value = global::System.DBNull.Value;
-            }
-            if ((p50.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[49].Value = ((int)(p50.Value));
+            if ((p35.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[34].Value = ((int)(p35.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[48].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[49].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[33].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[34].Value = global::System.DBNull.Value;
             }
-            if ((p52.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[51].Value = ((int)(p52.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[50].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[51].Value = global::System.DBNull.Value;
-            }
-            if ((p54.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[53].Value = ((int)(p54.Value));
+            if ((p37.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[36].Value = ((int)(p37.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[52].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[53].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[35].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[36].Value = global::System.DBNull.Value;
             }
-            if ((p56.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[55].Value = ((byte)(p56.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[54].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[55].Value = global::System.DBNull.Value;
-            }
-            if ((p58.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[57].Value = ((byte)(p58.Value));
+            if ((p39.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[38].Value = ((int)(p39.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[56].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[57].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[37].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[38].Value = global::System.DBNull.Value;
+            }
+            if ((p41.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[40].Value = ((int)(p41.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[40].Value = global::System.DBNull.Value;
+            }
+            if ((p43.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[42].Value = ((int)(p43.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[42].Value = global::System.DBNull.Value;
+            }
+            if ((p45.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[43].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[44].Value = ((int)(p45.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[43].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[44].Value = global::System.DBNull.Value;
+            }
+            if ((p47.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[45].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[46].Value = ((byte)(p47.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[45].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[46].Value = global::System.DBNull.Value;
+            }
+            if ((p49.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[47].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[48].Value = ((int)(p49.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[47].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[48].Value = global::System.DBNull.Value;
+            }
+            if ((p51.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[49].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[50].Value = ((int)(p51.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[49].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[50].Value = global::System.DBNull.Value;
+            }
+            if ((p53.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[51].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[52].Value = ((int)(p53.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[51].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[52].Value = global::System.DBNull.Value;
+            }
+            if ((p55.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[53].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[54].Value = ((int)(p55.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[53].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[54].Value = global::System.DBNull.Value;
+            }
+            if ((p57.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[55].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[56].Value = ((byte)(p57.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[55].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[56].Value = global::System.DBNull.Value;
+            }
+            if ((p59.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[57].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[58].Value = ((byte)(p59.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[57].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[58].Value = global::System.DBNull.Value;
+            }
+            if ((p61.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[59].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[60].Value = ((int)(p61.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[59].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[60].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -11820,22 +11556,11 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[2];
+            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT `playerID`, `skillID` FROM `player_skill`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
-            this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT `playerID`, `skillID` FROM `player_skill` where `playerID` = @playerID";
-            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@playerID";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "playerID";
-            this._commandCollection[1].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -11857,32 +11582,6 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual LegaGladioDS.player_skillDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            LegaGladioDS.player_skillDataTable dataTable = new LegaGladioDS.player_skillDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByPlayerId(LegaGladioDS.player_skillDataTable dataTable, int playerID) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(playerID));
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual LegaGladioDS.player_skillDataTable GetDataByPlayerId(int playerID) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(playerID));
             LegaGladioDS.player_skillDataTable dataTable = new LegaGladioDS.player_skillDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -12170,7 +11869,7 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[4];
+            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[6];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT `id`, `name`, `type` FROM `skill`";
@@ -12202,6 +11901,30 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "name";
             this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "SELECT `id`, `name`, `type` FROM `skill` join `player_skill` on `player_skill`.`s" +
+                "killid` = `skill`.`id` where `player_skill`.`playerid` = @playerid";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@playerid";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "playerID";
+            this._commandCollection[4].Parameters.Add(param);
+            this._commandCollection[5] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[5].Connection = this.Connection;
+            this._commandCollection[5].CommandText = "SELECT `id`, `name`, `type` FROM `skill` join positional_skill on positional_skil" +
+                "l.skillid = skill.id where positional_skill.positionalid = @positionalID";
+            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@positionalID";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "positionalID";
+            this._commandCollection[5].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -12285,6 +12008,58 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((string)(name));
             }
+            LegaGladioDS.skillDataTable dataTable = new LegaGladioDS.skillDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByPlayerId(LegaGladioDS.skillDataTable dataTable, int playerid) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(playerid));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual LegaGladioDS.skillDataTable GetDataByPlayerId(int playerid) {
+            this.Adapter.SelectCommand = this.CommandCollection[4];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(playerid));
+            LegaGladioDS.skillDataTable dataTable = new LegaGladioDS.skillDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByPositionalId(LegaGladioDS.skillDataTable dataTable, int positionalID) {
+            this.Adapter.SelectCommand = this.CommandCollection[5];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(positionalID));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual LegaGladioDS.skillDataTable GetDataByPositionalId(int positionalID) {
+            this.Adapter.SelectCommand = this.CommandCollection[5];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(positionalID));
             LegaGladioDS.skillDataTable dataTable = new LegaGladioDS.skillDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -14761,7 +14536,7 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[4];
+            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[5];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id, qty, title, cost, ma, st, ag, av FROM positional";
@@ -14783,16 +14558,28 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             this._commandCollection[2].Parameters.Add(param);
             this._commandCollection[3] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "INSERT INTO `positional` (`qty`, `title`, `cost`, `ma`, `st`, `ag`, `av`) VALUES " +
-                "(@qty, @title, @cost, @ma, @st, @ag, @av)";
+            this._commandCollection[3].CommandText = "SELECT positional.* FROM positional join player on player.positionalid = position" +
+                "al.id where player.id = @playerId";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@playerId";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "id";
+            this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4] = new global::MySql.Data.MySqlClient.MySqlCommand();
+            this._commandCollection[4].Connection = this.Connection;
+            this._commandCollection[4].CommandText = "INSERT INTO `positional` (`qty`, `title`, `cost`, `ma`, `st`, `ag`, `av`) VALUES " +
+                "(@qty, @title, @cost, @ma, @st, @ag, @av)";
+            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@qty";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "qty";
-            this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4].Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@title";
             param.DbType = global::System.Data.DbType.String;
@@ -14800,42 +14587,42 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.Size = 45;
             param.IsNullable = true;
             param.SourceColumn = "title";
-            this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4].Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@cost";
             param.DbType = global::System.Data.DbType.Decimal;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Float;
             param.IsNullable = true;
             param.SourceColumn = "cost";
-            this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4].Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@ma";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "ma";
-            this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4].Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@st";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "st";
-            this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4].Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@ag";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "ag";
-            this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4].Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@av";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "av";
-            this._commandCollection[3].Parameters.Add(param);
+            this._commandCollection[4].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -14883,6 +14670,32 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         public virtual LegaGladioDS.positionalDataTable GetDataById(int id) {
             this.Adapter.SelectCommand = this.CommandCollection[2];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id));
+            LegaGladioDS.positionalDataTable dataTable = new LegaGladioDS.positionalDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
+        public virtual int FillByPlayerId(LegaGladioDS.positionalDataTable dataTable, int playerId) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(playerId));
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual LegaGladioDS.positionalDataTable GetDataByPlayerId(int playerId) {
+            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(playerId));
             LegaGladioDS.positionalDataTable dataTable = new LegaGladioDS.positionalDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -15099,7 +14912,7 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual object InsertPositional(global::System.Nullable<int> qty, string title, global::System.Nullable<decimal> cost, global::System.Nullable<int> ma, global::System.Nullable<int> st, global::System.Nullable<int> ag, global::System.Nullable<int> av) {
-            global::MySql.Data.MySqlClient.MySqlCommand command = this.CommandCollection[3];
+            global::MySql.Data.MySqlClient.MySqlCommand command = this.CommandCollection[4];
             if ((qty.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(qty.Value));
             }
@@ -16085,14 +15898,15 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[3];
+            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[2];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT skillID FROM positional_skill";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT skillID FROM positional_skill WHERE (positionalID = @positionalID)";
+            this._commandCollection[1].CommandText = "INSERT INTO `positional_skill` (`positionalID`, `skillID`) VALUES (@positionalID," +
+                " @skillID)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@positionalID";
@@ -16101,25 +15915,13 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             param.IsNullable = true;
             param.SourceColumn = "positionalID";
             this._commandCollection[1].Parameters.Add(param);
-            this._commandCollection[2] = new global::MySql.Data.MySqlClient.MySqlCommand();
-            this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "INSERT INTO `positional_skill` (`positionalID`, `skillID`) VALUES (@positionalID," +
-                " @skillID)";
-            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@positionalID";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "positionalID";
-            this._commandCollection[2].Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@skillID";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "skillID";
-            this._commandCollection[2].Parameters.Add(param);
+            this._commandCollection[1].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -16141,42 +15943,6 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
         public virtual LegaGladioDS.positional_skillDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            LegaGladioDS.positional_skillDataTable dataTable = new LegaGladioDS.positional_skillDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByPositionalId(LegaGladioDS.positional_skillDataTable dataTable, global::System.Nullable<int> positionalID) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((positionalID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(positionalID.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual LegaGladioDS.positional_skillDataTable GetDataByPositionalId(global::System.Nullable<int> positionalID) {
-            this.Adapter.SelectCommand = this.CommandCollection[1];
-            if ((positionalID.HasValue == true)) {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(positionalID.Value));
-            }
-            else {
-                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
             LegaGladioDS.positional_skillDataTable dataTable = new LegaGladioDS.positional_skillDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -16249,7 +16015,7 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
         public virtual object InsertPositionalSkill(global::System.Nullable<int> positionalID, global::System.Nullable<int> skillID) {
-            global::MySql.Data.MySqlClient.MySqlCommand command = this.CommandCollection[2];
+            global::MySql.Data.MySqlClient.MySqlCommand command = this.CommandCollection[1];
             if ((positionalID.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(positionalID.Value));
             }
@@ -16282,295 +16048,6 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             }
             else {
                 return ((object)(returnValue));
-            }
-        }
-    }
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class skilltypeTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::MySql.Data.MySqlClient.MySqlDataAdapter _adapter;
-        
-        private global::MySql.Data.MySqlClient.MySqlConnection _connection;
-        
-        private global::MySql.Data.MySqlClient.MySqlTransaction _transaction;
-        
-        private global::MySql.Data.MySqlClient.MySqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public skilltypeTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected internal global::MySql.Data.MySqlClient.MySqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::MySql.Data.MySqlClient.MySqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::MySql.Data.MySqlClient.MySqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        internal global::MySql.Data.MySqlClient.MySqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected global::MySql.Data.MySqlClient.MySqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::MySql.Data.MySqlClient.MySqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "skilltype";
-            tableMapping.ColumnMappings.Add("id", "id");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM `skilltype` WHERE ((`id` = @p1))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p1";
-            param.DbType = global::System.Data.DbType.UInt32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.UInt32;
-            param.IsNullable = true;
-            param.SourceColumn = "id";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.DeleteCommand.Parameters.Add(param);
-            this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `skilltype` () VALUES ()";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE `skilltype` WHERE ((`id` = @p1))";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p1";
-            param.DbType = global::System.Data.DbType.UInt32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.UInt32;
-            param.IsNullable = true;
-            param.SourceColumn = "id";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            this._adapter.UpdateCommand.Parameters.Add(param);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::MySql.Data.MySqlClient.MySqlConnection();
-            this._connection.ConnectionString = global::DataAccessLayer.Properties.Settings.Default.legagladioConnectionString2;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[1];
-            this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from skilltype\r\n";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(LegaGladioDS.skilltypeDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual LegaGladioDS.skilltypeDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            LegaGladioDS.skilltypeDataTable dataTable = new LegaGladioDS.skilltypeDataTable();
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(LegaGladioDS.skilltypeDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(LegaGladioDS dataSet) {
-            return this.Adapter.Update(dataSet, "skilltype");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(uint p1) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((uint)(p1));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert() {
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(uint p1) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((uint)(p1));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
             }
         }
     }
@@ -20450,8 +19927,6 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         
         private positional_skillTableAdapter _positional_skillTableAdapter;
         
-        private skilltypeTableAdapter _skilltypeTableAdapter;
-        
         private positional_raceTableAdapter _positional_raceTableAdapter;
         
         private actionTableAdapter _actionTableAdapter;
@@ -20624,20 +20099,6 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
             "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
             "a", "System.Drawing.Design.UITypeEditor")]
-        public skilltypeTableAdapter skilltypeTableAdapter {
-            get {
-                return this._skilltypeTableAdapter;
-            }
-            set {
-                this._skilltypeTableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
         public positional_raceTableAdapter positional_raceTableAdapter {
             get {
                 return this._positional_raceTableAdapter;
@@ -20776,10 +20237,6 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                             && (this._positional_skillTableAdapter.Connection != null))) {
                     return this._positional_skillTableAdapter.Connection;
                 }
-                if (((this._skilltypeTableAdapter != null) 
-                            && (this._skilltypeTableAdapter.Connection != null))) {
-                    return this._skilltypeTableAdapter.Connection;
-                }
                 if (((this._positional_raceTableAdapter != null) 
                             && (this._positional_raceTableAdapter.Connection != null))) {
                     return this._positional_raceTableAdapter.Connection;
@@ -20847,9 +20304,6 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                 if ((this._positional_skillTableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._skilltypeTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._positional_raceTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -20879,12 +20333,39 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateUpdatedRows(LegaGladioDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._positional_skillTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.positional_skill.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._positional_skillTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._positional_raceTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.positional_race.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._positional_raceTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._player_skillTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.player_skill.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._player_skillTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._positionalTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.positional.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._positionalTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -20924,21 +20405,21 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._positional_skillTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.positional_skill.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._positional_skillTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._skillTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.skill.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._skillTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._actionTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._actionTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -20960,30 +20441,12 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._actionTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._raceTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.race.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._actionTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._positional_raceTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.positional_race.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._positional_raceTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._game_actionTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.game_action.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._game_actionTableAdapter.Update(updatedRows));
+                    result = (result + this._raceTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -20996,30 +20459,12 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._positionalTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.positional.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._game_actionTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.game_action.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._positionalTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._raceTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.race.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._raceTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._skilltypeTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.skilltype.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._skilltypeTableAdapter.Update(updatedRows));
+                    result = (result + this._game_actionTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -21042,11 +20487,35 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateInsertedRows(LegaGladioDS dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
+            if ((this._positional_skillTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.positional_skill.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._positional_skillTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._positional_raceTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.positional_race.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._positional_raceTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._player_skillTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.player_skill.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._player_skillTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._positionalTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.positional.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._positionalTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -21082,19 +20551,19 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._positional_skillTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.positional_skill.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._positional_skillTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._skillTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.skill.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._skillTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._actionTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._actionTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -21114,27 +20583,11 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._actionTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._raceTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.race.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._actionTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._positional_raceTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.positional_race.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._positional_raceTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._game_actionTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.game_action.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._game_actionTableAdapter.Update(addedRows));
+                    result = (result + this._raceTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -21146,27 +20599,11 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._positionalTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.positional.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._game_actionTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.game_action.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._positionalTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._raceTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.race.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._raceTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._skilltypeTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.skilltype.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._skilltypeTableAdapter.Update(addedRows));
+                    result = (result + this._game_actionTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -21196,27 +20633,11 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._skilltypeTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.skilltype.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._game_actionTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.game_action.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._skilltypeTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._raceTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.race.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._raceTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._positionalTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.positional.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._positionalTableAdapter.Update(deletedRows));
+                    result = (result + this._game_actionTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -21228,27 +20649,11 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._game_actionTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.game_action.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._raceTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.race.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._game_actionTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._positional_raceTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.positional_race.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._positional_raceTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._actionTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._actionTableAdapter.Update(deletedRows));
+                    result = (result + this._raceTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -21268,19 +20673,19 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._actionTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._actionTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._skillTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.skill.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._skillTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._positional_skillTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.positional_skill.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._positional_skillTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -21316,11 +20721,35 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                     allChangedRows.AddRange(deletedRows);
                 }
             }
+            if ((this._positionalTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.positional.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._positionalTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._player_skillTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.player_skill.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._player_skillTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._positional_raceTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.positional_race.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._positional_raceTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._positional_skillTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.positional_skill.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._positional_skillTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -21410,11 +20839,6 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             }
             if (((this._positional_skillTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._positional_skillTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
-                        "tring.");
-            }
-            if (((this._skilltypeTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._skilltypeTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
@@ -21570,15 +20994,6 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                         adaptersWithAcceptChangesDuringUpdate.Add(this._positional_skillTableAdapter.Adapter);
                     }
                 }
-                if ((this._skilltypeTableAdapter != null)) {
-                    revertConnections.Add(this._skilltypeTableAdapter, this._skilltypeTableAdapter.Connection);
-                    this._skilltypeTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(workConnection));
-                    this._skilltypeTableAdapter.Transaction = ((global::MySql.Data.MySqlClient.MySqlTransaction)(workTransaction));
-                    if (this._skilltypeTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._skilltypeTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._skilltypeTableAdapter.Adapter);
-                    }
-                }
                 if ((this._positional_raceTableAdapter != null)) {
                     revertConnections.Add(this._positional_raceTableAdapter, this._positional_raceTableAdapter.Connection);
                     this._positional_raceTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(workConnection));
@@ -21730,10 +21145,6 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
                 if ((this._positional_skillTableAdapter != null)) {
                     this._positional_skillTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(revertConnections[this._positional_skillTableAdapter]));
                     this._positional_skillTableAdapter.Transaction = null;
-                }
-                if ((this._skilltypeTableAdapter != null)) {
-                    this._skilltypeTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(revertConnections[this._skilltypeTableAdapter]));
-                    this._skilltypeTableAdapter.Transaction = null;
                 }
                 if ((this._positional_raceTableAdapter != null)) {
                     this._positional_raceTableAdapter.Connection = ((global::MySql.Data.MySqlClient.MySqlConnection)(revertConnections[this._positional_raceTableAdapter]));

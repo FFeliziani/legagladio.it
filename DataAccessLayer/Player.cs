@@ -46,6 +46,7 @@ namespace DataAccessLayer
                 player.StPlus = playerRow.stp;
                 player.Td = playerRow.td;
                 player.ListAbility = Skill.listSkill(player.Id);
+                player.positional = Positional.getPositional(player);
                 playerList.Add(player);
             }
             pta = null;
@@ -83,6 +84,7 @@ namespace DataAccessLayer
                 player.StPlus = playerRow.stp;
                 player.Td = playerRow.td;
                 player.ListAbility = Skill.listSkill(player.Id);
+                player.positional = Positional.getPositional(player);
                 playerList.Add(player);
             }
             pta = null;
@@ -138,7 +140,7 @@ namespace DataAccessLayer
         {
             LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();
             //name, map, agp, avp, stp, cost, spp, td, cas, pass, inter, niggling, missNextGame, mam, agm, avm, stm, retired, dead
-            int result = pta.Insert(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, player.Cost, player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead?1:0));
+            int result = pta.Insert(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, player.Cost, player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead?1:0), player.positional.Id);
             pta = null;
             return result > 0;
         }

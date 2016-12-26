@@ -1,6 +1,3 @@
 ﻿namespace DataAccessLayer
 {
 }
-namespace DataAccessLayer
-{
-}

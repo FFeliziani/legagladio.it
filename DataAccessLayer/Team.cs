@@ -31,7 +31,7 @@ namespace DataAccessLayer
                 team.coachName = Coach.getCoachName(team.Id);
                 //team.ListPlayer = Player.listPlayer(team.Id);
                 team.Name = tr.name;
-                team.Race = Race.getRace(team.Id);
+                team.Race = Race.getRaceByTeamId(team.Id);
                 team.Reroll = tr.reroll;
                 team.Value = tr.value;
                 team.Active = tr.active;
@@ -120,7 +120,7 @@ namespace DataAccessLayer
                 team.coachName = Coach.getCoachName(team.Id);
                 team.ListPlayer = Player.listPlayer(team.Id);
                 team.Name = teamRow.name;
-                team.Race = Race.getRace(team.Id);
+                team.Race = Race.getRaceByTeamId(team.Id);
                 team.Reroll = teamRow.reroll;
                 team.Active = teamRow.active;
                 team.Value = teamRow.value;
