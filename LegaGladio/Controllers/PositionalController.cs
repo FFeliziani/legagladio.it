@@ -10,45 +10,89 @@ namespace LegaGladio.Controllers
     public class PositionalController : ApiController
     {
         // GET api/positional
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
-        public IEnumerable<LegaGladio.Entities.Positional> Get()
+        public List<LegaGladio.Entities.Positional> Get()
         {
-
             return LegaGladio.BusinessLogic.Positional.list();
         }
 
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
         public LegaGladio.Entities.Positional Get(int id)
         {
             return LegaGladio.BusinessLogic.Positional.get(id);
         }
-        
+
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
         [ActionName("getByTeam")]
         // GET api/positional/5
-        public LegaGladio.Entities.Positional GetByTeam(int id)
+        public List<LegaGladio.Entities.Positional> GetByTeam(int id)
         {
-            return null;
+            return LegaGladio.BusinessLogic.Positional.listByTeam(id);
         }
         
         // POST api/positional
         [HttpPost]
-        public void Post([FromBody]LegaGladio.Entities.Positional positional)
+        [ActionName("post")]
+        [AcceptVerbs("POST")]
+        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Positional positional)
         {
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
             LegaGladio.BusinessLogic.Positional.newPositional(positional);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
 
         // PUT api/positional/5
         [HttpPut]
-        public void Put(int id, [FromBody]LegaGladio.Entities.Positional positional)
+        [ActionName("put")]
+        [AcceptVerbs("PUT")]
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Positional positional)
         {
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
             LegaGladio.BusinessLogic.Positional.updatePositional(positional, id);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
 
         // DELETE api/positional/5
         [HttpDelete]
-        public void Delete(int id)
+        [ActionName("delete")]
+        [AcceptVerbs("DELETE")]
+        public void Delete([FromUri]String token, [FromUri]int id)
         {
-            LegaGladio.BusinessLogic.Positional.deletePositional(id);
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
+                LegaGladio.BusinessLogic.Positional.deletePositional(id);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
     }
 }

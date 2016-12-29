@@ -20,11 +20,19 @@ namespace LegaGladio
                 defaults: new { controller = "logout" }
             );
             config.Routes.MapHttpRoute(
-                name: "WriteApi",
-                routeTemplate: "api/{controller}/{action}/{token}/{data}"
+                name: "CreateApi",
+                routeTemplate: "api/{controller}/{action}/{token}/"
+            );
+            //config.Routes.MapHttpRoute(
+            //    name: "UpdateApi",
+            //    routeTemplate: "api/{controller}/{action}/{token}/{id}/"
+            //);
+            config.Routes.MapHttpRoute(
+                name: "DeleteApi",
+                routeTemplate: "api/{controller}/{action}/{token}/{id}"
             );
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
+                name: "ReadApi",
                 routeTemplate: "api/{controller}/{action}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );

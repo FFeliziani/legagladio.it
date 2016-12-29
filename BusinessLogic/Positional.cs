@@ -37,6 +37,19 @@ namespace LegaGladio.BusinessLogic
             }
         }
 
+        public static List<LegaGladio.Entities.Positional> listByTeam(int teamId)
+        {
+            try
+            {
+                return DataAccessLayer.Positional.listPositionalByTeam(teamId);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while listing positionals for team " + teamId);
+                throw ex;
+            }
+        }
+
         public static LegaGladio.Entities.Positional get(int id)
         {
             try

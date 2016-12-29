@@ -17,11 +17,40 @@ namespace DataAccessLayer
         public static List<LegaGladio.Entities.Positional> listPositional()
         {
             LegaGladioDSTableAdapters.positionalTableAdapter pta = new LegaGladioDSTableAdapters.positionalTableAdapter();
-            LegaGladioDSTableAdapters.positional_skillTableAdapter psta = new LegaGladioDSTableAdapters.positional_skillTableAdapter();
 
             List<LegaGladio.Entities.Positional> positionalList = new List<LegaGladio.Entities.Positional>();
 
             LegaGladioDS.positionalDataTable pdt = pta.GetData();
+
+            foreach (LegaGladioDS.positionalRow pr in pdt.Rows)
+            {
+                LegaGladio.Entities.Positional positional = Positional.getPositional((int)pr.id);
+
+                positionalList.Add(positional);
+            }
+
+            return positionalList;
+        }
+
+        public static List<LegaGladio.Entities.Positional> listPositionalByTeam(int teamId)
+        {
+            LegaGladioDSTableAdapters.positionalTableAdapter pta = null;
+            LegaGladioDS.positionalDataTable pdt = null;
+
+            pta = new LegaGladioDSTableAdapters.positionalTableAdapter();
+            pdt = new LegaGladioDS.positionalDataTable();
+
+            List<LegaGladio.Entities.Positional> positionalList = new List<LegaGladio.Entities.Positional>();
+
+            try
+            {
+                pta.Fill(pdt);
+            }
+            catch (Exception ex)
+            {
+                
+                throw ex;
+            }
 
             foreach (LegaGladioDS.positionalRow pr in pdt.Rows)
             {

@@ -10,6 +10,8 @@ namespace LegaGladio.Controllers
     public class CoachController : ApiController
     {
         // GET api/<controller>
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
         public IEnumerable<LegaGladio.Entities.Coach> Get()
         {
@@ -17,18 +19,24 @@ namespace LegaGladio.Controllers
         }
 
         // GET api/<controller>/5
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
         public LegaGladio.Entities.Coach Get(int id)
         {
             return LegaGladio.BusinessLogic.Coach.get(id);
         }
 
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
         [ActionName("getActive")]
         public List<LegaGladio.Entities.Coach> GetActive()
         {
             return LegaGladio.BusinessLogic.Coach.list(true);
         }
 
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
         [ActionName("getInactive")]
         public List<LegaGladio.Entities.Coach> GetInactive()
         {
@@ -37,23 +45,65 @@ namespace LegaGladio.Controllers
 
         // POST api/<controller>
         [HttpPost]
-        public void Post([FromBody]LegaGladio.Entities.Coach coach)
+        [ActionName("post")]
+        [AcceptVerbs("POST")]
+        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Coach coach)
         {
-            LegaGladio.BusinessLogic.Coach.newCoach(coach);
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
+
+                LegaGladio.BusinessLogic.Coach.newCoach(coach);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
 
         // PUT api/<controller>/5
         [HttpPut]
-        public void Put(int id, [FromBody]LegaGladio.Entities.Coach coach)
+        [ActionName("put")]
+        [AcceptVerbs("PUT")]
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Coach coach)
         {
-            LegaGladio.BusinessLogic.Coach.updateCoach(coach, id);
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
+
+                LegaGladio.BusinessLogic.Coach.updateCoach(coach, id);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
 
         // DELETE api/<controller>/5
         [HttpDelete]
-        public void Delete(int id)
+        [ActionName("delete")]
+        [AcceptVerbs("DELETE")]
+        public void Delete([FromUri]String token, [FromUri]int id)
         {
-            LegaGladio.BusinessLogic.Coach.deleteCoach(id);
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
+
+                LegaGladio.BusinessLogic.Coach.deleteCoach(id);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
     }
 }

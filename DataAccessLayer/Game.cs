@@ -141,5 +141,12 @@ namespace DataAccessLayer
             gdt = null;
             return gameList;
         }
+
+        public static void newGame(LegaGladio.Entities.Game game)
+        {
+            LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
+
+            gta.Insert(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFFHome, game.VarFFGuest, game.Notes);
+        }
     }
 }

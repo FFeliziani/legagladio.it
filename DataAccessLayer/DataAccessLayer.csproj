@@ -41,8 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Action.cs" />
     <Compile Include="Coach.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameAction.cs" />
     <Compile Include="LegaGladioDS.cs">
       <DependentUpon>LegaGladioDS.xsd</DependentUpon>
       <SubType>Component</SubType>

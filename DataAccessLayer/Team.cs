@@ -134,6 +134,42 @@ namespace DataAccessLayer
             return team;
         }
 
+        public static void addTeamToCoach(LegaGladio.Entities.Team team, LegaGladio.Entities.Coach coach)
+        {
+            if (team != null && team.Id != null && coach != null && coach.Id != null)
+            {
+                if(!coach.ListTeam.Any(x => x.Id == team.Id))
+                {
+                    addTeamToCoach(team.Id, coach.Id);
+                }
+            }
+        }
+
+        private static void addTeamToCoach(Int32 teamId, Int32 coachId)
+        {
+            LegaGladioDSTableAdapters.teamTableAdapter tta = new LegaGladioDSTableAdapters.teamTableAdapter();
+
+            tta.AddTeamToCoach(teamId, coachId);
+        }
+
+        public static void removeTeamFromCoach(LegaGladio.Entities.Team team, LegaGladio.Entities.Coach coach)
+        {
+            if (team != null && team.Id != null && coach != null && coach.Id != null)
+            {
+                if (coach.ListTeam.Any(x => x.Id == team.Id))
+                {
+                    removeTeamFromCoach(team.Id, coach.Id);
+                }
+            }
+        }
+
+        private static void removeTeamFromCoach(Int32 teamId, Int32 coachId)
+        {
+            LegaGladioDSTableAdapters.teamTableAdapter tta = new LegaGladioDSTableAdapters.teamTableAdapter();
+
+            tta.RemoveTeamFromCoach(teamId, coachId);
+        }
+
         public static Boolean newTeam(LegaGladio.Entities.Team team)
         {
             LegaGladioDSTableAdapters.teamTableAdapter tta = new LegaGladioDSTableAdapters.teamTableAdapter();

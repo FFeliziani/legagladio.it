@@ -11,10 +11,12 @@ using LegaGladio.Entities;
 
 namespace LegaGladio.Controllers
 {
-    
+
     public class PlayerController : ApiController
     {
         //GET: api/player
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
         public List<LegaGladio.Entities.Player> Get()
         {
@@ -22,6 +24,8 @@ namespace LegaGladio.Controllers
         }
 
         // GET api/player/5
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
         public LegaGladio.Entities.Player Get(int id)
         {
@@ -29,6 +33,8 @@ namespace LegaGladio.Controllers
         }
 
         // GET api/player/5
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
         [ActionName("getByTeam")]
         public List<LegaGladio.Entities.Player> GetByTeam(int id)
         {
@@ -37,23 +43,62 @@ namespace LegaGladio.Controllers
 
         // POST api/player
         [HttpPost]
-        public void Post([FromBody]Player player)
+        [ActionName("post")]
+        [AcceptVerbs("POST")]
+        public void Post([FromUri]String token, [FromBody]Player data)
         {
-            LegaGladio.BusinessLogic.Player.newPlayer(player);
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
+                LegaGladio.BusinessLogic.Player.newPlayer(data);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
 
         // PUT api/player/5
         [HttpPut]
-        public void Put(int oldID, [FromBody]Player player)
+        [ActionName("put")]
+        [AcceptVerbs("PUT")]
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]Player data)
         {
-            LegaGladio.BusinessLogic.Player.updatePlayer(player, oldID);
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
+                LegaGladio.BusinessLogic.Player.updatePlayer(data, id);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
 
         // DELETE api/player/5
         [HttpDelete]
-        public void Delete(int id)
+        [ActionName("delete")]
+        [AcceptVerbs("DELETE")]
+        public void Delete([FromUri]String token, [FromUri]int id)
         {
-            LegaGladio.BusinessLogic.Player.deletePlayer(id);
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
+                LegaGladio.BusinessLogic.Player.deletePlayer(id);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
     }
 }

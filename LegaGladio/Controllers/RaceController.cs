@@ -10,6 +10,8 @@ namespace LegaGladio.Controllers
     public class RaceController : ApiController
     {
         // GET api/race
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
         public IEnumerable<LegaGladio.Entities.Race> Get()
         {
@@ -17,6 +19,8 @@ namespace LegaGladio.Controllers
         }
 
         // GET api/race/5
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
         public LegaGladio.Entities.Race Get(int id)
         {
@@ -25,23 +29,62 @@ namespace LegaGladio.Controllers
 
         // POST api/race
         [HttpPost]
-        public void Post([FromBody]LegaGladio.Entities.Race race)
+        [ActionName("post")]
+        [AcceptVerbs("POST")]
+        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Race race)
         {
-            LegaGladio.BusinessLogic.Race.newRace(race);
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
+                LegaGladio.BusinessLogic.Race.newRace(race);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
 
         // PUT api/race/5
         [HttpPut]
-        public void Put(int id, [FromBody]LegaGladio.Entities.Race race)
+        [ActionName("put")]
+        [AcceptVerbs("PUT")]
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Race race)
         {
-            LegaGladio.BusinessLogic.Race.updateRace(race, id);
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
+                LegaGladio.BusinessLogic.Race.updateRace(race, id);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
 
         // DELETE api/race/5
         [HttpDelete]
-        public void Delete(int id)
+        [ActionName("delete")]
+        [AcceptVerbs("DELETE")]
+        public void Delete([FromUri]String token, [FromUri]int id)
         {
-            LegaGladio.BusinessLogic.Race.deleteRace(id);
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
+                LegaGladio.BusinessLogic.Race.deleteRace(id);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
     }
 }

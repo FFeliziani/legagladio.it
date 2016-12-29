@@ -136,6 +136,42 @@ namespace DataAccessLayer
             return player;
         }
 
+        public static void addPlayerToTeam(LegaGladio.Entities.Player player, LegaGladio.Entities.Team team)
+        {
+            if (player != null && team != null)
+            {
+                if (!team.ListPlayer.Any(x => x.Id == player.Id))
+                {
+                    addPlayerToTeam(player.Id, team.Id);
+                }
+            }
+        }
+
+        private static void addPlayerToTeam(Int32 playerId, Int32 teamId)
+        {
+            LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();
+
+            pta.AddPlayerToTeam(playerId, teamId);
+        }
+
+        public static void removePlayerFromTeam(LegaGladio.Entities.Player player, LegaGladio.Entities.Team team)
+        {
+            if (player != null && team != null)
+            {
+                if (team.ListPlayer.Any(x => x.Id == player.Id))
+                {
+                    removePlayerFromTeam(player.Id, team.Id);
+                }
+            }
+        }
+
+        private static void removePlayerFromTeam(Int32 playerId, Int32 teamId)
+        {
+            LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();
+
+            pta.RemovePlayerFromTeam(playerId, teamId);
+        }
+
         public static Boolean newPlayer(LegaGladio.Entities.Player player)
         {
             LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();

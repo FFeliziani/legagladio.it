@@ -5,19 +5,19 @@ namespace LegaGladio.Entities
 {
     public class Team
 	{
-        public int Id { get; set; }
+        public Int32 Id { get; set; }
 
         public List<Player> ListPlayer { get; set; }
         public Race Race { get; set; }
-        public int Value { get; set; }
+        public Int32 Value { get; set; }
         public String Name { get; set; }
 
         public Boolean Active { get; set; }
-        public int FunFactor { get; set; }
-        public int Reroll { get; set; }
+        public Int32 FunFactor { get; set; }
+        public Int32 Reroll { get; set; }
         public bool HasMedic { get; set; }
-        public int Cheerleader { get; set; }
-        public int AssistantCoach { get; set; }
+        public Int32 Cheerleader { get; set; }
+        public Int32 AssistantCoach { get; set; }
         public String coachName { get; set; }
     }
 }
