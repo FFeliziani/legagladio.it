@@ -188,11 +188,39 @@ namespace DataAccessLayer
             return gL;
         }
 
+        public static void addGametoRound(Int32 gameId, Int32 roundId)
+        {
+            LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
+
+            gta.AddGameToRound(roundId, gameId);
+        }
+
+        public static void removeGameFromRound(Int32 gameId, Int32 roundId)
+        {
+            LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
+
+            gta.RemoveGameFromRound(gameId, roundId);
+        }
+
         public static void newGame(LegaGladio.Entities.Game game)
         {
             LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
 
             gta.Insert(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFFHome, game.VarFFGuest, game.Notes);
+        }
+
+        public static void updateGame(LegaGladio.Entities.Game game, Int32 oldId)
+        {
+            LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
+
+            gta.Update(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFFHome, game.VarFFGuest, game.Notes, oldId);
+        }
+
+        public static void deleteGame(Int32 id)
+        {
+            LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
+
+            gta.Delete(id);
         }
     }
 }
