@@ -31,7 +31,7 @@ namespace DataAccessLayer
                 throw ex;
             }
             List<LegaGladio.Entities.Coach> coachList = new List<LegaGladio.Entities.Coach>();
-            foreach(LegaGladioDS.coachRow cr in cdt.Rows)
+            foreach (LegaGladioDS.coachRow cr in cdt.Rows)
             {
                 LegaGladio.Entities.Coach coach = new LegaGladio.Entities.Coach();
                 coach.Id = cr.id;
@@ -39,6 +39,7 @@ namespace DataAccessLayer
                 coach.Name = cr.name;
                 coach.Notes = cr.note;
                 coach.Active = cr.active;
+                coach.NafNick = cr.nafNick;
                 coach.Value = cr.value;
                 coach.ListTeam = Team.listTeam(coach.Id);
                 coachList.Add(coach);
@@ -58,13 +59,13 @@ namespace DataAccessLayer
             {
                 try
                 {
-
                     LegaGladio.Entities.Coach coach = new LegaGladio.Entities.Coach();
                     coach.Id = cr.id;
                     coach.NafID = cr.nafID;
                     coach.Name = cr.name;
                     coach.Notes = cr.note;
                     coach.Active = cr.active;
+                    coach.NafNick = cr.nafNick;
                     coach.Value = cr.value;
                     coach.ListTeam = Team.listTeam(coach.Id);
                     coachList.Add(coach);
@@ -95,8 +96,10 @@ namespace DataAccessLayer
                 coach.Id = coachRow.id;
                 coach.ListTeam = Team.listTeam(coach.Id);
                 coach.NafID = coachRow.nafID;
+                coach.NafNick = coachRow.nafNick;
                 coach.Name = coachRow.name;
                 coach.Notes = coachRow.note;
+                coach.Active = coachRow.active;
                 coach.Value = coachRow.value;
             }
             catch (Exception ex)
@@ -106,6 +109,32 @@ namespace DataAccessLayer
             cta = null;
             ctd = null;
             return coach;
+        }
+
+        public static List<LegaGladio.Entities.Coach> getSimple()
+        {
+            LegaGladioDS.coachDataTable cdt = new LegaGladioDS.coachDataTable();
+            LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
+            try
+            {
+                cta.FillSimple(cdt);
+            }
+            catch (Exception ex)
+            {
+                cdt.GetErrors();
+                throw ex;
+            }
+            List<LegaGladio.Entities.Coach> coachList = new List<LegaGladio.Entities.Coach>();
+            foreach (LegaGladioDS.coachRow cr in cdt.Rows)
+            {
+                LegaGladio.Entities.Coach coach = new LegaGladio.Entities.Coach();
+                coach.Id = cr.id;
+                coach.Name = cr.name;
+                coachList.Add(coach);
+            }
+            cta = null;
+            cdt = null;
+            return coachList;
         }
 
         public static String getCoachName(int teamID)
@@ -124,6 +153,22 @@ namespace DataAccessLayer
             return coachName;
         }
 
+        public static Int32 getCoachId(int teamID)
+        {
+            LegaGladioDSTableAdapters.coachTableAdapter cta = null;
+            Int32 coachId = 0;
+            try
+            {
+                cta = new LegaGladioDSTableAdapters.coachTableAdapter();
+                coachId = Convert.ToInt32(cta.GetCoachId(teamID));
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return coachId;
+        }
+
         public static Boolean newCoach(LegaGladio.Entities.Coach coach)
         {
             LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
@@ -132,20 +177,21 @@ namespace DataAccessLayer
             return result > 0;
         }
 
-        public static Boolean updateCoach(LegaGladio.Entities.Coach coach, int oldID)
+        public static void updateCoach(LegaGladio.Entities.Coach coach, int oldID)
         {
             LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
-            LegaGladioDS.coachDataTable cdt = new LegaGladioDS.coachDataTable();
-            LegaGladioDS.coachRow cr = (LegaGladioDS.coachRow)cdt.NewRow();
-            cr.id = oldID;
-            cr.name = coach.Name;
-            cr.active = coach.Active;
-            cr.nafID = coach.NafID;
-            cr.nafNick = coach.NafNick;
-            cr.note = coach.Notes;
-            cr.value = coach.Value;
-            int result = cta.Update(cr);
-            return result > 0;
+
+            cta.Update(coach.Name, coach.Value, coach.NafID, coach.Notes, coach.Active, coach.NafNick, oldID);
+            //LegaGladioDS.coachDataTable cdt = new LegaGladioDS.coachDataTable();
+            //LegaGladioDS.coachRow cr = (LegaGladioDS.coachRow)cdt.NewRow();
+            //cr.id = oldID;
+            //cr.name = coach.Name;
+            //cr.active = coach.Active;
+            //cr.nafID = coach.NafID;
+            //cr.nafNick = coach.NafNick;
+            //cr.note = coach.Notes;
+            //cr.value = coach.Value;
+            //int result = cta.Update(cr);
         }
 
         public static Boolean deleteCoach(int id)

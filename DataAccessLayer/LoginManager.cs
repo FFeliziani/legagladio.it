@@ -9,11 +9,10 @@ namespace DataAccessLayer
     {
         public static Boolean existsUser(String username)
         {
-            LoginTableAdapters.usersTableAdapter uta = null;
-            Int32 userCount = 0;
+            LegaGladioDSTableAdapters.usersTableAdapter uta = null;
 
-            uta = new LoginTableAdapters.usersTableAdapter();
-            userCount = (int)uta.checkUsername(username);
+            uta = new LegaGladioDSTableAdapters.usersTableAdapter();
+            Int32 userCount = Convert.ToInt32(uta.checkUsername(username));
             if (userCount > 1)
             {
                 throw new Exception("Wrong number of users returned... SOMETHING IS WRONG IN THE DB");
@@ -24,11 +23,11 @@ namespace DataAccessLayer
 
         public static Boolean checkPassword(String username, String password)
         {
-            LoginTableAdapters.usersTableAdapter uta = null;
+            LegaGladioDSTableAdapters.usersTableAdapter uta = null;
             Int32 userCount = 0;
 
-            uta = new LoginTableAdapters.usersTableAdapter();
-            userCount = (int)uta.checkPassword(username, password);
+            uta = new LegaGladioDSTableAdapters.usersTableAdapter();
+            userCount = Convert.ToInt32(uta.checkPassword(username, password));
             if (userCount > 1)
             {
                 throw new Exception("WRONG NUMBER OF USERS RETURNED!!!!! SOMETHING IS VERY VERY WRONG IN THE DB");
@@ -38,9 +37,9 @@ namespace DataAccessLayer
 
         public static void insertToken(String username, String token)
         {
-            LoginTableAdapters.usersTableAdapter uta = null;
+            LegaGladioDSTableAdapters.usersTableAdapter uta = null;
 
-            uta = new LoginTableAdapters.usersTableAdapter();
+            uta = new LegaGladioDSTableAdapters.usersTableAdapter();
 
             uta.insertToken(token, username);
 
@@ -48,12 +47,12 @@ namespace DataAccessLayer
 
         public static Boolean checkLogged(String token)
         {
-            LoginTableAdapters.usersTableAdapter uta = null;
+            LegaGladioDSTableAdapters.usersTableAdapter uta = null;
             Int32 userCount = 0;
 
-            uta = new LoginTableAdapters.usersTableAdapter();
+            uta = new LegaGladioDSTableAdapters.usersTableAdapter();
 
-            userCount = (int)uta.checkLogged(token);
+            userCount = Convert.ToInt32(uta.checkLogged(token));
 
             if (userCount > 1)
             {
@@ -65,9 +64,9 @@ namespace DataAccessLayer
 
         public static void logout(String token)
         {
-            LoginTableAdapters.usersTableAdapter uta = null;
+            LegaGladioDSTableAdapters.usersTableAdapter uta = null;
 
-            uta = new LoginTableAdapters.usersTableAdapter();
+            uta = new LegaGladioDSTableAdapters.usersTableAdapter();
 
             uta.logout(token);
         }

@@ -21,6 +21,7 @@ namespace LegaGladio.Entities
         public float Cost { get; set; }
         public String Name { get; set; }
         public int Spp { get; set; }
+        public int Position { get; set; }
 
         public List<Skill> ListAbility { get; set; }
 

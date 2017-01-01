@@ -89,7 +89,25 @@ namespace DataAccessLayer
         {
             LegaGladioDSTableAdapters.game_actionTableAdapter gata = new LegaGladioDSTableAdapters.game_actionTableAdapter();
 
-            gata.Insert(ga.Game.Id, ga.Action.Id, ga.Team.Id, ga.Player.Id, ga.Notes);
+            try
+            {
+                gata.Insert(ga.Game.Id, ga.Action.Id, ga.Team.Id, ga.Player.Id, ga.Notes);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                gata = null;
+            }
+
+            LegaGladio.Entities.Player p = Player.getPlayer(ga.Player.Id);
+            LegaGladio.Entities.Action a = Action.getAction(ga.Action.Id);
+
+            p.Spp += a.Spp;
+
+            Player.updatePlayer(p, p.Id);
         }
 
         public static void updateGameAction(LegaGladio.Entities.GameAction ga, Int32 oldId)

@@ -58,5 +58,18 @@ namespace LegaGladio.BusinessLogic
                 throw ex;
             }
         }
+
+        public static List<LegaGladio.Entities.Game> listGame(LegaGladio.Entities.Round round)
+        {
+            try
+            {
+                return DataAccessLayer.Game.listGame(round);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while listing games for round");
+                throw ex;
+            }
+        }
     }
 }

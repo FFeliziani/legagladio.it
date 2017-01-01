@@ -37,15 +37,15 @@ namespace LegaGladio.BusinessLogic
             }
         }
 
-        public static List<LegaGladio.Entities.Positional> listByTeam(int teamId)
+        public static List<LegaGladio.Entities.Positional> listByRace(int raceId)
         {
             try
             {
-                return DataAccessLayer.Positional.listPositionalByTeam(teamId);
+                return DataAccessLayer.Positional.listPositionalByRace(raceId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing positionals for team " + teamId);
+                logger.Error(ex, "Error while listing positionals for race " + raceId);
                 throw ex;
             }
         }

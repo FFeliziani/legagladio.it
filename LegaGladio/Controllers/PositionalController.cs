@@ -28,11 +28,11 @@ namespace LegaGladio.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("getByTeam")]
+        [ActionName("getByRace")]
         // GET api/positional/5
-        public List<LegaGladio.Entities.Positional> GetByTeam(int id)
+        public List<LegaGladio.Entities.Positional> GetByRace(int id)
         {
-            return LegaGladio.BusinessLogic.Positional.listByTeam(id);
+            return LegaGladio.BusinessLogic.Positional.listByRace(id);
         }
         
         // POST api/positional

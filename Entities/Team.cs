@@ -19,5 +19,6 @@ namespace LegaGladio.Entities
         public Int32 Cheerleader { get; set; }
         public Int32 AssistantCoach { get; set; }
         public String coachName { get; set; }
+        public Int32 coachId { get; set; }
     }
 }

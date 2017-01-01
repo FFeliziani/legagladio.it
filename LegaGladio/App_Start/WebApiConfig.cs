@@ -11,13 +11,21 @@ namespace LegaGladio
         {
             config.Routes.MapHttpRoute(
                 name: "LoginApi",
-                routeTemplate: "api/login/{username}/{password}",
+                routeTemplate: "api/login/",
                 defaults: new { controller = "login" }
             );
             config.Routes.MapHttpRoute(
                 name: "LogoutApi",
                 routeTemplate: "api/logout/{token}",
                 defaults: new { controller = "logout" }
+            );
+            config.Routes.MapHttpRoute(
+                name: "ReadApi",
+                routeTemplate: "api/{controller}/{action}/"
+            );
+            config.Routes.MapHttpRoute(
+                name: "ReadByIdApi",
+                routeTemplate: "api/{controller}/{action}/withId/{id}/"
             );
             config.Routes.MapHttpRoute(
                 name: "CreateApi",
@@ -29,12 +37,7 @@ namespace LegaGladio
             //);
             config.Routes.MapHttpRoute(
                 name: "DeleteApi",
-                routeTemplate: "api/{controller}/{action}/{token}/{id}"
-            );
-            config.Routes.MapHttpRoute(
-                name: "ReadApi",
-                routeTemplate: "api/{controller}/{action}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{action}/{token}/{id}/"
             );
         }
     }

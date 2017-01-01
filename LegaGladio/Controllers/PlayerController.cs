@@ -41,6 +41,24 @@ namespace LegaGladio.Controllers
             return LegaGladio.BusinessLogic.Player.list(id);
         }
 
+        // GET api/player/5
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
+        [ActionName("getByTeamActive")]
+        public List<LegaGladio.Entities.Player> GetByTeamActive(int id)
+        {
+            return LegaGladio.BusinessLogic.Player.list(id, true);
+        }
+
+        // GET api/player/5
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
+        [ActionName("getByTeamInactive")]
+        public List<LegaGladio.Entities.Player> GetByTeamInactive(int id)
+        {
+            return LegaGladio.BusinessLogic.Player.list(id, false);
+        }
+
         // POST api/player
         [HttpPost]
         [ActionName("post")]

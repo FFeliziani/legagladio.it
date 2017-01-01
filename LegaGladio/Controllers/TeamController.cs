@@ -24,7 +24,15 @@ namespace LegaGladio.Controllers
         [ActionName("get")]
         public LegaGladio.Entities.Team Get(int id)
         {
-            return LegaGladio.BusinessLogic.Team.get(id);
+            return LegaGladio.BusinessLogic.Team.get(id, true);
+        }
+
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
+        [ActionName("getInactivePlayers")]
+        public LegaGladio.Entities.Team GetInactivePlayers(int id)
+        {
+            return LegaGladio.BusinessLogic.Team.get(id, false);
         }
 
         // GET api/team/5

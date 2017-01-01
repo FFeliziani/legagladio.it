@@ -32,7 +32,7 @@ namespace DataAccessLayer
             return positionalList;
         }
 
-        public static List<LegaGladio.Entities.Positional> listPositionalByTeam(int teamId)
+        public static List<LegaGladio.Entities.Positional> listPositionalByRace(int raceId)
         {
             LegaGladioDSTableAdapters.positionalTableAdapter pta = null;
             LegaGladioDS.positionalDataTable pdt = null;
@@ -44,11 +44,10 @@ namespace DataAccessLayer
 
             try
             {
-                pta.Fill(pdt);
+                pta.FillByRaceId(pdt, raceId);
             }
             catch (Exception ex)
             {
-                
                 throw ex;
             }
 
@@ -96,6 +95,7 @@ namespace DataAccessLayer
                 positional.Passing = new List<LegaGladio.Entities.Skill>();
                 positional.Strength = new List<LegaGladio.Entities.Skill>();
 
+                positional.Id = pr.id;
                 positional.Ma = pr.ma;
                 positional.St = pr.st;
                 positional.Ag = pr.ag;
@@ -103,6 +103,7 @@ namespace DataAccessLayer
                 positional.Cost = pr.cost;
                 positional.Qty = pr.qty;
                 positional.Title = pr.title;
+                positional.ListAbility = new List<LegaGladio.Entities.Skill>();
                 sta = new LegaGladioDSTableAdapters.skillTableAdapter();
                 LegaGladioDS.skillDataTable sdt = sta.GetDataByPositionalId((int)pr.id);
                 foreach (LegaGladioDS.skillRow sr in sdt.Rows)
@@ -130,6 +131,8 @@ namespace DataAccessLayer
                             positional.Strength.Add(skill);
                             break;
                     }
+                    
+                    positional.ListAbility.Add(skill);
                 }
             }
             catch (Exception ex)
@@ -174,6 +177,7 @@ namespace DataAccessLayer
                 positional.Passing = new List<LegaGladio.Entities.Skill>();
                 positional.Strength = new List<LegaGladio.Entities.Skill>();
 
+                positional.Id = pr.id;
                 positional.Ma = pr.ma;
                 positional.St = pr.st;
                 positional.Ag = pr.ag;
@@ -181,6 +185,7 @@ namespace DataAccessLayer
                 positional.Cost = pr.cost;
                 positional.Qty = pr.qty;
                 positional.Title = pr.title;
+                positional.ListAbility = new List<LegaGladio.Entities.Skill>();
                 sta = new LegaGladioDSTableAdapters.skillTableAdapter();
                 LegaGladioDS.skillDataTable sdt = sta.GetDataByPositionalId((int)pr.id);
                 foreach (LegaGladioDS.skillRow sr in sdt.Rows)
@@ -208,6 +213,8 @@ namespace DataAccessLayer
                             positional.Strength.Add(skill);
                             break;
                     }
+
+                    positional.ListAbility.Add(skill);
                 }
             }
             catch (Exception ex)

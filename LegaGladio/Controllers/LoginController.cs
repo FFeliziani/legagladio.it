@@ -9,10 +9,12 @@ namespace LegaGladio.Controllers
 {
     public class LoginController : ApiController
     {
-        [AcceptVerbs("GET", "POST")]
-        public string login(String username, String password)
+        [HttpPost]
+        [ActionName("login")]
+        [AcceptVerbs("POST")]
+        public string login([FromBody]Models.LoginData loginData)
         {
-            return LegaGladio.BusinessLogic.LoginManager.Login(username, password);
+            return LegaGladio.BusinessLogic.LoginManager.Login(loginData.username, loginData.password);
         }
     }
 }

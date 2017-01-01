@@ -142,6 +142,52 @@ namespace DataAccessLayer
             return gameList;
         }
 
+        public static List<LegaGladio.Entities.Game> listGame(LegaGladio.Entities.Round round)
+        {
+            LegaGladioDSTableAdapters.gameTableAdapter gta = null;
+            LegaGladioDS.gameDataTable gdt = null;
+            List<LegaGladio.Entities.Game> gL = null;
+
+            try
+            {
+                gta = new LegaGladioDSTableAdapters.gameTableAdapter();
+                gdt = new LegaGladioDS.gameDataTable();
+                gL = new List<LegaGladio.Entities.Game>();
+
+                gta.FillByRoundId(gdt, round.Id);
+
+                foreach (LegaGladioDS.gameRow gr in gdt.Rows)
+                {
+                    LegaGladio.Entities.Game game = new LegaGladio.Entities.Game();
+                    game.Id = gr.id;
+                    game.Home = Team.getTeam(gr.homeID);
+                    game.Guest = Team.getTeam(gr.guestID);
+                    game.TdHome = gr.tdHome;
+                    game.TdGuest = gr.tdGuest;
+                    game.CasHome = gr.casHome;
+                    game.CasGuest = gr.casGuest;
+                    game.SpHome = gr.spHome;
+                    game.SpGuest = gr.spGuest;
+                    game.EarningHome = gr.earningHome;
+                    game.EarningGuest = gr.earningGuest;
+                    game.VarFFHome = gr.varFFHome;
+                    game.VarFFGuest = gr.varFFGuest;
+                    gL.Add(game);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                gta = null;
+                gdt = null;
+            }
+
+            return gL;
+        }
+
         public static void newGame(LegaGladio.Entities.Game game)
         {
             LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();

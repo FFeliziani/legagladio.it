@@ -50,6 +50,19 @@ namespace LegaGladio.BusinessLogic
             }
         }
 
+        public static List<LegaGladio.Entities.Coach> listSimple()
+        {
+            try
+            {
+                return DataAccessLayer.Coach.getSimple();
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while simple listing coaches");
+                throw ex;
+            }
+        }
+
         public static LegaGladio.Entities.Coach get(int id)
         {
             try
@@ -76,11 +89,11 @@ namespace LegaGladio.BusinessLogic
             }
         }
 
-        public static Boolean updateCoach(LegaGladio.Entities.Coach coach, int oldID)
+        public static void updateCoach(LegaGladio.Entities.Coach coach, int oldID)
         {
             try
             {
-                return DataAccessLayer.Coach.updateCoach(coach, oldID);
+                DataAccessLayer.Coach.updateCoach(coach, oldID);
             }
             catch (Exception ex)
             {

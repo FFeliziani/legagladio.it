@@ -76,6 +76,19 @@ namespace LegaGladio.BusinessLogic
             }
         }
 
+        public static LegaGladio.Entities.Team get(Int32 id, Boolean active)
+        {
+            try
+            {
+                return DataAccessLayer.Team.getTeam(id, active);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while getting teams");
+                throw ex;
+            }
+        }
+
         public static Boolean newTeam(LegaGladio.Entities.Team team)
         {
             try
@@ -89,11 +102,11 @@ namespace LegaGladio.BusinessLogic
             }
         }
 
-        public static Boolean updateTeam(LegaGladio.Entities.Team team, int oldID)
+        public static void updateTeam(LegaGladio.Entities.Team team, int oldID)
         {
             try
             {
-                return DataAccessLayer.Team.updateTeam(team, oldID);
+                DataAccessLayer.Team.updateTeam(team, oldID);
             }
             catch (Exception ex)
             {

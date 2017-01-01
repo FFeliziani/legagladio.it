@@ -29,6 +29,14 @@ namespace LegaGladio.Controllers
 
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
+        [ActionName("getSimple")]
+        public List<LegaGladio.Entities.Coach> GetSimple()
+        {
+            return LegaGladio.BusinessLogic.Coach.listSimple();
+        }
+
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
         [ActionName("getActive")]
         public List<LegaGladio.Entities.Coach> GetActive()
         {
@@ -55,7 +63,6 @@ namespace LegaGladio.Controllers
             }
             if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
             {
-
                 LegaGladio.BusinessLogic.Coach.newCoach(coach);
             }
             else
@@ -68,6 +75,7 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [ActionName("put")]
         [AcceptVerbs("PUT")]
+        
         public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Coach coach)
         {
             if (String.IsNullOrEmpty(token))
@@ -76,7 +84,6 @@ namespace LegaGladio.Controllers
             }
             if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
             {
-
                 LegaGladio.BusinessLogic.Coach.updateCoach(coach, id);
             }
             else

@@ -48,6 +48,19 @@ namespace LegaGladio.BusinessLogic
             }
         }
 
+        public static List<LegaGladio.Entities.Player> list(int teamID, Boolean active)
+        {
+            try
+            {
+                return DataAccessLayer.Player.listPlayer(teamID, active);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while listing active players for team");
+                throw ex;
+            }
+        }
+
         public static LegaGladio.Entities.Player get(int id)
         {
             try
@@ -74,11 +87,11 @@ namespace LegaGladio.BusinessLogic
             }
         }
 
-        public static Boolean updatePlayer(LegaGladio.Entities.Player player, int oldID)
+        public static void updatePlayer(LegaGladio.Entities.Player player, int oldID)
         {
             try
             {
-                return DataAccessLayer.Player.updatePlayer(player, oldID);
+                DataAccessLayer.Player.updatePlayer(player, oldID);
             }
             catch (Exception ex)
             {

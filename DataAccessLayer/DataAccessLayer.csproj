@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -42,9 +43,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Action.cs" />
+    <Compile Include="AfterGameEvent.cs" />
     <Compile Include="Coach.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameAction.cs" />
+    <Compile Include="Injury.cs" />
     <Compile Include="LegaGladioDS.cs">
       <DependentUpon>LegaGladioDS.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -53,15 +56,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LegaGladioDS.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Login.cs">
-      <DependentUpon>Login.xsd</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Login.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Login.xsd</DependentUpon>
     </Compile>
     <Compile Include="LoginManager.cs" />
     <Compile Include="Player.cs" />
@@ -73,6 +67,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Race.cs" />
+    <Compile Include="Round.cs" />
     <Compile Include="Skill.cs" />
     <Compile Include="Team.cs" />
   </ItemGroup>
@@ -83,28 +78,19 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="LegaGladioDS.xsc">
       <DependentUpon>LegaGladioDS.xsd</DependentUpon>
     </None>
     <None Include="LegaGladioDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LegaGladioDS.Designer.cs</LastGenOutput>
+      <LastGenOutput>LegaGladioDS1.Designer.cs</LastGenOutput>
     </None>
     <None Include="LegaGladioDS.xss">
       <DependentUpon>LegaGladioDS.xsd</DependentUpon>
-    </None>
-    <None Include="Login.xsc">
-      <DependentUpon>Login.xsd</DependentUpon>
-    </None>
-    <None Include="Login.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>Login.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="Login.xss">
-      <DependentUpon>Login.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
