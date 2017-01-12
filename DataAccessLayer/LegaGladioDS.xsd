@@ -6,10 +6,10 @@
         <Connections>
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionString" Provider="MySql.Data.MySqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionString1" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionString1 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionString" Provider="MySql.Data.MySqlClient" />
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionStringLocal" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionStringLocal (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionStringLocal" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionStringLocal" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionStringLocal (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionStringLocal" Provider="MySql.Data.MySqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionString2" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionString2 (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionString2" Provider="MySql.Data.MySqlClient" />
           <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="NameFinderConnectionString" IsAppSettingsProperty="true" Modifier="Assembly" Name="NameFinderConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.NameFinderConnectionString" Provider="System.Data.SqlClient" />
-          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionStringRemote" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionStringRemote (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionStringRemote" Provider="MySql.Data.MySqlClient" />
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="legagladioConnectionStringRemote" IsAppSettingsProperty="true" Modifier="Assembly" Name="legagladioConnectionStringRemote (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DataAccessLayer.Properties.Settings.GlobalReference.Default.legagladioConnectionStringRemote" Provider="MySql.Data.MySqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="playerTableAdapter" GeneratorDataComponentClassName="playerTableAdapter" Name="player" UserDataComponentName="playerTableAdapter">
@@ -257,7 +257,7 @@ WHERE        (id = @p1)</CommandText>
               <Mapping SourceColumn="type" DataSetColumn="type" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="AddSkillToPlayer" Modifier="Public" Name="AddSkillToPlayer" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="AddSkillToPlayer">
+              <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="AddSkillToPlayer" Modifier="Public" Name="AddSkillToPlayer" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="AddSkillToPlayer">
                 <InsertCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>INSERT INTO `player_skill` (playerId, skillID) VALUES (@playerId, @skillId)</CommandText>
@@ -268,7 +268,7 @@ WHERE        (id = @p1)</CommandText>
                   </DbCommand>
                 </InsertCommand>
               </DbSource>
-              <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="Count">
+              <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="Count" Modifier="Public" Name="Count" QueryType="Scalar" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="Count">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT COUNT(*) FROM skill</CommandText>
@@ -334,64 +334,65 @@ WHERE        (id = @p1)</CommandText>
               <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectName="legagladio.team" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>DELETE FROM `team` WHERE ((`id` = @p1) AND ((@p2 = 1 AND `value` IS NULL) OR (`value` = @p3)) AND ((@p4 = 1 AND `name` IS NULL) OR (`name` = @p5)) AND ((@p6 = 1 AND `funFactor` IS NULL) OR (`funFactor` = @p7)) AND ((@p8 = 1 AND `reroll` IS NULL) OR (`reroll` = @p9)) AND ((@p10 = 1 AND `hasMedic` IS NULL) OR (`hasMedic` = @p11)) AND ((@p12 = 1 AND `cheerleader` IS NULL) OR (`cheerleader` = @p13)) AND ((@p14 = 1 AND `assistantCoach` IS NULL) OR (`assistantCoach` = @p15)) AND ((@p16 = 1 AND `active` IS NULL) OR (`active` = @p17)))</CommandText>
+                    <CommandText>DELETE FROM `team` WHERE ((`id` = @p1) AND ((@p2 = 1 AND `value` IS NULL) OR (`value` = @p3)) AND ((@p4 = 1 AND `funFactor` IS NULL) OR (`funFactor` = @p5)) AND ((@p6 = 1 AND `reroll` IS NULL) OR (`reroll` = @p7)) AND ((@p8 = 1 AND `cheerleader` IS NULL) OR (`cheerleader` = @p9)) AND ((@p10 = 1 AND `assistantCoach` IS NULL) OR (`assistantCoach` = @p11)) AND ((@p12 = 1 AND `treasury` IS NULL) OR (`treasury` = @p13)))</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="value" SourceColumnNullMapping="true" SourceVersion="Original" />
                       <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="value" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="name" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="name" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="funFactor" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="funFactor" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p8" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="reroll" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p9" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="reroll" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p10" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="hasMedic" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@p11" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="hasMedic" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p12" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="cheerleader" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p13" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="cheerleader" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p14" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="assistantCoach" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p15" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="assistantCoach" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p16" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="active" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@p17" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="active" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="funFactor" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="funFactor" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="reroll" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="reroll" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p8" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="cheerleader" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p9" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="cheerleader" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p10" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="assistantCoach" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p11" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="assistantCoach" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p12" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="treasury" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p13" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="treasury" SourceColumnNullMapping="false" SourceVersion="Original" />
                     </Parameters>
                   </DbCommand>
                 </DeleteCommand>
                 <InsertCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>INSERT INTO `team` (`value`, `name`, `funFactor`, `reroll`, `hasMedic`, `cheerleader`, `assistantCoach`, `active`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8)</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO team
+                         (value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach, active, treasury)
+VALUES        (@value, @name, @funFactor, @reroll, @hasMedic, @cheerleader, @assistantCoach, @active, @treasury)</CommandText>
                     <Parameters>
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="value" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="name" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="funFactor" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="reroll" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="hasMedic" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="cheerleader" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="assistantCoach" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="SByte" Direction="Input" ParameterName="@p8" Precision="0" ProviderType="Byte" Scale="0" Size="0" SourceColumn="active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="value" ColumnName="value" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@value" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="value" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="name" ColumnName="name" DataSourceName="legagladio.team" DataTypeServer="text" DbType="String" Direction="Input" ParameterName="@name" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="funFactor" ColumnName="funFactor" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@funFactor" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="funFactor" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="reroll" ColumnName="reroll" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@reroll" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="reroll" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="hasMedic" ColumnName="hasMedic" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@hasMedic" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="hasMedic" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="cheerleader" ColumnName="cheerleader" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@cheerleader" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="cheerleader" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="assistantCoach" ColumnName="assistantCoach" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@assistantCoach" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="assistantCoach" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="active" ColumnName="active" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@active" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="treasury" ColumnName="treasury" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@treasury" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="treasury" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </InsertCommand>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT * FROM team</CommandText>
+                    <CommandText>SELECT id, value, name, funFactor, reroll, cheerleader, assistantCoach, treasury FROM team</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
                 <UpdateCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>UPDATE       team
-SET                value = @value, name = @name, funFactor = @funFactor, reroll = @reroll, hasMedic = @hasMedic, cheerleader = @cheerleader, assistantCoach = @assistentCoach, active = @active
-WHERE        (id = @p9)</CommandText>
+SET                value = @value, name = @name, funFactor = @funFactor, reroll = @reroll, hasMedic = @hasMedic, cheerleader = @cheerleader, assistantCoach = @assistentCoach, active = @active, 
+                         treasury = @treasury
+WHERE        (id = @p8)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="value" ColumnName="value" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@value" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="value" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="name" ColumnName="name" DataSourceName="legagladio.team" DataTypeServer="varchar(255)(255)" DbType="String" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="255" SourceColumn="name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="name" ColumnName="name" DataSourceName="legagladio.team" DataTypeServer="text" DbType="String" Direction="Input" ParameterName="@name" Precision="0" ProviderType="Text" Scale="0" Size="2147483647" SourceColumn="name" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="funFactor" ColumnName="funFactor" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@funFactor" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="funFactor" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="reroll" ColumnName="reroll" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@reroll" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="reroll" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="hasMedic" ColumnName="hasMedic" DataSourceName="legagladio.team" DataTypeServer="tinyint(1)" DbType="Object" Direction="Input" ParameterName="@hasMedic" Precision="0" ProviderType="Byte" Scale="0" Size="1024" SourceColumn="hasMedic" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="hasMedic" ColumnName="hasMedic" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@hasMedic" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="hasMedic" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="cheerleader" ColumnName="cheerleader" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@cheerleader" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="cheerleader" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="assistentCoach" ColumnName="assistantCoach" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@assistentCoach" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="assistantCoach" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="active" ColumnName="active" DataSourceName="legagladio.team" DataTypeServer="tinyint(1)" DbType="Object" Direction="Input" ParameterName="@active" Precision="0" ProviderType="Byte" Scale="0" Size="1024" SourceColumn="active" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="p9" ColumnName="id" DataSourceName="legagladio.team" DataTypeServer="int(10)" DbType="Int32" Direction="Input" ParameterName="@p9" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="active" ColumnName="active" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@active" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="active" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="treasury" ColumnName="treasury" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@treasury" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="treasury" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="p8" ColumnName="id" DataSourceName="legagladio.team" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@p8" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Original" />
                     </Parameters>
                   </DbCommand>
                 </UpdateCommand>
@@ -402,11 +403,10 @@ WHERE        (id = @p9)</CommandText>
               <Mapping SourceColumn="name" DataSetColumn="name" />
               <Mapping SourceColumn="funFactor" DataSetColumn="funFactor" />
               <Mapping SourceColumn="reroll" DataSetColumn="reroll" />
-              <Mapping SourceColumn="hasMedic" DataSetColumn="hasMedic" />
               <Mapping SourceColumn="cheerleader" DataSetColumn="cheerleader" />
               <Mapping SourceColumn="assistantCoach" DataSetColumn="assistantCoach" />
-              <Mapping SourceColumn="active" DataSetColumn="active" />
               <Mapping SourceColumn="id" DataSetColumn="id" />
+              <Mapping SourceColumn="treasury" DataSetColumn="treasury" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="AddTeamToCoach" Modifier="Public" Name="AddTeamToCoach" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="AddTeamToCoach">
@@ -431,7 +431,7 @@ WHERE        (id = @p9)</CommandText>
               <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectName="legagladio.team" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByActive" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByActive" GeneratorSourceName="FillByActive" GetMethodModifier="Public" GetMethodName="GetDataByActive" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByActive" UserSourceName="FillByActive">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT active, assistantCoach, cheerleader, funFactor, hasMedic, id, name, reroll, value FROM team WHERE (active = @active)</CommandText>
+                    <CommandText>SELECT assistantCoach, cheerleader, funFactor, id, name, reroll, treasury, value FROM team WHERE (active = @active)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="active" ColumnName="active" DataSourceName="legagladio.team" DataTypeServer="tinyint(1)" DbType="Object" Direction="Input" ParameterName="@active" Precision="0" ProviderType="Byte" Scale="0" Size="1024" SourceColumn="active" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -441,7 +441,7 @@ WHERE        (id = @p9)</CommandText>
               <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectName="legagladio.team" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillByCoachId" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByCoachId" GeneratorSourceName="FillByCoachId" GetMethodModifier="Public" GetMethodName="GetDataByCoachId" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByCoachId" UserSourceName="FillByCoachId">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT t.active, t.assistantCoach, t.cheerleader, t.funFactor, t.hasMedic, t.id, t.name, t.reroll, t.value FROM team t INNER JOIN coach_team ct ON t.id = ct.teamID WHERE (ct.coachID = @coachId)</CommandText>
+                    <CommandText>SELECT t.assistantCoach, t.cheerleader, t.funFactor, t.id, t.name, t.reroll, t.treasury, t.value FROM team t INNER JOIN coach_team ct ON t.id = ct.teamID WHERE (ct.coachID = @coachId)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="coachId" ColumnName="coachID" DataSourceName="legagladio.coach_team" DataTypeServer="int(11) unsigned" DbType="Int32" Direction="Input" ParameterName="@coachId" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="coachID" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -451,7 +451,7 @@ WHERE        (id = @p9)</CommandText>
               <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectName="legagladio.team" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT active, assistantCoach, cheerleader, funFactor, hasMedic, id, name, reroll, value FROM team WHERE (id = @id)</CommandText>
+                    <CommandText>SELECT assistantCoach, cheerleader, funFactor, id, name, reroll, treasury, value FROM team WHERE (id = @id)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="id" ColumnName="id" DataSourceName="legagladio.team" DataTypeServer="int(10) unsigned" DbType="Int32" Direction="Input" ParameterName="@id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -1362,26 +1362,23 @@ WHERE        (id = @id)</CommandText>
             <MainSource>
               <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectName="legagladio.league" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <DeleteCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>DELETE FROM `league` WHERE ((`id` = @p1) AND ((@p2 = 1 AND `name` IS NULL) OR (`name` = @p3)) AND ((@p4 = 1 AND `details` IS NULL) OR (`details` = @p5)) AND ((@p6 = 1 AND `notes` IS NULL) OR (`notes` = @p7)))</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>DELETE FROM league
+WHERE        (id = @p1)</CommandText>
                     <Parameters>
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="name" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="name" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="details" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="details" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="notes" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="notes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="p1" ColumnName="id" DataSourceName="legagladio.league" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Original" />
                     </Parameters>
                   </DbCommand>
                 </DeleteCommand>
                 <InsertCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>INSERT INTO `league` (`name`, `details`, `notes`) VALUES (@p1, @p2, @p3)</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>INSERT INTO league
+                         (name, details, notes)
+VALUES        (@name, @details, @notes)</CommandText>
                     <Parameters>
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="name" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="details" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="notes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="name" ColumnName="name" DataSourceName="legagladio.league" DataTypeServer="varchar(500)(500)" DbType="String" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="details" ColumnName="details" DataSourceName="legagladio.league" DataTypeServer="varchar(500)(500)" DbType="String" Direction="Input" ParameterName="@details" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="details" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="notes" ColumnName="notes" DataSourceName="legagladio.league" DataTypeServer="varchar(500)(500)" DbType="String" Direction="Input" ParameterName="@notes" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="notes" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
                   </DbCommand>
                 </InsertCommand>
@@ -1392,19 +1389,15 @@ WHERE        (id = @id)</CommandText>
                   </DbCommand>
                 </SelectCommand>
                 <UpdateCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>UPDATE `league` SET `name` = @p1, `details` = @p2, `notes` = @p3 WHERE ((`id` = @p4) AND ((@p5 = 1 AND `name` IS NULL) OR (`name` = @p6)) AND ((@p7 = 1 AND `details` IS NULL) OR (`details` = @p8)) AND ((@p9 = 1 AND `notes` IS NULL) OR (`notes` = @p10)))</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE       league
+SET                name = @name, details = @details, notes = @notes
+WHERE        (id = @p4)</CommandText>
                     <Parameters>
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p1" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="name" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p2" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="details" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p3" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="notes" SourceColumnNullMapping="false" SourceVersion="Current" />
-                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p5" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="name" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p6" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="name" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p7" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="details" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p8" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="details" SourceColumnNullMapping="false" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@p9" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="notes" SourceColumnNullMapping="true" SourceVersion="Original" />
-                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@p10" Precision="0" ProviderType="VarChar" Scale="0" Size="0" SourceColumn="notes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="name" ColumnName="name" DataSourceName="legagladio.league" DataTypeServer="varchar(500)(500)" DbType="String" Direction="Input" ParameterName="@name" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="name" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="details" ColumnName="details" DataSourceName="legagladio.league" DataTypeServer="varchar(500)(500)" DbType="String" Direction="Input" ParameterName="@details" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="details" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="notes" ColumnName="notes" DataSourceName="legagladio.league" DataTypeServer="varchar(500)(500)" DbType="String" Direction="Input" ParameterName="@notes" Precision="0" ProviderType="VarChar" Scale="0" Size="500" SourceColumn="notes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="p4" ColumnName="id" DataSourceName="legagladio.league" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@p4" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Original" />
                     </Parameters>
                   </DbCommand>
                 </UpdateCommand>
@@ -1416,7 +1409,18 @@ WHERE        (id = @id)</CommandText>
               <Mapping SourceColumn="details" DataSetColumn="details" />
               <Mapping SourceColumn="notes" DataSetColumn="notes" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="legagladioConnectionString2 (Settings)" DbObjectName="legagladio.league" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="FillById" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataById" GeneratorSourceName="FillById" GetMethodModifier="Public" GetMethodName="GetDataById" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataById" UserSourceName="FillById">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select * from league where id = @id</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="id" ColumnName="id" DataSourceName="legagladio.league" DataTypeServer="int(11)" DbType="Int32" Direction="Input" ParameterName="@id" Precision="0" ProviderType="Int32" Scale="0" Size="0" SourceColumn="id" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="roundTableAdapter" GeneratorDataComponentClassName="roundTableAdapter" Name="round" UserDataComponentName="roundTableAdapter">
             <MainSource>
@@ -1888,6 +1892,7 @@ WHERE        (id = @p3)</CommandText>
               <xs:element name="assistantCoach" msprop:Generator_ColumnVarNameInTable="columnassistantCoach" msprop:Generator_ColumnPropNameInRow="assistantCoach" msprop:Generator_ColumnPropNameInTable="assistantCoachColumn" msprop:Generator_UserColumnName="assistantCoach" type="xs:int" minOccurs="0" />
               <xs:element name="active" msprop:Generator_ColumnVarNameInTable="columnactive" msprop:Generator_ColumnPropNameInRow="active" msprop:Generator_ColumnPropNameInTable="activeColumn" msprop:Generator_UserColumnName="active" type="xs:boolean" minOccurs="0" />
               <xs:element name="id" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:int" />
+              <xs:element name="treasury" msprop:Generator_ColumnVarNameInTable="columntreasury" msprop:Generator_ColumnPropNameInRow="treasury" msprop:Generator_ColumnPropNameInTable="treasuryColumn" msprop:Generator_UserColumnName="treasury" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

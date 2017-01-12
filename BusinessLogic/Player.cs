@@ -9,7 +9,7 @@ namespace LegaGladio.BusinessLogic
     public class Player
     {
         private static Logger logger = LogManager.GetCurrentClassLogger();
-
+        
         public static int count()
         {
             try

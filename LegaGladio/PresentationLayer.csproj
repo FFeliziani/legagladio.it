@@ -39,6 +39,8 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
     <UseVSHostingProcess>false</UseVSHostingProcess>
+    <FilesToIncludeForPublish>AllFilesInTheProject</FilesToIncludeForPublish>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -129,16 +131,19 @@
   <ItemGroup>
     <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\GameController.cs" />
+    <Compile Include="Controllers\LeagueController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\LogoutController.cs" />
     <Compile Include="Controllers\PlayerController.cs" />
     <Compile Include="Controllers\PositionalController.cs" />
     <Compile Include="Controllers\RaceController.cs" />
+    <Compile Include="Controllers\SeriesController.cs" />
     <Compile Include="Controllers\SkillController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AddItemsData.cs" />
     <Compile Include="Models\LoginData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -178,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\federicofeliziani.com - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\legagladio.it - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
   </ItemGroup>
   <PropertyGroup>

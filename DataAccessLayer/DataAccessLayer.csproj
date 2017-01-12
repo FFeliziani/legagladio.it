@@ -48,16 +48,12 @@
     <Compile Include="Game.cs" />
     <Compile Include="GameAction.cs" />
     <Compile Include="Injury.cs" />
+    <Compile Include="League.cs" />
     <Compile Include="LegaGladioDS.cs">
       <DependentUpon>LegaGladioDS.xsd</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="LegaGladioDS.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LegaGladioDS.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="LegaGladioDS1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LegaGladioDS.xsd</DependentUpon>
@@ -93,7 +89,7 @@
     <None Include="LegaGladioDS.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LegaGladioDS1.Designer.cs</LastGenOutput>
+      <LastGenOutput>LegaGladioDS.Designer.cs</LastGenOutput>
     </None>
     <None Include="LegaGladioDS.xss">
       <DependentUpon>LegaGladioDS.xsd</DependentUpon>
@@ -102,6 +98,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TextFile1.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

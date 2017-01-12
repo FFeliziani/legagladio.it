@@ -28,15 +28,16 @@ namespace DataAccessLayer
                 team.Id = tr.id;
                 team.AssistantCoach = tr.assistantCoach;
                 team.Cheerleader = tr.cheerleader;
-                team.coachName = Coach.getCoachName(team.Id);
-                team.coachId = Coach.getCoachId(team.Id);
+                team.CoachName = Coach.getCoachName(team.Id);
+                team.CoachId = Coach.getCoachId(team.Id);
                 //team.ListPlayer = Player.listPlayer(team.Id);
                 team.Name = tr.name;
                 team.HasMedic = tr.hasMedic;
-                team.FunFactor = tr.funFactor;
+                team.FanFactor = tr.funFactor;
                 team.Race = Race.getRaceByTeamId(team.Id);
                 team.Reroll = tr.reroll;
                 team.Value = tr.value;
+                team.Treasury = tr.treasury;
                 team.Active = tr.active;
                 teamList.Add(team);
             }
@@ -57,15 +58,16 @@ namespace DataAccessLayer
                 team.Id = tr.id;
                 team.AssistantCoach = tr.assistantCoach;
                 team.Cheerleader = tr.cheerleader;
-                team.coachName = Coach.getCoachName(team.Id);
-                team.coachId = Coach.getCoachId(team.Id);
+                team.CoachName = Coach.getCoachName(team.Id);
+                team.CoachId = Coach.getCoachId(team.Id);
                 //team.ListPlayer = Player.listPlayer(team.Id);
                 team.Name = tr.name;
                 team.HasMedic = tr.hasMedic;
-                team.FunFactor = tr.funFactor;
+                team.FanFactor = tr.funFactor;
                 team.Race = Race.getRaceByTeamId(team.Id);
                 team.Reroll = tr.reroll;
                 team.Value = tr.value;
+                team.Treasury = tr.treasury;
                 team.Active = tr.active;
                 teamList.Add(team);
             }
@@ -88,15 +90,16 @@ namespace DataAccessLayer
                     team.Id = tr.id;
                     team.AssistantCoach = tr.assistantCoach;
                     team.Cheerleader = tr.cheerleader;
-                    team.coachName = Coach.getCoachName(team.Id);
-                    team.coachId = Coach.getCoachId(team.Id);
+                    team.CoachName = Coach.getCoachName(team.Id);
+                    team.CoachId = Coach.getCoachId(team.Id);
                     //team.ListPlayer = Player.listPlayer(team.Id);
                     team.Name = tr.name;
                     team.HasMedic = tr.hasMedic;
-                    team.FunFactor = tr.funFactor;
+                    team.FanFactor = tr.funFactor;
                     team.Race = Race.getRaceByTeamId(team.Id);
                     team.Reroll = tr.reroll;
                     team.Value = tr.value;
+                    team.Treasury = tr.treasury;
                     team.Active = tr.active;
                     teamList.Add(team);
                 }
@@ -126,14 +129,15 @@ namespace DataAccessLayer
                 team.Id = teamRow.id;
                 team.AssistantCoach = teamRow.assistantCoach;
                 team.Cheerleader = teamRow.cheerleader;
-                team.coachName = Coach.getCoachName(team.Id);
-                team.coachId = Coach.getCoachId(team.Id);
+                team.CoachName = Coach.getCoachName(team.Id);
+                team.CoachId = Coach.getCoachId(team.Id);
                 team.ListPlayer = Player.listPlayer(team.Id);
                 team.HasMedic = teamRow.hasMedic;
-                team.FunFactor = teamRow.funFactor;
+                team.FanFactor = teamRow.funFactor;
                 team.Name = teamRow.name;
                 team.Race = Race.getRaceByTeamId(team.Id);
                 team.Reroll = teamRow.reroll;
+                team.Treasury = teamRow.treasury;
                 team.Active = teamRow.active;
                 team.Value = teamRow.value;
             }
@@ -162,14 +166,15 @@ namespace DataAccessLayer
                 team.Id = teamRow.id;
                 team.AssistantCoach = teamRow.assistantCoach;
                 team.Cheerleader = teamRow.cheerleader;
-                team.coachName = Coach.getCoachName(team.Id);
-                team.coachId = Coach.getCoachId(team.Id);
+                team.CoachName = Coach.getCoachName(team.Id);
+                team.CoachId = Coach.getCoachId(team.Id);
                 team.ListPlayer = Player.listPlayer(team.Id, active);
                 team.HasMedic = teamRow.hasMedic;
-                team.FunFactor = teamRow.funFactor;
+                team.FanFactor = teamRow.funFactor;
                 team.Name = teamRow.name;
                 team.Race = Race.getRaceByTeamId(team.Id);
                 team.Reroll = teamRow.reroll;
+                team.Treasury = teamRow.treasury;
                 team.Active = teamRow.active;
                 team.Value = teamRow.value;
             }
@@ -222,7 +227,7 @@ namespace DataAccessLayer
         {
             LegaGladioDSTableAdapters.teamTableAdapter tta = new LegaGladioDSTableAdapters.teamTableAdapter();
             //value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach, active
-            int result = tta.Insert(team.Value, team.Name, team.FunFactor, team.Reroll, (byte)(team.HasMedic ? 1 : 0), team.Cheerleader, team.AssistantCoach, (byte)(team.Active? 1 : 0));
+            int result = tta.Insert(team.Value, team.Name, team.FanFactor, team.Reroll, (byte)(team.HasMedic ? 1 : 0), team.Cheerleader, team.AssistantCoach, (byte)(team.Active? 1 : 0), team.Treasury);
             tta = null;
             return result > 0;
         }
@@ -231,7 +236,7 @@ namespace DataAccessLayer
         {
             LegaGladioDSTableAdapters.teamTableAdapter tta = new LegaGladioDSTableAdapters.teamTableAdapter();
 
-            tta.Update(team.Value, team.Name, team.FunFactor, team.Reroll, (byte)(team.HasMedic ? 1 : 0), team.Cheerleader, team.AssistantCoach, team.Active, oldID);
+            tta.Update(team.Value, team.Name, team.FanFactor, team.Reroll, (team.HasMedic ? 1 : 0), team.Cheerleader, team.AssistantCoach, (team.Active ? 1 : 0), team.Treasury, oldID);
         }
 
         public static Boolean deleteTeam(int id)

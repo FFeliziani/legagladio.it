@@ -27,6 +27,44 @@ namespace LegaGladio.Controllers
             return LegaGladio.BusinessLogic.Skill.get(id);
         }
 
+        [HttpPost]
+        [ActionName("addSkillToPlayer")]
+        [AcceptVerbs("POST")]
+        public void AddSkillToPlayer([FromUri]String token, [FromBody]Models.AddItemsData addItemsData)
+        {
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
+                LegaGladio.BusinessLogic.Skill.addSkillToPlayer(Convert.ToInt32(addItemsData.id2), Convert.ToInt32(addItemsData.id1));
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
+        }
+
+        [HttpPost]
+        [ActionName("removeSkillFromPlayer")]
+        [AcceptVerbs("POST")]
+        public void RemoveSkillFromPlayer([FromUri]String token, [FromBody]Models.AddItemsData addItemsData)
+        {
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            {
+                LegaGladio.BusinessLogic.Skill.removeSkillFromPlayer(Convert.ToInt32(addItemsData.id2), Convert.ToInt32(addItemsData.id1));
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
+        }
+
         // POST api/<controller>
         [HttpPost]
         [ActionName("post")]

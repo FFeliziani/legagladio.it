@@ -47,11 +47,13 @@
   <ItemGroup>
     <Compile Include="Coach.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="League.cs" />
     <Compile Include="LoginManager.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Positional.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Race.cs" />
+    <Compile Include="Series.cs" />
     <Compile Include="Skill.cs" />
     <Compile Include="Team.cs" />
   </ItemGroup>

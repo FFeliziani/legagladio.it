@@ -148,6 +148,20 @@ namespace DataAccessLayer
             return skill;
         }
 
+        public static void addSkillToPlayer(Int32 skillId, Int32 playerId)
+        {
+            LegaGladioDSTableAdapters.skillTableAdapter sta = new LegaGladioDSTableAdapters.skillTableAdapter();
+
+            sta.AddSkillToPlayer(playerId, skillId);
+        }
+
+        public static void removeSkillFromPlayer(Int32 skillId, Int32 playerId)
+        {
+            LegaGladioDSTableAdapters.skillTableAdapter sta = new LegaGladioDSTableAdapters.skillTableAdapter();
+
+            sta.RemoveSkillFromPlayer(skillId, playerId);
+        }
+
         public static Boolean newSkill(LegaGladio.Entities.Skill skill)
         {
             LegaGladioDSTableAdapters.skillTableAdapter sta = new LegaGladioDSTableAdapters.skillTableAdapter();

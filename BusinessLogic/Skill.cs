@@ -50,6 +50,32 @@ namespace LegaGladio.BusinessLogic
             }
         }
 
+        public static void addSkillToPlayer(Int32 skillId, Int32 playerId)
+        {
+            try
+            {
+                DataAccessLayer.Skill.addSkillToPlayer(skillId, playerId);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while adding skill to player");
+                throw ex;
+            }
+        }
+
+        public static void removeSkillFromPlayer(Int32 skillId, Int32 playerId)
+        {
+            try
+            {
+                DataAccessLayer.Skill.removeSkillFromPlayer(skillId, playerId);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while removing skill from player");
+                throw ex;
+            }
+        }
+
         public static Boolean newSkill(LegaGladio.Entities.Skill skill)
         {
             try

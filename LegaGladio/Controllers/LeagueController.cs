@@ -1,67 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace LegaGladio.Controllers
 {
-
-    public class PlayerController : ApiController
+    public class LeagueController : ApiController
     {
-        //GET: api/player
+        // GET api/league
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
-        public List<LegaGladio.Entities.Player> Get()
+        public List<LegaGladio.Entities.League> Get()
         {
-            return LegaGladio.BusinessLogic.Player.list();
+            return LegaGladio.BusinessLogic.League.listLeague();
         }
 
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
-        public LegaGladio.Entities.Player Get(int id)
+        public LegaGladio.Entities.League Get(int id)
         {
-            return LegaGladio.BusinessLogic.Player.get(id);
-        }
-
-        // GET api/player/5
-        [HttpGet]
-        [AcceptVerbs("GET", "POST")]
-        [ActionName("getByTeam")]
-        public List<LegaGladio.Entities.Player> GetByTeam(int id)
-        {
-            return LegaGladio.BusinessLogic.Player.list(id);
-        }
-
-        // GET api/player/5
-        [HttpGet]
-        [AcceptVerbs("GET", "POST")]
-        [ActionName("getByTeamActive")]
-        public List<LegaGladio.Entities.Player> GetByTeamActive(int id)
-        {
-            return LegaGladio.BusinessLogic.Player.list(id, true);
-        }
-
-        // GET api/player/5
-        [HttpGet]
-        [AcceptVerbs("GET", "POST")]
-        [ActionName("getByTeamInactive")]
-        public List<LegaGladio.Entities.Player> GetByTeamInactive(int id)
-        {
-            return LegaGladio.BusinessLogic.Player.list(id, false);
+            return LegaGladio.BusinessLogic.League.getLeague(id);
         }
 
         // POST api/player
         [HttpPost]
         [ActionName("post")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Player data)
+        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.League data)
         {
             if (String.IsNullOrEmpty(token))
             {
@@ -69,7 +39,7 @@ namespace LegaGladio.Controllers
             }
             if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Player.newPlayer(data);
+                LegaGladio.BusinessLogic.League.newLeague(data);
             }
             else
             {
@@ -81,7 +51,7 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [ActionName("put")]
         [AcceptVerbs("PUT")]
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Player data)
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.League data)
         {
             if (String.IsNullOrEmpty(token))
             {
@@ -89,7 +59,7 @@ namespace LegaGladio.Controllers
             }
             if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Player.updatePlayer(data, id);
+                LegaGladio.BusinessLogic.League.updateLeague(data, id);
             }
             else
             {
@@ -109,7 +79,7 @@ namespace LegaGladio.Controllers
             }
             if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Player.deletePlayer(id);
+                LegaGladio.BusinessLogic.League.removeLeague(id);
             }
             else
             {
