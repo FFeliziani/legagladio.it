@@ -15,17 +15,17 @@ namespace LegaGladio.Entities
         public int Ag { get; set; }
         public int Av { get; set; }
         public int St { get; set; }
-        public float Cost { get; set; }
+        public int Cost { get; set; }
         public String Title { get; set; }
 
         public List<Skill> ListAbility { get; set; }
 
-        public List<Skill> General { get; set; }
-        public List<Skill> Agility { get; set; }
-        public List<Skill> Strength { get; set; }
-        public List<Skill> Passing { get; set; }
-        public List<Skill> Mutation { get; set; }
-        public List<Skill> Extraordinary { get; set; }
+        public int General { get; set; }
+        public int Agility { get; set; }
+        public int Strength { get; set; }
+        public int Passing { get; set; }
+        public int Mutation { get; set; }
+        public int Extraordinary { get; set; }
         
     }
 }

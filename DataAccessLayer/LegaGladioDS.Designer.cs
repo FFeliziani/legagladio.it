@@ -132,6 +132,10 @@ namespace DataAccessLayer {
         
         private global::System.Data.DataRelation relationFK_SERIES_ROUND_SERIES;
         
+        private global::System.Data.DataRelation relationFK_POSITIONAL_SKILL_POSITIONAL;
+        
+        private global::System.Data.DataRelation relationFK_POSTIONAL_RACE_POSITIONAL;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -815,6 +819,8 @@ namespace DataAccessLayer {
             this.relationFL_LEAGUE_SERIES_SERIES = this.Relations["FL_LEAGUE_SERIES_SERIES"];
             this.relationFK_SERIES_ROUND_ROUND = this.Relations["FK_SERIES_ROUND_ROUND"];
             this.relationFK_SERIES_ROUND_SERIES = this.Relations["FK_SERIES_ROUND_SERIES"];
+            this.relationFK_POSITIONAL_SKILL_POSITIONAL = this.Relations["FK_POSITIONAL_SKILL_POSITIONAL"];
+            this.relationFK_POSTIONAL_RACE_POSITIONAL = this.Relations["FK_POSTIONAL_RACE_POSITIONAL"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1059,6 +1065,14 @@ namespace DataAccessLayer {
                         this.tableseries.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableseries_round.seriesIdColumn}, false);
             this.Relations.Add(this.relationFK_SERIES_ROUND_SERIES);
+            this.relationFK_POSITIONAL_SKILL_POSITIONAL = new global::System.Data.DataRelation("FK_POSITIONAL_SKILL_POSITIONAL", new global::System.Data.DataColumn[] {
+                        this.tablepositional.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablepositional_skill.positionalIDColumn}, false);
+            this.Relations.Add(this.relationFK_POSITIONAL_SKILL_POSITIONAL);
+            this.relationFK_POSTIONAL_RACE_POSITIONAL = new global::System.Data.DataRelation("FK_POSTIONAL_RACE_POSITIONAL", new global::System.Data.DataColumn[] {
+                        this.tablepositional.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablepositional_race.positionalIdColumn}, false);
+            this.Relations.Add(this.relationFK_POSTIONAL_RACE_POSITIONAL);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3718,6 +3732,18 @@ namespace DataAccessLayer {
             
             private global::System.Data.DataColumn columnav;
             
+            private global::System.Data.DataColumn columncost1;
+            
+            private global::System.Data.DataColumn columngeneral;
+            
+            private global::System.Data.DataColumn columnagility;
+            
+            private global::System.Data.DataColumn columnstrength;
+            
+            private global::System.Data.DataColumn columnpassing;
+            
+            private global::System.Data.DataColumn columnmutation;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public positionalDataTable() {
@@ -3817,6 +3843,54 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn cost1Column {
+                get {
+                    return this.columncost1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn generalColumn {
+                get {
+                    return this.columngeneral;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn agilityColumn {
+                get {
+                    return this.columnagility;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn strengthColumn {
+                get {
+                    return this.columnstrength;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn passingColumn {
+                get {
+                    return this.columnpassing;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn mutationColumn {
+                get {
+                    return this.columnmutation;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3852,7 +3926,7 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public positionalRow AddpositionalRow(positional_skillRow parentpositional_skillRowByFK_positional_skill_positional, int qty, string title, float cost, int ma, int st, int ag, int av) {
+            public positionalRow AddpositionalRow(positional_skillRow parentpositional_skillRowByFK_positional_skill_positional, int qty, string title, float cost, int ma, int st, int ag, int av, int cost1, int general, int agility, int strength, int passing, int mutation) {
                 positionalRow rowpositionalRow = ((positionalRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -3862,7 +3936,13 @@ namespace DataAccessLayer {
                         ma,
                         st,
                         ag,
-                        av};
+                        av,
+                        cost1,
+                        general,
+                        agility,
+                        strength,
+                        passing,
+                        mutation};
                 if ((parentpositional_skillRowByFK_positional_skill_positional != null)) {
                     columnValuesArray[0] = parentpositional_skillRowByFK_positional_skill_positional[1];
                 }
@@ -3903,6 +3983,12 @@ namespace DataAccessLayer {
                 this.columnst = base.Columns["st"];
                 this.columnag = base.Columns["ag"];
                 this.columnav = base.Columns["av"];
+                this.columncost1 = base.Columns["cost1"];
+                this.columngeneral = base.Columns["general"];
+                this.columnagility = base.Columns["agility"];
+                this.columnstrength = base.Columns["strength"];
+                this.columnpassing = base.Columns["passing"];
+                this.columnmutation = base.Columns["mutation"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3924,11 +4010,24 @@ namespace DataAccessLayer {
                 base.Columns.Add(this.columnag);
                 this.columnav = new global::System.Data.DataColumn("av", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnav);
+                this.columncost1 = new global::System.Data.DataColumn("cost1", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncost1);
+                this.columngeneral = new global::System.Data.DataColumn("general", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columngeneral);
+                this.columnagility = new global::System.Data.DataColumn("agility", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnagility);
+                this.columnstrength = new global::System.Data.DataColumn("strength", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnstrength);
+                this.columnpassing = new global::System.Data.DataColumn("passing", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnpassing);
+                this.columnmutation = new global::System.Data.DataColumn("mutation", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnmutation);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AllowDBNull = false;
                 this.columnid.Unique = true;
                 this.columntitle.MaxLength = 45;
+                this.columncost1.Caption = "cost";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4501,11 +4600,14 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public positional_skillRow Addpositional_skillRow(int skillID, int positionalID) {
+            public positional_skillRow Addpositional_skillRow(int skillID, positionalRow parentpositionalRowByFK_POSITIONAL_SKILL_POSITIONAL) {
                 positional_skillRow rowpositional_skillRow = ((positional_skillRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         skillID,
-                        positionalID};
+                        null};
+                if ((parentpositionalRowByFK_POSITIONAL_SKILL_POSITIONAL != null)) {
+                    columnValuesArray[1] = parentpositionalRowByFK_POSITIONAL_SKILL_POSITIONAL[0];
+                }
                 rowpositional_skillRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowpositional_skillRow);
                 return rowpositional_skillRow;
@@ -4768,11 +4870,14 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public positional_raceRow Addpositional_raceRow(int positionalId, int raceId) {
+            public positional_raceRow Addpositional_raceRow(positionalRow parentpositionalRowByFK_POSTIONAL_RACE_POSITIONAL, int raceId) {
                 positional_raceRow rowpositional_raceRow = ((positional_raceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        positionalId,
+                        null,
                         raceId};
+                if ((parentpositionalRowByFK_POSTIONAL_RACE_POSITIONAL != null)) {
+                    columnValuesArray[0] = parentpositionalRowByFK_POSTIONAL_RACE_POSITIONAL[0];
+                }
                 rowpositional_raceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowpositional_raceRow);
                 return rowpositional_raceRow;
@@ -10252,6 +10357,102 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int cost1 {
+                get {
+                    try {
+                        return ((int)(this[this.tablepositional.cost1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'cost1\' in table \'positional\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablepositional.cost1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int general {
+                get {
+                    try {
+                        return ((int)(this[this.tablepositional.generalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'general\' in table \'positional\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablepositional.generalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int agility {
+                get {
+                    try {
+                        return ((int)(this[this.tablepositional.agilityColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'agility\' in table \'positional\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablepositional.agilityColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int strength {
+                get {
+                    try {
+                        return ((int)(this[this.tablepositional.strengthColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'strength\' in table \'positional\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablepositional.strengthColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int passing {
+                get {
+                    try {
+                        return ((int)(this[this.tablepositional.passingColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'passing\' in table \'positional\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablepositional.passingColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int mutation {
+                get {
+                    try {
+                        return ((int)(this[this.tablepositional.mutationColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'mutation\' in table \'positional\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablepositional.mutationColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public positional_skillRow positional_skillRow {
                 get {
                     return ((positional_skillRow)(this.GetParentRow(this.Table.ParentRelations["FK_positional_skill_positional"])));
@@ -10358,12 +10559,106 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Iscost1Null() {
+                return this.IsNull(this.tablepositional.cost1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setcost1Null() {
+                this[this.tablepositional.cost1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsgeneralNull() {
+                return this.IsNull(this.tablepositional.generalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetgeneralNull() {
+                this[this.tablepositional.generalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsagilityNull() {
+                return this.IsNull(this.tablepositional.agilityColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetagilityNull() {
+                this[this.tablepositional.agilityColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsstrengthNull() {
+                return this.IsNull(this.tablepositional.strengthColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetstrengthNull() {
+                this[this.tablepositional.strengthColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IspassingNull() {
+                return this.IsNull(this.tablepositional.passingColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetpassingNull() {
+                this[this.tablepositional.passingColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsmutationNull() {
+                return this.IsNull(this.tablepositional.mutationColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetmutationNull() {
+                this[this.tablepositional.mutationColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public playerRow[] GetplayerRows() {
                 if ((this.Table.ChildRelations["FK_PLAYER_POSITIONAL"] == null)) {
                     return new playerRow[0];
                 }
                 else {
                     return ((playerRow[])(base.GetChildRows(this.Table.ChildRelations["FK_PLAYER_POSITIONAL"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public positional_skillRow[] Getpositional_skillRows() {
+                if ((this.Table.ChildRelations["FK_POSITIONAL_SKILL_POSITIONAL"] == null)) {
+                    return new positional_skillRow[0];
+                }
+                else {
+                    return ((positional_skillRow[])(base.GetChildRows(this.Table.ChildRelations["FK_POSITIONAL_SKILL_POSITIONAL"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public positional_raceRow[] Getpositional_raceRows() {
+                if ((this.Table.ChildRelations["FK_POSTIONAL_RACE_POSITIONAL"] == null)) {
+                    return new positional_raceRow[0];
+                }
+                else {
+                    return ((positional_raceRow[])(base.GetChildRows(this.Table.ChildRelations["FK_POSTIONAL_RACE_POSITIONAL"])));
                 }
             }
         }
@@ -10621,6 +10916,17 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public positionalRow positionalRow {
+                get {
+                    return ((positionalRow)(this.GetParentRow(this.Table.ParentRelations["FK_POSITIONAL_SKILL_POSITIONAL"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_POSITIONAL_SKILL_POSITIONAL"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsskillIDNull() {
                 return this.IsNull(this.tablepositional_skill.skillIDColumn);
             }
@@ -10699,6 +11005,17 @@ namespace DataAccessLayer {
                 }
                 set {
                     this[this.tablepositional_race.raceIdColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public positionalRow positionalRow {
+                get {
+                    return ((positionalRow)(this.GetParentRow(this.Table.ParentRelations["FK_POSTIONAL_RACE_POSITIONAL"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_POSTIONAL_RACE_POSITIONAL"]);
                 }
             }
             
@@ -17318,11 +17635,16 @@ WHERE        (id = @p8)";
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("qty", "qty");
             tableMapping.ColumnMappings.Add("title", "title");
-            tableMapping.ColumnMappings.Add("cost", "cost");
             tableMapping.ColumnMappings.Add("ma", "ma");
             tableMapping.ColumnMappings.Add("st", "st");
             tableMapping.ColumnMappings.Add("ag", "ag");
             tableMapping.ColumnMappings.Add("av", "av");
+            tableMapping.ColumnMappings.Add("cost", "cost1");
+            tableMapping.ColumnMappings.Add("general", "general");
+            tableMapping.ColumnMappings.Add("agility", "agility");
+            tableMapping.ColumnMappings.Add("strength", "strength");
+            tableMapping.ColumnMappings.Add("passing", "passing");
+            tableMapping.ColumnMappings.Add("mutation", "mutation");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -17338,62 +17660,101 @@ WHERE        (id = @p8)";
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `positional` (`qty`, `title`, `cost`, `ma`, `st`, `ag`, `av`) VALUES " +
-                "(@p1, @p2, @p3, @p4, @p5, @p6, @p7)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO positional\r\n                         (qty, title, cost, ma, st, ag, a" +
+                "v, general, agility, strength, passing, mutation)\r\nVALUES        (@qty, @title, " +
+                "@cost, @ma, @st, @ag, @av, @general, @agility, @strength, @passing, @mutation)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p1";
+            param.ParameterName = "@qty";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "qty";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p2";
+            param.ParameterName = "@title";
             param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Text;
+            param.Size = 2147483647;
             param.IsNullable = true;
             param.SourceColumn = "title";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p3";
-            param.DbType = global::System.Data.DbType.Single;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Float;
+            param.ParameterName = "@cost";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "cost";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p4";
+            param.ParameterName = "@ma";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "ma";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p5";
+            param.ParameterName = "@st";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "st";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p6";
+            param.ParameterName = "@ag";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "ag";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p7";
+            param.ParameterName = "@av";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "av";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@general";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "general";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@agility";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "agility";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@strength";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "strength";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@passing";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "passing";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@mutation";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "mutation";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE       positional\r\nSET                qty = @qty, title = @title, cost = @p" +
-                "3, ma = @ma, st = @st, ag = @ag, av = @av\r\nWHERE        (id = @id)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE       positional\r\nSET                qty = @qty, title = @title, cost = @c" +
+                "ost, ma = @ma, st = @st, ag = @ag, av = @av, general = @general, agility = @agil" +
+                "ity, strength = @strength, passing = @passing, mutation = @mutation\r\nWHERE      " +
+                "  (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@qty";
@@ -17405,15 +17766,15 @@ WHERE        (id = @p8)";
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@title";
             param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.Size = 45;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Text;
+            param.Size = 2147483647;
             param.IsNullable = true;
             param.SourceColumn = "title";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p3";
-            param.DbType = global::System.Data.DbType.Decimal;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Float;
+            param.ParameterName = "@cost";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "cost";
             this._adapter.UpdateCommand.Parameters.Add(param);
@@ -17444,6 +17805,41 @@ WHERE        (id = @p8)";
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "av";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@general";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "general";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@agility";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "agility";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@strength";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "strength";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@passing";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "passing";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@mutation";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "mutation";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@id";
@@ -17465,10 +17861,10 @@ WHERE        (id = @p8)";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[6];
+            this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[5];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, qty, title, cost, ma, st, ag, av FROM positional";
+            this._commandCollection[0].CommandText = "SELECT * FROM positional";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -17476,7 +17872,8 @@ WHERE        (id = @p8)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT id, qty, title, cost, ma, st, ag, av FROM positional where id = @id";
+            this._commandCollection[2].CommandText = "SELECT ag, agility, av, cost, general, id, ma, mutation, passing, qty, st, streng" +
+                "th, title FROM positional WHERE (id = @id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@id";
@@ -17487,8 +17884,7 @@ WHERE        (id = @p8)";
             this._commandCollection[2].Parameters.Add(param);
             this._commandCollection[3] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT positional.* FROM positional join player on player.positionalid = position" +
-                "al.id where player.id = @playerId";
+            this._commandCollection[3].CommandText = @"SELECT positional.ag, positional.agility, positional.av, positional.cost, positional.general, positional.id, positional.ma, positional.mutation, positional.passing, positional.qty, positional.st, positional.strength, positional.title FROM positional INNER JOIN player ON player.positionalId = positional.id WHERE (player.id = @playerId)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@playerId";
@@ -17499,8 +17895,9 @@ WHERE        (id = @p8)";
             this._commandCollection[3].Parameters.Add(param);
             this._commandCollection[4] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT p.* FROM positional p join positional_race pr on pr.positionalid = p.id wh" +
-                "ere pr.raceid = @raceid";
+            this._commandCollection[4].CommandText = "SELECT p.ag, p.agility, p.av, p.cost, p.general, p.id, p.ma, p.mutation, p.passin" +
+                "g, p.qty, p.st, p.strength, p.title FROM positional p INNER JOIN positional_race" +
+                " pr ON pr.positionalId = p.id WHERE (pr.raceId = @raceid)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@raceid";
@@ -17509,61 +17906,6 @@ WHERE        (id = @p8)";
             param.IsNullable = true;
             param.SourceColumn = "raceId";
             this._commandCollection[4].Parameters.Add(param);
-            this._commandCollection[5] = new global::MySql.Data.MySqlClient.MySqlCommand();
-            this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "INSERT INTO `positional` (`qty`, `title`, `cost`, `ma`, `st`, `ag`, `av`) VALUES " +
-                "(@qty, @title, @cost, @ma, @st, @ag, @av)";
-            this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@qty";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "qty";
-            this._commandCollection[5].Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@title";
-            param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.Size = 45;
-            param.IsNullable = true;
-            param.SourceColumn = "title";
-            this._commandCollection[5].Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@cost";
-            param.DbType = global::System.Data.DbType.Decimal;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Float;
-            param.IsNullable = true;
-            param.SourceColumn = "cost";
-            this._commandCollection[5].Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@ma";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "ma";
-            this._commandCollection[5].Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@st";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "st";
-            this._commandCollection[5].Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@ag";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "ag";
-            this._commandCollection[5].Parameters.Add(param);
-            param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@av";
-            param.DbType = global::System.Data.DbType.Int32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
-            param.IsNullable = true;
-            param.SourceColumn = "av";
-            this._commandCollection[5].Parameters.Add(param);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17723,48 +18065,78 @@ WHERE        (id = @p8)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> p1, string p2, global::System.Nullable<float> p3, global::System.Nullable<int> p4, global::System.Nullable<int> p5, global::System.Nullable<int> p6, global::System.Nullable<int> p7) {
-            if ((p1.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(p1.Value));
+        public virtual int Insert(global::System.Nullable<int> qty, string title, global::System.Nullable<int> cost, global::System.Nullable<int> ma, global::System.Nullable<int> st, global::System.Nullable<int> ag, global::System.Nullable<int> av, global::System.Nullable<int> general, global::System.Nullable<int> agility, global::System.Nullable<int> strength, global::System.Nullable<int> passing, global::System.Nullable<int> mutation) {
+            if ((qty.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(qty.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((p2 == null)) {
+            if ((title == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(p2));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(title));
             }
-            if ((p3.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((float)(p3.Value));
+            if ((cost.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[2].Value = ((int)(cost.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((p4.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(p4.Value));
+            if ((ma.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(ma.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
             }
-            if ((p5.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(p5.Value));
+            if ((st.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(st.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((p6.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((int)(p6.Value));
+            if ((ag.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[5].Value = ((int)(ag.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((p7.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((int)(p7.Value));
+            if ((av.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((int)(av.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            if ((general.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[7].Value = ((int)(general.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((agility.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((int)(agility.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((strength.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((int)(strength.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((passing.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[10].Value = ((int)(passing.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((mutation.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[11].Value = ((int)(mutation.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -17786,7 +18158,7 @@ WHERE        (id = @p8)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(global::System.Nullable<int> qty, string title, global::System.Nullable<decimal> p3, global::System.Nullable<int> ma, global::System.Nullable<int> st, global::System.Nullable<int> ag, global::System.Nullable<int> av, int id) {
+        public virtual int Update(global::System.Nullable<int> qty, string title, global::System.Nullable<int> cost, global::System.Nullable<int> ma, global::System.Nullable<int> st, global::System.Nullable<int> ag, global::System.Nullable<int> av, global::System.Nullable<int> general, global::System.Nullable<int> agility, global::System.Nullable<int> strength, global::System.Nullable<int> passing, global::System.Nullable<int> mutation, int id) {
             if ((qty.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(qty.Value));
             }
@@ -17799,8 +18171,8 @@ WHERE        (id = @p8)";
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(title));
             }
-            if ((p3.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((decimal)(p3.Value));
+            if ((cost.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(cost.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
@@ -17829,7 +18201,37 @@ WHERE        (id = @p8)";
             else {
                 this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(id));
+            if ((general.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(general.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
+            }
+            if ((agility.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(agility.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((strength.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(strength.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((passing.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(passing.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            if ((mutation.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(mutation.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17851,77 +18253,6 @@ WHERE        (id = @p8)";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual object Count() {
             global::MySql.Data.MySqlClient.MySqlCommand command = this.CommandCollection[1];
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
-            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                command.Connection.Open();
-            }
-            object returnValue;
-            try {
-                returnValue = command.ExecuteScalar();
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    command.Connection.Close();
-                }
-            }
-            if (((returnValue == null) 
-                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return null;
-            }
-            else {
-                return ((object)(returnValue));
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual object InsertPositional(global::System.Nullable<int> qty, string title, global::System.Nullable<decimal> cost, global::System.Nullable<int> ma, global::System.Nullable<int> st, global::System.Nullable<int> ag, global::System.Nullable<int> av) {
-            global::MySql.Data.MySqlClient.MySqlCommand command = this.CommandCollection[5];
-            if ((qty.HasValue == true)) {
-                command.Parameters[0].Value = ((int)(qty.Value));
-            }
-            else {
-                command.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((title == null)) {
-                command.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                command.Parameters[1].Value = ((string)(title));
-            }
-            if ((cost.HasValue == true)) {
-                command.Parameters[2].Value = ((decimal)(cost.Value));
-            }
-            else {
-                command.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((ma.HasValue == true)) {
-                command.Parameters[3].Value = ((int)(ma.Value));
-            }
-            else {
-                command.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((st.HasValue == true)) {
-                command.Parameters[4].Value = ((int)(st.Value));
-            }
-            else {
-                command.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            if ((ag.HasValue == true)) {
-                command.Parameters[5].Value = ((int)(ag.Value));
-            }
-            else {
-                command.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            if ((av.HasValue == true)) {
-                command.Parameters[6].Value = ((int)(av.Value));
-            }
-            else {
-                command.Parameters[6].Value = global::System.DBNull.Value;
-            }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -25733,6 +26064,15 @@ WHERE        (id = @p14)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._positionalTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.positional.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._positionalTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._positional_raceTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.positional_race.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -25748,15 +26088,6 @@ WHERE        (id = @p14)";
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._player_skillTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._positionalTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.positional.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._positionalTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -25949,6 +26280,14 @@ WHERE        (id = @p14)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._positionalTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.positional.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._positionalTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._positional_raceTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.positional_race.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -25962,14 +26301,6 @@ WHERE        (id = @p14)";
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._player_skillTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._positionalTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.positional.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._positionalTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26287,14 +26618,6 @@ WHERE        (id = @p14)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._positionalTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.positional.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._positionalTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._player_skillTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.player_skill.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -26308,6 +26631,14 @@ WHERE        (id = @p14)";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._positional_raceTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._positionalTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.positional.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._positionalTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
