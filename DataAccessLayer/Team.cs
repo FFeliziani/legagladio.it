@@ -223,6 +223,32 @@ namespace DataAccessLayer
             tta.RemoveTeamFromCoach(teamId, coachId);
         }
 
+        public static int calculateTeamValue(int id)
+        {
+            int teamValue = 0;
+
+            try
+            {
+                LegaGladio.Entities.Team team = getTeam(id);
+
+                foreach (LegaGladio.Entities.Player p in team.ListPlayer)
+                {
+                    teamValue += Player.calculatePlayerValue(p.Id);
+                }
+
+                teamValue += 10000 * team.AssistantCoach;
+                teamValue += 10000 * team.Cheerleader;
+                teamValue += 10000 * team.FanFactor;
+                teamValue += 50000 * (team.HasMedic ? 1 : 0);
+                teamValue += team.Race.Reroll * team.Reroll;
+            }
+            finally
+            {
+            }
+
+            return teamValue;
+        }
+
         public static Boolean newTeam(LegaGladio.Entities.Team team)
         {
             LegaGladioDSTableAdapters.teamTableAdapter tta = new LegaGladioDSTableAdapters.teamTableAdapter();

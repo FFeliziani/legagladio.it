@@ -98,7 +98,7 @@ namespace DataAccessLayer
         public static Boolean newRace(LegaGladio.Entities.Race race)
         {
             LegaGladioDSTableAdapters.raceTableAdapter rta = new LegaGladioDSTableAdapters.raceTableAdapter();
-            int result = rta.Insert(race.Name);
+            int result = rta.Insert(race.Name, race.Reroll);
             rta = null;
             return result > 0;
         }
@@ -106,11 +106,9 @@ namespace DataAccessLayer
         public static Boolean updateRace(LegaGladio.Entities.Race race, int oldID)
         {
             LegaGladioDSTableAdapters.raceTableAdapter rta = new LegaGladioDSTableAdapters.raceTableAdapter();
-            LegaGladioDS.raceDataTable rdt = new LegaGladioDS.raceDataTable();
-            LegaGladioDS.raceRow rr = (LegaGladioDS.raceRow)rdt.NewRow();
-            rr.id = oldID;
-            rr.name = race.Name;
-            int result = rta.Update(rr);
+
+            int result = rta.Update(race.Name, race.Reroll, oldID);
+
             return result > 0;
         }
 

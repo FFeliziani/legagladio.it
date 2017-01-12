@@ -136,6 +136,8 @@ namespace DataAccessLayer {
         
         private global::System.Data.DataRelation relationFK_POSTIONAL_RACE_POSITIONAL;
         
+        private global::System.Data.DataRelation relationFK_POSITIONAL_RACE_RACE;
+        
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -821,6 +823,7 @@ namespace DataAccessLayer {
             this.relationFK_SERIES_ROUND_SERIES = this.Relations["FK_SERIES_ROUND_SERIES"];
             this.relationFK_POSITIONAL_SKILL_POSITIONAL = this.Relations["FK_POSITIONAL_SKILL_POSITIONAL"];
             this.relationFK_POSTIONAL_RACE_POSITIONAL = this.Relations["FK_POSTIONAL_RACE_POSITIONAL"];
+            this.relationFK_POSITIONAL_RACE_RACE = this.Relations["FK_POSITIONAL_RACE_RACE"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1073,6 +1076,10 @@ namespace DataAccessLayer {
                         this.tablepositional.idColumn}, new global::System.Data.DataColumn[] {
                         this.tablepositional_race.positionalIdColumn}, false);
             this.Relations.Add(this.relationFK_POSTIONAL_RACE_POSITIONAL);
+            this.relationFK_POSITIONAL_RACE_RACE = new global::System.Data.DataRelation("FK_POSITIONAL_RACE_RACE", new global::System.Data.DataColumn[] {
+                        this.tablerace.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tablepositional_race.raceIdColumn}, false);
+            this.Relations.Add(this.relationFK_POSITIONAL_RACE_RACE);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3443,6 +3450,8 @@ namespace DataAccessLayer {
             
             private global::System.Data.DataColumn columnname;
             
+            private global::System.Data.DataColumn columnreroll;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public raceDataTable() {
@@ -3494,6 +3503,14 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn rerollColumn {
+                get {
+                    return this.columnreroll;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -3529,11 +3546,12 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public raceRow AddraceRow(positional_raceRow parentpositional_raceRowByFK_positional_race_race, string name) {
+            public raceRow AddraceRow(positional_raceRow parentpositional_raceRowByFK_positional_race_race, string name, int reroll) {
                 raceRow rowraceRow = ((raceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        name};
+                        name,
+                        reroll};
                 if ((parentpositional_raceRowByFK_positional_race_race != null)) {
                     columnValuesArray[0] = parentpositional_raceRowByFK_positional_race_race[1];
                 }
@@ -3568,6 +3586,7 @@ namespace DataAccessLayer {
             internal void InitVars() {
                 this.columnid = base.Columns["id"];
                 this.columnname = base.Columns["name"];
+                this.columnreroll = base.Columns["reroll"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3577,11 +3596,12 @@ namespace DataAccessLayer {
                 base.Columns.Add(this.columnid);
                 this.columnname = new global::System.Data.DataColumn("name", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnname);
+                this.columnreroll = new global::System.Data.DataColumn("reroll", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnreroll);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AllowDBNull = false;
                 this.columnid.Unique = true;
-                this.columnname.AllowDBNull = false;
                 this.columnname.MaxLength = 45;
             }
             
@@ -4855,13 +4875,16 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public positional_raceRow Addpositional_raceRow(positionalRow parentpositionalRowByFK_POSTIONAL_RACE_POSITIONAL, int raceId) {
+            public positional_raceRow Addpositional_raceRow(positionalRow parentpositionalRowByFK_POSTIONAL_RACE_POSITIONAL, raceRow parentraceRowByFK_POSITIONAL_RACE_RACE) {
                 positional_raceRow rowpositional_raceRow = ((positional_raceRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        raceId};
+                        null};
                 if ((parentpositionalRowByFK_POSTIONAL_RACE_POSITIONAL != null)) {
                     columnValuesArray[0] = parentpositionalRowByFK_POSTIONAL_RACE_POSITIONAL[0];
+                }
+                if ((parentraceRowByFK_POSITIONAL_RACE_RACE != null)) {
+                    columnValuesArray[1] = parentraceRowByFK_POSITIONAL_RACE_RACE[0];
                 }
                 rowpositional_raceRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowpositional_raceRow);
@@ -10184,10 +10207,31 @@ namespace DataAccessLayer {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string name {
                 get {
-                    return ((string)(this[this.tablerace.nameColumn]));
+                    try {
+                        return ((string)(this[this.tablerace.nameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'name\' in table \'race\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tablerace.nameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int reroll {
+                get {
+                    try {
+                        return ((int)(this[this.tablerace.rerollColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'reroll\' in table \'race\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablerace.rerollColumn] = value;
                 }
             }
             
@@ -10199,6 +10243,41 @@ namespace DataAccessLayer {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_positional_race_race"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsnameNull() {
+                return this.IsNull(this.tablerace.nameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetnameNull() {
+                this[this.tablerace.nameColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsrerollNull() {
+                return this.IsNull(this.tablerace.rerollColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetrerollNull() {
+                this[this.tablerace.rerollColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public positional_raceRow[] Getpositional_raceRows() {
+                if ((this.Table.ChildRelations["FK_POSITIONAL_RACE_RACE"] == null)) {
+                    return new positional_raceRow[0];
+                }
+                else {
+                    return ((positional_raceRow[])(base.GetChildRows(this.Table.ChildRelations["FK_POSITIONAL_RACE_RACE"])));
                 }
             }
         }
@@ -10973,6 +11052,17 @@ namespace DataAccessLayer {
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_POSTIONAL_RACE_POSITIONAL"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public raceRow raceRow {
+                get {
+                    return ((raceRow)(this.GetParentRow(this.Table.ParentRelations["FK_POSITIONAL_RACE_RACE"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_POSITIONAL_RACE_RACE"]);
                 }
             }
             
@@ -17112,13 +17202,14 @@ WHERE        (id = @p8)";
             tableMapping.DataSetTable = "race";
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("name", "name");
+            tableMapping.ColumnMappings.Add("reroll", "reroll");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM race\r\nWHERE        (id = @id)";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM race\r\nWHERE        (id = @p1)";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@id";
+            param.ParameterName = "@p1";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
@@ -17127,40 +17218,47 @@ WHERE        (id = @p8)";
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `race` (`name`) VALUES (@p1)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `race` (`name`, `reroll`) VALUES (@p1, @p2)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
-            param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Text;
             param.IsNullable = true;
             param.SourceColumn = "name";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p2";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "reroll";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE `race` SET `name` = @p1 WHERE ((`id` = @p2) AND (`name` = @p3))";
+            this._adapter.UpdateCommand.CommandText = "UPDATE       race\r\nSET                name = @p1, reroll = @p2\r\nWHERE        (id " +
+                "= @p3)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
             param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Text;
+            param.Size = 2147483647;
             param.IsNullable = true;
             param.SourceColumn = "name";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p2";
-            param.DbType = global::System.Data.DbType.UInt32;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.UInt32;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "id";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumn = "reroll";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p3";
-            param.DbType = global::System.Data.DbType.String;
-            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "name";
+            param.SourceColumn = "id";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
         }
@@ -17178,7 +17276,7 @@ WHERE        (id = @p8)";
             this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[5];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT `id`, `name` FROM `race`";
+            this._commandCollection[0].CommandText = "SELECT * FROM `race`";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -17186,7 +17284,7 @@ WHERE        (id = @p8)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT `id`, `name` FROM `race` where id = @id";
+            this._commandCollection[2].CommandText = "SELECT id, name, reroll FROM race WHERE (id = @id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@id";
@@ -17197,9 +17295,8 @@ WHERE        (id = @p8)";
             this._commandCollection[2].Parameters.Add(param);
             this._commandCollection[3] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT        race.id, race.name\r\nFROM            race INNER JOIN\r\n              " +
-                "           team_race ON team_race.raceID = race.id\r\nWHERE        (team_race.team" +
-                "ID = @teamId)";
+            this._commandCollection[3].CommandText = "SELECT race.id, race.name, race.reroll FROM race INNER JOIN team_race ON team_rac" +
+                "e.raceID = race.id WHERE (team_race.teamID = @teamId)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@teamId";
@@ -17331,8 +17428,8 @@ WHERE        (id = @p8)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int id) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(id));
+        public virtual int Delete(int p1) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(p1));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17353,12 +17450,18 @@ WHERE        (id = @p8)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string p1) {
+        public virtual int Insert(string p1, global::System.Nullable<int> p2) {
             if ((p1 == null)) {
-                throw new global::System.ArgumentNullException("p1");
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(p1));
+            }
+            if ((p2.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(p2.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -17380,20 +17483,20 @@ WHERE        (id = @p8)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string p1, uint p2, string p3) {
+        public virtual int Update(string p1, global::System.Nullable<int> p2, int p3) {
             if ((p1 == null)) {
-                throw new global::System.ArgumentNullException("p1");
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(p1));
             }
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((uint)(p2));
-            if ((p3 == null)) {
-                throw new global::System.ArgumentNullException("p3");
+            if ((p2.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(p2.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(p3));
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(p3));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17445,7 +17548,7 @@ WHERE        (id = @p8)";
         public virtual int InsertRace(string name) {
             global::MySql.Data.MySqlClient.MySqlCommand command = this.CommandCollection[4];
             if ((name == null)) {
-                throw new global::System.ArgumentNullException("name");
+                command.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 command.Parameters[0].Value = ((string)(name));
@@ -26022,6 +26125,15 @@ WHERE        (id = @p14)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._raceTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.race.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._raceTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._positionalTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.positional.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -26121,15 +26233,6 @@ WHERE        (id = @p14)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._gameTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.game.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._gameTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._actionTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -26148,12 +26251,21 @@ WHERE        (id = @p14)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._league_seriesTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.league_series.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+            if ((this._gameTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.game.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
-                    result = (result + this._league_seriesTableAdapter.Update(updatedRows));
+                    result = (result + this._gameTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._game_actionTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.game_action.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._game_actionTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26166,21 +26278,21 @@ WHERE        (id = @p14)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._league_seriesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.league_series.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._league_seriesTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._coachTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.coach.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._coachTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._raceTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.race.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._raceTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26199,15 +26311,6 @@ WHERE        (id = @p14)";
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._usersTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
-            if ((this._game_actionTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.game_action.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._game_actionTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -26235,6 +26338,14 @@ WHERE        (id = @p14)";
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._positional_skillTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._raceTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.race.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._raceTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26326,14 +26437,6 @@ WHERE        (id = @p14)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._gameTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.game.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._gameTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._actionTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.action.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -26350,11 +26453,19 @@ WHERE        (id = @p14)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._league_seriesTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.league_series.Select(null, null, global::System.Data.DataViewRowState.Added);
+            if ((this._gameTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.game.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
-                    result = (result + this._league_seriesTableAdapter.Update(addedRows));
+                    result = (result + this._gameTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._game_actionTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.game_action.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._game_actionTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26366,19 +26477,19 @@ WHERE        (id = @p14)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._league_seriesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.league_series.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._league_seriesTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._coachTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.coach.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._coachTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._raceTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.race.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._raceTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26395,14 +26506,6 @@ WHERE        (id = @p14)";
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._usersTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
-            if ((this._game_actionTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.game_action.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._game_actionTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -26432,14 +26535,6 @@ WHERE        (id = @p14)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._game_actionTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.game_action.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._game_actionTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._usersTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.users.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
@@ -26456,19 +26551,19 @@ WHERE        (id = @p14)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._raceTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.race.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._raceTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._coachTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.coach.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._coachTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._league_seriesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.league_series.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._league_seriesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -26480,11 +26575,19 @@ WHERE        (id = @p14)";
                     allChangedRows.AddRange(deletedRows);
                 }
             }
-            if ((this._league_seriesTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.league_series.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+            if ((this._game_actionTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.game_action.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
-                    result = (result + this._league_seriesTableAdapter.Update(deletedRows));
+                    result = (result + this._game_actionTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._gameTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.game.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._gameTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -26501,14 +26604,6 @@ WHERE        (id = @p14)";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._actionTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._gameTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.game.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._gameTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -26597,6 +26692,14 @@ WHERE        (id = @p14)";
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._positionalTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._raceTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.race.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._raceTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
