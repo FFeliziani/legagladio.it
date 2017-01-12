@@ -240,7 +240,7 @@ namespace DataAccessLayer
                 teamValue += 10000 * team.Cheerleader;
                 teamValue += 10000 * team.FanFactor;
                 teamValue += 50000 * (team.HasMedic ? 1 : 0);
-                teamValue += team.Race.Reroll * team.Reroll;
+                teamValue += team.Race.Reroll * 2 * team.Reroll;
             }
             finally
             {
