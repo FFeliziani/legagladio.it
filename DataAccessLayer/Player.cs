@@ -230,6 +230,53 @@ namespace DataAccessLayer
             pta.Update(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, (decimal)player.Cost, player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead ? 1 : 0), player.positional.Id, player.Position, oldID);
         }
 
+        public static int calculatePlayerValue(int id)
+        {
+            int playerValue = 0;
+
+            try
+            {
+                LegaGladio.Entities.Player player = getPlayer(id);
+
+                playerValue += player.positional.Cost;
+
+
+                foreach (LegaGladio.Entities.Skill s in player.ListAbility)
+                {
+                    switch (s.SkillType)
+                    {
+                        case LegaGladio.Entities.SkillType.AGILITY:
+                            playerValue += 20000 + (10000 * player.positional.Agility);
+                            break;
+                        case LegaGladio.Entities.SkillType.GENERAL:
+                            playerValue += 20000 + (10000 * player.positional.General);
+                            break;
+                        case LegaGladio.Entities.SkillType.PASSING:
+                            playerValue += 20000 + (10000 * player.positional.Passing);
+                            break;
+                        case LegaGladio.Entities.SkillType.STRENGTH:
+                            playerValue += 20000 + (10000 * player.positional.Strength);
+                            break;
+                        case LegaGladio.Entities.SkillType.MUTATION:
+                            if (player.positional.Mutation != -1)
+                            {
+                                playerValue += 20000 + (10000 * player.positional.Mutation);
+                            }
+                            break;
+                    }
+                }
+                playerValue += 50000 * player.StPlus;
+                playerValue += 40000 * player.AgPlus;
+                playerValue += 30000 * player.AvPlus;
+                playerValue += 30000 * player.MaPlus;
+            }
+            finally
+            {
+            }
+
+            return playerValue;
+        }
+
         public static Boolean deletePlayer(int id)
         {
             LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();

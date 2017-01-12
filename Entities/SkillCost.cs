@@ -9,8 +9,8 @@ namespace LegaGladio.Entities
     [Serializable]
     public enum SkillCost
     {
-        NOT_SET = 0,
-        NORMAL = 1,
-        DOUBLE = 2
+        NOT_SET = -1,
+        NORMAL = 0,
+        DOUBLE = 1
     }
 }

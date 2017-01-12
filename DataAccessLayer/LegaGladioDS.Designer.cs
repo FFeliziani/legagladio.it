@@ -3722,8 +3722,6 @@ namespace DataAccessLayer {
             
             private global::System.Data.DataColumn columntitle;
             
-            private global::System.Data.DataColumn columncost;
-            
             private global::System.Data.DataColumn columnma;
             
             private global::System.Data.DataColumn columnst;
@@ -3732,7 +3730,7 @@ namespace DataAccessLayer {
             
             private global::System.Data.DataColumn columnav;
             
-            private global::System.Data.DataColumn columncost1;
+            private global::System.Data.DataColumn columncost;
             
             private global::System.Data.DataColumn columngeneral;
             
@@ -3803,14 +3801,6 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn costColumn {
-                get {
-                    return this.columncost;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn maColumn {
                 get {
                     return this.columnma;
@@ -3843,9 +3833,9 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn cost1Column {
+            public global::System.Data.DataColumn costColumn {
                 get {
-                    return this.columncost1;
+                    return this.columncost;
                 }
             }
             
@@ -3926,18 +3916,17 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public positionalRow AddpositionalRow(positional_skillRow parentpositional_skillRowByFK_positional_skill_positional, int qty, string title, float cost, int ma, int st, int ag, int av, int cost1, int general, int agility, int strength, int passing, int mutation) {
+            public positionalRow AddpositionalRow(positional_skillRow parentpositional_skillRowByFK_positional_skill_positional, int qty, string title, int ma, int st, int ag, int av, int cost, int general, int agility, int strength, int passing, int mutation) {
                 positionalRow rowpositionalRow = ((positionalRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         qty,
                         title,
-                        cost,
                         ma,
                         st,
                         ag,
                         av,
-                        cost1,
+                        cost,
                         general,
                         agility,
                         strength,
@@ -3978,12 +3967,11 @@ namespace DataAccessLayer {
                 this.columnid = base.Columns["id"];
                 this.columnqty = base.Columns["qty"];
                 this.columntitle = base.Columns["title"];
-                this.columncost = base.Columns["cost"];
                 this.columnma = base.Columns["ma"];
                 this.columnst = base.Columns["st"];
                 this.columnag = base.Columns["ag"];
                 this.columnav = base.Columns["av"];
-                this.columncost1 = base.Columns["cost1"];
+                this.columncost = base.Columns["cost"];
                 this.columngeneral = base.Columns["general"];
                 this.columnagility = base.Columns["agility"];
                 this.columnstrength = base.Columns["strength"];
@@ -4000,8 +3988,6 @@ namespace DataAccessLayer {
                 base.Columns.Add(this.columnqty);
                 this.columntitle = new global::System.Data.DataColumn("title", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntitle);
-                this.columncost = new global::System.Data.DataColumn("cost", typeof(float), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncost);
                 this.columnma = new global::System.Data.DataColumn("ma", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnma);
                 this.columnst = new global::System.Data.DataColumn("st", typeof(int), null, global::System.Data.MappingType.Element);
@@ -4010,8 +3996,8 @@ namespace DataAccessLayer {
                 base.Columns.Add(this.columnag);
                 this.columnav = new global::System.Data.DataColumn("av", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnav);
-                this.columncost1 = new global::System.Data.DataColumn("cost1", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncost1);
+                this.columncost = new global::System.Data.DataColumn("cost", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncost);
                 this.columngeneral = new global::System.Data.DataColumn("general", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columngeneral);
                 this.columnagility = new global::System.Data.DataColumn("agility", typeof(int), null, global::System.Data.MappingType.Element);
@@ -4027,7 +4013,6 @@ namespace DataAccessLayer {
                 this.columnid.AllowDBNull = false;
                 this.columnid.Unique = true;
                 this.columntitle.MaxLength = 45;
-                this.columncost1.Caption = "cost";
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -10277,22 +10262,6 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public float cost {
-                get {
-                    try {
-                        return ((float)(this[this.tablepositional.costColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'cost\' in table \'positional\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablepositional.costColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int ma {
                 get {
                     try {
@@ -10357,17 +10326,17 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int cost1 {
+            public int cost {
                 get {
                     try {
-                        return ((int)(this[this.tablepositional.cost1Column]));
+                        return ((int)(this[this.tablepositional.costColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'cost1\' in table \'positional\' is DBNull.", e);
+                        throw new global::System.Data.StrongTypingException("The value for column \'cost\' in table \'positional\' is DBNull.", e);
                     }
                 }
                 set {
-                    this[this.tablepositional.cost1Column] = value;
+                    this[this.tablepositional.costColumn] = value;
                 }
             }
             
@@ -10499,18 +10468,6 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IscostNull() {
-                return this.IsNull(this.tablepositional.costColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetcostNull() {
-                this[this.tablepositional.costColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsmaNull() {
                 return this.IsNull(this.tablepositional.maColumn);
             }
@@ -10559,14 +10516,14 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool Iscost1Null() {
-                return this.IsNull(this.tablepositional.cost1Column);
+            public bool IscostNull() {
+                return this.IsNull(this.tablepositional.costColumn);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void Setcost1Null() {
-                this[this.tablepositional.cost1Column] = global::System.Convert.DBNull;
+            public void SetcostNull() {
+                this[this.tablepositional.costColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17639,7 +17596,7 @@ WHERE        (id = @p8)";
             tableMapping.ColumnMappings.Add("st", "st");
             tableMapping.ColumnMappings.Add("ag", "ag");
             tableMapping.ColumnMappings.Add("av", "av");
-            tableMapping.ColumnMappings.Add("cost", "cost1");
+            tableMapping.ColumnMappings.Add("cost", "cost");
             tableMapping.ColumnMappings.Add("general", "general");
             tableMapping.ColumnMappings.Add("agility", "agility");
             tableMapping.ColumnMappings.Add("strength", "strength");
@@ -17864,7 +17821,8 @@ WHERE        (id = @p8)";
             this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[5];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT * FROM positional";
+            this._commandCollection[0].CommandText = "SELECT id, qty, title, ma, st, ag, av, general, agility, strength, passing, mutat" +
+                "ion FROM positional";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -17872,8 +17830,8 @@ WHERE        (id = @p8)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT ag, agility, av, cost, general, id, ma, mutation, passing, qty, st, streng" +
-                "th, title FROM positional WHERE (id = @id)";
+            this._commandCollection[2].CommandText = "SELECT ag, agility, av, general, id, ma, mutation, passing, qty, st, strength, ti" +
+                "tle FROM positional WHERE (id = @id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@id";
@@ -17884,7 +17842,7 @@ WHERE        (id = @p8)";
             this._commandCollection[2].Parameters.Add(param);
             this._commandCollection[3] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT positional.ag, positional.agility, positional.av, positional.cost, positional.general, positional.id, positional.ma, positional.mutation, positional.passing, positional.qty, positional.st, positional.strength, positional.title FROM positional INNER JOIN player ON player.positionalId = positional.id WHERE (player.id = @playerId)";
+            this._commandCollection[3].CommandText = @"SELECT positional.ag, positional.agility, positional.av, positional.general, positional.id, positional.ma, positional.mutation, positional.passing, positional.qty, positional.st, positional.strength, positional.title FROM positional INNER JOIN player ON player.positionalId = positional.id WHERE (player.id = @playerId)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@playerId";
@@ -17895,9 +17853,9 @@ WHERE        (id = @p8)";
             this._commandCollection[3].Parameters.Add(param);
             this._commandCollection[4] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT p.ag, p.agility, p.av, p.cost, p.general, p.id, p.ma, p.mutation, p.passin" +
-                "g, p.qty, p.st, p.strength, p.title FROM positional p INNER JOIN positional_race" +
-                " pr ON pr.positionalId = p.id WHERE (pr.raceId = @raceid)";
+            this._commandCollection[4].CommandText = "SELECT p.ag, p.agility, p.av, p.general, p.id, p.ma, p.mutation, p.passing, p.qty" +
+                ", p.st, p.strength, p.title FROM positional p INNER JOIN positional_race pr ON p" +
+                "r.positionalId = p.id WHERE (pr.raceId = @raceid)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@raceid";
