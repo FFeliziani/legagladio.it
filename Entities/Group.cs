@@ -5,11 +5,12 @@ using System.Text;
 
 namespace LegaGladio.Entities
 {
-    public class Series
+    public class Group
     {
         public Int32 Id { get; set; }
         public String Name { get; set; }
         public String Notes { get; set; }
-        public List<Group> GroupList { get; set; }
+
+        public List<Round> RoundList { get; set; }
     }
 }

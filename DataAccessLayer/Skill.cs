@@ -75,6 +75,33 @@ namespace DataAccessLayer
             return skillList;
         }
 
+        public static List<LegaGladio.Entities.Skill> listSkill(LegaGladio.Entities.Positional positional)
+        {
+            LegaGladioDS.skillDataTable sdt = new LegaGladioDS.skillDataTable();
+            LegaGladioDSTableAdapters.skillTableAdapter sta = new LegaGladioDSTableAdapters.skillTableAdapter();
+            List<LegaGladio.Entities.Skill> skillList = null;
+            try
+            {
+                sta.FillByPositionalId(sdt, positional.Id);
+                skillList = new List<LegaGladio.Entities.Skill>();
+                foreach (LegaGladioDS.skillRow sr in sdt.Rows)
+                {
+                    skillList.Add(Skill.getSkill(sr.id));
+                }
+            }
+            catch (Exception ex)
+            {
+                sdt.GetErrors();
+                throw ex;
+            }
+            finally
+            {
+                sta = null;
+                sdt = null;
+            }
+            return skillList;
+        }
+
         public static LegaGladio.Entities.Skill getSkill(int id)
         {
             LegaGladioDS.skillDataTable sdt = new LegaGladioDS.skillDataTable();

@@ -53,7 +53,7 @@ namespace DataAccessLayer
         {
             LegaGladioDS.coachDataTable cdt = new LegaGladioDS.coachDataTable();
             LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
-            cta.FillByActive(cdt, active);
+            cta.FillByActive(cdt, active ? 1 : 0);
             List<LegaGladio.Entities.Coach> coachList = new List<LegaGladio.Entities.Coach>();
             foreach (LegaGladioDS.coachRow cr in cdt.Rows)
             {
@@ -172,7 +172,7 @@ namespace DataAccessLayer
         public static Boolean newCoach(LegaGladio.Entities.Coach coach)
         {
             LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
-            int result = cta.Insert(coach.Name, coach.Value, coach.NafID, coach.Notes, coach.Active, coach.NafNick);
+            int result = cta.Insert(coach.Name, coach.Value, coach.NafID, coach.Notes, coach.Active ? 1 : 0, coach.NafNick);
             cta = null;
             return result > 0;
         }
@@ -181,7 +181,7 @@ namespace DataAccessLayer
         {
             LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
 
-            cta.Update(coach.Name, coach.Value, coach.NafID, coach.Notes, coach.Active, coach.NafNick, oldID);
+            cta.Update(coach.Name, coach.Value, coach.NafID, coach.Notes, coach.Active ? 1 : 0, coach.NafNick, oldID);
             //LegaGladioDS.coachDataTable cdt = new LegaGladioDS.coachDataTable();
             //LegaGladioDS.coachRow cr = (LegaGladioDS.coachRow)cdt.NewRow();
             //cr.id = oldID;

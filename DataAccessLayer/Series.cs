@@ -67,7 +67,7 @@ namespace DataAccessLayer
                 s.Id = sR.id;
                 s.Name = sR.name;
                 s.Notes = sR.notes;
-                s.RoundList = Round.listRound(s);
+                s.GroupList = Group.listGroup(s);
             }
             catch (Exception ex)
             {

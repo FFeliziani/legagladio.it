@@ -59,6 +59,13 @@ namespace DataAccessLayer
 
                 l = new LegaGladio.Entities.League();
 
+                if (ldt.Rows.Count != 1)
+                {
+                    throw new Exception("Wrong number of rows returned for league");
+                }
+
+                lr = (LegaGladioDS.leagueRow)ldt.Rows[0];
+
                 l.Id = lr.id;
                 l.Name = lr.name;
                 l.Notes = lr.notes;

@@ -32,13 +32,13 @@ namespace DataAccessLayer
                 team.CoachId = Coach.getCoachId(team.Id);
                 //team.ListPlayer = Player.listPlayer(team.Id);
                 team.Name = tr.name;
-                team.HasMedic = tr.hasMedic;
+                team.HasMedic = tr.hasMedic == 1;
                 team.FanFactor = tr.funFactor;
                 team.Race = Race.getRaceByTeamId(team.Id);
                 team.Reroll = tr.reroll;
-                team.Value = tr.value;
+                team.Value = tr.value;//calculateTeamValue(team.Id);
                 team.Treasury = tr.treasury;
-                team.Active = tr.active;
+                team.Active = tr.active == 1;
                 teamList.Add(team);
             }
             tta = null;
@@ -62,13 +62,13 @@ namespace DataAccessLayer
                 team.CoachId = Coach.getCoachId(team.Id);
                 //team.ListPlayer = Player.listPlayer(team.Id);
                 team.Name = tr.name;
-                team.HasMedic = tr.hasMedic;
+                team.HasMedic = tr.hasMedic == 1;
                 team.FanFactor = tr.funFactor;
                 team.Race = Race.getRaceByTeamId(team.Id);
                 team.Reroll = tr.reroll;
-                team.Value = tr.value;
+                team.Value = tr.value;//calculateTeamValue(team.Id);
                 team.Treasury = tr.treasury;
-                team.Active = tr.active;
+                team.Active = tr.active == 1;
                 teamList.Add(team);
             }
             tta = null;
@@ -80,7 +80,7 @@ namespace DataAccessLayer
         {
             LegaGladioDS.teamDataTable tdt = new LegaGladioDS.teamDataTable();
             LegaGladioDSTableAdapters.teamTableAdapter tta = new LegaGladioDSTableAdapters.teamTableAdapter();
-            tta.FillByActive(tdt, active);
+            tta.FillByActive(tdt, active ? 1 : 0);
             List<LegaGladio.Entities.Team> teamList = new List<LegaGladio.Entities.Team>();
             foreach (LegaGladioDS.teamRow tr in tdt.Rows)
             {
@@ -94,13 +94,13 @@ namespace DataAccessLayer
                     team.CoachId = Coach.getCoachId(team.Id);
                     //team.ListPlayer = Player.listPlayer(team.Id);
                     team.Name = tr.name;
-                    team.HasMedic = tr.hasMedic;
+                    team.HasMedic = tr.hasMedic == 1;
                     team.FanFactor = tr.funFactor;
                     team.Race = Race.getRaceByTeamId(team.Id);
                     team.Reroll = tr.reroll;
-                    team.Value = tr.value;
+                    team.Value = tr.value;// calculateTeamValue(team.Id);
                     team.Treasury = tr.treasury;
-                    team.Active = tr.active;
+                    team.Active = tr.active == 1;
                     teamList.Add(team);
                 }
                 catch(Exception ex)
@@ -132,14 +132,14 @@ namespace DataAccessLayer
                 team.CoachName = Coach.getCoachName(team.Id);
                 team.CoachId = Coach.getCoachId(team.Id);
                 team.ListPlayer = Player.listPlayer(team.Id);
-                team.HasMedic = teamRow.hasMedic;
+                team.HasMedic = teamRow.hasMedic == 1;
                 team.FanFactor = teamRow.funFactor;
                 team.Name = teamRow.name;
                 team.Race = Race.getRaceByTeamId(team.Id);
                 team.Reroll = teamRow.reroll;
                 team.Treasury = teamRow.treasury;
-                team.Active = teamRow.active;
-                team.Value = teamRow.value;
+                team.Active = teamRow.active == 1;
+                team.Value = calculateTeamValue(team.Id);
             }
             catch (Exception ex)
             {
@@ -169,14 +169,14 @@ namespace DataAccessLayer
                 team.CoachName = Coach.getCoachName(team.Id);
                 team.CoachId = Coach.getCoachId(team.Id);
                 team.ListPlayer = Player.listPlayer(team.Id, active);
-                team.HasMedic = teamRow.hasMedic;
+                team.HasMedic = teamRow.hasMedic == 1;
                 team.FanFactor = teamRow.funFactor;
                 team.Name = teamRow.name;
                 team.Race = Race.getRaceByTeamId(team.Id);
                 team.Reroll = teamRow.reroll;
                 team.Treasury = teamRow.treasury;
-                team.Active = teamRow.active;
-                team.Value = teamRow.value;
+                team.Active = teamRow.active == 1;
+                team.Value = calculateTeamValue(team.Id);
             }
             catch (Exception ex)
             {
@@ -225,22 +225,40 @@ namespace DataAccessLayer
 
         public static int calculateTeamValue(int id)
         {
+            LegaGladio.Entities.Team team = null;
+            LegaGladioDS.teamDataTable ttd = null;
+            LegaGladioDSTableAdapters.teamTableAdapter tta = null;
+            LegaGladioDS.teamRow teamRow = null;
             int teamValue = 0;
 
             try
             {
-                LegaGladio.Entities.Team team = getTeam(id);
+                team = new LegaGladio.Entities.Team();
+                ttd = new LegaGladioDS.teamDataTable();
+                tta = new LegaGladioDSTableAdapters.teamTableAdapter();
+                tta.FillById(ttd, id);
+
+                teamRow = (LegaGladioDS.teamRow)ttd.Rows[0];
+
+                team.Id = teamRow.id;
+                team.Reroll = teamRow.reroll;
+                team.Race = Race.getRaceByTeamId(team.Id);
+                team.ListPlayer = Player.listPlayer(team.Id, true);
+                team.AssistantCoach = teamRow.assistantCoach;
+                team.Cheerleader = teamRow.cheerleader;
+                team.FanFactor = teamRow.funFactor;
+                team.HasMedic = teamRow.hasMedic == 1;
 
                 foreach (LegaGladio.Entities.Player p in team.ListPlayer)
                 {
-                    teamValue += Player.calculatePlayerValue(p.Id);
+                    teamValue += Convert.ToInt32(p.Cost);
                 }
 
-                teamValue += 10000 * team.AssistantCoach;
-                teamValue += 10000 * team.Cheerleader;
-                teamValue += 10000 * team.FanFactor;
-                teamValue += 50000 * (team.HasMedic ? 1 : 0);
-                teamValue += team.Race.Reroll * 2 * team.Reroll;
+                teamValue += (10000 * team.AssistantCoach);
+                teamValue += (10000 * team.Cheerleader);
+                teamValue += (10000 * team.FanFactor);
+                teamValue += (team.HasMedic ? 50000 : 0);
+                teamValue += (team.Race.Reroll * team.Reroll);
             }
             finally
             {
@@ -262,7 +280,7 @@ namespace DataAccessLayer
         {
             LegaGladioDSTableAdapters.teamTableAdapter tta = new LegaGladioDSTableAdapters.teamTableAdapter();
 
-            tta.Update(team.Value, team.Name, team.FanFactor, team.Reroll, (team.HasMedic ? 1 : 0), team.Cheerleader, team.AssistantCoach, (team.Active ? 1 : 0), team.Treasury, oldID);
+            tta.Update(calculateTeamValue(oldID), team.Name, team.FanFactor, team.Reroll, (team.HasMedic ? 1 : 0), team.Cheerleader, team.AssistantCoach, (team.Active ? 1 : 0), team.Treasury, oldID);
         }
 
         public static Boolean deleteTeam(int id)

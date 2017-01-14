@@ -37,6 +37,31 @@ namespace LegaGladio.BusinessLogic
             }
         }
 
+        public static void addSeriesToLeague(Int32 seriesId, Int32 leagueId)
+        {
+            try
+            {
+                DataAccessLayer.Series.addSeriesToLeague(seriesId, leagueId);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while adding series to league");
+                throw ex;
+            }
+        }
+
+        public static void removeSeriesFromLeague(Int32 seriesId, Int32 leagueId)
+        {
+            try
+            {
+                DataAccessLayer.Series.removeSeriesFromLeague(seriesId, leagueId);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while removing series from league");
+            }
+        }
+
         public static void newSeries(LegaGladio.Entities.Series series)
         {
             try

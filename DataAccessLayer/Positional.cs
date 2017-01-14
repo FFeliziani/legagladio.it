@@ -102,7 +102,7 @@ namespace DataAccessLayer
                 positional.Cost = Convert.ToInt32(pr.cost);
                 positional.Qty = pr.qty;
                 positional.Title = pr.title;
-                positional.ListAbility = new List<LegaGladio.Entities.Skill>();
+                positional.ListAbility = Skill.listSkill(positional);
             }
             catch (Exception ex)
             {
@@ -153,8 +153,7 @@ namespace DataAccessLayer
                 positional.Cost = Convert.ToInt32(pr.cost);
                 positional.Qty = pr.qty;
                 positional.Title = pr.title;
-                positional.ListAbility = new List<LegaGladio.Entities.Skill>();
-                
+                positional.ListAbility = Skill.listSkill(positional);
             }
             catch (Exception ex)
             {

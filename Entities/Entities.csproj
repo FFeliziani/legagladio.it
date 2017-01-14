@@ -46,6 +46,7 @@
     <Compile Include="Coach.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameAction.cs" />
+    <Compile Include="Group.cs" />
     <Compile Include="Injury.cs" />
     <Compile Include="League.cs" />
     <Compile Include="Player.cs" />

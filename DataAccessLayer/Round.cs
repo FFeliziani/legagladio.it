@@ -42,7 +42,7 @@ namespace DataAccessLayer
             return r;
         }
 
-        public static List<LegaGladio.Entities.Round> listRound(LegaGladio.Entities.Series s)
+        public static List<LegaGladio.Entities.Round> listRound(LegaGladio.Entities.Group g)
         {
             LegaGladioDSTableAdapters.roundTableAdapter rta = null;
             LegaGladioDS.roundDataTable rdt = null;
@@ -53,7 +53,9 @@ namespace DataAccessLayer
                 rta = new LegaGladioDSTableAdapters.roundTableAdapter();
                 rdt = new LegaGladioDS.roundDataTable();
                 rL = new List<LegaGladio.Entities.Round>();
-                rta.FillBySeriesId(rdt, s.Id);
+
+                rta.FillByGroupId(rdt, g.Id);
+
                 foreach (LegaGladioDS.roundRow rr in rdt.Rows)
                 {
                     LegaGladio.Entities.Round r = new LegaGladio.Entities.Round();
@@ -77,18 +79,18 @@ namespace DataAccessLayer
             return rL;
         }
 
-        public static void addRoundToSeries(Int32 roundId, Int32 seriesId)
+        public static void addRoundToGroup(Int32 roundId, Int32 groupId)
         {
             LegaGladioDSTableAdapters.roundTableAdapter rta = new LegaGladioDSTableAdapters.roundTableAdapter();
 
-            rta.AddRoundToSeries(roundId, seriesId);
+            rta.AddRoundToGroup(roundId, groupId);
         }
 
-        public static void removeRoundFromSeries(Int32 roundId, Int32 seriesId)
+        public static void removeRoundFromGroup(Int32 roundId, Int32 groupId)
         {
             LegaGladioDSTableAdapters.roundTableAdapter rta = new LegaGladioDSTableAdapters.roundTableAdapter();
 
-            rta.RemoveRoundFromSeries(roundId, seriesId);
+            rta.RemoveRoundFromGroup(roundId, groupId);
         }
 
         public static void newRound(LegaGladio.Entities.Round round)
@@ -105,7 +107,7 @@ namespace DataAccessLayer
             rta.Update(round.Name, round.Number, oldId);
         }
 
-        public static void deleteRound(Int32 id)
+        public static void removeRound(Int32 id)
         {
             LegaGladioDSTableAdapters.roundTableAdapter rta = new LegaGladioDSTableAdapters.roundTableAdapter();
 

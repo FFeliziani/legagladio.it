@@ -27,6 +27,7 @@ namespace DataAccessLayer
                 LegaGladio.Entities.Race race = new LegaGladio.Entities.Race();
                 race.Id = (int)raceRow.id;
                 race.Name = raceRow.name;
+                race.Reroll = raceRow.reroll;
                 raceList.Add(race);
             }
             rta = null;
@@ -51,6 +52,7 @@ namespace DataAccessLayer
                     raceRow = (LegaGladioDS.raceRow)rdt.Rows[0];
                     race.Id = (int)raceRow.id;
                     race.Name = raceRow.name;
+                    race.Reroll = raceRow.reroll;
                 }
             }
             catch (Exception ex)
@@ -80,6 +82,7 @@ namespace DataAccessLayer
                     raceRow = (LegaGladioDS.raceRow)rdt.Rows[0];
                     race.Id = (int)raceRow.id;
                     race.Name = raceRow.name;
+                    race.Reroll = raceRow.reroll;
                 }
             }
             catch(Exception ex)
