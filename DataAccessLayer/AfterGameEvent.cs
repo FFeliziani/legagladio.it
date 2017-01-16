@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DataAccessLayer
 {
-    class AfterGameEvent
+    public class AfterGameEvent
     {
         public static List<LegaGladio.Entities.AfterGameEvent> getAfterGameEvent(LegaGladio.Entities.Game game)
         {

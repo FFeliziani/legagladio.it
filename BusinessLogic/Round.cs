@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using NLog;
 
-namespace BusinessLogic
+namespace LegaGladio.BusinessLogic
 {
     public class Round
     {
@@ -19,6 +19,19 @@ namespace BusinessLogic
             catch (Exception ex)
             {
                 logger.Error(ex, "Error while getting round");
+                throw ex;
+            }
+        }
+
+        public static List<LegaGladio.Entities.Round> listRound(LegaGladio.Entities.Group group)
+        {
+            try
+            {
+                return DataAccessLayer.Round.listRound(group);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Exception while listing rounds for group");
                 throw ex;
             }
         }

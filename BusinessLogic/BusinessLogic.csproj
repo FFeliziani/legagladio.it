@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AfterGameEvent.cs" />
     <Compile Include="Coach.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Group.cs" />

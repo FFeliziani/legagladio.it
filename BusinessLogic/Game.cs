@@ -71,5 +71,44 @@ namespace LegaGladio.BusinessLogic
                 throw ex;
             }
         }
+
+        public static void newGame(LegaGladio.Entities.Game game)
+        {
+            try
+            {
+                DataAccessLayer.Game.newGame(game);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while creating a new Game");
+                throw ex;
+            }
+        }
+
+        public static void updateGame(LegaGladio.Entities.Game game, Int32 oldId)
+        {
+            try
+            {
+                DataAccessLayer.Game.updateGame(game, oldId);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while updating Game");
+                throw ex;
+            }
+        }
+
+        public static void removeGame(Int32 id)
+        {
+            try
+            {
+                DataAccessLayer.Game.deleteGame(id);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error while deleting game");
+                throw ex;
+            }
+        }
     }
 }

@@ -38,7 +38,7 @@ namespace DataAccessLayer
                 coach.NafID = cr.nafID;
                 coach.Name = cr.name;
                 coach.Notes = cr.note;
-                coach.Active = cr.active;
+                coach.Active = cr.active == 1;
                 coach.NafNick = cr.nafNick;
                 coach.Value = cr.value;
                 coach.ListTeam = Team.listTeam(coach.Id);
@@ -64,7 +64,7 @@ namespace DataAccessLayer
                     coach.NafID = cr.nafID;
                     coach.Name = cr.name;
                     coach.Notes = cr.note;
-                    coach.Active = cr.active;
+                    coach.Active = cr.active == 1;
                     coach.NafNick = cr.nafNick;
                     coach.Value = cr.value;
                     coach.ListTeam = Team.listTeam(coach.Id);
@@ -99,7 +99,7 @@ namespace DataAccessLayer
                 coach.NafNick = coachRow.nafNick;
                 coach.Name = coachRow.name;
                 coach.Notes = coachRow.note;
-                coach.Active = coachRow.active;
+                coach.Active = coachRow.active == 1;
                 coach.Value = coachRow.value;
             }
             catch (Exception ex)

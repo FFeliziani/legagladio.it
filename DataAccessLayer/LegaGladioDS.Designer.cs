@@ -4288,9 +4288,9 @@ namespace DataAccessLayer {
             
             private global::System.Data.DataColumn columnnafID;
             
-            private global::System.Data.DataColumn columnactive;
-            
             private global::System.Data.DataColumn columnnafNick;
+            
+            private global::System.Data.DataColumn columnactive;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -4367,17 +4367,17 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn activeColumn {
+            public global::System.Data.DataColumn nafNickColumn {
                 get {
-                    return this.columnactive;
+                    return this.columnnafNick;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn nafNickColumn {
+            public global::System.Data.DataColumn activeColumn {
                 get {
-                    return this.columnnafNick;
+                    return this.columnactive;
                 }
             }
             
@@ -4418,7 +4418,7 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public coachRow AddcoachRow(coach_teamRow parentcoach_teamRowByFK_coach_team_coach, string name, string note, int value, string nafID, bool active, string nafNick) {
+            public coachRow AddcoachRow(coach_teamRow parentcoach_teamRowByFK_coach_team_coach, string name, string note, int value, string nafID, string nafNick, byte active) {
                 coachRow rowcoachRow = ((coachRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -4426,8 +4426,8 @@ namespace DataAccessLayer {
                         note,
                         value,
                         nafID,
-                        active,
-                        nafNick};
+                        nafNick,
+                        active};
                 if ((parentcoach_teamRowByFK_coach_team_coach != null)) {
                     columnValuesArray[0] = parentcoach_teamRowByFK_coach_team_coach[0];
                 }
@@ -4465,8 +4465,8 @@ namespace DataAccessLayer {
                 this.columnnote = base.Columns["note"];
                 this.columnvalue = base.Columns["value"];
                 this.columnnafID = base.Columns["nafID"];
-                this.columnactive = base.Columns["active"];
                 this.columnnafNick = base.Columns["nafNick"];
+                this.columnactive = base.Columns["active"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4482,10 +4482,10 @@ namespace DataAccessLayer {
                 base.Columns.Add(this.columnvalue);
                 this.columnnafID = new global::System.Data.DataColumn("nafID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnafID);
-                this.columnactive = new global::System.Data.DataColumn("active", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnactive);
                 this.columnnafNick = new global::System.Data.DataColumn("nafNick", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnnafNick);
+                this.columnactive = new global::System.Data.DataColumn("active", typeof(byte), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnactive);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnid.AllowDBNull = false;
@@ -11463,22 +11463,6 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool active {
-                get {
-                    try {
-                        return ((bool)(this[this.tablecoach.activeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'active\' in table \'coach\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tablecoach.activeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string nafNick {
                 get {
                     if (this.IsnafNickNull()) {
@@ -11490,6 +11474,22 @@ namespace DataAccessLayer {
                 }
                 set {
                     this[this.tablecoach.nafNickColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public byte active {
+                get {
+                    try {
+                        return ((byte)(this[this.tablecoach.activeColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'active\' in table \'coach\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablecoach.activeColumn] = value;
                 }
             }
             
@@ -11554,18 +11554,6 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsactiveNull() {
-                return this.IsNull(this.tablecoach.activeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetactiveNull() {
-                this[this.tablecoach.activeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsnafNickNull() {
                 return this.IsNull(this.tablecoach.nafNickColumn);
             }
@@ -11574,6 +11562,18 @@ namespace DataAccessLayer {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetnafNickNull() {
                 this[this.tablecoach.nafNickColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsactiveNull() {
+                return this.IsNull(this.tablecoach.activeColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetactiveNull() {
+                this[this.tablecoach.activeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -13416,11 +13416,11 @@ namespace DataAccessLayer {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string name {
                 get {
-                    try {
-                        return ((string)(this[this.tablegroup.nameColumn]));
+                    if (this.IsnameNull()) {
+                        return null;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'name\' in table \'group\' is DBNull.", e);
+                    else {
+                        return ((string)(this[this.tablegroup.nameColumn]));
                     }
                 }
                 set {
@@ -13432,11 +13432,11 @@ namespace DataAccessLayer {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string notes {
                 get {
-                    try {
-                        return ((string)(this[this.tablegroup.notesColumn]));
+                    if (this.IsnotesNull()) {
+                        return null;
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'notes\' in table \'group\' is DBNull.", e);
+                    else {
+                        return ((string)(this[this.tablegroup.notesColumn]));
                     }
                 }
                 set {
@@ -19211,6 +19211,7 @@ WHERE        (id = @p22)";
             tableMapping.ColumnMappings.Add("value", "value");
             tableMapping.ColumnMappings.Add("nafID", "nafID");
             tableMapping.ColumnMappings.Add("nafNick", "nafNick");
+            tableMapping.ColumnMappings.Add("active", "active");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -19226,14 +19227,12 @@ WHERE        (id = @p22)";
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO coach\r\n                         (name, value, nafID, note, active, na" +
-                "fNick)\r\nVALUES        (@p1, @p2, @p3, @p4, @p5, @p6)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `coach` (`name`, `value`, `nafID`, `note`, `active`, `nafNick`) VALUE" +
+                "S (@p1, @p2, @p3, @p4, @p5, @p6)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
-            param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Text;
-            param.Size = 2147483647;
             param.IsNullable = true;
             param.SourceColumn = "name";
             this._adapter.InsertCommand.Parameters.Add(param);
@@ -19246,17 +19245,13 @@ WHERE        (id = @p22)";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p3";
-            param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Text;
-            param.Size = 2147483647;
             param.IsNullable = true;
             param.SourceColumn = "nafID";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p4";
-            param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Text;
-            param.Size = 2147483647;
             param.IsNullable = true;
             param.SourceColumn = "note";
             this._adapter.InsertCommand.Parameters.Add(param);
@@ -19269,16 +19264,14 @@ WHERE        (id = @p22)";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p6";
-            param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Text;
-            param.Size = 2147483647;
             param.IsNullable = true;
             param.SourceColumn = "nafNick";
             this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
             this._adapter.UpdateCommand.CommandText = "UPDATE       coach\r\nSET                name = @p1, value = @p2, nafID = @p3, note" +
-                " = @p4, active = @active, nafNick = @p5\r\nWHERE        (id = @p6)";
+                " = @p4, active = @p5, nafNick = @p6\r\nWHERE        (id = @p7)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -19312,14 +19305,14 @@ WHERE        (id = @p22)";
             param.SourceColumn = "note";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@active";
+            param.ParameterName = "@p5";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "active";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p5";
+            param.ParameterName = "@p6";
             param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Text;
             param.Size = 2147483647;
@@ -19327,7 +19320,7 @@ WHERE        (id = @p22)";
             param.SourceColumn = "nafNick";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p6";
+            param.ParameterName = "@p7";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
@@ -19349,7 +19342,7 @@ WHERE        (id = @p22)";
             this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[7];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, name, value, nafID, note, nafNick FROM coach ORDER BY name";
+            this._commandCollection[0].CommandText = "SELECT * FROM coach ORDER BY name";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -19357,8 +19350,8 @@ WHERE        (id = @p22)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT id, nafID, nafNick, name, note, value FROM coach WHERE (active = @active) " +
-                "ORDER BY name";
+            this._commandCollection[2].CommandText = "SELECT active, id, nafID, nafNick, name, note, value FROM coach WHERE (active = @" +
+                "active) ORDER BY name";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@active";
@@ -19369,7 +19362,7 @@ WHERE        (id = @p22)";
             this._commandCollection[2].Parameters.Add(param);
             this._commandCollection[3] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT id, nafID, nafNick, name, note, value FROM coach WHERE (id = @id)";
+            this._commandCollection[3].CommandText = "SELECT active, id, nafID, nafNick, name, note, value FROM coach WHERE (id = @id)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@id";
@@ -19380,7 +19373,7 @@ WHERE        (id = @p22)";
             this._commandCollection[3].Parameters.Add(param);
             this._commandCollection[4] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT id, nafID, nafNick, name, note, value FROM coach ORDER BY name";
+            this._commandCollection[4].CommandText = "SELECT active, id, nafID, nafNick, name, note, value FROM coach ORDER BY name";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[5].Connection = this.Connection;
@@ -19630,7 +19623,7 @@ WHERE        (id = @p22)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string p1, global::System.Nullable<int> p2, string p3, string p4, global::System.Nullable<int> active, string p5, int p6) {
+        public virtual int Update(string p1, global::System.Nullable<int> p2, string p3, string p4, global::System.Nullable<int> p5, string p6, int p7) {
             if ((p1 == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -19655,19 +19648,19 @@ WHERE        (id = @p22)";
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(p4));
             }
-            if ((active.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(active.Value));
+            if ((p5.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(p5.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((p5 == null)) {
+            if ((p6 == null)) {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(p5));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(p6));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(p6));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(p7));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -25326,32 +25319,29 @@ WHERE        (id = @p14)";
             this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO series\r\n                         (name, notes)\r\nVALUES        (@name," +
-                " @notes)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO `series` (`name`, `notes`) VALUES (@p1, @p2)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@name";
+            param.ParameterName = "@p1";
             param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.Size = 500;
             param.IsNullable = true;
             param.SourceColumn = "name";
             this._adapter.InsertCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@notes";
+            param.ParameterName = "@p2";
             param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
-            param.Size = 500;
             param.IsNullable = true;
             param.SourceColumn = "notes";
             this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE       series\r\nSET                name = @name, notes = @notes\r\nWHERE      " +
-                "  (id = @p3)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE       series\r\nSET                name = @p1, notes = @p2\r\nWHERE        (id" +
+                " = @p3)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@name";
+            param.ParameterName = "@p1";
             param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.Size = 500;
@@ -25359,7 +25349,7 @@ WHERE        (id = @p14)";
             param.SourceColumn = "name";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@notes";
+            param.ParameterName = "@p2";
             param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.Size = 500;
@@ -25389,7 +25379,7 @@ WHERE        (id = @p14)";
             this._commandCollection = new global::MySql.Data.MySqlClient.MySqlCommand[5];
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from series";
+            this._commandCollection[0].CommandText = "select * from series order by id asc";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -25411,7 +25401,7 @@ WHERE        (id = @p14)";
             this._commandCollection[1].Parameters.Add(param);
             this._commandCollection[2] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "select * from series where id = @id";
+            this._commandCollection[2].CommandText = "SELECT id, name, notes FROM series WHERE (id = @id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@id";
@@ -25422,8 +25412,8 @@ WHERE        (id = @p14)";
             this._commandCollection[2].Parameters.Add(param);
             this._commandCollection[3] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "select s.* from series s join league_series ls on ls.seriesid = s.id where ls.lea" +
-                "gueid = @leagueId";
+            this._commandCollection[3].CommandText = "SELECT s.id, s.name, s.notes FROM series s INNER JOIN league_series ls ON ls.seri" +
+                "esId = s.id WHERE (ls.leagueId = @leagueId) ORDER BY s.id";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@leagueId";
@@ -25595,18 +25585,18 @@ WHERE        (id = @p14)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string name, string notes) {
-            if ((name == null)) {
+        public virtual int Insert(string p1, string p2) {
+            if ((p1 == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(name));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(p1));
             }
-            if ((notes == null)) {
+            if ((p2 == null)) {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(notes));
+                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(p2));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -25628,18 +25618,18 @@ WHERE        (id = @p14)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string name, string notes, int p3) {
-            if ((name == null)) {
+        public virtual int Update(string p1, string p2, int p3) {
+            if ((p1 == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(name));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(p1));
             }
-            if ((notes == null)) {
+            if ((p2 == null)) {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(notes));
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(p2));
             }
             this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(p3));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;

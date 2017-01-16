@@ -7,31 +7,31 @@ using System.Web.Http;
 
 namespace LegaGladio.Controllers
 {
-    public class GroupController : ApiController
+    public class RoundController : ApiController
     {
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
-        public LegaGladio.Entities.Group Get(int id)
+        public LegaGladio.Entities.Round Get(int id)
         {
-            return LegaGladio.BusinessLogic.Group.getGroup(id);
+            return LegaGladio.BusinessLogic.Round.getRound(id);
         }
 
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("getBySeries")]
-        public List<LegaGladio.Entities.Group> GetBySeries(int id)
+        [ActionName("getByGroup")]
+        public List<LegaGladio.Entities.Round> GetByGroup(int id)
         {
-            Entities.Series series = new Entities.Series() { Id = id };
-            return LegaGladio.BusinessLogic.Group.listGroup(series);
+            Entities.Group group = new Entities.Group() { Id = id };
+            return LegaGladio.BusinessLogic.Round.listRound(group);
         }
 
         // POST api/player
         [HttpPost]
         [ActionName("post")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Group data)
+        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Round data)
         {
             if (String.IsNullOrEmpty(token))
             {
@@ -39,7 +39,7 @@ namespace LegaGladio.Controllers
             }
             if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Group.newGroup(data);
+                LegaGladio.BusinessLogic.Round.newRound(data);
             }
             else
             {
@@ -51,7 +51,7 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [ActionName("put")]
         [AcceptVerbs("PUT")]
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Group data)
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Round data)
         {
             if (String.IsNullOrEmpty(token))
             {
@@ -59,7 +59,7 @@ namespace LegaGladio.Controllers
             }
             if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Group.updateGroup(data, id);
+                LegaGladio.BusinessLogic.Round.updateRound(data, id);
             }
             else
             {
@@ -79,7 +79,7 @@ namespace LegaGladio.Controllers
             }
             if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Group.removeGroup(id);
+                LegaGladio.BusinessLogic.Round.removeRound(id);
             }
             else
             {

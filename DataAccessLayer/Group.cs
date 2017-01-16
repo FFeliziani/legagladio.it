@@ -19,7 +19,7 @@ namespace DataAccessLayer
                 gdt = new LegaGladioDS.groupDataTable();
                 groupList = new List<LegaGladio.Entities.Group>();
 
-                gta.Fill(gdt);
+                gta.FillBySeriesId(gdt, s.Id);
 
                 foreach (LegaGladioDS.groupRow gr in gdt.Rows)
                 {
