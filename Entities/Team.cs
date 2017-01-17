@@ -7,7 +7,7 @@ namespace LegaGladio.Entities
 	{
         public Int32 Id { get; set; }
 
-        public List<Player> ListPlayer { get; set; }
+        public IEnumerable<Player> ListPlayer { get; set; }
         public Race Race { get; set; }
         public Int32 Value { get; set; }
         public String Name { get; set; }

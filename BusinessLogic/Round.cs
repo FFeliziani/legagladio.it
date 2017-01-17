@@ -21,7 +21,7 @@ namespace BusinessLogic
             }
         }
 
-        public static List<LegaGladio.Entities.Round> ListRound(LegaGladio.Entities.Group group)
+        public static IEnumerable<LegaGladio.Entities.Round> ListRound(LegaGladio.Entities.Group group)
         {
             try
             {

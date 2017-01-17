@@ -8,6 +8,6 @@ namespace LegaGladio.Entities
         public Int32 Id { get; set; }
         public String Name { get; set; }
         public String Notes { get; set; }
-        public List<Group> GroupList { get; set; }
+        public IEnumerable<Group> GroupList { get; set; }
     }
 }

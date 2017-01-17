@@ -12,7 +12,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("Get")]
-        public List<League> Get()
+        public IEnumerable<League> Get()
         {
             return BusinessLogic.League.ListLeague();
         }

@@ -14,7 +14,7 @@ namespace DataAccessLayer
             return count;
         }
 
-        public static List<LegaGladio.Entities.Coach> ListCoach()
+        public static IEnumerable<LegaGladio.Entities.Coach> ListCoach()
         {
             var cdt = new LegaGladioDS.coachDataTable();
             var cta = new coachTableAdapter();
@@ -37,7 +37,7 @@ namespace DataAccessLayer
             return coachList;
         }
 
-        public static List<LegaGladio.Entities.Coach> ListCoach(Boolean active)
+        public static IEnumerable<LegaGladio.Entities.Coach> ListCoach(Boolean active)
         {
             var cdt = new LegaGladioDS.coachDataTable();
             var cta = new coachTableAdapter();
@@ -78,7 +78,7 @@ namespace DataAccessLayer
             return coach;
         }
 
-        public static List<LegaGladio.Entities.Coach> GetSimple()
+        public static IEnumerable<LegaGladio.Entities.Coach> GetSimple()
         {
             var cdt = new LegaGladioDS.coachDataTable();
             var cta = new coachTableAdapter();

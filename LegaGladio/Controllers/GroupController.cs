@@ -21,7 +21,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getBySeries")]
-        public List<Group> GetBySeries(int id)
+        public IEnumerable<Group> GetBySeries(int id)
         {
             var series = new Series { Id = id };
             return BusinessLogic.Group.ListGroup(series);

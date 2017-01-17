@@ -15,7 +15,7 @@ namespace DataAccessLayer
             return count;
         }
 
-        public static List<LegaGladio.Entities.Skill> ListSkill()
+        public static IEnumerable<LegaGladio.Entities.Skill> ListSkill()
         {
             var sdt = new LegaGladioDS.skillDataTable();
             var sta = new skillTableAdapter();
@@ -31,7 +31,7 @@ namespace DataAccessLayer
         }
 
         // FF: Return all skills for player
-        public static List<LegaGladio.Entities.Skill> ListSkill(int playerId)
+        public static IEnumerable<LegaGladio.Entities.Skill> ListSkill(int playerId)
         {
             var sdt = new LegaGladioDS.skillDataTable();
             var sta = new skillTableAdapter();
@@ -40,7 +40,7 @@ namespace DataAccessLayer
             return skillList;
         }
 
-        public static List<LegaGladio.Entities.Skill> ListSkill(LegaGladio.Entities.Positional positional)
+        public static IEnumerable<LegaGladio.Entities.Skill> ListSkill(LegaGladio.Entities.Positional positional)
         {
             var sdt = new LegaGladioDS.skillDataTable();
             var sta = new skillTableAdapter();

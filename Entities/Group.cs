@@ -9,6 +9,6 @@ namespace LegaGladio.Entities
         public String Name { get; set; }
         public String Notes { get; set; }
 
-        public List<Round> RoundList { get; set; }
+        public IEnumerable<Round> RoundList { get; set; }
     }
 }

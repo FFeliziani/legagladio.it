@@ -9,7 +9,7 @@ namespace BusinessLogic
         private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
 
         
-        public static List<LegaGladio.Entities.Series> List(LegaGladio.Entities.League league)
+        public static IEnumerable<LegaGladio.Entities.Series> List(LegaGladio.Entities.League league)
         {
             try
             {

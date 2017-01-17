@@ -8,7 +8,7 @@ namespace BusinessLogic
     {
         private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
         
-        public static List<LegaGladio.Entities.AfterGameEvent> GetAfterGameEvent(LegaGladio.Entities.Game game)
+        public static IEnumerable<LegaGladio.Entities.AfterGameEvent> GetAfterGameEvent(LegaGladio.Entities.Game game)
         {
             try
             {

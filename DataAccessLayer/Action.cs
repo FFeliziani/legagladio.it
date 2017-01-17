@@ -22,7 +22,7 @@ namespace DataAccessLayer
             return action;
         }
 
-        public static List<LegaGladio.Entities.Action> GetAction()
+        public static IEnumerable<LegaGladio.Entities.Action> GetAction()
         {
             var actions = new List<LegaGladio.Entities.Action>();
             var ata = new actionTableAdapter();

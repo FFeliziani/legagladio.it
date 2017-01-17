@@ -7,7 +7,7 @@ namespace DataAccessLayer
 {
     public static class League
     {
-        public static List<LegaGladio.Entities.League> ListLeague()
+        public static IEnumerable<LegaGladio.Entities.League> ListLeague()
         {
             var lta = new leagueTableAdapter();
             var ldt = new LegaGladioDS.leagueDataTable();

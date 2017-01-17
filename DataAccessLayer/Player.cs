@@ -15,7 +15,7 @@ namespace DataAccessLayer
             return count;
         }
 
-        public static List<LegaGladio.Entities.Player> ListPlayer()
+        public static IEnumerable<LegaGladio.Entities.Player> ListPlayer()
         {
             var pdt = new LegaGladioDS.playerDataTable();
             var pta = new playerTableAdapter();
@@ -53,7 +53,7 @@ namespace DataAccessLayer
             return playerList;
         }
 
-        public static List<LegaGladio.Entities.Player> ListPlayer(int teamId, Boolean active)
+        public static IEnumerable<LegaGladio.Entities.Player> ListPlayer(int teamId, Boolean active)
         {
             var pdt = new LegaGladioDS.playerDataTable();
             var pta = new playerTableAdapter();
@@ -91,7 +91,7 @@ namespace DataAccessLayer
             return playerList;
         }
 
-        public static List<LegaGladio.Entities.Player> ListPlayer(int teamId)
+        public static IEnumerable<LegaGladio.Entities.Player> ListPlayer(int teamId)
         {
             var pdt = new LegaGladioDS.playerDataTable();
             var pta = new playerTableAdapter();

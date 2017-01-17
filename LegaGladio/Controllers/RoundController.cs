@@ -21,7 +21,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByGroup")]
-        public List<Round> GetByGroup(int id)
+        public IEnumerable<Round> GetByGroup(int id)
         {
             var group = new Group { Id = id };
             return BusinessLogic.Round.ListRound(group);

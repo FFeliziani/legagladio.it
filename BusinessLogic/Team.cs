@@ -21,7 +21,7 @@ namespace BusinessLogic
             }
         }
 
-        public static List<LegaGladio.Entities.Team> List()
+        public static IEnumerable<LegaGladio.Entities.Team> List()
         {
             try
             {
@@ -34,7 +34,7 @@ namespace BusinessLogic
             }
         }
 
-        public static List<LegaGladio.Entities.Team> List(int coachId)
+        public static IEnumerable<LegaGladio.Entities.Team> List(int coachId)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace BusinessLogic
             }
         }
 
-        public static List<LegaGladio.Entities.Team> List(Boolean active)
+        public static IEnumerable<LegaGladio.Entities.Team> List(Boolean active)
         {
             try
             {
