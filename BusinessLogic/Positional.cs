@@ -60,11 +60,11 @@ namespace BusinessLogic
             }
         }
 
-        public static Boolean NewPositional(LegaGladio.Entities.Positional positional)
+        public static void NewPositional(LegaGladio.Entities.Positional positional)
         {
             try
             {
-                return DataAccessLayer.Positional.NewPositional(positional);
+                DataAccessLayer.Positional.NewPositional(positional);
             }
             catch (Exception ex)
             {
@@ -73,11 +73,11 @@ namespace BusinessLogic
             }
         }
 
-        public static Boolean UpdatePositional(LegaGladio.Entities.Positional positional, int oldId)
+        public static void UpdatePositional(LegaGladio.Entities.Positional positional, int oldId)
         {
             try
             {
-                return DataAccessLayer.Positional.UpdatePositional(positional, oldId);
+                DataAccessLayer.Positional.UpdatePositional(positional, oldId);
             }
             catch (Exception ex)
             {
@@ -86,11 +86,11 @@ namespace BusinessLogic
             }
         }
 
-        public static Boolean DeletePositional(int id)
+        public static void DeletePositional(int id)
         {
             try
             {
-                return DataAccessLayer.Positional.DeletePositional(id);
+                DataAccessLayer.Positional.DeletePositional(id);
             }
             catch (Exception ex)
             {

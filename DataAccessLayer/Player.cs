@@ -199,12 +199,11 @@ namespace DataAccessLayer
             pta.RemovePlayerFromTeam(playerId, teamId);
         }
 
-        public static Boolean NewPlayer(LegaGladio.Entities.Player player)
+        public static void NewPlayer(LegaGladio.Entities.Player player)
         {
             var pta = new playerTableAdapter();
             //name, map, agp, avp, stp, cost, spp, td, cas, pass, inter, niggling, missNextGame, mam, agm, avm, stm, retired, dead
-            var result = pta.Insert(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, player.Cost, player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead?1:0), player.Positional.Id, player.Position);
-            return result > 0;
+            pta.Insert(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, player.Cost, player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead?1:0), player.Positional.Id, player.Position);
         }
 
         public static void UpdatePlayer(LegaGladio.Entities.Player player, int oldId)
@@ -284,11 +283,10 @@ namespace DataAccessLayer
             return playerValue;
         }
 
-        public static Boolean DeletePlayer(int id)
+        public static void DeletePlayer(int id)
         {
             var pta = new playerTableAdapter();
-            var result = pta.Delete(id);
-            return result > 0;
+            pta.Delete(id);
         }
     }
 }

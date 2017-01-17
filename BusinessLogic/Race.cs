@@ -47,11 +47,11 @@ namespace BusinessLogic
             }
         }
 
-        public static Boolean NewRace(LegaGladio.Entities.Race race)
+        public static void NewRace(LegaGladio.Entities.Race race)
         {
             try
             {
-                return DataAccessLayer.Race.NewRace(race);
+                DataAccessLayer.Race.NewRace(race);
             }
             catch (Exception ex)
             {
@@ -60,11 +60,11 @@ namespace BusinessLogic
             }
         }
 
-        public static Boolean UpdateRace(LegaGladio.Entities.Race race, int oldId)
+        public static void UpdateRace(LegaGladio.Entities.Race race, int oldId)
         {
             try
             {
-                return DataAccessLayer.Race.UpdateRace(race, oldId);
+                DataAccessLayer.Race.UpdateRace(race, oldId);
             }
             catch (Exception ex)
             {
@@ -73,11 +73,11 @@ namespace BusinessLogic
             }
         }
 
-        public static Boolean DeleteRace(int id)
+        public static void DeleteRace(int id)
         {
             try
             {
-                return DataAccessLayer.Race.DeleteRace(id);
+                DataAccessLayer.Race.DeleteRace(id);
             }
             catch (Exception ex)
             {

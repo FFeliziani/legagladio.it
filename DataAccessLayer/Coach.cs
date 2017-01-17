@@ -101,11 +101,10 @@ namespace DataAccessLayer
             return coachId;
         }
 
-        public static Boolean NewCoach(LegaGladio.Entities.Coach coach)
+        public static void NewCoach(LegaGladio.Entities.Coach coach)
         {
             var cta = new coachTableAdapter();
-            var result = cta.Insert(coach.Name, coach.Value, coach.NafId, coach.Notes, coach.Active ? 1 : 0, coach.NafNick);
-            return result > 0;
+            cta.Insert(coach.Name, coach.Value, coach.NafId, coach.Notes, coach.Active ? 1 : 0, coach.NafNick);
         }
 
         public static void UpdateCoach(LegaGladio.Entities.Coach coach, int oldId)
@@ -115,11 +114,10 @@ namespace DataAccessLayer
             cta.Update(coach.Name, coach.Value, coach.NafId, coach.Notes, coach.Active ? 1 : 0, coach.NafNick, oldId);
         }
 
-        public static Boolean DeleteCoach(int id)
+        public static void DeleteCoach(int id)
         {
             var cta = new coachTableAdapter();
-            var result = cta.Delete(id);
-            return result > 0;
+            cta.Delete(id);
         }
     }
 }

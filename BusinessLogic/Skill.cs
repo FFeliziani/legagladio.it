@@ -73,11 +73,11 @@ namespace BusinessLogic
             }
         }
 
-        public static Boolean NewSkill(LegaGladio.Entities.Skill skill)
+        public static void NewSkill(LegaGladio.Entities.Skill skill)
         {
             try
             {
-                return DataAccessLayer.Skill.NewSkill(skill);
+                DataAccessLayer.Skill.NewSkill(skill);
             }
             catch (Exception ex)
             {
@@ -86,11 +86,11 @@ namespace BusinessLogic
             }
         }
 
-        public static Boolean UpdateSkill(LegaGladio.Entities.Skill skill, int oldId)
+        public static void UpdateSkill(LegaGladio.Entities.Skill skill, int oldId)
         {
             try
             {
-                return DataAccessLayer.Skill.UpdateSkill(skill, oldId);
+                DataAccessLayer.Skill.UpdateSkill(skill, oldId);
             }
             catch (Exception ex)
             {
@@ -99,11 +99,11 @@ namespace BusinessLogic
             }
         }
 
-        public static Boolean DeleteSkill(int id)
+        public static void DeleteSkill(int id)
         {
             try
             {
-                return DataAccessLayer.Skill.DeleteSkill(id);
+                DataAccessLayer.Skill.DeleteSkill(id);
             }
             catch (Exception ex)
             {

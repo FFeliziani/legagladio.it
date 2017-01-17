@@ -50,27 +50,23 @@ namespace DataAccessLayer
             return race;
         }
 
-        public static Boolean NewRace(LegaGladio.Entities.Race race)
+        public static void NewRace(LegaGladio.Entities.Race race)
         {
             var rta = new raceTableAdapter();
-            var result = rta.Insert(race.Name, race.Reroll);
-            return result > 0;
+            rta.Insert(race.Name, race.Reroll);
         }
 
-        public static Boolean UpdateRace(LegaGladio.Entities.Race race, int oldId)
+        public static void UpdateRace(LegaGladio.Entities.Race race, int oldId)
         {
             var rta = new raceTableAdapter();
 
-            var result = rta.Update(race.Name, race.Reroll, oldId);
-
-            return result > 0;
+            rta.Update(race.Name, race.Reroll, oldId);
         }
 
-        public static Boolean DeleteRace(int id)
+        public static void DeleteRace(int id)
         {
             var rta = new raceTableAdapter();
-            var result = rta.Delete(id);
-            return result > 0;
+            rta.Delete(id);
         }
     }
 }

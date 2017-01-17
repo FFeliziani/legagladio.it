@@ -86,11 +86,11 @@ namespace BusinessLogic
             }
         }
 
-        public static Boolean NewTeam(LegaGladio.Entities.Team team)
+        public static void NewTeam(LegaGladio.Entities.Team team)
         {
             try
             {
-                return DataAccessLayer.Team.NewTeam(team);
+                DataAccessLayer.Team.NewTeam(team);
             }
             catch (Exception ex)
             {

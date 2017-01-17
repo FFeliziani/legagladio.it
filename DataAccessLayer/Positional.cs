@@ -115,32 +115,26 @@ namespace DataAccessLayer
 
         }
 
-        public static Boolean NewPositional(LegaGladio.Entities.Positional positional)
+        public static void NewPositional(LegaGladio.Entities.Positional positional)
         {
             var pta = new positionalTableAdapter();
 
             //g, a, s, p, m, e
-            var id = pta.Insert(positional.Qty, positional.Title, positional.Cost, positional.Ma, positional.St, positional.Ag, positional.Av, positional.General, positional.Agility, positional.Strength, positional.Passing, positional.Mutation);
-
-            return id > -1;
+            pta.Insert(positional.Qty, positional.Title, positional.Cost, positional.Ma, positional.St, positional.Ag, positional.Av, positional.General, positional.Agility, positional.Strength, positional.Passing, positional.Mutation);
         }
 
-        public static Boolean UpdatePositional(LegaGladio.Entities.Positional positional, int oldId)
+        public static void UpdatePositional(LegaGladio.Entities.Positional positional, int oldId)
         {
             var pta = new positionalTableAdapter();
 
-            var rowNum = pta.Update(positional.Qty, positional.Title, positional.Cost, positional.Ma, positional.St, positional.Ag, positional.Av, positional.General, positional.Agility, positional.Strength, positional.Passing, positional.Mutation, oldId);
-
-            return rowNum == 1;
+            pta.Update(positional.Qty, positional.Title, positional.Cost, positional.Ma, positional.St, positional.Ag, positional.Av, positional.General, positional.Agility, positional.Strength, positional.Passing, positional.Mutation, oldId);
         }
 
-        public static Boolean DeletePositional(int id)
+        public static void DeletePositional(int id)
         {
             var pta = new positionalTableAdapter();
 
-            var rowNum = pta.Delete(id);
-
-            return rowNum == 1;
+            pta.Delete(id);
         }
     }
 }

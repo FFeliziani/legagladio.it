@@ -108,7 +108,7 @@ namespace DataAccessLayer
             return skillList.Aggregate(true, (current, skill) => current & NewSkill(skill));
         }
 
-        public static Boolean UpdateSkill(LegaGladio.Entities.Skill skill, int oldId)
+        public static void UpdateSkill(LegaGladio.Entities.Skill skill, int oldId)
         {
             var sta = new skillTableAdapter();
             var sdt = new LegaGladioDS.skillDataTable();
@@ -116,8 +116,7 @@ namespace DataAccessLayer
             sr.id = oldId;
             sr.name = skill.Name;
             sr.type = (int)skill.SkillType;
-            var result = sta.Update(sr);
-            return result > 0;
+            sta.Update(sr);
         }
 
         public static Boolean DeleteSkill(int id)

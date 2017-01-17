@@ -229,12 +229,11 @@ namespace DataAccessLayer
             return teamValue;
         }
 
-        public static Boolean NewTeam(LegaGladio.Entities.Team team)
+        public static void NewTeam(LegaGladio.Entities.Team team)
         {
             var tta = new teamTableAdapter();
             //value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach, active
-            var result = tta.Insert(team.Value, team.Name, team.FanFactor, team.Reroll, (byte)(team.HasMedic ? 1 : 0), team.Cheerleader, team.AssistantCoach, (byte)(team.Active ? 1 : 0), team.Treasury);
-            return result > 0;
+            tta.Insert(team.Value, team.Name, team.FanFactor, team.Reroll, (byte)(team.HasMedic ? 1 : 0), team.Cheerleader, team.AssistantCoach, (byte)(team.Active ? 1 : 0), team.Treasury);
         }
 
         public static void UpdateTeam(LegaGladio.Entities.Team team, int oldId)
