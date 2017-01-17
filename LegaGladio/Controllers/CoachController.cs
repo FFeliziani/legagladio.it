@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using BusinessLogic;
+using Coach = LegaGladio.Entities.Coach;
 
 namespace LegaGladio.Controllers
 {
@@ -12,58 +11,58 @@ namespace LegaGladio.Controllers
         // GET api/<controller>
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public IEnumerable<LegaGladio.Entities.Coach> Get()
+        [ActionName("Get")]
+        public IEnumerable<Coach> Get()
         {
-            return LegaGladio.BusinessLogic.Coach.list();
+            return BusinessLogic.Coach.List();
         }
 
         // GET api/<controller>/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public LegaGladio.Entities.Coach Get(int id)
+        [ActionName("Get")]
+        public Coach Get(int id)
         {
-            return LegaGladio.BusinessLogic.Coach.get(id);
+            return BusinessLogic.Coach.Get(id);
         }
 
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getSimple")]
-        public List<LegaGladio.Entities.Coach> GetSimple()
+        public IEnumerable<Coach> GetSimple()
         {
-            return LegaGladio.BusinessLogic.Coach.listSimple();
+            return BusinessLogic.Coach.ListSimple();
         }
 
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getActive")]
-        public List<LegaGladio.Entities.Coach> GetActive()
+        public IEnumerable<Coach> GetActive()
         {
-            return LegaGladio.BusinessLogic.Coach.list(true);
+            return BusinessLogic.Coach.List(true);
         }
 
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getInactive")]
-        public List<LegaGladio.Entities.Coach> GetInactive()
+        public IEnumerable<Coach> GetInactive()
         {
-            return LegaGladio.BusinessLogic.Coach.list(false);
+            return BusinessLogic.Coach.List(false);
         }
 
         // POST api/<controller>
         [HttpPost]
         [ActionName("post")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Coach coach)
+        public void Post([FromUri]String token, [FromBody]Coach coach)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Coach.newCoach(coach);
+                BusinessLogic.Coach.NewCoach(coach);
             }
             else
             {
@@ -76,15 +75,15 @@ namespace LegaGladio.Controllers
         [ActionName("put")]
         [AcceptVerbs("PUT")]
         
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Coach coach)
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]Coach coach)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Coach.updateCoach(coach, id);
+                BusinessLogic.Coach.UpdateCoach(coach, id);
             }
             else
             {
@@ -102,10 +101,10 @@ namespace LegaGladio.Controllers
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
 
-                LegaGladio.BusinessLogic.Coach.deleteCoach(id);
+                BusinessLogic.Coach.DeleteCoach(id);
             }
             else
             {

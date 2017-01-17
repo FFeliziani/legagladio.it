@@ -1,91 +1,88 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NLog;
 
-namespace LegaGladio.BusinessLogic
+namespace BusinessLogic
 {
-    public class Race
+    public static class Race
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static int count()
+        public static int Count()
         {
             try
             {
-                return DataAccessLayer.Race.countRace();
+                return DataAccessLayer.Race.CountRace();
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while counting races");
-                throw ex;
+                Logger.Error(ex, "Error while counting races");
+                throw;
             }
         }
 
-        public static List<LegaGladio.Entities.Race> list()
+        public static List<LegaGladio.Entities.Race> List()
         {
             try
             {
-                return DataAccessLayer.Race.listRace();
+                return DataAccessLayer.Race.ListRace();
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing races");
-                throw ex;
+                Logger.Error(ex, "Error while listing races");
+                throw;
             }
         }
 
-        public static LegaGladio.Entities.Race get(int id)
+        public static LegaGladio.Entities.Race Get(int id)
         {
             try
             {
-                return DataAccessLayer.Race.getRace(id);
+                return DataAccessLayer.Race.GetRace(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while getting races");
-                throw ex;
+                Logger.Error(ex, "Error while getting races");
+                throw;
             }
         }
 
-        public static Boolean newRace(LegaGladio.Entities.Race race)
+        public static Boolean NewRace(LegaGladio.Entities.Race race)
         {
             try
             {
-                return DataAccessLayer.Race.newRace(race);
+                return DataAccessLayer.Race.NewRace(race);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while creating races");
-                throw ex;
+                Logger.Error(ex, "Error while creating races");
+                throw;
             }
         }
 
-        public static Boolean updateRace(LegaGladio.Entities.Race race, int oldID)
+        public static Boolean UpdateRace(LegaGladio.Entities.Race race, int oldId)
         {
             try
             {
-                return DataAccessLayer.Race.updateRace(race, oldID);
+                return DataAccessLayer.Race.UpdateRace(race, oldId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while updating races");
-                throw ex;
+                Logger.Error(ex, "Error while updating races");
+                throw;
             }
         }
 
-        public static Boolean deleteRace(int id)
+        public static Boolean DeleteRace(int id)
         {
             try
             {
-                return DataAccessLayer.Race.deleteRace(id);
+                return DataAccessLayer.Race.DeleteRace(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while deleting races");
-                throw ex;
+                Logger.Error(ex, "Error while deleting races");
+                throw;
             }
         }
     }

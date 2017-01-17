@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using BusinessLogic;
+using AfterGameEvent = LegaGladio.Entities.AfterGameEvent;
+using Game = LegaGladio.Entities.Game;
 
 namespace LegaGladio.Controllers
 {
@@ -13,25 +13,25 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("GET")]
-        public List<LegaGladio.Entities.AfterGameEvent> Get(Int32 id)
+        public List<AfterGameEvent> Get(Int32 id)
         {
-            LegaGladio.Entities.Game game = new LegaGladio.Entities.Game(){Id=id};
-            return BusinessLogic.AfterGameEvent.getAfterGameEvent(game);
+            var game = new Game {Id=id};
+            return BusinessLogic.AfterGameEvent.GetAfterGameEvent(game);
         }
 
         // POST api/aftergameevent
-        [HttpPost]D:\legagladio\legagladio.it\Entities\Skill.cs
+        [HttpPost]
         [ActionName("POST")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.AfterGameEvent data)
+        public void Post([FromUri]String token, [FromBody]AfterGameEvent data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.AfterGameEvent.newAfterGameEvent(data);
+                BusinessLogic.AfterGameEvent.NewAfterGameEvent(data);
             }
             else
             {
@@ -43,15 +43,15 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [ActionName("PUT")]
         [AcceptVerbs("PUT")]
-        public void Put([FromUri]String token, [FromUri]Int32 id, [FromBody]LegaGladio.Entities.AfterGameEvent data)
+        public void Put([FromUri]String token, [FromUri]Int32 id, [FromBody]AfterGameEvent data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.AfterGameEvent.updateAfterGameEvent(data, id);
+                BusinessLogic.AfterGameEvent.UpdateAfterGameEvent(data, id);
             }
             else
             {
@@ -69,9 +69,9 @@ namespace LegaGladio.Controllers
             {
                 throw new UnauthorizedAccessException("Please send a token with your request");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.AfterGameEvent.deleteAfterGameEvent(id);
+                BusinessLogic.AfterGameEvent.DeleteAfterGameEvent(id);
             }
             else
             {

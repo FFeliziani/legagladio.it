@@ -1,95 +1,55 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using DataAccessLayer.LegaGladioDSTableAdapters;
 
 namespace DataAccessLayer
 {
-    public class Action
+    public static class Action
     {
-        public static LegaGladio.Entities.Action getAction(Int32 id)
+        public static LegaGladio.Entities.Action GetAction(Int32 id)
         {
-            LegaGladio.Entities.Action action = null;
-            LegaGladioDS.actionDataTable adt = null;
-            LegaGladioDSTableAdapters.actionTableAdapter ata = null;
-            LegaGladioDS.actionRow ar = null;
-
-            try
-            {
-                action = new LegaGladio.Entities.Action();
-                adt = new LegaGladioDS.actionDataTable();
-                adt = new LegaGladioDS.actionDataTable();
-                ata.FillById(adt, id);
-                if (adt.Rows.Count == 1)
-                {
-                    ar = (LegaGladioDS.actionRow)adt.Rows[0];
-                }
-                action.Id = ar.id;
-                action.Description = ar.description;
-                action.Notes = ar.note;
-                action.Spp = ar.spp;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                ata = null;
-                adt = null;
-            }
+            var action = new LegaGladio.Entities.Action();
+            var ata = new actionTableAdapter();
+            var adt = new LegaGladioDS.actionDataTable();
+            ata.FillById(adt, id);
+            if (adt.Rows.Count != 1) return action;
+            var ar = (LegaGladioDS.actionRow)adt.Rows[0];
+            action.Id = ar.id;
+            action.Description = ar.description;
+            action.Notes = ar.note;
+            action.Spp = ar.spp;
             return action;
         }
 
-        public static List<LegaGladio.Entities.Action> getAction()
+        public static List<LegaGladio.Entities.Action> GetAction()
         {
-            List<LegaGladio.Entities.Action> actions = null;
-            LegaGladioDS.actionDataTable adt = null;
-            LegaGladioDSTableAdapters.actionTableAdapter ata = null;
-
-            try
+            var actions = new List<LegaGladio.Entities.Action>();
+            var ata = new actionTableAdapter();
+            var adt = new LegaGladioDS.actionDataTable();
+            ata.Fill(adt);
+            if (adt.Rows.Count > 0)
             {
-                actions = new List<LegaGladio.Entities.Action>();
-                ata = new LegaGladioDSTableAdapters.actionTableAdapter();
-                adt = new LegaGladioDS.actionDataTable();
-                ata.Fill(adt);
-                if (adt.Rows.Count > 0)
-                {
-                    foreach (LegaGladioDS.actionRow ar in adt.Rows)
+                actions.AddRange(from LegaGladioDS.actionRow ar in adt.Rows
+                    select new LegaGladio.Entities.Action
                     {
-                        LegaGladio.Entities.Action action = new LegaGladio.Entities.Action();
-                        action.Id = ar.id;
-                        action.Description = ar.description;
-                        action.Notes = ar.note;
-                        action.Spp = ar.spp;
-                        actions.Add(action);
-                    }
-                }
-
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                ata = null;
-                adt = null;
+                        Id = ar.id, Description = ar.description, Notes = ar.note, Spp = ar.spp
+                    });
             }
 
             return actions;
         }
 
-        public static void newAction(LegaGladio.Entities.Action action)
+        public static void NewAction(LegaGladio.Entities.Action action)
         {
-            LegaGladioDSTableAdapters.actionTableAdapter ata = new LegaGladioDSTableAdapters.actionTableAdapter();
+            var ata = new actionTableAdapter();
 
             ata.Insert(action.Description, action.Spp, action.Notes);
         }
         
-        private static void deleteAction(Int32 id)
+        private static void DeleteAction(Int32 id)
         {
-            LegaGladioDSTableAdapters.actionTableAdapter ata = new LegaGladioDSTableAdapters.actionTableAdapter();
+            var ata = new actionTableAdapter();
 
             ata.Delete(id);
         }

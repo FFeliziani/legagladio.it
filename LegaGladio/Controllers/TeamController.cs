@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using BusinessLogic;
+using Team = LegaGladio.Entities.Team;
 
 namespace LegaGladio.Controllers
 {
@@ -13,66 +12,66 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
-        public List<LegaGladio.Entities.Team> Get()
+        public List<Team> Get()
         {
-            return LegaGladio.BusinessLogic.Team.list();
+            return BusinessLogic.Team.List();
         }
 
         // GET api/team/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public LegaGladio.Entities.Team Get(int id)
+        [ActionName("Get")]
+        public Team Get(int id)
         {
-            return LegaGladio.BusinessLogic.Team.get(id, true);
+            return BusinessLogic.Team.Get(id, true);
         }
 
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getInactivePlayers")]
-        public LegaGladio.Entities.Team GetInactivePlayers(int id)
+        public Team GetInactivePlayers(int id)
         {
-            return LegaGladio.BusinessLogic.Team.get(id, false);
+            return BusinessLogic.Team.Get(id, false);
         }
 
         // GET api/team/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByCoach")]
-        public List<LegaGladio.Entities.Team> GetByCoach(int id)
+        public List<Team> GetByCoach(int id)
         {
-            return LegaGladio.BusinessLogic.Team.list(id);
+            return BusinessLogic.Team.List(id);
         }
 
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getActive")]
-        public List<LegaGladio.Entities.Team> GetActive()
+        public List<Team> GetActive()
         {
-            return LegaGladio.BusinessLogic.Team.list(true);
+            return BusinessLogic.Team.List(true);
         }
         
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getInactive")]
-        public List<LegaGladio.Entities.Team> GetInactive()
+        public List<Team> GetInactive()
         {
-            return LegaGladio.BusinessLogic.Team.list(false);
+            return BusinessLogic.Team.List(false);
         }
 
         // POST api/team
         [HttpPost]
         [AcceptVerbs("POST")]
         [ActionName("post")]
-        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Team data)
+        public void Post([FromUri]String token, [FromBody]Team data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Team.newTeam(data);
+                BusinessLogic.Team.NewTeam(data);
             }
             else
             {
@@ -84,15 +83,15 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [AcceptVerbs("PUT")]
         [ActionName("put")]
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Team data)
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]Team data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Team.updateTeam(data, id);
+                BusinessLogic.Team.UpdateTeam(data, id);
             }
             else
             {
@@ -101,7 +100,7 @@ namespace LegaGladio.Controllers
         }
 
         // DELETE api/team/5
-        [HttpDelete]
+        /*[HttpDelete]
         [AcceptVerbs("DELETE")]
         [ActionName("delete")]
         public void Delete([FromUri]String token, [FromUri]int id)
@@ -110,14 +109,14 @@ namespace LegaGladio.Controllers
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Team.deleteTeam(id);
+                BusinessLogic.Team.DeleteTeam(id);
             }
             else
             {
                 throw new UnauthorizedAccessException("User not logged");
             }
-        }
+        }*/
     }
 }

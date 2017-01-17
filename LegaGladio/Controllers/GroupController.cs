@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using BusinessLogic;
+using Group = LegaGladio.Entities.Group;
+using Series = LegaGladio.Entities.Series;
 
 namespace LegaGladio.Controllers
 {
@@ -11,35 +11,35 @@ namespace LegaGladio.Controllers
     {
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public LegaGladio.Entities.Group Get(int id)
+        [ActionName("Get")]
+        public Group Get(int id)
         {
-            return LegaGladio.BusinessLogic.Group.getGroup(id);
+            return BusinessLogic.Group.GetGroup(id);
         }
 
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getBySeries")]
-        public List<LegaGladio.Entities.Group> GetBySeries(int id)
+        public List<Group> GetBySeries(int id)
         {
-            Entities.Series series = new Entities.Series() { Id = id };
-            return LegaGladio.BusinessLogic.Group.listGroup(series);
+            var series = new Series { Id = id };
+            return BusinessLogic.Group.ListGroup(series);
         }
 
         // POST api/player
         [HttpPost]
         [ActionName("post")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Group data)
+        public void Post([FromUri]String token, [FromBody]Group data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Group.newGroup(data);
+                BusinessLogic.Group.NewGroup(data);
             }
             else
             {
@@ -51,15 +51,15 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [ActionName("put")]
         [AcceptVerbs("PUT")]
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Group data)
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]Group data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Group.updateGroup(data, id);
+                BusinessLogic.Group.UpdateGroup(data, id);
             }
             else
             {
@@ -77,9 +77,9 @@ namespace LegaGladio.Controllers
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Group.removeGroup(id);
+                BusinessLogic.Group.RemoveGroup(id);
             }
             else
             {

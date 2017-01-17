@@ -1,115 +1,113 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using NLog;
 
-namespace LegaGladio.BusinessLogic
+namespace BusinessLogic
 {
-    public class Player
+    public static class Player
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
         
-        public static int count()
+        public static int Count()
         {
             try
             {
-                return DataAccessLayer.Player.countPlayer();
+                return DataAccessLayer.Player.CountPlayer();
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while counting players");
-                throw ex;
+                Logger.Error(ex, "Error while counting players");
+                throw;
             }
         }
 
-        public static List<LegaGladio.Entities.Player> list()
+        public static List<LegaGladio.Entities.Player> List()
         {
             try
             {
-                return DataAccessLayer.Player.listPlayer();
+                return DataAccessLayer.Player.ListPlayer();
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing players");
-                throw ex;
+                Logger.Error(ex, "Error while listing players");
+                throw;
             }
         }
-        public static List<LegaGladio.Entities.Player> list(int teamID)
+        public static List<LegaGladio.Entities.Player> List(int teamId)
         {
             try
             {
-                return DataAccessLayer.Player.listPlayer(teamID);
+                return DataAccessLayer.Player.ListPlayer(teamId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing players for team");
-                throw ex;
-            }
-        }
-
-        public static List<LegaGladio.Entities.Player> list(int teamID, Boolean active)
-        {
-            try
-            {
-                return DataAccessLayer.Player.listPlayer(teamID, active);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "Error while listing active players for team");
-                throw ex;
+                Logger.Error(ex, "Error while listing players for team");
+                throw;
             }
         }
 
-        public static LegaGladio.Entities.Player get(int id)
+        public static List<LegaGladio.Entities.Player> List(int teamId, Boolean active)
         {
             try
             {
-                return DataAccessLayer.Player.getPlayer(id);
+                return DataAccessLayer.Player.ListPlayer(teamId, active);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while getting players");
-                throw ex;
+                Logger.Error(ex, "Error while listing active players for team");
+                throw;
             }
         }
 
-        public static Boolean newPlayer(LegaGladio.Entities.Player player)
+        public static LegaGladio.Entities.Player Get(int id)
         {
             try
             {
-                return DataAccessLayer.Player.newPlayer(player);
+                return DataAccessLayer.Player.GetPlayer(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while creating players");
-                throw ex;
+                Logger.Error(ex, "Error while getting players");
+                throw;
             }
         }
 
-        public static void updatePlayer(LegaGladio.Entities.Player player, int oldID)
+        public static void NewPlayer(LegaGladio.Entities.Player player)
         {
             try
             {
-                DataAccessLayer.Player.updatePlayer(player, oldID);
+                DataAccessLayer.Player.NewPlayer(player);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while updating players");
-                throw ex;
+                Logger.Error(ex, "Error while creating players");
+                throw;
             }
         }
 
-        public static Boolean deletePlayer(int id)
+        public static void UpdatePlayer(LegaGladio.Entities.Player player, int oldId)
         {
             try
             {
-                return DataAccessLayer.Player.deletePlayer(id);
+                DataAccessLayer.Player.UpdatePlayer(player, oldId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while deleting players");
-                throw ex;
+                Logger.Error(ex, "Error while updating players");
+                throw;
+            }
+        }
+
+        public static void DeletePlayer(int id)
+        {
+            try
+            {
+                DataAccessLayer.Player.DeletePlayer(id);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while deleting players");
+                throw;
             }
         }
     }

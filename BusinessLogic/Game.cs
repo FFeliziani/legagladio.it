@@ -1,113 +1,111 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NLog;
 
-namespace LegaGladio.BusinessLogic
+namespace BusinessLogic
 {
-    public class Game
+    public static class Game
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static LegaGladio.Entities.Game get(int id) 
+        public static LegaGladio.Entities.Game Get(int id) 
         {
             try
             {
-                return DataAccessLayer.Game.getGame(id);
+                return DataAccessLayer.Game.GetGame(id);
             }
             catch(Exception ex)
             {
-                logger.Error(ex, "Error while getting games");
-                throw ex;
+                Logger.Error(ex, "Error while getting games");
+                throw;
             }
         }
-        public static List<LegaGladio.Entities.Game> listGame()
+        public static List<LegaGladio.Entities.Game> ListGame()
         {
             try
             {
-                return DataAccessLayer.Game.listGame();
+                return DataAccessLayer.Game.ListGame();
             }
             catch(Exception ex)
             {
-                logger.Error(ex, "Error while listing games");
-                throw ex;
+                Logger.Error(ex, "Error while listing games");
+                throw;
             }
         }
-        public static List<LegaGladio.Entities.Game> listGame(LegaGladio.Entities.Team team)
+        public static List<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Team team)
         {
             try
             {
-                return DataAccessLayer.Game.listGame(team);
+                return DataAccessLayer.Game.ListGame(team);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing games for team");
-                throw ex;
+                Logger.Error(ex, "Error while listing games for team");
+                throw;
             }
         }
-        public static List<LegaGladio.Entities.Game> listGame(LegaGladio.Entities.Coach coach)
+        public static List<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Coach coach)
         {
             try
             {
-                return DataAccessLayer.Game.listGame(coach);
+                return DataAccessLayer.Game.ListGame(coach);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing games for coach");
-                throw ex;
-            }
-        }
-
-        public static List<LegaGladio.Entities.Game> listGame(LegaGladio.Entities.Round round)
-        {
-            try
-            {
-                return DataAccessLayer.Game.listGame(round);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "Error while listing games for round");
-                throw ex;
+                Logger.Error(ex, "Error while listing games for coach");
+                throw;
             }
         }
 
-        public static void newGame(LegaGladio.Entities.Game game)
+        public static List<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Round round)
         {
             try
             {
-                DataAccessLayer.Game.newGame(game);
+                return DataAccessLayer.Game.ListGame(round);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while creating a new Game");
-                throw ex;
+                Logger.Error(ex, "Error while listing games for round");
+                throw;
             }
         }
 
-        public static void updateGame(LegaGladio.Entities.Game game, Int32 oldId)
+        public static void NewGame(LegaGladio.Entities.Game game)
         {
             try
             {
-                DataAccessLayer.Game.updateGame(game, oldId);
+                DataAccessLayer.Game.NewGame(game);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while updating Game");
-                throw ex;
+                Logger.Error(ex, "Error while creating a new Game");
+                throw;
             }
         }
 
-        public static void removeGame(Int32 id)
+        public static void UpdateGame(LegaGladio.Entities.Game game, Int32 oldId)
         {
             try
             {
-                DataAccessLayer.Game.deleteGame(id);
+                DataAccessLayer.Game.UpdateGame(game, oldId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while deleting game");
-                throw ex;
+                Logger.Error(ex, "Error while updating Game");
+                throw;
+            }
+        }
+
+        public static void RemoveGame(Int32 id)
+        {
+            try
+            {
+                DataAccessLayer.Game.DeleteGame(id);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while deleting game");
+                throw;
             }
         }
     }

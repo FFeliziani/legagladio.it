@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using BusinessLogic;
+using League = LegaGladio.Entities.League;
 
 namespace LegaGladio.Controllers
 {
@@ -12,34 +11,34 @@ namespace LegaGladio.Controllers
         // GET api/league
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public List<LegaGladio.Entities.League> Get()
+        [ActionName("Get")]
+        public List<League> Get()
         {
-            return LegaGladio.BusinessLogic.League.listLeague();
+            return BusinessLogic.League.ListLeague();
         }
 
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public LegaGladio.Entities.League Get(int id)
+        [ActionName("Get")]
+        public League Get(int id)
         {
-            return LegaGladio.BusinessLogic.League.getLeague(id);
+            return BusinessLogic.League.GetLeague(id);
         }
 
         // POST api/player
         [HttpPost]
         [ActionName("post")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.League data)
+        public void Post([FromUri]String token, [FromBody]League data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.League.newLeague(data);
+                BusinessLogic.League.NewLeague(data);
             }
             else
             {
@@ -51,15 +50,15 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [ActionName("put")]
         [AcceptVerbs("PUT")]
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.League data)
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]League data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.League.updateLeague(data, id);
+                BusinessLogic.League.UpdateLeague(data, id);
             }
             else
             {
@@ -77,9 +76,9 @@ namespace LegaGladio.Controllers
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.League.removeLeague(id);
+                BusinessLogic.League.RemoveLeague(id);
             }
             else
             {

@@ -1,194 +1,144 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DataAccessLayer.LegaGladioDSTableAdapters;
 
 namespace DataAccessLayer
 {
-    public class Positional
+    public static class Positional
     {
-        public static int countPositional()
+        public static int CountPositional()
         {
-            LegaGladioDSTableAdapters.positionalTableAdapter pta = new LegaGladioDSTableAdapters.positionalTableAdapter();
+            var pta = new positionalTableAdapter();
             return (int)pta.Count();
         }
 
-        public static List<LegaGladio.Entities.Positional> listPositional()
+        public static List<LegaGladio.Entities.Positional> ListPositional()
         {
-            LegaGladioDSTableAdapters.positionalTableAdapter pta = new LegaGladioDSTableAdapters.positionalTableAdapter();
+            var pta = new positionalTableAdapter();
 
-            List<LegaGladio.Entities.Positional> positionalList = new List<LegaGladio.Entities.Positional>();
+            var pdt = pta.GetData();
 
-            LegaGladioDS.positionalDataTable pdt = pta.GetData();
-
-            foreach (LegaGladioDS.positionalRow pr in pdt.Rows)
-            {
-                LegaGladio.Entities.Positional positional = Positional.getPositional((int)pr.id);
-
-                positionalList.Add(positional);
-            }
-
-            return positionalList;
+            return (from LegaGladioDS.positionalRow pr in pdt.Rows select GetPositional(pr.id)).ToList();
         }
 
-        public static List<LegaGladio.Entities.Positional> listPositionalByRace(int raceId)
+        public static List<LegaGladio.Entities.Positional> ListPositionalByRace(int raceId)
         {
-            LegaGladioDSTableAdapters.positionalTableAdapter pta = null;
-            LegaGladioDS.positionalDataTable pdt = null;
+            var pta = new positionalTableAdapter();
+            var pdt = new LegaGladioDS.positionalDataTable();
 
-            pta = new LegaGladioDSTableAdapters.positionalTableAdapter();
-            pdt = new LegaGladioDS.positionalDataTable();
+            pta.FillByRaceId(pdt, raceId);
 
-            List<LegaGladio.Entities.Positional> positionalList = new List<LegaGladio.Entities.Positional>();
-
-            try
-            {
-                pta.FillByRaceId(pdt, raceId);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            foreach (LegaGladioDS.positionalRow pr in pdt.Rows)
-            {
-                LegaGladio.Entities.Positional positional = Positional.getPositional((int)pr.id);
-
-                positionalList.Add(positional);
-            }
-
-            return positionalList;
+            return (from LegaGladioDS.positionalRow pr in pdt.Rows select GetPositional(pr.id)).ToList();
         }
 
-        public static LegaGladio.Entities.Positional getPositional(int id)
+        public static LegaGladio.Entities.Positional GetPositional(int id)
         {
-            LegaGladioDSTableAdapters.positionalTableAdapter pta = null;
-            LegaGladioDS.positionalDataTable pdt = null;
-            LegaGladioDS.positionalRow pr = null;
-            LegaGladio.Entities.Positional positional = null;
+            var pta = new positionalTableAdapter();
+            var pdt = pta.GetDataById(id);
 
-            try
+            if (pdt.Rows.Count > 1)
             {
-                pta = new LegaGladioDSTableAdapters.positionalTableAdapter();
-                pdt = pta.GetDataById(id);
-
-                if (pdt.Rows.Count > 1)
-                {
-                    throw new Exception("Troppi positional trovati per l'ID " + id);
-                }
-
-                if (pdt.Rows.Count == 0)
-                {
-                    return null;
-                }
-
-                pr = (LegaGladioDS.positionalRow)pdt.Rows[0];
-
-                positional = new LegaGladio.Entities.Positional();
-
-                positional.Agility = pr.agility;
-                positional.Extraordinary = -1;
-                positional.General = pr.general;
-                positional.Mutation = pr.mutation;
-                positional.Passing = pr.passing;
-                positional.Strength = pr.strength;
-
-                positional.Id = pr.id;
-                positional.Ma = pr.ma;
-                positional.St = pr.st;
-                positional.Ag = pr.ag;
-                positional.Av = pr.av;
-                positional.Cost = Convert.ToInt32(pr.cost);
-                positional.Qty = pr.qty;
-                positional.Title = pr.title;
-                positional.ListAbility = Skill.listSkill(positional);
+                throw new Exception("Troppi positional trovati per l'ID " + id);
             }
-            catch (Exception ex)
+
+            if (pdt.Rows.Count == 0)
             {
-                throw ex;
+                return null;
             }
+
+            var pr = (LegaGladioDS.positionalRow)pdt.Rows[0];
+
+            var positional = new LegaGladio.Entities.Positional
+            {
+                Agility = pr.agility,
+                Extraordinary = -1,
+                General = pr.general,
+                Mutation = pr.mutation,
+                Passing = pr.passing,
+                Strength = pr.strength,
+                Id = pr.id,
+                Ma = pr.ma,
+                St = pr.st,
+                Ag = pr.ag,
+                Av = pr.av,
+                Cost = Convert.ToInt32(pr.cost),
+                Qty = pr.qty,
+                Title = pr.title
+            };
+
+
+            positional.ListAbility = Skill.ListSkill(positional);
 
             return positional;
             
         }
 
-        public static LegaGladio.Entities.Positional getPositional(LegaGladio.Entities.Player player)
+        public static LegaGladio.Entities.Positional GetPositional(LegaGladio.Entities.Player player)
         {
-            LegaGladioDSTableAdapters.positionalTableAdapter pta = null;
-            LegaGladioDS.positionalDataTable pdt = null;
-            LegaGladioDS.positionalRow pr = null;
-            LegaGladio.Entities.Positional positional = null;
+            var pta = new positionalTableAdapter();
+            var pdt = pta.GetDataByPlayerId(player.Id);
 
-            try
+            if (pdt.Rows.Count > 1)
             {
-                pta = new LegaGladioDSTableAdapters.positionalTableAdapter();
-                pdt = pta.GetDataByPlayerId(player.Id);
-
-                if (pdt.Rows.Count > 1)
-                {
-                    throw new Exception("Troppi positional trovati per il Player ID " + player.Id);
-                }
-
-                if (pdt.Rows.Count == 0)
-                {
-                    return null;
-                }
-                pr = (LegaGladioDS.positionalRow)pdt.Rows[0];
-
-                positional = new LegaGladio.Entities.Positional();
-
-                positional.General = pr.general;
-                positional.Agility = pr.agility;
-                positional.Strength = pr.strength;
-                positional.Passing = pr.passing;
-                positional.Mutation = pr.mutation;
-                positional.Extraordinary = -1;
-
-                positional.Id = pr.id;
-                positional.Ma = pr.ma;
-                positional.St = pr.st;
-                positional.Ag = pr.ag;
-                positional.Av = pr.av;
-                positional.Cost = Convert.ToInt32(pr.cost);
-                positional.Qty = pr.qty;
-                positional.Title = pr.title;
-                positional.ListAbility = Skill.listSkill(positional);
+                throw new Exception("Troppi positional trovati per il Player ID " + player.Id);
             }
-            catch (Exception ex)
+
+            if (pdt.Rows.Count == 0)
             {
-                throw ex;
+                return null;
             }
+            var pr = (LegaGladioDS.positionalRow)pdt.Rows[0];
+
+            var positional = new LegaGladio.Entities.Positional
+            {
+                General = pr.general,
+                Agility = pr.agility,
+                Strength = pr.strength,
+                Passing = pr.passing,
+                Mutation = pr.mutation,
+                Extraordinary = -1,
+                Id = pr.id,
+                Ma = pr.ma,
+                St = pr.st,
+                Ag = pr.ag,
+                Av = pr.av,
+                Cost = Convert.ToInt32(pr.cost),
+                Qty = pr.qty,
+                Title = pr.title
+            };
+
+
+            positional.ListAbility = Skill.ListSkill(positional);
 
             return positional;
 
         }
 
-        public static Boolean newPositional(LegaGladio.Entities.Positional positional)
+        public static Boolean NewPositional(LegaGladio.Entities.Positional positional)
         {
-            LegaGladioDSTableAdapters.positionalTableAdapter pta = new LegaGladioDSTableAdapters.positionalTableAdapter();
-            LegaGladioDSTableAdapters.positional_skillTableAdapter psta = new LegaGladioDSTableAdapters.positional_skillTableAdapter();
+            var pta = new positionalTableAdapter();
 
             //g, a, s, p, m, e
-            int id = (int)pta.Insert(positional.Qty, positional.Title, positional.Cost, positional.Ma, positional.St, positional.Ag, positional.Av, positional.General, positional.Agility, positional.Strength, positional.Passing, positional.Mutation);
+            var id = pta.Insert(positional.Qty, positional.Title, positional.Cost, positional.Ma, positional.St, positional.Ag, positional.Av, positional.General, positional.Agility, positional.Strength, positional.Passing, positional.Mutation);
 
             return id > -1;
         }
 
-        public static Boolean updatePositional(LegaGladio.Entities.Positional positional, int oldID)
+        public static Boolean UpdatePositional(LegaGladio.Entities.Positional positional, int oldId)
         {
-            LegaGladioDSTableAdapters.positionalTableAdapter pta = new LegaGladioDSTableAdapters.positionalTableAdapter();
+            var pta = new positionalTableAdapter();
 
-            int rowNum = pta.Update(positional.Qty, positional.Title, positional.Cost, positional.Ma, positional.St, positional.Ag, positional.Av, positional.General, positional.Agility, positional.Strength, positional.Passing, positional.Mutation, oldID);
+            var rowNum = pta.Update(positional.Qty, positional.Title, positional.Cost, positional.Ma, positional.St, positional.Ag, positional.Av, positional.General, positional.Agility, positional.Strength, positional.Passing, positional.Mutation, oldId);
 
             return rowNum == 1;
         }
 
-        public static Boolean deletePositional(int id)
+        public static Boolean DeletePositional(int id)
         {
-            LegaGladioDSTableAdapters.positionalTableAdapter pta = new LegaGladioDSTableAdapters.positionalTableAdapter();
+            var pta = new positionalTableAdapter();
 
-            int rowNum = pta.Delete(id);
+            var rowNum = pta.Delete(id);
 
             return rowNum == 1;
         }

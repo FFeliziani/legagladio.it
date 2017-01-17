@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Net.Http;
 using System.Web.Http;
+using BusinessLogic;
+using Player = LegaGladio.Entities.Player;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -15,61 +14,61 @@ namespace LegaGladio.Controllers
         //GET: api/player
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public List<LegaGladio.Entities.Player> Get()
+        [ActionName("Get")]
+        public List<Player> Get()
         {
-            return LegaGladio.BusinessLogic.Player.list();
+            return BusinessLogic.Player.List();
         }
 
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public LegaGladio.Entities.Player Get(int id)
+        [ActionName("Get")]
+        public Player Get(int id)
         {
-            return LegaGladio.BusinessLogic.Player.get(id);
+            return BusinessLogic.Player.Get(id);
         }
 
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByTeam")]
-        public List<LegaGladio.Entities.Player> GetByTeam(int id)
+        public List<Player> GetByTeam(int id)
         {
-            return LegaGladio.BusinessLogic.Player.list(id);
+            return BusinessLogic.Player.List(id);
         }
 
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByTeamActive")]
-        public List<LegaGladio.Entities.Player> GetByTeamActive(int id)
+        public List<Player> GetByTeamActive(int id)
         {
-            return LegaGladio.BusinessLogic.Player.list(id, true);
+            return BusinessLogic.Player.List(id, true);
         }
 
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByTeamInactive")]
-        public List<LegaGladio.Entities.Player> GetByTeamInactive(int id)
+        public List<Player> GetByTeamInactive(int id)
         {
-            return LegaGladio.BusinessLogic.Player.list(id, false);
+            return BusinessLogic.Player.List(id, false);
         }
 
         // POST api/player
         [HttpPost]
         [ActionName("post")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Player data)
+        public void Post([FromUri]String token, [FromBody]Player data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Player.newPlayer(data);
+                BusinessLogic.Player.NewPlayer(data);
             }
             else
             {
@@ -81,15 +80,15 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [ActionName("put")]
         [AcceptVerbs("PUT")]
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Player data)
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]Player data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Player.updatePlayer(data, id);
+                BusinessLogic.Player.UpdatePlayer(data, id);
             }
             else
             {
@@ -107,9 +106,9 @@ namespace LegaGladio.Controllers
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Player.deletePlayer(id);
+                BusinessLogic.Player.DeletePlayer(id);
             }
             else
             {

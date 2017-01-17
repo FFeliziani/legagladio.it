@@ -1,103 +1,101 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NLog;
 
-namespace LegaGladio.BusinessLogic
+namespace BusinessLogic
 {
-    public class Round
+    public static class Round
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static LegaGladio.Entities.Round getRound(Int32 id)
+        public static LegaGladio.Entities.Round GetRound(Int32 id)
         {
             try
             {
-                return DataAccessLayer.Round.getRound(id);
+                return DataAccessLayer.Round.GetRound(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while getting round");
-                throw ex;
+                Logger.Error(ex, "Error while getting round");
+                throw;
             }
         }
 
-        public static List<LegaGladio.Entities.Round> listRound(LegaGladio.Entities.Group group)
+        public static List<LegaGladio.Entities.Round> ListRound(LegaGladio.Entities.Group group)
         {
             try
             {
-                return DataAccessLayer.Round.listRound(group);
+                return DataAccessLayer.Round.ListRound(group);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Exception while listing rounds for group");
-                throw ex;
+                Logger.Error(ex, "Exception while listing rounds for group");
+                throw;
             }
         }
 
-        public static void newRound(LegaGladio.Entities.Round round)
+        public static void NewRound(LegaGladio.Entities.Round round)
         {
             try
             {
-                DataAccessLayer.Round.newRound(round);
+                DataAccessLayer.Round.NewRound(round);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while creating new Round");
-                throw ex;
+                Logger.Error(ex, "Error while creating new Round");
+                throw;
             }
         }
 
-        public static void updateRound(LegaGladio.Entities.Round round, Int32 oldId)
+        public static void UpdateRound(LegaGladio.Entities.Round round, Int32 oldId)
         {
             try
             {
-                DataAccessLayer.Round.updateRound(round, oldId);
+                DataAccessLayer.Round.UpdateRound(round, oldId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while updating round");
-                throw ex;
+                Logger.Error(ex, "Error while updating round");
+                throw;
             }
         }
 
-        public static void addRoundToGroup(Int32 roundId, Int32 groupId)
+        public static void AddRoundToGroup(Int32 roundId, Int32 groupId)
         {
             try
             {
-                DataAccessLayer.Round.addRoundToGroup(roundId, groupId);
+                DataAccessLayer.Round.AddRoundToGroup(roundId, groupId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while adding round to series");
-                throw ex;
+                Logger.Error(ex, "Error while adding round to series");
+                throw;
             }
         }
 
-        public static void removeRoundFromGroup(Int32 roundId, Int32 groupId)
+        public static void RemoveRoundFromGroup(Int32 roundId, Int32 groupId)
         {
             try
             {
-                DataAccessLayer.Round.removeRoundFromGroup(roundId, groupId);
+                DataAccessLayer.Round.RemoveRoundFromGroup(roundId, groupId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while removing round from series");
-                throw ex;
+                Logger.Error(ex, "Error while removing round from series");
+                throw;
             }
         }
 
-        public static void removeRound(Int32 id)
+        public static void RemoveRound(Int32 id)
         {
             try
             {
-                DataAccessLayer.Round.removeRound(id);
+                DataAccessLayer.Round.RemoveRound(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while deleting round");
-                throw ex;
+                Logger.Error(ex, "Error while deleting round");
+                throw;
             }
         }
     }

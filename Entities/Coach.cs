@@ -10,7 +10,7 @@ namespace LegaGladio.Entities
         public List<Team> ListTeam{ get; set; }
         public String Name{ get; set; }
         public int Value{ get; set; }
-        public String NafID{ get; set; }
+        public String NafId{ get; set; }
 
         public Boolean Active { get; set; }
         public String NafNick { get; set; }

@@ -1,125 +1,75 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DataAccessLayer.LegaGladioDSTableAdapters;
 
 namespace DataAccessLayer
 {
-    public class Race
+    public static class Race
     {
-        public static int countRace()
+        public static int CountRace()
         {
-            LegaGladioDSTableAdapters.raceTableAdapter rta = new LegaGladioDSTableAdapters.raceTableAdapter();
-            int count = (int)rta.Count();
-            rta = null;
+            var rta = new raceTableAdapter();
+            var count = (int)rta.Count();
             return count;
         }
 
-        public static List<LegaGladio.Entities.Race> listRace()
+        public static List<LegaGladio.Entities.Race> ListRace()
         {
-            LegaGladioDS.raceDataTable rdt = new LegaGladioDS.raceDataTable();
-            LegaGladioDSTableAdapters.raceTableAdapter rta = new LegaGladioDSTableAdapters.raceTableAdapter();
+            var rdt = new LegaGladioDS.raceDataTable();
+            var rta = new raceTableAdapter();
             rta.Fill(rdt);
-            List<LegaGladio.Entities.Race> raceList = new List<LegaGladio.Entities.Race>();
-            foreach (LegaGladioDS.raceRow raceRow in rdt.Rows)
-            {
-                LegaGladio.Entities.Race race = new LegaGladio.Entities.Race();
-                race.Id = (int)raceRow.id;
-                race.Name = raceRow.name;
-                race.Reroll = raceRow.reroll;
-                raceList.Add(race);
-            }
-            rta = null;
-            rdt = null;
+            var raceList = (from LegaGladioDS.raceRow raceRow in rdt.Rows
+                select new LegaGladio.Entities.Race
+                {
+                    Id = raceRow.id, Name = raceRow.name, Reroll = raceRow.reroll
+                }).ToList();
             return raceList;
         }
 
-        public static LegaGladio.Entities.Race getRace(int id)
+        public static LegaGladio.Entities.Race GetRace(int id)
         {
-            LegaGladio.Entities.Race race = null;
-            LegaGladioDS.raceDataTable rdt = null;
-            LegaGladioDSTableAdapters.raceTableAdapter rta = null;
-            LegaGladioDS.raceRow raceRow = null;
-            try
-            {
-                rdt = new LegaGladioDS.raceDataTable();
-                rta = new LegaGladioDSTableAdapters.raceTableAdapter();
-                rta.FillById(rdt, id);
-                if (rdt.Rows.Count > 0)
-                {
-                    race = new LegaGladio.Entities.Race();
-                    raceRow = (LegaGladioDS.raceRow)rdt.Rows[0];
-                    race.Id = (int)raceRow.id;
-                    race.Name = raceRow.name;
-                    race.Reroll = raceRow.reroll;
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            rta = null;
-            rdt = null;
+            
+            var rdt = new LegaGladioDS.raceDataTable();
+            var rta = new raceTableAdapter();
+            rta.FillById(rdt, id);
+            if (rdt.Rows.Count <= 0) return null;
+            var raceRow = (LegaGladioDS.raceRow)rdt.Rows[0];
+            var race = new LegaGladio.Entities.Race {Id = raceRow.id, Name = raceRow.name, Reroll = raceRow.reroll};
             return race;
         }
 
-        public static LegaGladio.Entities.Race getRaceByTeamId(int id)
+        public static LegaGladio.Entities.Race GetRaceByTeamId(int id)
         {
-            LegaGladio.Entities.Race race = null;
-            LegaGladioDS.raceDataTable rdt = null;
-            LegaGladioDSTableAdapters.raceTableAdapter rta = null;
-            LegaGladioDS.raceRow raceRow = null;
-
-            try
-            {
-                rdt = new LegaGladioDS.raceDataTable();
-                rta = new LegaGladioDSTableAdapters.raceTableAdapter();
-                rta.FillByTeamId(rdt, id);
-                if(rdt.Rows.Count > 0)
-                {
-                    race = new LegaGladio.Entities.Race();
-                    raceRow = (LegaGladioDS.raceRow)rdt.Rows[0];
-                    race.Id = (int)raceRow.id;
-                    race.Name = raceRow.name;
-                    race.Reroll = raceRow.reroll;
-                }
-            }
-            catch(Exception ex)
-            {
-                rdt.GetErrors();
-                throw ex;
-            }
-            finally
-            {
-                rta = null;
-                rdt = null;
-            }
+            var rdt = new LegaGladioDS.raceDataTable();
+            var rta = new raceTableAdapter();
+            rta.FillByTeamId(rdt, id);
+            if (rdt.Rows.Count <= 0) return null;
+            var raceRow = (LegaGladioDS.raceRow)rdt.Rows[0];
+            var race = new LegaGladio.Entities.Race {Id = raceRow.id, Name = raceRow.name, Reroll = raceRow.reroll};
             return race;
         }
 
-        public static Boolean newRace(LegaGladio.Entities.Race race)
+        public static Boolean NewRace(LegaGladio.Entities.Race race)
         {
-            LegaGladioDSTableAdapters.raceTableAdapter rta = new LegaGladioDSTableAdapters.raceTableAdapter();
-            int result = rta.Insert(race.Name, race.Reroll);
-            rta = null;
+            var rta = new raceTableAdapter();
+            var result = rta.Insert(race.Name, race.Reroll);
             return result > 0;
         }
 
-        public static Boolean updateRace(LegaGladio.Entities.Race race, int oldID)
+        public static Boolean UpdateRace(LegaGladio.Entities.Race race, int oldId)
         {
-            LegaGladioDSTableAdapters.raceTableAdapter rta = new LegaGladioDSTableAdapters.raceTableAdapter();
+            var rta = new raceTableAdapter();
 
-            int result = rta.Update(race.Name, race.Reroll, oldID);
+            var result = rta.Update(race.Name, race.Reroll, oldId);
 
             return result > 0;
         }
 
-        public static Boolean deleteRace(int id)
+        public static Boolean DeleteRace(int id)
         {
-            LegaGladioDSTableAdapters.raceTableAdapter rta = new LegaGladioDSTableAdapters.raceTableAdapter();
-            int result = rta.Delete(id);
-            rta = null;
+            var rta = new raceTableAdapter();
+            var result = rta.Delete(id);
             return result > 0;
         }
     }

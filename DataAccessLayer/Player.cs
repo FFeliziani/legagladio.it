@@ -1,318 +1,293 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using LegaGladio;
+using DataAccessLayer.LegaGladioDSTableAdapters;
+using LegaGladio.Entities;
 
 namespace DataAccessLayer
 {
-    public class Player
+    public static class Player
     {
-        public static int countPlayer()
+        public static int CountPlayer()
         {
-            LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();
-            int count = (int)pta.Count();
-            pta = null;
+            var pta = new playerTableAdapter();
+            var count = (int)pta.Count();
             return count;
         }
 
-        public static List<LegaGladio.Entities.Player> listPlayer()
+        public static List<LegaGladio.Entities.Player> ListPlayer()
         {
-            LegaGladioDS.playerDataTable pdt = new LegaGladioDS.playerDataTable();
-            LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();
+            var pdt = new LegaGladioDS.playerDataTable();
+            var pta = new playerTableAdapter();
             pta.Fill(pdt);
-            List<LegaGladio.Entities.Player> playerList = new List<LegaGladio.Entities.Player>();
-            foreach(LegaGladioDS.playerRow playerRow in pdt.Rows)
+            var playerList = new List<LegaGladio.Entities.Player>();
+            foreach (var player in from LegaGladioDS.playerRow playerRow in pdt.Rows select new LegaGladio.Entities.Player
             {
-                LegaGladio.Entities.Player player = new LegaGladio.Entities.Player();
-                player.AgMinus = playerRow.agm;
-                player.Dead = playerRow.dead;
-                player.Retired = playerRow.retired;
-                player.AgPlus = playerRow.agp;
-                player.AvMinus = playerRow.avm;
-                player.AvPlus = playerRow.avp;
-                player.Cas = playerRow.cas;
-                player.Inter = playerRow.inter;
-                player.Id = playerRow.id;
-                player.Cost = calculatePlayerValue(player.Id);
-                player.MaMinus = playerRow.mam;
-                player.MaPlus = playerRow.map;
-                player.MissNextGame = playerRow.missNextGame;
-                player.Name = playerRow.name;
-                player.Niggling = playerRow.niggling;
-                player.Pass = playerRow.pass;
-                player.Spp = playerRow.spp;
-                player.StMinus = playerRow.stm;
-                player.StPlus = playerRow.stp;
-                player.Position = playerRow.position;
-                player.Td = playerRow.td;
-                player.ListAbility = Skill.listSkill(player.Id);
-                player.positional = Positional.getPositional(player);
+                AgMinus = playerRow.agm,
+                Dead = playerRow.dead,
+                Retired = playerRow.retired,
+                AgPlus = playerRow.agp,
+                AvMinus = playerRow.avm,
+                AvPlus = playerRow.avp,
+                Cas = playerRow.cas,
+                Inter = playerRow.inter,
+                Id = playerRow.id,
+                MaMinus = playerRow.mam,
+                MaPlus = playerRow.map,
+                MissNextGame = playerRow.missNextGame,
+                Name = playerRow.name,
+                Niggling = playerRow.niggling,
+                Pass = playerRow.pass,
+                Spp = playerRow.spp,
+                StMinus = playerRow.stm,
+                StPlus = playerRow.stp,
+                Position = playerRow.position,
+                Td = playerRow.td
+            })
+            {
+                player.Cost = CalculatePlayerValue(player.Id);
+                player.ListAbility = Skill.ListSkill(player.Id);
+                player.Positional = Positional.GetPositional(player);
                 playerList.Add(player);
             }
-            pta = null;
-            pdt = null;
             return playerList;
         }
 
-        public static List<LegaGladio.Entities.Player> listPlayer(int teamID, Boolean active)
+        public static List<LegaGladio.Entities.Player> ListPlayer(int teamId, Boolean active)
         {
-            LegaGladioDS.playerDataTable pdt = new LegaGladioDS.playerDataTable();
-            LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();
-            pta.FillByTeamIdActive(pdt, teamID, active);
-            List<LegaGladio.Entities.Player> playerList = new List<LegaGladio.Entities.Player>();
-            foreach (LegaGladioDS.playerRow playerRow in pdt.Rows)
+            var pdt = new LegaGladioDS.playerDataTable();
+            var pta = new playerTableAdapter();
+            pta.FillByTeamIdActive(pdt, teamId, active);
+            var playerList = new List<LegaGladio.Entities.Player>();
+            foreach (var player in from LegaGladioDS.playerRow playerRow in pdt.Rows select new LegaGladio.Entities.Player
             {
-                LegaGladio.Entities.Player player = new LegaGladio.Entities.Player();
-                player.AgMinus = playerRow.agm;
-                player.AgPlus = playerRow.agp;
-                player.Dead = playerRow.dead;
-                player.Retired = playerRow.retired;
-                player.AvMinus = playerRow.avm;
-                player.AvPlus = playerRow.avp;
-                player.Cas = playerRow.cas;
-                player.Inter = playerRow.inter;
-                player.Id = playerRow.id;
-                player.Cost = calculatePlayerValue(player.Id);
-                player.MaMinus = playerRow.mam;
-                player.MaPlus = playerRow.map;
-                player.MissNextGame = playerRow.missNextGame;
-                player.Name = playerRow.name;
-                player.Niggling = playerRow.niggling;
-                player.Pass = playerRow.pass;
-                player.Spp = playerRow.spp;
-                player.StMinus = playerRow.stm;
-                player.StPlus = playerRow.stp;
-                player.Position = playerRow.position;
-                player.Td = playerRow.td;
-                player.ListAbility = Skill.listSkill(player.Id);
-                player.positional = Positional.getPositional(player);
+                AgMinus = playerRow.agm,
+                AgPlus = playerRow.agp,
+                Dead = playerRow.dead,
+                Retired = playerRow.retired,
+                AvMinus = playerRow.avm,
+                AvPlus = playerRow.avp,
+                Cas = playerRow.cas,
+                Inter = playerRow.inter,
+                Id = playerRow.id,
+                MaMinus = playerRow.mam,
+                MaPlus = playerRow.map,
+                MissNextGame = playerRow.missNextGame,
+                Name = playerRow.name,
+                Niggling = playerRow.niggling,
+                Pass = playerRow.pass,
+                Spp = playerRow.spp,
+                StMinus = playerRow.stm,
+                StPlus = playerRow.stp,
+                Position = playerRow.position,
+                Td = playerRow.td
+            })
+            {
+                player.Cost = CalculatePlayerValue(player.Id);
+                player.ListAbility = Skill.ListSkill(player.Id);
+                player.Positional = Positional.GetPositional(player);
                 playerList.Add(player);
             }
-            pta = null;
-            pdt = null;
             return playerList;
         }
 
-        public static List<LegaGladio.Entities.Player> listPlayer(int teamID)
+        public static List<LegaGladio.Entities.Player> ListPlayer(int teamId)
         {
-            LegaGladioDS.playerDataTable pdt = new LegaGladioDS.playerDataTable();
-            LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();
-            pta.FillByTeamId(pdt, teamID);
-            List<LegaGladio.Entities.Player> playerList = new List<LegaGladio.Entities.Player>();
-            foreach (LegaGladioDS.playerRow playerRow in pdt.Rows)
+            var pdt = new LegaGladioDS.playerDataTable();
+            var pta = new playerTableAdapter();
+            pta.FillByTeamId(pdt, teamId);
+            var playerList = new List<LegaGladio.Entities.Player>();
+            foreach (var player in from LegaGladioDS.playerRow playerRow in pdt.Rows select new LegaGladio.Entities.Player
             {
-                LegaGladio.Entities.Player player = new LegaGladio.Entities.Player();
-                player.AgMinus = playerRow.agm;
-                player.AgPlus = playerRow.agp;
-                player.Dead = playerRow.dead;
-                player.Retired = playerRow.retired;
-                player.AvMinus = playerRow.avm;
-                player.AvPlus = playerRow.avp;
-                player.Cas = playerRow.cas;
-                player.Inter = playerRow.inter;
-                player.Id = playerRow.id;
-                player.Cost = calculatePlayerValue(player.Id);
-                player.MaMinus = playerRow.mam;
-                player.MaPlus = playerRow.map;
-                player.MissNextGame = playerRow.missNextGame;
-                player.Name = playerRow.name;
-                player.Niggling = playerRow.niggling;
-                player.Pass = playerRow.pass;
-                player.Spp = playerRow.spp;
-                player.StMinus = playerRow.stm;
-                player.StPlus = playerRow.stp;
-                player.Position = playerRow.position;
-                player.Td = playerRow.td;
-                player.ListAbility = Skill.listSkill(player.Id);
-                player.positional = Positional.getPositional(player);
+                AgMinus = playerRow.agm,
+                AgPlus = playerRow.agp,
+                Dead = playerRow.dead,
+                Retired = playerRow.retired,
+                AvMinus = playerRow.avm,
+                AvPlus = playerRow.avp,
+                Cas = playerRow.cas,
+                Inter = playerRow.inter,
+                Id = playerRow.id,
+                MaMinus = playerRow.mam,
+                MaPlus = playerRow.map,
+                MissNextGame = playerRow.missNextGame,
+                Name = playerRow.name,
+                Niggling = playerRow.niggling,
+                Pass = playerRow.pass,
+                Spp = playerRow.spp,
+                StMinus = playerRow.stm,
+                StPlus = playerRow.stp,
+                Position = playerRow.position,
+                Td = playerRow.td
+            })
+            {
+                player.Cost = CalculatePlayerValue(player.Id);
+                player.ListAbility = Skill.ListSkill(player.Id);
+                player.Positional = Positional.GetPositional(player);
                 playerList.Add(player);
             }
-            pta = null;
-            pdt = null;
             return playerList;
         }
 
-        public static LegaGladio.Entities.Player getPlayer(int id)
+        public static LegaGladio.Entities.Player GetPlayer(int id)
         {
-            LegaGladio.Entities.Player player = null;
-            LegaGladioDS.playerDataTable pdt = null;
-            LegaGladioDSTableAdapters.playerTableAdapter pta = null;
-            LegaGladioDS.playerRow playerRow = null;
-            try
+            var pdt = new LegaGladioDS.playerDataTable();
+            var pta = new playerTableAdapter();
+            pta.FillById(pdt, id);
+            var playerRow = (LegaGladioDS.playerRow)pdt.Rows[0];
+            var player = new LegaGladio.Entities.Player
             {
-                player = new LegaGladio.Entities.Player();
-                pdt = new LegaGladioDS.playerDataTable();
-                pta = new LegaGladioDSTableAdapters.playerTableAdapter();
-                pta.FillById(pdt, id);
-                playerRow = (LegaGladioDS.playerRow)pdt.Rows[0];
-                player.AgMinus = playerRow.agm;
-                player.AgPlus = playerRow.agp;
-                player.Dead = playerRow.dead;
-                player.Retired = playerRow.retired;
-                player.AvMinus = playerRow.avm;
-                player.AvPlus = playerRow.avp;
-                player.Cas = playerRow.cas;
-                player.Inter = playerRow.inter;
-                player.Id = playerRow.id;
-                player.Cost = calculatePlayerValue(player.Id);
-                player.MaMinus = playerRow.mam;
-                player.MaPlus = playerRow.map;
-                player.MissNextGame = playerRow.missNextGame;
-                player.Name = playerRow.name;
-                player.Niggling = playerRow.niggling;
-                player.Pass = playerRow.pass;
-                player.Spp = playerRow.spp;
-                player.StMinus = playerRow.stm;
-                player.StPlus = playerRow.stp;
-                player.Position = playerRow.position;
-                player.Td = playerRow.td;
-                player.ListAbility = Skill.listSkill(player.Id);
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-            pta = null;
-            pdt = null;
+                AgMinus = playerRow.agm,
+                AgPlus = playerRow.agp,
+                Dead = playerRow.dead,
+                Retired = playerRow.retired,
+                AvMinus = playerRow.avm,
+                AvPlus = playerRow.avp,
+                Cas = playerRow.cas,
+                Inter = playerRow.inter,
+                Id = playerRow.id,
+                MaMinus = playerRow.mam,
+                MaPlus = playerRow.map,
+                MissNextGame = playerRow.missNextGame,
+                Name = playerRow.name,
+                Niggling = playerRow.niggling,
+                Pass = playerRow.pass,
+                Spp = playerRow.spp,
+                StMinus = playerRow.stm,
+                StPlus = playerRow.stp,
+                Position = playerRow.position,
+                Td = playerRow.td
+            };
+            player.Cost = CalculatePlayerValue(player.Id);
+            player.ListAbility = Skill.ListSkill(player.Id);
             return player;
         }
 
-        public static void addPlayerToTeam(LegaGladio.Entities.Player player, LegaGladio.Entities.Team team)
+        public static void AddPlayerToTeam(LegaGladio.Entities.Player player, LegaGladio.Entities.Team team)
         {
             if (player != null && team != null)
             {
-                if (!team.ListPlayer.Any(x => x.Id == player.Id))
+                if (team.ListPlayer.All(x => x.Id != player.Id))
                 {
-                    addPlayerToTeam(player.Id, team.Id);
+                    AddPlayerToTeam(player.Id, team.Id);
                 }
             }
         }
 
-        private static void addPlayerToTeam(Int32 playerId, Int32 teamId)
+        private static void AddPlayerToTeam(Int32 playerId, Int32 teamId)
         {
-            LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();
+            var pta = new playerTableAdapter();
 
             pta.AddPlayerToTeam(playerId, teamId);
         }
 
-        public static void removePlayerFromTeam(LegaGladio.Entities.Player player, LegaGladio.Entities.Team team)
+        public static void RemovePlayerFromTeam(LegaGladio.Entities.Player player, LegaGladio.Entities.Team team)
         {
             if (player != null && team != null)
             {
                 if (team.ListPlayer.Any(x => x.Id == player.Id))
                 {
-                    removePlayerFromTeam(player.Id, team.Id);
+                    RemovePlayerFromTeam(player.Id, team.Id);
                 }
             }
         }
 
-        private static void removePlayerFromTeam(Int32 playerId, Int32 teamId)
+        private static void RemovePlayerFromTeam(Int32 playerId, Int32 teamId)
         {
-            LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();
+            var pta = new playerTableAdapter();
 
             pta.RemovePlayerFromTeam(playerId, teamId);
         }
 
-        public static Boolean newPlayer(LegaGladio.Entities.Player player)
+        public static Boolean NewPlayer(LegaGladio.Entities.Player player)
         {
-            LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();
+            var pta = new playerTableAdapter();
             //name, map, agp, avp, stp, cost, spp, td, cas, pass, inter, niggling, missNextGame, mam, agm, avm, stm, retired, dead
-            int result = pta.Insert(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, player.Cost, player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead?1:0), player.positional.Id, player.Position);
-            pta = null;
+            var result = pta.Insert(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, player.Cost, player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead?1:0), player.Positional.Id, player.Position);
             return result > 0;
         }
 
-        public static void updatePlayer(LegaGladio.Entities.Player player, int oldID)
+        public static void UpdatePlayer(LegaGladio.Entities.Player player, int oldId)
         {
-            LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();
+            var pta = new playerTableAdapter();
 
-            pta.Update(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, calculatePlayerValue(oldID), player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead ? 1 : 0), player.positional.Id, player.Position, oldID);
+            pta.Update(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, CalculatePlayerValue(oldId), player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead ? 1 : 0), player.Positional.Id, player.Position, oldId);
         }
 
-        public static int calculatePlayerValue(int id)
+        private static int CalculatePlayerValue(int id)
         {
-            LegaGladio.Entities.Player player = null;
-            LegaGladioDS.playerDataTable pdt = null;
-            LegaGladioDSTableAdapters.playerTableAdapter pta = null;
-            LegaGladioDS.playerRow playerRow = null;
-            int playerValue = 0;
+            var playerValue = 0;
 
-            try
+            var pdt = new LegaGladioDS.playerDataTable();
+            var pta = new playerTableAdapter();
+            pta.FillById(pdt, id);
+            var playerRow = (LegaGladioDS.playerRow)pdt.Rows[0];
+
+            if (playerRow.missNextGame)
             {
-                player = new LegaGladio.Entities.Player();
-                pdt = new LegaGladioDS.playerDataTable();
-                pta = new LegaGladioDSTableAdapters.playerTableAdapter();
-                pta.FillById(pdt, id);
-                playerRow = (LegaGladioDS.playerRow)pdt.Rows[0];
-
-                if (playerRow.missNextGame == true)
-                {
-                    return 0;
-                }
-                player.Id = playerRow.id;
-                player.positional = Positional.getPositional(playerRow.positionalId);
-                player.ListAbility = Skill.listSkill(player.Id);
-                player.StPlus = playerRow.stp;
-                player.AgPlus = playerRow.agp;
-                player.AvPlus = playerRow.avp;
-                player.MaPlus = playerRow.map;
-
-                playerValue += player.positional.Cost;
-
-                foreach (LegaGladio.Entities.Skill s in player.ListAbility)
-                {
-                    switch (s.SkillType)
-                    {
-                        case LegaGladio.Entities.SkillType.AGILITY:
-                            if (player.positional.Agility != -1)
-                            {
-                                playerValue += 20000 + (10000 * player.positional.Agility);
-                            }
-                            break;
-                        case LegaGladio.Entities.SkillType.GENERAL:
-                            if (player.positional.General != -1)
-                            {
-                                playerValue += 20000 + (10000 * player.positional.General);
-                            }
-                            break;
-                        case LegaGladio.Entities.SkillType.PASSING:
-                            if (player.positional.Passing != -1)
-                            {
-                                playerValue += 20000 + (10000 * player.positional.Passing);
-                            }
-                            break;
-                        case LegaGladio.Entities.SkillType.STRENGTH:
-                            if (player.positional.Strength != -1)
-                            {
-                                playerValue += 20000 + (10000 * player.positional.Strength);
-                            }
-                            break;
-                        case LegaGladio.Entities.SkillType.MUTATION:
-                            if (player.positional.Mutation != -1)
-                            {
-                                playerValue += 20000 + (10000 * player.positional.Mutation);
-                            }
-                            break;
-                    }
-                }
-                playerValue += 50000 * player.StPlus;
-                playerValue += 40000 * player.AgPlus;
-                playerValue += 30000 * player.AvPlus;
-                playerValue += 30000 * player.MaPlus;
+                return 0;
             }
-            finally
+            var player = new LegaGladio.Entities.Player
             {
+                Id = playerRow.id,
+                Positional = Positional.GetPositional(playerRow.positionalId),
+                StPlus = playerRow.stp,
+                AgPlus = playerRow.agp,
+                AvPlus = playerRow.avp,
+                MaPlus = playerRow.map
+            };
+
+            player.ListAbility = Skill.ListSkill(player.Id);
+            playerValue += player.Positional.Cost;
+
+            foreach (var s in player.ListAbility)
+            {
+                switch (s.SkillType)
+                {
+                    case SkillType.Agility:
+                        if (player.Positional.Agility != -1)
+                        {
+                            playerValue += 20000 + (10000 * player.Positional.Agility);
+                        }
+                        break;
+                    case SkillType.General:
+                        if (player.Positional.General != -1)
+                        {
+                            playerValue += 20000 + (10000 * player.Positional.General);
+                        }
+                        break;
+                    case SkillType.Passing:
+                        if (player.Positional.Passing != -1)
+                        {
+                            playerValue += 20000 + (10000 * player.Positional.Passing);
+                        }
+                        break;
+                    case SkillType.Strength:
+                        if (player.Positional.Strength != -1)
+                        {
+                            playerValue += 20000 + (10000 * player.Positional.Strength);
+                        }
+                        break;
+                    case SkillType.Mutation:
+                        if (player.Positional.Mutation != -1)
+                        {
+                            playerValue += 20000 + (10000 * player.Positional.Mutation);
+                        }
+                        break;
+                }
             }
+            playerValue += 50000 * player.StPlus;
+            playerValue += 40000 * player.AgPlus;
+            playerValue += 30000 * player.AvPlus;
+            playerValue += 30000 * player.MaPlus;
 
             return playerValue;
         }
 
-        public static Boolean deletePlayer(int id)
+        public static Boolean DeletePlayer(int id)
         {
-            LegaGladioDSTableAdapters.playerTableAdapter pta = new LegaGladioDSTableAdapters.playerTableAdapter();
-            int result = pta.Delete(id);
-            pta = null;
+            var pta = new playerTableAdapter();
+            var result = pta.Delete(id);
             return result > 0;
         }
     }

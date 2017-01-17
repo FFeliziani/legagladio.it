@@ -1,131 +1,128 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NLog;
 
-namespace LegaGladio.BusinessLogic
+namespace BusinessLogic
 {
-    public class Team
+    public static class Team
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static int count()
+        public static int Count()
         {
             try
             {
-                return DataAccessLayer.Team.countTeam();
+                return DataAccessLayer.Team.CountTeam();
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while counting teams");
-                throw ex;
+                Logger.Error(ex, "Error while counting teams");
+                throw;
             }
         }
 
-        public static List<LegaGladio.Entities.Team> list()
+        public static List<LegaGladio.Entities.Team> List()
         {
             try
             {
-                return DataAccessLayer.Team.listTeam();
+                return DataAccessLayer.Team.ListTeam();
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing teams");
-                throw ex;
+                Logger.Error(ex, "Error while listing teams");
+                throw;
             }
         }
 
-        public static List<LegaGladio.Entities.Team> list(int coachID)
+        public static List<LegaGladio.Entities.Team> List(int coachId)
         {
             try
             {
-                return DataAccessLayer.Team.listTeam(coachID);
+                return DataAccessLayer.Team.ListTeam(coachId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing teams for coach");
-                throw ex;
+                Logger.Error(ex, "Error while listing teams for coach");
+                throw;
             }
         }
 
-        public static List<LegaGladio.Entities.Team> list(Boolean active)
+        public static List<LegaGladio.Entities.Team> List(Boolean active)
         {
             try
             {
-                return DataAccessLayer.Team.listTeam(active);
+                return DataAccessLayer.Team.ListTeam(active);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing active teams");
-                throw ex;
+                Logger.Error(ex, "Error while listing active teams");
+                throw;
             }
         }
 
-        public static LegaGladio.Entities.Team get(int id)
+        public static LegaGladio.Entities.Team Get(int id)
         {
             try
             {
-                return DataAccessLayer.Team.getTeam(id);
+                return DataAccessLayer.Team.GetTeam(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while getting teams");
-                throw ex;
+                Logger.Error(ex, "Error while getting teams");
+                throw;
             }
         }
 
-        public static LegaGladio.Entities.Team get(Int32 id, Boolean active)
+        public static LegaGladio.Entities.Team Get(Int32 id, Boolean active)
         {
             try
             {
-                return DataAccessLayer.Team.getTeam(id, active);
+                return DataAccessLayer.Team.GetTeam(id, active);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while getting teams");
-                throw ex;
+                Logger.Error(ex, "Error while getting teams");
+                throw;
             }
         }
 
-        public static Boolean newTeam(LegaGladio.Entities.Team team)
+        public static Boolean NewTeam(LegaGladio.Entities.Team team)
         {
             try
             {
-                return DataAccessLayer.Team.newTeam(team);
+                return DataAccessLayer.Team.NewTeam(team);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while creating teams");
-                throw ex;
+                Logger.Error(ex, "Error while creating teams");
+                throw;
             }
         }
 
-        public static void updateTeam(LegaGladio.Entities.Team team, int oldID)
+        public static void UpdateTeam(LegaGladio.Entities.Team team, int oldId)
         {
             try
             {
-                DataAccessLayer.Team.updateTeam(team, oldID);
+                DataAccessLayer.Team.UpdateTeam(team, oldId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while updating teams");
-                throw ex;
+                Logger.Error(ex, "Error while updating teams");
+                throw;
             }
         }
 
-        public static Boolean deleteTeam(int id)
+        /*public static Boolean DeleteTeam(int id)
         {
             try
             {
-                return DataAccessLayer.Team.deleteTeam(id);
+                return DataAccessLayer.Team.DeleteTeam(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while deleting teams");
-                throw ex;
+                Logger.Error(ex, "Error while deleting teams");
+                throw;
             }
-        }
+        }*/
     }
 }

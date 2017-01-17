@@ -1,118 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using DataAccessLayer.LegaGladioDSTableAdapters;
 
 namespace DataAccessLayer
 {
-    public class Series
+    public static class Series
     {
-        public static List<LegaGladio.Entities.Series> listSeries(LegaGladio.Entities.League league)
+        public static List<LegaGladio.Entities.Series> ListSeries(LegaGladio.Entities.League league)
         {
-            LegaGladioDSTableAdapters.seriesTableAdapter sta = null;
-            LegaGladioDS.seriesDataTable sdt = null;
-            List<LegaGladio.Entities.Series> sL = null;
+            var sta = new seriesTableAdapter();
+            var sdt = new LegaGladioDS.seriesDataTable();
+            sta.FillByLeagueId(sdt, league.Id);
 
-            try
-            {
-                sta = new LegaGladioDSTableAdapters.seriesTableAdapter();
-                sdt = new LegaGladioDS.seriesDataTable();
-                sL = new List<LegaGladio.Entities.Series>();
-                sta.FillByLeagueId(sdt, league.Id);
-
-                foreach (LegaGladioDS.seriesRow sr in sdt.Rows)
+            var sL = (from LegaGladioDS.seriesRow sr in sdt.Rows
+                select new LegaGladio.Entities.Series
                 {
-                    LegaGladio.Entities.Series s = new LegaGladio.Entities.Series();
-
-                    s.Id = sr.id;
-                    s.Name = sr.name;
-                    s.Notes = sr.notes;
-                    sL.Add(s);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                sta = null;
-                sdt = null;
-            }
+                    Id = sr.id, Name = sr.name, Notes = sr.notes
+                }).ToList();
 
             return sL;
         }
 
-        public static LegaGladio.Entities.Series getSeries(Int32 id)
+        public static LegaGladio.Entities.Series GetSeries(Int32 id)
         {
-            LegaGladioDSTableAdapters.seriesTableAdapter sta = null;
-            LegaGladioDS.seriesDataTable sdt = null;
-            LegaGladio.Entities.Series s = null;
-            LegaGladioDS.seriesRow sR = null;
+            var sta = new seriesTableAdapter();
+            var sdt = new LegaGladioDS.seriesDataTable();
+            
+            sta.FillById(sdt, id);
 
-            try
+            if (sdt.Rows.Count != 1)
             {
-                sta = new LegaGladioDSTableAdapters.seriesTableAdapter();
-                sdt = new LegaGladioDS.seriesDataTable();
-                s = new LegaGladio.Entities.Series();
-                sta.FillById(sdt, id);
-
-                if (sdt.Rows.Count != 1)
-                {
-                    throw new ArgumentException("Wrong number of series returned!");
-                }
-
-                sR = (LegaGladioDS.seriesRow)sdt.Rows[0];
-
-                s.Id = sR.id;
-                s.Name = sR.name;
-                s.Notes = sR.notes;
-                s.GroupList = Group.listGroup(s);
+                throw new ArgumentException("Wrong number of series returned!");
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                sta = null;
-                sdt = null;
-            }
+
+            var sR = (LegaGladioDS.seriesRow)sdt.Rows[0];
+            var s = new LegaGladio.Entities.Series {Id = sR.id, Name = sR.name, Notes = sR.notes};
+            s.GroupList = Group.ListGroup(s);
 
             return s;
         }
 
-        public static void addSeriesToLeague(Int32 seriesId, Int32 leagueId)
+        public static void AddSeriesToLeague(Int32 seriesId, Int32 leagueId)
         {
-            LegaGladioDSTableAdapters.seriesTableAdapter sta = new LegaGladioDSTableAdapters.seriesTableAdapter();
+            var sta = new seriesTableAdapter();
 
             sta.AddSeriesToLeague(seriesId, leagueId);
         }
 
-        public static void removeSeriesFromLeague(Int32 seriesId, Int32 leagueId)
+        public static void RemoveSeriesFromLeague(Int32 seriesId, Int32 leagueId)
         {
-            LegaGladioDSTableAdapters.seriesTableAdapter sta = new LegaGladioDSTableAdapters.seriesTableAdapter();
+            var sta = new seriesTableAdapter();
 
             sta.RemoveSeriesFromLeague(seriesId, leagueId);
         }
 
-        public static void newSeries(LegaGladio.Entities.Series series)
+        public static void NewSeries(LegaGladio.Entities.Series series)
         {
-            LegaGladioDSTableAdapters.seriesTableAdapter sta = new LegaGladioDSTableAdapters.seriesTableAdapter();
+            var sta = new seriesTableAdapter();
 
             sta.Insert(series.Name, series.Notes);
         }
 
-        public static void updateSeries(LegaGladio.Entities.Series series, Int32 oldId)
+        public static void UpdateSeries(LegaGladio.Entities.Series series, Int32 oldId)
         {
-            LegaGladioDSTableAdapters.seriesTableAdapter sta = new LegaGladioDSTableAdapters.seriesTableAdapter();
+            var sta = new seriesTableAdapter();
 
             sta.Update(series.Name, series.Notes, oldId);
         }
 
-        public static void deleteSeries(Int32 id)
+        public static void DeleteSeries(Int32 id)
         {
-            LegaGladioDSTableAdapters.seriesTableAdapter sta = new LegaGladioDSTableAdapters.seriesTableAdapter();
+            var sta = new seriesTableAdapter();
 
             sta.Delete(id);
         }

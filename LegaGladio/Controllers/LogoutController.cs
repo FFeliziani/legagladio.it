@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using BusinessLogic;
 
 namespace LegaGladio.Controllers
 {
@@ -11,9 +8,9 @@ namespace LegaGladio.Controllers
     {
         // GET api/logout
         [AcceptVerbs("GET", "POST")]
-        public void logout(String token)
+        public void Logout(String token)
         {
-            BusinessLogic.LoginManager.Logout(token);
+            LoginManager.Logout(token);
         }
     }
 }

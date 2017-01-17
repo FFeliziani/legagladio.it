@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
+using BusinessLogic;
+using LegaGladio.Models;
 
 namespace LegaGladio.Controllers
 {
@@ -12,9 +9,9 @@ namespace LegaGladio.Controllers
         [HttpPost]
         [ActionName("login")]
         [AcceptVerbs("POST")]
-        public string login([FromBody]Models.LoginData loginData)
+        public string Login([FromBody]LoginData loginData)
         {
-            return LegaGladio.BusinessLogic.LoginManager.Login(loginData.username, loginData.password);
+            return LoginManager.Login(loginData.Username, loginData.Password);
         }
     }
 }

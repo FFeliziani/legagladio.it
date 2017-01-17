@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using BusinessLogic;
+using Race = LegaGladio.Entities.Race;
 
 namespace LegaGladio.Controllers
 {
@@ -12,34 +11,34 @@ namespace LegaGladio.Controllers
         // GET api/race
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public IEnumerable<LegaGladio.Entities.Race> Get()
+        [ActionName("Get")]
+        public IEnumerable<Race> Get()
         {
-            return LegaGladio.BusinessLogic.Race.list();
+            return BusinessLogic.Race.List();
         }
 
         // GET api/race/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public LegaGladio.Entities.Race Get(int id)
+        [ActionName("Get")]
+        public Race Get(int id)
         {
-            return LegaGladio.BusinessLogic.Race.get(id);
+            return BusinessLogic.Race.Get(id);
         }
 
         // POST api/race
         [HttpPost]
         [ActionName("post")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Race race)
+        public void Post([FromUri]String token, [FromBody]Race race)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Race.newRace(race);
+                BusinessLogic.Race.NewRace(race);
             }
             else
             {
@@ -51,15 +50,15 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [ActionName("put")]
         [AcceptVerbs("PUT")]
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Race race)
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]Race race)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Race.updateRace(race, id);
+                BusinessLogic.Race.UpdateRace(race, id);
             }
             else
             {
@@ -77,9 +76,9 @@ namespace LegaGladio.Controllers
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Race.deleteRace(id);
+                BusinessLogic.Race.DeleteRace(id);
             }
             else
             {

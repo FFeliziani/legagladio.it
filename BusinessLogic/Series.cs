@@ -1,103 +1,101 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NLog;
 
-namespace LegaGladio.BusinessLogic
+namespace BusinessLogic
 {
-    public class Series
+    public static class Series
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
 
         
-        public static List<LegaGladio.Entities.Series> list(LegaGladio.Entities.League league)
+        public static List<LegaGladio.Entities.Series> List(LegaGladio.Entities.League league)
         {
             try
             {
-                return DataAccessLayer.Series.listSeries(league);
+                return DataAccessLayer.Series.ListSeries(league);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing players");
-                throw ex;
+                Logger.Error(ex, "Error while listing players");
+                throw;
             }
         }
 
-        public static LegaGladio.Entities.Series get(int id)
+        public static LegaGladio.Entities.Series Get(int id)
         {
             try
             {
-                return DataAccessLayer.Series.getSeries(id);
+                return DataAccessLayer.Series.GetSeries(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while getting players");
-                throw ex;
+                Logger.Error(ex, "Error while getting players");
+                throw;
             }
         }
 
-        public static void addSeriesToLeague(Int32 seriesId, Int32 leagueId)
+        public static void AddSeriesToLeague(Int32 seriesId, Int32 leagueId)
         {
             try
             {
-                DataAccessLayer.Series.addSeriesToLeague(seriesId, leagueId);
+                DataAccessLayer.Series.AddSeriesToLeague(seriesId, leagueId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while adding series to league");
-                throw ex;
+                Logger.Error(ex, "Error while adding series to league");
+                throw;
             }
         }
 
-        public static void removeSeriesFromLeague(Int32 seriesId, Int32 leagueId)
+        public static void RemoveSeriesFromLeague(Int32 seriesId, Int32 leagueId)
         {
             try
             {
-                DataAccessLayer.Series.removeSeriesFromLeague(seriesId, leagueId);
+                DataAccessLayer.Series.RemoveSeriesFromLeague(seriesId, leagueId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while removing series from league");
+                Logger.Error(ex, "Error while removing series from league");
             }
         }
 
-        public static void newSeries(LegaGladio.Entities.Series series)
+        public static void NewSeries(LegaGladio.Entities.Series series)
         {
             try
             {
-                DataAccessLayer.Series.newSeries(series);
+                DataAccessLayer.Series.NewSeries(series);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while creating players");
-                throw ex;
+                Logger.Error(ex, "Error while creating players");
+                throw;
             }
         }
 
-        public static void updateSeries(LegaGladio.Entities.Series series, int oldID)
+        public static void UpdateSeries(LegaGladio.Entities.Series series, int oldId)
         {
             try
             {
-                DataAccessLayer.Series.updateSeries(series, oldID);
+                DataAccessLayer.Series.UpdateSeries(series, oldId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while updating players");
-                throw ex;
+                Logger.Error(ex, "Error while updating players");
+                throw;
             }
         }
 
-        public static void deleteSeries(int id)
+        public static void DeleteSeries(int id)
         {
             try
             {
-                DataAccessLayer.Series.deleteSeries(id);
+                DataAccessLayer.Series.DeleteSeries(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while deleting players");
-                throw ex;
+                Logger.Error(ex, "Error while deleting players");
+                throw;
             }
         }
     }

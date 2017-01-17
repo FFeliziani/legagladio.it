@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using BusinessLogic;
+using LegaGladio.Models;
+using Skill = LegaGladio.Entities.Skill;
 
 namespace LegaGladio.Controllers
 {
@@ -13,32 +13,32 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
-        public IEnumerable<LegaGladio.Entities.Skill> Get()
+        public IEnumerable<Skill> Get()
         {
-            return LegaGladio.BusinessLogic.Skill.list();
+            return BusinessLogic.Skill.List();
         }
 
         // GET api/<controller>/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
-        public LegaGladio.Entities.Skill Get(int id)
+        public Skill Get(int id)
         {
-            return LegaGladio.BusinessLogic.Skill.get(id);
+            return BusinessLogic.Skill.Get(id);
         }
 
         [HttpPost]
         [ActionName("addSkillToPlayer")]
         [AcceptVerbs("POST")]
-        public void AddSkillToPlayer([FromUri]String token, [FromBody]Models.AddItemsData addItemsData)
+        public void AddSkillToPlayer([FromUri]String token, [FromBody]AddItemsData addItemsData)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Skill.addSkillToPlayer(Convert.ToInt32(addItemsData.id2), Convert.ToInt32(addItemsData.id1));
+                BusinessLogic.Skill.AddSkillToPlayer(Convert.ToInt32(addItemsData.Id2), Convert.ToInt32(addItemsData.Id1));
             }
             else
             {
@@ -49,15 +49,15 @@ namespace LegaGladio.Controllers
         [HttpPost]
         [ActionName("removeSkillFromPlayer")]
         [AcceptVerbs("POST")]
-        public void RemoveSkillFromPlayer([FromUri]String token, [FromBody]Models.AddItemsData addItemsData)
+        public void RemoveSkillFromPlayer([FromUri]String token, [FromBody]AddItemsData addItemsData)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Skill.removeSkillFromPlayer(Convert.ToInt32(addItemsData.id2), Convert.ToInt32(addItemsData.id1));
+                BusinessLogic.Skill.RemoveSkillFromPlayer(Convert.ToInt32(addItemsData.Id2), Convert.ToInt32(addItemsData.Id1));
             }
             else
             {
@@ -69,15 +69,15 @@ namespace LegaGladio.Controllers
         [HttpPost]
         [ActionName("post")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Skill skill)
+        public void Post([FromUri]String token, [FromBody]Skill skill)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Skill.newSkill(skill);
+                BusinessLogic.Skill.NewSkill(skill);
             }
             else
             {
@@ -89,15 +89,15 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [ActionName("put")]
         [AcceptVerbs("PUT")]
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Skill skill)
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]Skill skill)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Skill.updateSkill(skill, id);
+                BusinessLogic.Skill.UpdateSkill(skill, id);
             }
             else
             {
@@ -115,9 +115,9 @@ namespace LegaGladio.Controllers
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Skill.deleteSkill(id);
+                BusinessLogic.Skill.DeleteSkill(id);
             }
             else
             {

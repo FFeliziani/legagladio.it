@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace LegaGladio.Entities
 {
@@ -18,9 +16,11 @@ namespace LegaGladio.Entities
         public int SpGuest { get; set; }
         public int EarningHome { get; set; }
         public int EarningGuest { get; set; }
-        public int VarFFHome { get; set; }
-        public int VarFFGuest { get; set; }
+        public int VarFfHome { get; set; }
+        public int VarFfGuest { get; set; }
         public String Notes { get; set; }
+/*
         public List<GameAction> ListGameAction { get; set; }
+*/
     }
 }

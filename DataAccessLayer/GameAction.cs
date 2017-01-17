@@ -1,125 +1,72 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using DataAccessLayer.LegaGladioDSTableAdapters;
 
 namespace DataAccessLayer
 {
     class GameAction
     {
-        public static LegaGladio.Entities.GameAction getGameAction(Int32 id)
+        public static LegaGladio.Entities.GameAction GetGameAction(Int32 id)
         {
-            LegaGladioDSTableAdapters.game_actionTableAdapter gata = null;
-            LegaGladioDS.game_actionDataTable gadt = null;
-            LegaGladio.Entities.GameAction ga = null;
-            LegaGladioDS.game_actionRow gar = null;
-
-            try
-            {
-                gata = new LegaGladioDSTableAdapters.game_actionTableAdapter();
-                gadt = new LegaGladioDS.game_actionDataTable();
-                ga = new LegaGladio.Entities.GameAction();
-                gata.FillById(gadt, id);
-                if (gadt.Rows.Count != 1)
-                {
-                    throw new ArgumentException("Wrong number of GameActions returned");
-                }
-                gar = (LegaGladioDS.game_actionRow)gadt.Rows[0];
-                ga.Game = Game.getGame(gar.gameID);
-                ga.Action = Action.getAction(gar.actionID);
-                ga.Team = Team.getTeam(gar.teamID);
-                ga.Player = Player.getPlayer(gar.playerID);
-                ga.Id = gar.id;
-                ga.Notes = gar.notes;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                gata = null;
-                gadt = null;
-            }
+            var gata = new game_actionTableAdapter();
+            var gadt = new LegaGladioDS.game_actionDataTable();
+            var ga = new LegaGladio.Entities.GameAction();
+            gata.FillById(gadt, id);
+            if (gadt.Rows.Count != 1) throw new ArgumentException("Wrong number of GameActions returned");
+            var gar = (LegaGladioDS.game_actionRow) gadt.Rows[0];
+            ga.Game = Game.GetGame(gar.gameID);
+            ga.Action = Action.GetAction(gar.actionID);
+            ga.Team = Team.GetTeam(gar.teamID);
+            ga.Player = Player.GetPlayer(gar.playerID);
+            ga.Id = gar.id;
+            ga.Notes = gar.notes;
             return ga;
         }
 
-        public static List<LegaGladio.Entities.GameAction> getGameAction(LegaGladio.Entities.Game game)
+        public static List<LegaGladio.Entities.GameAction> GetGameAction(LegaGladio.Entities.Game game)
         {
-            LegaGladioDSTableAdapters.game_actionTableAdapter gata = null;
-            LegaGladioDS.game_actionDataTable gadt = null;
-            List<LegaGladio.Entities.GameAction> gaL = null;
-
-            try
-            {
-                gata = new LegaGladioDSTableAdapters.game_actionTableAdapter();
-                gadt = new LegaGladioDS.game_actionDataTable();
-                gaL = new List<LegaGladio.Entities.GameAction>();
-                gata.FillByGameId(gadt, game.Id);
-                if (gadt.Rows.Count < 1)
+            var gata = new game_actionTableAdapter();
+            var gadt = new LegaGladioDS.game_actionDataTable();
+            gata.FillByGameId(gadt, game.Id);
+            if (gadt.Rows.Count < 1) throw new ArgumentException("Wrong number of GameActions returned");
+            var gaL = (from LegaGladioDS.game_actionRow gar in gadt.Rows
+                select new LegaGladio.Entities.GameAction
                 {
-                    throw new ArgumentException("Wrong number of GameActions returned");
-                }
-                foreach (LegaGladioDS.game_actionRow gar in gadt.Rows)
-                {
-                    LegaGladio.Entities.GameAction ga = new LegaGladio.Entities.GameAction();
-                    ga.Game = Game.getGame(gar.gameID);
-                    ga.Action = Action.getAction(gar.actionID);
-                    ga.Team = Team.getTeam(gar.teamID);
-                    ga.Player = Player.getPlayer(gar.playerID);
-                    ga.Id = gar.id;
-                    ga.Notes = gar.notes;
-                    gaL.Add(ga);
-                }
-                
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                gata = null;
-                gadt = null;
-            }
+                    Game = Game.GetGame(gar.gameID),
+                    Action = Action.GetAction(gar.actionID),
+                    Team = Team.GetTeam(gar.teamID),
+                    Player = Player.GetPlayer(gar.playerID),
+                    Id = gar.id,
+                    Notes = gar.notes
+                }).ToList();
             return gaL;
         }
 
-        public static void newGameAction(LegaGladio.Entities.GameAction ga)
+        public static void NewGameAction(LegaGladio.Entities.GameAction ga)
         {
-            LegaGladioDSTableAdapters.game_actionTableAdapter gata = new LegaGladioDSTableAdapters.game_actionTableAdapter();
+            var gata = new game_actionTableAdapter();
 
-            try
-            {
-                gata.Insert(ga.Game.Id, ga.Action.Id, ga.Team.Id, ga.Player.Id, ga.Notes);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                gata = null;
-            }
+            gata.Insert(ga.Game.Id, ga.Action.Id, ga.Team.Id, ga.Player.Id, ga.Notes);
 
-            LegaGladio.Entities.Player p = Player.getPlayer(ga.Player.Id);
-            LegaGladio.Entities.Action a = Action.getAction(ga.Action.Id);
+            var p = Player.GetPlayer(ga.Player.Id);
+            var a = Action.GetAction(ga.Action.Id);
 
             p.Spp += a.Spp;
 
-            Player.updatePlayer(p, p.Id);
+            Player.UpdatePlayer(p, p.Id);
         }
 
-        public static void updateGameAction(LegaGladio.Entities.GameAction ga, Int32 oldId)
+        public static void UpdateGameAction(LegaGladio.Entities.GameAction ga, Int32 oldId)
         {
-            LegaGladioDSTableAdapters.game_actionTableAdapter gata = new LegaGladioDSTableAdapters.game_actionTableAdapter();
+            var gata = new game_actionTableAdapter();
 
             gata.Update(ga.Game.Id, ga.Action.Id, ga.Team.Id, ga.Player.Id, ga.Notes, oldId);
         }
 
-        public static void deleteGameAction(Int32 id)
+        public static void DeleteGameAction(Int32 id)
         {
-            LegaGladioDSTableAdapters.game_actionTableAdapter gata = new LegaGladioDSTableAdapters.game_actionTableAdapter();
+            var gata = new game_actionTableAdapter();
 
             gata.Delete(id);
         }

@@ -1,64 +1,62 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NLog;
 
-namespace LegaGladio.BusinessLogic
+namespace BusinessLogic
 {
-    public class AfterGameEvent
+    public static class AfterGameEvent
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
         
-        public static List<LegaGladio.Entities.AfterGameEvent> getAfterGameEvent(LegaGladio.Entities.Game game)
+        public static List<LegaGladio.Entities.AfterGameEvent> GetAfterGameEvent(LegaGladio.Entities.Game game)
         {
             try
             {
-                return DataAccessLayer.AfterGameEvent.getAfterGameEvent(game);
+                return DataAccessLayer.AfterGameEvent.GetAfterGameEvent(game);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while getting after game events");
-                throw ex;
+                Logger.Error(ex, "Error while getting after game events");
+                throw;
             }
         }
 
-        public static void newAfterGameEvent(LegaGladio.Entities.AfterGameEvent afterGameEvent)
+        public static void NewAfterGameEvent(LegaGladio.Entities.AfterGameEvent afterGameEvent)
         {
             try
             {
-                DataAccessLayer.AfterGameEvent.newAfterGameEvent(afterGameEvent);
+                DataAccessLayer.AfterGameEvent.NewAfterGameEvent(afterGameEvent);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while creating a new after game event");
-                throw ex;
+                Logger.Error(ex, "Error while creating a new after game event");
+                throw;
             }
         }
 
-        public static void updateAfterGameEvent(LegaGladio.Entities.AfterGameEvent afterGameEvent, Int32 oldId)
+        public static void UpdateAfterGameEvent(LegaGladio.Entities.AfterGameEvent afterGameEvent, Int32 oldId)
         {
             try
             {
-                DataAccessLayer.AfterGameEvent.updateAfterGameEvent(afterGameEvent, oldId);
+                DataAccessLayer.AfterGameEvent.UpdateAfterGameEvent(afterGameEvent, oldId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while updating an after game event");
-                throw ex;
+                Logger.Error(ex, "Error while updating an after game event");
+                throw;
             }
         }
 
-        public static void deleteAfterGameEvent(Int32 id)
+        public static void DeleteAfterGameEvent(Int32 id)
         {
             try
             {
-                DataAccessLayer.AfterGameEvent.deleteAfterGameEvent(id);
+                DataAccessLayer.AfterGameEvent.DeleteAfterGameEvent(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while deleting an after game event");
-                throw ex;
+                Logger.Error(ex, "Error while deleting an after game event");
+                throw;
             }
         }
     }

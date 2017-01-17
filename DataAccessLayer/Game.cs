@@ -1,224 +1,107 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using DataAccessLayer.LegaGladioDSTableAdapters;
 
 namespace DataAccessLayer
 {
-    public class Game
+    public static class Game
     {
-        public static LegaGladio.Entities.Game getGame(int id)
+        public static LegaGladio.Entities.Game GetGame(int id)
         {
-            LegaGladio.Entities.Game game = null;
-            LegaGladioDS.gameDataTable gtd = null;
-            LegaGladioDSTableAdapters.gameTableAdapter gta = null;
-            LegaGladioDS.gameRow gameRow = null;
-            try
-            {
-                game = new LegaGladio.Entities.Game();
-                gtd = new LegaGladioDS.gameDataTable();
-                gta = new LegaGladioDSTableAdapters.gameTableAdapter();
-                gta.FillById(gtd, id);
-                gameRow = (LegaGladioDS.gameRow)gtd.Rows[0];
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            gta = null;
-            gtd = null;
+            var game = new LegaGladio.Entities.Game();
+            var gtd = new LegaGladioDS.gameDataTable();
+            var gta = new gameTableAdapter();
+            gta.FillById(gtd, id);
             return game;
         }
 
-        public static List<LegaGladio.Entities.Game> listGame()
+        public static List<LegaGladio.Entities.Game> ListGame()
         {
-            LegaGladioDS.gameDataTable gdt = new LegaGladioDS.gameDataTable();
-            LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
-            try
-            {
-                gta.Fill(gdt);
-            }
-            catch (Exception ex)
-            {
-                gdt.GetErrors();
-                throw ex;
-            }
-            List<LegaGladio.Entities.Game> gameList = new List<LegaGladio.Entities.Game>();
-            foreach (LegaGladioDS.gameRow gr in gdt.Rows)
-            {
-                LegaGladio.Entities.Game game = new LegaGladio.Entities.Game();
-                game.Id = gr.id;
-                game.Home = Team.getTeam(gr.homeID);
-                game.Guest = Team.getTeam(gr.guestID);
-                game.TdHome = gr.tdHome;
-                game.TdGuest = gr.tdGuest;
-                game.CasHome = gr.casHome;
-                game.CasGuest = gr.casGuest;
-                game.SpHome = gr.spHome;
-                game.SpGuest = gr.spGuest;
-                game.EarningHome = gr.earningHome;
-                game.EarningGuest = gr.earningGuest;
-                game.VarFFHome = gr.varFFHome;
-                game.VarFFGuest = gr.varFFGuest;
-                gameList.Add(game);
-            }
-            gta = null;
-            gdt = null;
-            return gameList;
-        }
-
-        public static List<LegaGladio.Entities.Game> listGame(LegaGladio.Entities.Team team)
-        {
-            LegaGladioDS.gameDataTable gdt = new LegaGladioDS.gameDataTable();
-            LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
-            try
-            {
-                gta.FillByTeamId(gdt, team.Id);
-            }
-            catch (Exception ex)
-            {
-                gdt.GetErrors();
-                throw ex;
-            }
-            List<LegaGladio.Entities.Game> gameList = new List<LegaGladio.Entities.Game>();
-            foreach (LegaGladioDS.gameRow gr in gdt.Rows)
-            {
-                LegaGladio.Entities.Game game = new LegaGladio.Entities.Game();
-                game.Id = gr.id;
-                game.Home = Team.getTeam(gr.homeID);
-                game.Guest = Team.getTeam(gr.guestID);
-                game.TdHome = gr.tdHome;
-                game.TdGuest = gr.tdGuest;
-                game.CasHome = gr.casHome;
-                game.CasGuest = gr.casGuest;
-                game.SpHome = gr.spHome;
-                game.SpGuest = gr.spGuest;
-                game.EarningHome = gr.earningHome;
-                game.EarningGuest = gr.earningGuest;
-                game.VarFFHome = gr.varFFHome;
-                game.VarFFGuest = gr.varFFGuest;
-                gameList.Add(game);
-            }
-            gta = null;
-            gdt = null;
-            return gameList;
-        }
-
-        public static List<LegaGladio.Entities.Game> listGame(LegaGladio.Entities.Coach coach)
-        {
-            LegaGladioDS.gameDataTable gdt = new LegaGladioDS.gameDataTable();
-            LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
-            try
-            {
-                gta.FillByCoachId(gdt, coach.Id);
-            }
-            catch (Exception ex)
-            {
-                gdt.GetErrors();
-                throw ex;
-            }
-            List<LegaGladio.Entities.Game> gameList = new List<LegaGladio.Entities.Game>();
-            foreach (LegaGladioDS.gameRow gr in gdt.Rows)
-            {
-                LegaGladio.Entities.Game game = new LegaGladio.Entities.Game();
-                game.Id = gr.id;
-                game.Home = Team.getTeam(gr.homeID);
-                game.Guest = Team.getTeam(gr.guestID);
-                game.TdHome = gr.tdHome;
-                game.TdGuest = gr.tdGuest;
-                game.CasHome = gr.casHome;
-                game.CasGuest = gr.casGuest;
-                game.SpHome = gr.spHome;
-                game.SpGuest = gr.spGuest;
-                game.EarningHome = gr.earningHome;
-                game.EarningGuest = gr.earningGuest;
-                game.VarFFHome = gr.varFFHome;
-                game.VarFFGuest = gr.varFFGuest;
-                gameList.Add(game);
-            }
-            gta = null;
-            gdt = null;
-            return gameList;
-        }
-
-        public static List<LegaGladio.Entities.Game> listGame(LegaGladio.Entities.Round round)
-        {
-            LegaGladioDSTableAdapters.gameTableAdapter gta = null;
-            LegaGladioDS.gameDataTable gdt = null;
-            List<LegaGladio.Entities.Game> gL = null;
-
-            try
-            {
-                gta = new LegaGladioDSTableAdapters.gameTableAdapter();
-                gdt = new LegaGladioDS.gameDataTable();
-                gL = new List<LegaGladio.Entities.Game>();
-
-                gta.FillByRoundId(gdt, round.Id);
-
-                foreach (LegaGladioDS.gameRow gr in gdt.Rows)
+            var gdt = new LegaGladioDS.gameDataTable();
+            var gta = new gameTableAdapter();
+            gta.Fill(gdt);
+            var gameList = (from LegaGladioDS.gameRow gr in gdt.Rows
+                select new LegaGladio.Entities.Game
                 {
-                    LegaGladio.Entities.Game game = new LegaGladio.Entities.Game();
-                    game.Id = gr.id;
-                    game.Home = Team.getTeam(gr.homeID);
-                    game.Guest = Team.getTeam(gr.guestID);
-                    game.TdHome = gr.tdHome;
-                    game.TdGuest = gr.tdGuest;
-                    game.CasHome = gr.casHome;
-                    game.CasGuest = gr.casGuest;
-                    game.SpHome = gr.spHome;
-                    game.SpGuest = gr.spGuest;
-                    game.EarningHome = gr.earningHome;
-                    game.EarningGuest = gr.earningGuest;
-                    game.VarFFHome = gr.varFFHome;
-                    game.VarFFGuest = gr.varFFGuest;
-                    gL.Add(game);
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            finally
-            {
-                gta = null;
-                gdt = null;
-            }
+                    Id = gr.id, Home = Team.GetTeam(gr.homeID), Guest = Team.GetTeam(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
+                }).ToList();
+            return gameList;
+        }
+
+        public static List<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Team team)
+        {
+            var gdt = new LegaGladioDS.gameDataTable();
+            var gta = new gameTableAdapter();
+            gta.FillByTeamId(gdt, team.Id);
+            var gameList = (from LegaGladioDS.gameRow gr in gdt.Rows
+                select new LegaGladio.Entities.Game
+                {
+                    Id = gr.id, Home = Team.GetTeam(gr.homeID), Guest = Team.GetTeam(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
+                }).ToList();
+            return gameList;
+        }
+
+        public static List<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Coach coach)
+        {
+            var gdt = new LegaGladioDS.gameDataTable();
+            var gta = new gameTableAdapter();
+            gta.FillByCoachId(gdt, coach.Id);
+            var gameList = (from LegaGladioDS.gameRow gr in gdt.Rows
+                select new LegaGladio.Entities.Game
+                {
+                    Id = gr.id, Home = Team.GetTeam(gr.homeID), Guest = Team.GetTeam(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
+                }).ToList();
+            return gameList;
+        }
+
+        public static List<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Round round)
+        {
+            var gta = new gameTableAdapter();
+            var gdt = new LegaGladioDS.gameDataTable();
+
+            gta.FillByRoundId(gdt, round.Id);
+
+            var gL = (from LegaGladioDS.gameRow gr in gdt.Rows
+                select new LegaGladio.Entities.Game
+                {
+                    Id = gr.id, Home = Team.GetTeam(gr.homeID), Guest = Team.GetTeam(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
+                }).ToList();
 
             return gL;
         }
 
-        public static void addGametoRound(Int32 gameId, Int32 roundId)
+        public static void AddGametoRound(Int32 gameId, Int32 roundId)
         {
-            LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
+            var gta = new gameTableAdapter();
 
             gta.AddGameToRound(roundId, gameId);
         }
 
-        public static void removeGameFromRound(Int32 gameId, Int32 roundId)
+        public static void RemoveGameFromRound(Int32 gameId, Int32 roundId)
         {
-            LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
+            var gta = new gameTableAdapter();
 
             gta.RemoveGameFromRound(gameId, roundId);
         }
 
-        public static void newGame(LegaGladio.Entities.Game game)
+        public static void NewGame(LegaGladio.Entities.Game game)
         {
-            LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
+            var gta = new gameTableAdapter();
 
-            gta.Insert(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFFHome, game.VarFFGuest, game.Notes);
+            gta.Insert(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFfHome, game.VarFfGuest, game.Notes);
         }
 
-        public static void updateGame(LegaGladio.Entities.Game game, Int32 oldId)
+        public static void UpdateGame(LegaGladio.Entities.Game game, Int32 oldId)
         {
-            LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
+            var gta = new gameTableAdapter();
 
-            gta.Update(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFFHome, game.VarFFGuest, game.Notes, oldId);
+            gta.Update(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFfHome, game.VarFfGuest, game.Notes, oldId);
         }
 
-        public static void deleteGame(Int32 id)
+        public static void DeleteGame(Int32 id)
         {
-            LegaGladioDSTableAdapters.gameTableAdapter gta = new LegaGladioDSTableAdapters.gameTableAdapter();
+            var gta = new gameTableAdapter();
 
             gta.Delete(id);
         }

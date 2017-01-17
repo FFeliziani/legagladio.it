@@ -1,204 +1,124 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LegaGladio;
+using DataAccessLayer.LegaGladioDSTableAdapters;
 
 namespace DataAccessLayer
 {
-    public class Coach
+    public static class Coach
     {
-        public static int countCoach()
+        public static int CountCoach()
         {
-            LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
-            int count = (int)cta.Count();
-            cta = null;
+            var cta = new coachTableAdapter();
+            var count = (int)cta.Count();
             return count;
         }
 
-        public static List<LegaGladio.Entities.Coach> listCoach()
+        public static List<LegaGladio.Entities.Coach> ListCoach()
         {
-            LegaGladioDS.coachDataTable cdt = new LegaGladioDS.coachDataTable();
-            LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
-            try
+            var cdt = new LegaGladioDS.coachDataTable();
+            var cta = new coachTableAdapter();
+            cta.Fill(cdt);
+            var coachList = new List<LegaGladio.Entities.Coach>();
+            foreach (var coach in from LegaGladioDS.coachRow cr in cdt.Rows select new LegaGladio.Entities.Coach
             {
-                cta.Fill(cdt);
-            }
-            catch (Exception ex)
+                Id = cr.id,
+                NafId = cr.nafID,
+                Name = cr.name,
+                Notes = cr.note,
+                Active = cr.active == 1,
+                NafNick = cr.nafNick,
+                Value = cr.value
+            })
             {
-                cdt.GetErrors();
-                throw ex;
-            }
-            List<LegaGladio.Entities.Coach> coachList = new List<LegaGladio.Entities.Coach>();
-            foreach (LegaGladioDS.coachRow cr in cdt.Rows)
-            {
-                LegaGladio.Entities.Coach coach = new LegaGladio.Entities.Coach();
-                coach.Id = cr.id;
-                coach.NafID = cr.nafID;
-                coach.Name = cr.name;
-                coach.Notes = cr.note;
-                coach.Active = cr.active == 1;
-                coach.NafNick = cr.nafNick;
-                coach.Value = cr.value;
-                coach.ListTeam = Team.listTeam(coach.Id);
+                coach.ListTeam = Team.ListTeam(coach.Id);
                 coachList.Add(coach);
             }
-            cta = null;
-            cdt = null;
             return coachList;
         }
 
-        public static List<LegaGladio.Entities.Coach> listCoach(Boolean active)
+        public static List<LegaGladio.Entities.Coach> ListCoach(Boolean active)
         {
-            LegaGladioDS.coachDataTable cdt = new LegaGladioDS.coachDataTable();
-            LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
+            var cdt = new LegaGladioDS.coachDataTable();
+            var cta = new coachTableAdapter();
             cta.FillByActive(cdt, active ? 1 : 0);
-            List<LegaGladio.Entities.Coach> coachList = new List<LegaGladio.Entities.Coach>();
-            foreach (LegaGladioDS.coachRow cr in cdt.Rows)
+            var coachList = new List<LegaGladio.Entities.Coach>();
+            foreach (var coach in from LegaGladioDS.coachRow cr in cdt.Rows select new LegaGladio.Entities.Coach
             {
-                try
-                {
-                    LegaGladio.Entities.Coach coach = new LegaGladio.Entities.Coach();
-                    coach.Id = cr.id;
-                    coach.NafID = cr.nafID;
-                    coach.Name = cr.name;
-                    coach.Notes = cr.note;
-                    coach.Active = cr.active == 1;
-                    coach.NafNick = cr.nafNick;
-                    coach.Value = cr.value;
-                    coach.ListTeam = Team.listTeam(coach.Id);
-                    coachList.Add(coach);
-                }
-                catch (Exception ex)
-                {
-                    throw ex;
-                }
+                Id = cr.id,
+                NafId = cr.nafID,
+                Name = cr.name,
+                Notes = cr.note,
+                Active = cr.active == 1,
+                NafNick = cr.nafNick,
+                Value = cr.value
+            })
+            {
+                coach.ListTeam = Team.ListTeam(coach.Id);
+                coachList.Add(coach);
             }
-            cta = null;
-            cdt = null;
             return coachList;
         }
 
-        public static LegaGladio.Entities.Coach getCoach(int id)
+        public static LegaGladio.Entities.Coach GetCoach(int id)
         {
-            LegaGladio.Entities.Coach coach = null;
-            LegaGladioDS.coachDataTable ctd = null;
-            LegaGladioDSTableAdapters.coachTableAdapter cta = null;
-            LegaGladioDS.coachRow coachRow = null;
-            try
-            {
-                coach = new LegaGladio.Entities.Coach();
-                ctd = new LegaGladioDS.coachDataTable();
-                cta = new LegaGladioDSTableAdapters.coachTableAdapter();
-                cta.FillById(ctd, id);
-                coachRow = (LegaGladioDS.coachRow)ctd.Rows[0];
-                coach.Id = coachRow.id;
-                coach.ListTeam = Team.listTeam(coach.Id);
-                coach.NafID = coachRow.nafID;
-                coach.NafNick = coachRow.nafNick;
-                coach.Name = coachRow.name;
-                coach.Notes = coachRow.note;
-                coach.Active = coachRow.active == 1;
-                coach.Value = coachRow.value;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            cta = null;
-            ctd = null;
+            var coach = new LegaGladio.Entities.Coach();
+            var ctd = new LegaGladioDS.coachDataTable();
+            var cta = new coachTableAdapter();
+            cta.FillById(ctd, id);
+            var coachRow = (LegaGladioDS.coachRow)ctd.Rows[0];
+            coach.Id = coachRow.id;
+            coach.ListTeam = Team.ListTeam(coach.Id);
+            coach.NafId = coachRow.nafID;
+            coach.NafNick = coachRow.nafNick;
+            coach.Name = coachRow.name;
+            coach.Notes = coachRow.note;
+            coach.Active = coachRow.active == 1;
+            coach.Value = coachRow.value;
             return coach;
         }
 
-        public static List<LegaGladio.Entities.Coach> getSimple()
+        public static List<LegaGladio.Entities.Coach> GetSimple()
         {
-            LegaGladioDS.coachDataTable cdt = new LegaGladioDS.coachDataTable();
-            LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
-            try
-            {
-                cta.FillSimple(cdt);
-            }
-            catch (Exception ex)
-            {
-                cdt.GetErrors();
-                throw ex;
-            }
-            List<LegaGladio.Entities.Coach> coachList = new List<LegaGladio.Entities.Coach>();
-            foreach (LegaGladioDS.coachRow cr in cdt.Rows)
-            {
-                LegaGladio.Entities.Coach coach = new LegaGladio.Entities.Coach();
-                coach.Id = cr.id;
-                coach.Name = cr.name;
-                coachList.Add(coach);
-            }
-            cta = null;
-            cdt = null;
+            var cdt = new LegaGladioDS.coachDataTable();
+            var cta = new coachTableAdapter();
+            cta.FillSimple(cdt);
+            var coachList = (from LegaGladioDS.coachRow cr in cdt.Rows select new LegaGladio.Entities.Coach {Id = cr.id, Name = cr.name}).ToList();
             return coachList;
         }
 
-        public static String getCoachName(int teamID)
+        public static String GetCoachName(int teamId)
         {
-            LegaGladioDSTableAdapters.coachTableAdapter cta = null;
-            String coachName = null;
-            try
-            {
-                cta = new LegaGladioDSTableAdapters.coachTableAdapter();
-                coachName = cta.GetCoachName(teamID).ToString();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            var cta = new coachTableAdapter();
+            var coachName = cta.GetCoachName(teamId).ToString();
             return coachName;
         }
 
-        public static Int32 getCoachId(int teamID)
+        public static Int32 GetCoachId(int teamId)
         {
-            LegaGladioDSTableAdapters.coachTableAdapter cta = null;
-            Int32 coachId = 0;
-            try
-            {
-                cta = new LegaGladioDSTableAdapters.coachTableAdapter();
-                coachId = Convert.ToInt32(cta.GetCoachId(teamID));
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            var cta = new coachTableAdapter();
+            var coachId = Convert.ToInt32(cta.GetCoachId(teamId));
             return coachId;
         }
 
-        public static Boolean newCoach(LegaGladio.Entities.Coach coach)
+        public static Boolean NewCoach(LegaGladio.Entities.Coach coach)
         {
-            LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
-            int result = cta.Insert(coach.Name, coach.Value, coach.NafID, coach.Notes, coach.Active ? 1 : 0, coach.NafNick);
-            cta = null;
+            var cta = new coachTableAdapter();
+            var result = cta.Insert(coach.Name, coach.Value, coach.NafId, coach.Notes, coach.Active ? 1 : 0, coach.NafNick);
             return result > 0;
         }
 
-        public static void updateCoach(LegaGladio.Entities.Coach coach, int oldID)
+        public static void UpdateCoach(LegaGladio.Entities.Coach coach, int oldId)
         {
-            LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
+            var cta = new coachTableAdapter();
 
-            cta.Update(coach.Name, coach.Value, coach.NafID, coach.Notes, coach.Active ? 1 : 0, coach.NafNick, oldID);
-            //LegaGladioDS.coachDataTable cdt = new LegaGladioDS.coachDataTable();
-            //LegaGladioDS.coachRow cr = (LegaGladioDS.coachRow)cdt.NewRow();
-            //cr.id = oldID;
-            //cr.name = coach.Name;
-            //cr.active = coach.Active;
-            //cr.nafID = coach.NafID;
-            //cr.nafNick = coach.NafNick;
-            //cr.note = coach.Notes;
-            //cr.value = coach.Value;
-            //int result = cta.Update(cr);
+            cta.Update(coach.Name, coach.Value, coach.NafId, coach.Notes, coach.Active ? 1 : 0, coach.NafNick, oldId);
         }
 
-        public static Boolean deleteCoach(int id)
+        public static Boolean DeleteCoach(int id)
         {
-            LegaGladioDSTableAdapters.coachTableAdapter cta = new LegaGladioDSTableAdapters.coachTableAdapter();
-            int result = cta.Delete(id);
-            cta = null;
+            var cta = new coachTableAdapter();
+            var result = cta.Delete(id);
             return result > 0;
         }
     }

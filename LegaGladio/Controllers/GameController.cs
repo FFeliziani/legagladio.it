@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using BusinessLogic;
+using Coach = LegaGladio.Entities.Coach;
+using Game = LegaGladio.Entities.Game;
+using Round = LegaGladio.Entities.Round;
+using Team = LegaGladio.Entities.Team;
 
 namespace LegaGladio.Controllers
 {
@@ -13,57 +15,57 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
-        public IEnumerable<LegaGladio.Entities.Game> Get()
+        public IEnumerable<Game> Get()
         {
-            return BusinessLogic.Game.listGame();
+            return BusinessLogic.Game.ListGame();
         }
 
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByCoach")]
-        public IEnumerable<LegaGladio.Entities.Game> GetByCoach(int id)
+        public IEnumerable<Game> GetByCoach(int id)
         {
-            return BusinessLogic.Game.listGame(new LegaGladio.Entities.Coach() { Id = id });
+            return BusinessLogic.Game.ListGame(new Coach { Id = id });
         }
 
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByTeam")]
-        public IEnumerable<LegaGladio.Entities.Game> getByTeam(int id)
+        public IEnumerable<Game> GetByTeam(int id)
         {
-            return BusinessLogic.Game.listGame(new LegaGladio.Entities.Team() { Id = id });
+            return BusinessLogic.Game.ListGame(new Team { Id = id });
         }
 
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByRound")]
-        public IEnumerable<LegaGladio.Entities.Game> getByRound(int id)
+        public IEnumerable<Game> GetByRound(int id)
         {
-            return BusinessLogic.Game.listGame(new LegaGladio.Entities.Round() { Id = id });
+            return BusinessLogic.Game.ListGame(new Round { Id = id });
         }
 
         // GET api/game/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public LegaGladio.Entities.Game Get(int id)
+        [ActionName("Get")]
+        public Game Get(int id)
         {
-            return BusinessLogic.Game.get(id);
+            return BusinessLogic.Game.Get(id);
         }
 
         // POST api/game
         [HttpPost]
         [AcceptVerbs("POST")]
         [ActionName("POST")]
-        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Game data)
+        public void Post([FromUri]String token, [FromBody]Game data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Game.newGame(data);
+                BusinessLogic.Game.NewGame(data);
             }
             else
             {
@@ -75,15 +77,15 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [AcceptVerbs("PUT")]
         [ActionName("put")]
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Game data)
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]Game data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Game.updateGame(data, id);
+                BusinessLogic.Game.UpdateGame(data, id);
             }
             else
             {
@@ -101,9 +103,9 @@ namespace LegaGladio.Controllers
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Game.removeGame(id);
+                BusinessLogic.Game.RemoveGame(id);
             }
             else
             {

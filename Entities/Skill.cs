@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace LegaGladio.Entities
 {
@@ -11,6 +10,8 @@ namespace LegaGladio.Entities
 
         public SkillType SkillType { get; set; }
 
+/*
         public SkillCost SkillCost { get; set; }
+*/
     }
 }

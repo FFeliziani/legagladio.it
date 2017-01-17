@@ -1,104 +1,101 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NLog;
 
-namespace LegaGladio.BusinessLogic
+namespace BusinessLogic
 {
-    public class Positional
+    public static class Positional
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
         
-        public static int count()
+        public static int Count()
         {
             try
             {
-                return DataAccessLayer.Positional.countPositional();
+                return DataAccessLayer.Positional.CountPositional();
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while counting positionals");
-                throw ex;
+                Logger.Error(ex, "Error while counting positionals");
+                throw;
             }
         }
 
-        public static List<LegaGladio.Entities.Positional> list()
+        public static List<LegaGladio.Entities.Positional> List()
         {
             try
             {
-                return DataAccessLayer.Positional.listPositional();
+                return DataAccessLayer.Positional.ListPositional();
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing positionals");
-                throw ex;
+                Logger.Error(ex, "Error while listing positionals");
+                throw;
             }
         }
 
-        public static List<LegaGladio.Entities.Positional> listByRace(int raceId)
+        public static List<LegaGladio.Entities.Positional> ListByRace(int raceId)
         {
             try
             {
-                return DataAccessLayer.Positional.listPositionalByRace(raceId);
+                return DataAccessLayer.Positional.ListPositionalByRace(raceId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing positionals for race " + raceId);
-                throw ex;
+                Logger.Error(ex, "Error while listing positionals for race " + raceId);
+                throw;
             }
         }
 
-        public static LegaGladio.Entities.Positional get(int id)
+        public static LegaGladio.Entities.Positional Get(int id)
         {
             try
             {
-                return DataAccessLayer.Positional.getPositional(id);
+                return DataAccessLayer.Positional.GetPositional(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while getting positionals");
-                throw ex;
+                Logger.Error(ex, "Error while getting positionals");
+                throw;
             }
         }
 
-        public static Boolean newPositional(LegaGladio.Entities.Positional positional)
+        public static Boolean NewPositional(LegaGladio.Entities.Positional positional)
         {
             try
             {
-                return DataAccessLayer.Positional.newPositional(positional);
+                return DataAccessLayer.Positional.NewPositional(positional);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while creating positionals");
-                throw ex;
+                Logger.Error(ex, "Error while creating positionals");
+                throw;
             }
         }
 
-        public static Boolean updatePositional(LegaGladio.Entities.Positional positional, int oldID)
+        public static Boolean UpdatePositional(LegaGladio.Entities.Positional positional, int oldId)
         {
             try
             {
-                return DataAccessLayer.Positional.updatePositional(positional, oldID);
+                return DataAccessLayer.Positional.UpdatePositional(positional, oldId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while updating positionals");
-                throw ex;
+                Logger.Error(ex, "Error while updating positionals");
+                throw;
             }
         }
 
-        public static Boolean deletePositional(int id)
+        public static Boolean DeletePositional(int id)
         {
             try
             {
-                return DataAccessLayer.Positional.deletePositional(id);
+                return DataAccessLayer.Positional.DeletePositional(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while deleting positionals");
-                throw ex;
+                Logger.Error(ex, "Error while deleting positionals");
+                throw;
             }
         }
     }

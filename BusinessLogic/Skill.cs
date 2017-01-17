@@ -1,117 +1,114 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NLog;
 
-namespace LegaGladio.BusinessLogic
+namespace BusinessLogic
 {
-    public class Skill
+    public static class Skill
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static int count()
+        public static int Count()
         {
             try
             {
-                return DataAccessLayer.Skill.countSkill();
+                return DataAccessLayer.Skill.CountSkill();
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while counting skills");
-                throw ex;
+                Logger.Error(ex, "Error while counting skills");
+                throw;
             }
         }
 
-        public static List<LegaGladio.Entities.Skill> list()
+        public static List<LegaGladio.Entities.Skill> List()
         {
             try
             {
-                return DataAccessLayer.Skill.listSkill();
+                return DataAccessLayer.Skill.ListSkill();
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing skills");
-                throw ex;
+                Logger.Error(ex, "Error while listing skills");
+                throw;
             }
         }
 
-        public static LegaGladio.Entities.Skill get(int id)
+        public static LegaGladio.Entities.Skill Get(int id)
         {
             try
             {
-                return DataAccessLayer.Skill.getSkill(id);
+                return DataAccessLayer.Skill.GetSkill(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while getting skills");
-                throw ex;
+                Logger.Error(ex, "Error while getting skills");
+                throw;
             }
         }
 
-        public static void addSkillToPlayer(Int32 skillId, Int32 playerId)
+        public static void AddSkillToPlayer(Int32 skillId, Int32 playerId)
         {
             try
             {
-                DataAccessLayer.Skill.addSkillToPlayer(skillId, playerId);
+                DataAccessLayer.Skill.AddSkillToPlayer(skillId, playerId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while adding skill to player");
-                throw ex;
+                Logger.Error(ex, "Error while adding skill to player");
+                throw;
             }
         }
 
-        public static void removeSkillFromPlayer(Int32 skillId, Int32 playerId)
+        public static void RemoveSkillFromPlayer(Int32 skillId, Int32 playerId)
         {
             try
             {
-                DataAccessLayer.Skill.removeSkillFromPlayer(skillId, playerId);
+                DataAccessLayer.Skill.RemoveSkillFromPlayer(skillId, playerId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while removing skill from player");
-                throw ex;
+                Logger.Error(ex, "Error while removing skill from player");
+                throw;
             }
         }
 
-        public static Boolean newSkill(LegaGladio.Entities.Skill skill)
+        public static Boolean NewSkill(LegaGladio.Entities.Skill skill)
         {
             try
             {
-                return DataAccessLayer.Skill.newSkill(skill);
+                return DataAccessLayer.Skill.NewSkill(skill);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while creating skills");
-                throw ex;
+                Logger.Error(ex, "Error while creating skills");
+                throw;
             }
         }
 
-        public static Boolean updateSkill(LegaGladio.Entities.Skill skill, int oldID)
+        public static Boolean UpdateSkill(LegaGladio.Entities.Skill skill, int oldId)
         {
             try
             {
-                return DataAccessLayer.Skill.updateSkill(skill, oldID);
+                return DataAccessLayer.Skill.UpdateSkill(skill, oldId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while updating skills");
-                throw ex;
+                Logger.Error(ex, "Error while updating skills");
+                throw;
             }
         }
 
-        public static Boolean deleteSkill(int id)
+        public static Boolean DeleteSkill(int id)
         {
             try
             {
-                return DataAccessLayer.Skill.deleteSkill(id);
+                return DataAccessLayer.Skill.DeleteSkill(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while deleting skills");
-                throw ex;
+                Logger.Error(ex, "Error while deleting skills");
+                throw;
             }
         }
     }

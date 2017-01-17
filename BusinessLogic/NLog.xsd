@@ -103,7 +103,7 @@
     </xs:attribute>
     <xs:attribute name="levels" type="NLogLevelList">
       <xs:annotation>
-        <xs:documentation>Comma separated list of levels that this rule matches.</xs:documentation>
+        <xs:documentation>Comma separated List of levels that this rule matches.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="minlevel" type="NLogLevel">
@@ -123,7 +123,7 @@
     </xs:attribute>
     <xs:attribute name="writeTo" type="NLogTargetIDList">
       <xs:annotation>
-        <xs:documentation>Comma separated list of target names.</xs:documentation>
+        <xs:documentation>Comma separated List of target names.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="final" type="xs:boolean" default="false">
@@ -1595,7 +1595,7 @@
         </xs:attribute>
         <xs:attribute name="smtpPort" type="xs:integer">
           <xs:annotation>
-            <xs:documentation>Port number that SMTP Server is listening on.</xs:documentation>
+            <xs:documentation>Port number that SMTP Server is Listening on.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="useSystemNetMailSettings" type="xs:boolean">

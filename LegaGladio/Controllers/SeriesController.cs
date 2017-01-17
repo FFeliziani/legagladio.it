@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using BusinessLogic;
+using League = LegaGladio.Entities.League;
+using Series = LegaGladio.Entities.Series;
 
 namespace LegaGladio.Controllers
 {
@@ -12,35 +12,35 @@ namespace LegaGladio.Controllers
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public LegaGladio.Entities.Series Get(int id)
+        [ActionName("Get")]
+        public Series Get(int id)
         {
-            return LegaGladio.BusinessLogic.Series.get(id);
+            return BusinessLogic.Series.Get(id);
         }
 
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByLeague")]
-        public List<LegaGladio.Entities.Series> GetByLeague(int id)
+        public List<Series> GetByLeague(int id)
         {
-            Entities.League league = new Entities.League() { Id = id };
-            return LegaGladio.BusinessLogic.Series.list(league);
+            var league = new League { Id = id };
+            return BusinessLogic.Series.List(league);
         }
         
         // POST api/player
         [HttpPost]
         [ActionName("post")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Series data)
+        public void Post([FromUri]String token, [FromBody]Series data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Series.newSeries(data);
+                BusinessLogic.Series.NewSeries(data);
             }
             else
             {
@@ -52,15 +52,15 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [ActionName("put")]
         [AcceptVerbs("PUT")]
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Series data)
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]Series data)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Series.updateSeries(data, id);
+                BusinessLogic.Series.UpdateSeries(data, id);
             }
             else
             {
@@ -78,9 +78,9 @@ namespace LegaGladio.Controllers
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Series.deleteSeries(id);
+                BusinessLogic.Series.DeleteSeries(id);
             }
             else
             {

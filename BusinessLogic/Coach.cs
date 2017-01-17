@@ -1,117 +1,114 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NLog;
 
-namespace LegaGladio.BusinessLogic
+namespace BusinessLogic
 {
-    public class Coach
+    public static class Coach
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static int count()
+        /*public static int Count()
         {
             try
             {
-                return DataAccessLayer.Coach.countCoach();
+                return DataAccessLayer.Coach.CountCoach();
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while counting coaches");
-                throw ex;
+                Logger.Error(ex, "Error while counting coaches");
+                throw;
+            }
+        }*/
+
+        public static IEnumerable<LegaGladio.Entities.Coach> List()
+        {
+            try
+            {
+                return DataAccessLayer.Coach.ListCoach();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while listing coaches");
+                throw;
             }
         }
 
-        public static List<LegaGladio.Entities.Coach> list()
+        public static IEnumerable<LegaGladio.Entities.Coach> List(Boolean active)
         {
             try
             {
-                return DataAccessLayer.Coach.listCoach();
+                return DataAccessLayer.Coach.ListCoach(active);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing coaches");
-                throw ex;
+                Logger.Error(ex, "Error while listing coaches");
+                throw;
             }
         }
 
-        public static List<LegaGladio.Entities.Coach> list(Boolean active)
+        public static IEnumerable<LegaGladio.Entities.Coach> ListSimple()
         {
             try
             {
-                return DataAccessLayer.Coach.listCoach(active);
+                return DataAccessLayer.Coach.GetSimple();
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing coaches");
-                throw ex;
+                Logger.Error(ex, "Error while simple listing coaches");
+                throw;
             }
         }
 
-        public static List<LegaGladio.Entities.Coach> listSimple()
+        public static LegaGladio.Entities.Coach Get(int id)
         {
             try
             {
-                return DataAccessLayer.Coach.getSimple();
+                return DataAccessLayer.Coach.GetCoach(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while simple listing coaches");
-                throw ex;
+                Logger.Error(ex, "Error while getting coaches");
+                throw;
             }
         }
 
-        public static LegaGladio.Entities.Coach get(int id)
+        public static void NewCoach(LegaGladio.Entities.Coach coach)
         {
             try
             {
-                return DataAccessLayer.Coach.getCoach(id);
+                DataAccessLayer.Coach.NewCoach(coach);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while getting coaches");
-                throw ex;
+                Logger.Error(ex, "Error while creating coaches");
+                throw;
             }
         }
 
-        public static Boolean newCoach(LegaGladio.Entities.Coach coach)
+        public static void UpdateCoach(LegaGladio.Entities.Coach coach, int oldId)
         {
             try
             {
-                return DataAccessLayer.Coach.newCoach(coach);
+                DataAccessLayer.Coach.UpdateCoach(coach, oldId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while creating coaches");
-                throw ex;
+                Logger.Error(ex, "Error while updating coaches");
+                throw;
             }
         }
 
-        public static void updateCoach(LegaGladio.Entities.Coach coach, int oldID)
+        public static void DeleteCoach(int id)
         {
             try
             {
-                DataAccessLayer.Coach.updateCoach(coach, oldID);
+                DataAccessLayer.Coach.DeleteCoach(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while updating coaches");
-                throw ex;
-            }
-        }
-
-        public static Boolean deleteCoach(int id)
-        {
-            try
-            {
-                return DataAccessLayer.Coach.deleteCoach(id);
-            }
-            catch (Exception ex)
-            {
-                logger.Error(ex, "Error while deleting coaches");
-                throw ex;
+                Logger.Error(ex, "Error while deleting coaches");
+                throw;
             }
         }
     }

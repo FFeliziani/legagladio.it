@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 
 namespace LegaGladio.Entities
 {
     public class Player
     {
-        public Positional positional { get; set; }
+        public Positional Positional { get; set; }
 
         public int Id { get; set; }
 

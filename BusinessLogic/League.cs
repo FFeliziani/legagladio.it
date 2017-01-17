@@ -1,77 +1,75 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NLog;
 
-namespace LegaGladio.BusinessLogic
+namespace BusinessLogic
 {
-    public class League
+    public static class League
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static List<LegaGladio.Entities.League> listLeague()
+        public static List<LegaGladio.Entities.League> ListLeague()
         {
             try
             {
-                return DataAccessLayer.League.listLeague();
+                return DataAccessLayer.League.ListLeague();
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while listing Leagues");
-                throw ex;
+                Logger.Error(ex, "Error while listing Leagues");
+                throw;
             }
         }
 
-        public static LegaGladio.Entities.League getLeague(Int32 id)
+        public static LegaGladio.Entities.League GetLeague(Int32 id)
         {
             try
             {
-                return DataAccessLayer.League.getLeague(id);
+                return DataAccessLayer.League.GetLeague(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while getting league");
-                throw ex;
+                Logger.Error(ex, "Error while getting league");
+                throw;
             }
         }
 
-        public static void newLeague(LegaGladio.Entities.League league)
+        public static void NewLeague(LegaGladio.Entities.League league)
         {
             try
             {
-                DataAccessLayer.League.newLeague(league);
+                DataAccessLayer.League.NewLeague(league);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while creating new League");
-                throw ex;
+                Logger.Error(ex, "Error while creating new League");
+                throw;
             }
         }
 
-        public static void updateLeague(LegaGladio.Entities.League league, Int32 oldId)
+        public static void UpdateLeague(LegaGladio.Entities.League league, Int32 oldId)
         {
             try
             {
-                DataAccessLayer.League.updateLeague(league, oldId);
+                DataAccessLayer.League.UpdateLeague(league, oldId);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while updating league");
-                throw ex;
+                Logger.Error(ex, "Error while updating league");
+                throw;
             }
         }
 
-        public static void removeLeague(Int32 id)
+        public static void RemoveLeague(Int32 id)
         {
             try
             {
-                DataAccessLayer.League.removeLeague(id);
+                DataAccessLayer.League.RemoveLeague(id);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error while deleting league");
-                throw ex;
+                Logger.Error(ex, "Error while deleting league");
+                throw;
             }
         }
     }

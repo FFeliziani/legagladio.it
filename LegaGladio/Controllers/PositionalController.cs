@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
+using BusinessLogic;
+using Positional = LegaGladio.Entities.Positional;
 
 namespace LegaGladio.Controllers
 {
@@ -12,42 +11,42 @@ namespace LegaGladio.Controllers
         // GET api/positional
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public List<LegaGladio.Entities.Positional> Get()
+        [ActionName("Get")]
+        public List<Positional> Get()
         {
-            return LegaGladio.BusinessLogic.Positional.list();
+            return BusinessLogic.Positional.List();
         }
 
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("get")]
-        public LegaGladio.Entities.Positional Get(int id)
+        [ActionName("Get")]
+        public Positional Get(int id)
         {
-            return LegaGladio.BusinessLogic.Positional.get(id);
+            return BusinessLogic.Positional.Get(id);
         }
 
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByRace")]
         // GET api/positional/5
-        public List<LegaGladio.Entities.Positional> GetByRace(int id)
+        public List<Positional> GetByRace(int id)
         {
-            return LegaGladio.BusinessLogic.Positional.listByRace(id);
+            return BusinessLogic.Positional.ListByRace(id);
         }
         
         // POST api/positional
         [HttpPost]
         [ActionName("post")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri]String token, [FromBody]LegaGladio.Entities.Positional positional)
+        public void Post([FromUri]String token, [FromBody]Positional positional)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-            LegaGladio.BusinessLogic.Positional.newPositional(positional);
+            BusinessLogic.Positional.NewPositional(positional);
             }
             else
             {
@@ -59,15 +58,15 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [ActionName("put")]
         [AcceptVerbs("PUT")]
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]LegaGladio.Entities.Positional positional)
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]Positional positional)
         {
             if (String.IsNullOrEmpty(token))
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-            LegaGladio.BusinessLogic.Positional.updatePositional(positional, id);
+            BusinessLogic.Positional.UpdatePositional(positional, id);
             }
             else
             {
@@ -85,9 +84,9 @@ namespace LegaGladio.Controllers
             {
                 throw new UnauthorizedAccessException("Please send a token with your request.");
             }
-            if (LegaGladio.BusinessLogic.LoginManager.CheckLogged(token))
+            if (LoginManager.CheckLogged(token))
             {
-                LegaGladio.BusinessLogic.Positional.deletePositional(id);
+                BusinessLogic.Positional.DeletePositional(id);
             }
             else
             {

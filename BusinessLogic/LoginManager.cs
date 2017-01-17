@@ -1,53 +1,50 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using NLog;
 
-namespace LegaGladio.BusinessLogic
+namespace BusinessLogic
 {
-    public class LoginManager
+    public static class LoginManager
     {
-        private static Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
 
         public static String Login(String username, String password)
         {
-            String token = "";
+            String token;
             try
             {
                 // Check if user exists
-                Boolean usernameExists = DataAccessLayer.LoginManager.existsUser(username);
+                var usernameExists = DataAccessLayer.LoginManager.ExistsUser(username);
                 if (!usernameExists)
                 {
                     throw new AccessViolationException("Username does not exist");
                 }
                 // Check if password matches
-                Boolean passwordMatch = DataAccessLayer.LoginManager.checkPassword(username, password);
+                var passwordMatch = DataAccessLayer.LoginManager.CheckPassword(username, password);
                 if (!passwordMatch)
                 {
                     throw new AccessViolationException("Username and Password do not match");
                 }
                 // Generate Token
-                Guid guid = Guid.NewGuid();
+                var guid = Guid.NewGuid();
                 token = guid.ToString();
-                DataAccessLayer.LoginManager.insertToken(username, token);
+                DataAccessLayer.LoginManager.InsertToken(username, token);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                logger.Error("Error while trying to login");
-                throw ex;
+                Logger.Error("Error while trying to login");
+                throw;
             }
             return token;
         }
 
         public static Boolean CheckLogged(String token)
         {
-            return DataAccessLayer.LoginManager.checkLogged(token);
+            return DataAccessLayer.LoginManager.CheckLogged(token);
         }
 
         public static void Logout(String token)
         {
-            DataAccessLayer.LoginManager.logout(token);
+            DataAccessLayer.LoginManager.Logout(token);
         }
     }
 }
