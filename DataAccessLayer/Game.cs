@@ -139,6 +139,11 @@ namespace DataAccessLayer
         {
             var gta = new gameTableAdapter();
 
+            var oldGame = GetGame(oldId);
+
+            game.Home = oldGame.Home;
+            game.Guest = oldGame.Guest;
+
             gta.Update(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFfHome, game.VarFfGuest, game.Notes, oldId);
         }
 

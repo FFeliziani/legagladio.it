@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using BusinessLogic;
+using LegaGladio.Models;
 using Game = LegaGladio.Entities.Game;
 using GameAction = LegaGladio.Entities.GameAction;
 
@@ -39,6 +40,28 @@ namespace LegaGladio.Controllers
             if (LoginManager.CheckLogged(token))
             {
                 BusinessLogic.GameAction.NewGameAction(data);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
+        }
+
+        [HttpPost]
+        [ActionName("postList")]
+        [AcceptVerbs("POST")]
+        public void Post([FromUri] String token, [FromBody] IEnumerable<GameAction> data)
+        {
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LoginManager.CheckLogged(token))
+            {
+                foreach (var ga in data)
+                {
+                    BusinessLogic.GameAction.NewGameAction(ga);
+                }
             }
             else
             {

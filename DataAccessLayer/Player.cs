@@ -160,17 +160,16 @@ namespace DataAccessLayer
             };
             player.Cost = CalculatePlayerValue(player.Id);
             player.ListAbility = Skill.ListSkill(player.Id);
+            player.Positional = Positional.GetPositional(player);
             return player;
         }
 
         public static void AddPlayerToTeam(LegaGladio.Entities.Player player, LegaGladio.Entities.Team team)
         {
-            if (player != null && team != null)
+            if (player == null || team == null) return;
+            if (team.ListPlayer.All(x => x.Id != player.Id))
             {
-                if (team.ListPlayer.All(x => x.Id != player.Id))
-                {
-                    AddPlayerToTeam(player.Id, team.Id);
-                }
+                AddPlayerToTeam(player.Id, team.Id);
             }
         }
 
@@ -183,12 +182,10 @@ namespace DataAccessLayer
 
         public static void RemovePlayerFromTeam(LegaGladio.Entities.Player player, LegaGladio.Entities.Team team)
         {
-            if (player != null && team != null)
+            if (player == null || team == null) return;
+            if (team.ListPlayer.Any(x => x.Id == player.Id))
             {
-                if (team.ListPlayer.Any(x => x.Id == player.Id))
-                {
-                    RemovePlayerFromTeam(player.Id, team.Id);
-                }
+                RemovePlayerFromTeam(player.Id, team.Id);
             }
         }
 
@@ -213,74 +210,87 @@ namespace DataAccessLayer
             pta.Update(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, CalculatePlayerValue(oldId), player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead ? 1 : 0), player.Positional.Id, player.Position, oldId);
         }
 
-        private static int CalculatePlayerValue(int id)
+        private static int CalculatePlayerValue(Int32 id)
         {
-            var playerValue = 0;
-
-            var pdt = new LegaGladioDS.playerDataTable();
-            var pta = new playerTableAdapter();
-            pta.FillById(pdt, id);
-            var playerRow = (LegaGladioDS.playerRow)pdt.Rows[0];
-
-            if (playerRow.missNextGame)
+            if (id == 0)
             {
-                return 0;
+                throw new ArgumentException("Calculate Player Value: Id must not be null");
             }
-            var player = new LegaGladio.Entities.Player
+            try
             {
-                Id = playerRow.id,
-                Positional = Positional.GetPositional(playerRow.positionalId),
-                StPlus = playerRow.stp,
-                AgPlus = playerRow.agp,
-                AvPlus = playerRow.avp,
-                MaPlus = playerRow.map
-            };
+                var playerValue = 0;
 
-            player.ListAbility = Skill.ListSkill(player.Id);
-            playerValue += player.Positional.Cost;
+                var pdt = new LegaGladioDS.playerDataTable();
+                var pta = new playerTableAdapter();
+                pta.FillById(pdt, id);
+                if (pdt.Rows.Count != 1)
+                    throw new Exception("Wrong number of rows returned for player in CalculatePlayerValue");
+                var playerRow = (LegaGladioDS.playerRow)pdt.Rows[0];
 
-            foreach (var s in player.ListAbility)
-            {
-                switch (s.SkillType)
+                if (playerRow.missNextGame)
                 {
-                    case SkillType.Agility:
-                        if (player.Positional.Agility != -1)
-                        {
-                            playerValue += 20000 + (10000 * player.Positional.Agility);
-                        }
-                        break;
-                    case SkillType.General:
-                        if (player.Positional.General != -1)
-                        {
-                            playerValue += 20000 + (10000 * player.Positional.General);
-                        }
-                        break;
-                    case SkillType.Passing:
-                        if (player.Positional.Passing != -1)
-                        {
-                            playerValue += 20000 + (10000 * player.Positional.Passing);
-                        }
-                        break;
-                    case SkillType.Strength:
-                        if (player.Positional.Strength != -1)
-                        {
-                            playerValue += 20000 + (10000 * player.Positional.Strength);
-                        }
-                        break;
-                    case SkillType.Mutation:
-                        if (player.Positional.Mutation != -1)
-                        {
-                            playerValue += 20000 + (10000 * player.Positional.Mutation);
-                        }
-                        break;
+                    return 0;
                 }
-            }
-            playerValue += 50000 * player.StPlus;
-            playerValue += 40000 * player.AgPlus;
-            playerValue += 30000 * player.AvPlus;
-            playerValue += 30000 * player.MaPlus;
+                var player = new LegaGladio.Entities.Player
+                {
+                    Id = playerRow.id,
+                    Positional = Positional.GetPositional(playerRow.positionalId),
+                    StPlus = playerRow.stp,
+                    AgPlus = playerRow.agp,
+                    AvPlus = playerRow.avp,
+                    MaPlus = playerRow.map
+                };
 
-            return playerValue;
+                player.ListAbility = Skill.ListSkill(player.Id);
+                playerValue += player.Positional.Cost;
+
+                foreach (var s in player.ListAbility)
+                {
+                    switch (s.SkillType)
+                    {
+                        case SkillType.Agility:
+                            if (player.Positional.Agility != -1)
+                            {
+                                playerValue += 20000 + (10000 * player.Positional.Agility);
+                            }
+                            break;
+                        case SkillType.General:
+                            if (player.Positional.General != -1)
+                            {
+                                playerValue += 20000 + (10000 * player.Positional.General);
+                            }
+                            break;
+                        case SkillType.Passing:
+                            if (player.Positional.Passing != -1)
+                            {
+                                playerValue += 20000 + (10000 * player.Positional.Passing);
+                            }
+                            break;
+                        case SkillType.Strength:
+                            if (player.Positional.Strength != -1)
+                            {
+                                playerValue += 20000 + (10000 * player.Positional.Strength);
+                            }
+                            break;
+                        case SkillType.Mutation:
+                            if (player.Positional.Mutation != -1)
+                            {
+                                playerValue += 20000 + (10000 * player.Positional.Mutation);
+                            }
+                            break;
+                    }
+                }
+                playerValue += 50000 * player.StPlus;
+                playerValue += 40000 * player.AgPlus;
+                playerValue += 30000 * player.AvPlus;
+                playerValue += 30000 * player.MaPlus;
+
+                return playerValue;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error while calculating player value", ex);
+            }
         }
 
         public static void DeletePlayer(int id)
