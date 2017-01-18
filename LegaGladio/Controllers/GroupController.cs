@@ -11,7 +11,7 @@ namespace LegaGladio.Controllers
     {
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("GetPlayer")]
+        [ActionName("Get")]
         public Group Get(int id)
         {
             return BusinessLogic.Group.GetGroup(id);

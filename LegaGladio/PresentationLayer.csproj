@@ -131,6 +131,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\AfterGameEventController.cs" />
+    <Compile Include="Controllers\AugmentationController.cs" />
     <Compile Include="Controllers\CoachController.cs" />
     <Compile Include="Controllers\GameActionController.cs" />
     <Compile Include="Controllers\GameController.cs" />

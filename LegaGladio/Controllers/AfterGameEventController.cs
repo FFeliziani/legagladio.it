@@ -12,7 +12,7 @@ namespace LegaGladio.Controllers
         // GET api/aftergameevent
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("GET")]
+        [ActionName("get")]
         public IEnumerable<AfterGameEvent> Get(Int32 id)
         {
             var game = new Game {Id=id};

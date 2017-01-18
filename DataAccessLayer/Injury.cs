@@ -31,5 +31,26 @@ namespace DataAccessLayer
                 }).ToList();
             return injuryList;
         }
+
+        public static void NewInjury(LegaGladio.Entities.Injury injury)
+        {
+            var ita = new injuryTableAdapter();
+
+            ita.Insert(injury.Name);
+        }
+
+        public static void UpdateInjury(LegaGladio.Entities.Injury injury, Int32 oldId)
+        {
+            var ita = new injuryTableAdapter();
+
+            ita.Update(injury.Name, oldId);
+        }
+
+        public static void DeleteInjury(Int32 id)
+        {
+            var ita = new injuryTableAdapter();
+
+            ita.Delete(id);
+        }
     }
 }

@@ -34,6 +34,31 @@ namespace DataAccessLayer
             return game;
         }
 
+        public static LegaGladio.Entities.Game GetGameSimple(Int32 id)
+        {
+            var gdt = new LegaGladioDS.gameDataTable();
+            var gta = new gameTableAdapter();
+            gta.FillById(gdt, id);
+            if (gdt.Rows.Count != 1) throw new Exception("Wrong number of rows returned while getting game");
+            var gr = (LegaGladioDS.gameRow)gdt.Rows[0];
+            var game = new LegaGladio.Entities.Game()
+            {
+                Id = gr.id,
+                CasGuest = gr.casGuest,
+                CasHome = gr.casHome,
+                EarningGuest = gr.earningGuest,
+                EarningHome = gr.earningHome,
+                Notes = gr.notes,
+                SpGuest = gr.spGuest,
+                SpHome = gr.spHome,
+                TdGuest = gr.tdGuest,
+                TdHome = gr.tdHome,
+                VarFfGuest = gr.varFFGuest,
+                VarFfHome = gr.varFFHome
+            };
+            return game;
+        }
+
         public static IEnumerable<LegaGladio.Entities.Game> ListGame()
         {
             var gdt = new LegaGladioDS.gameDataTable();

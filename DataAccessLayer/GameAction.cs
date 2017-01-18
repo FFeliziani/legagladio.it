@@ -15,9 +15,9 @@ namespace DataAccessLayer
             gata.FillById(gadt, id);
             if (gadt.Rows.Count != 1) throw new ArgumentException("Wrong number of GameActions returned");
             var gar = (LegaGladioDS.game_actionRow) gadt.Rows[0];
-            ga.Game = Game.GetGame(gar.gameID);
+            ga.Game = Game.GetGameSimple(gar.gameID);
             ga.Action = Action.GetAction(gar.actionID);
-            ga.Team = Team.GetTeam(gar.teamID);
+            ga.Team = Team.GetTeamSimple(gar.teamID);
             ga.Player = Player.GetPlayer(gar.playerID);
             ga.Id = gar.id;
             ga.Notes = gar.notes;
@@ -33,9 +33,9 @@ namespace DataAccessLayer
             var gaL = (from LegaGladioDS.game_actionRow gar in gadt.Rows
                 select new LegaGladio.Entities.GameAction
                 {
-                    Game = Game.GetGame(gar.gameID),
+                    //Game = Game.GetGame(gar.gameID),
                     Action = Action.GetAction(gar.actionID),
-                    Team = Team.GetTeam(gar.teamID),
+                    //Team = Team.GetTeam(gar.teamID),
                     Player = Player.GetPlayer(gar.playerID),
                     Id = gar.id,
                     Notes = gar.notes
