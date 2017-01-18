@@ -69,26 +69,6 @@ namespace LegaGladio.Controllers
             }
         }
 
-        // PUT api/player/5
-        [HttpPut]
-        [ActionName("put")]
-        [AcceptVerbs("PUT")]
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]GameAction data)
-        {
-            if (String.IsNullOrEmpty(token))
-            {
-                throw new UnauthorizedAccessException("Please send a token with your request.");
-            }
-            if (LoginManager.CheckLogged(token))
-            {
-                BusinessLogic.GameAction.UpdateGameAction(data, id);
-            }
-            else
-            {
-                throw new UnauthorizedAccessException("User not logged");
-            }
-        }
-
         // DELETE api/player/5
         [HttpDelete]
         [ActionName("delete")]

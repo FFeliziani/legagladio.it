@@ -23,18 +23,19 @@ namespace DataAccessLayer
             var playerList = new List<LegaGladio.Entities.Player>();
             foreach (var player in from LegaGladioDS.playerRow playerRow in pdt.Rows select new LegaGladio.Entities.Player
             {
+                Id = playerRow.id,
                 AgMinus = playerRow.agm,
-                Dead = playerRow.dead,
-                Retired = playerRow.retired,
+                Dead = playerRow.dead == 1,
+                Retired = playerRow.retired == 1,
                 AgPlus = playerRow.agp,
                 AvMinus = playerRow.avm,
                 AvPlus = playerRow.avp,
                 Cas = playerRow.cas,
                 Inter = playerRow.inter,
-                Id = playerRow.id,
+                Mvp = playerRow.mvp,
                 MaMinus = playerRow.mam,
                 MaPlus = playerRow.map,
-                MissNextGame = playerRow.missNextGame,
+                MissNextGame = playerRow.missNextGame == 1,
                 Name = playerRow.name,
                 Niggling = playerRow.niggling,
                 Pass = playerRow.pass,
@@ -63,8 +64,8 @@ namespace DataAccessLayer
             {
                 AgMinus = playerRow.agm,
                 AgPlus = playerRow.agp,
-                Dead = playerRow.dead,
-                Retired = playerRow.retired,
+                Dead = playerRow.dead == 1,
+                Retired = playerRow.retired == 1,
                 AvMinus = playerRow.avm,
                 AvPlus = playerRow.avp,
                 Cas = playerRow.cas,
@@ -72,7 +73,8 @@ namespace DataAccessLayer
                 Id = playerRow.id,
                 MaMinus = playerRow.mam,
                 MaPlus = playerRow.map,
-                MissNextGame = playerRow.missNextGame,
+                MissNextGame = playerRow.missNextGame == 1,
+                Mvp = playerRow.mvp,
                 Name = playerRow.name,
                 Niggling = playerRow.niggling,
                 Pass = playerRow.pass,
@@ -101,8 +103,8 @@ namespace DataAccessLayer
             {
                 AgMinus = playerRow.agm,
                 AgPlus = playerRow.agp,
-                Dead = playerRow.dead,
-                Retired = playerRow.retired,
+                Dead = playerRow.dead == 1,
+                Retired = playerRow.retired == 1,
                 AvMinus = playerRow.avm,
                 AvPlus = playerRow.avp,
                 Cas = playerRow.cas,
@@ -110,7 +112,8 @@ namespace DataAccessLayer
                 Id = playerRow.id,
                 MaMinus = playerRow.mam,
                 MaPlus = playerRow.map,
-                MissNextGame = playerRow.missNextGame,
+                MissNextGame = playerRow.missNextGame == 1,
+                Mvp = playerRow.mvp,
                 Name = playerRow.name,
                 Niggling = playerRow.niggling,
                 Pass = playerRow.pass,
@@ -139,8 +142,8 @@ namespace DataAccessLayer
             {
                 AgMinus = playerRow.agm,
                 AgPlus = playerRow.agp,
-                Dead = playerRow.dead,
-                Retired = playerRow.retired,
+                Dead = playerRow.dead == 1,
+                Retired = playerRow.retired == 1,
                 AvMinus = playerRow.avm,
                 AvPlus = playerRow.avp,
                 Cas = playerRow.cas,
@@ -148,7 +151,8 @@ namespace DataAccessLayer
                 Id = playerRow.id,
                 MaMinus = playerRow.mam,
                 MaPlus = playerRow.map,
-                MissNextGame = playerRow.missNextGame,
+                MissNextGame = playerRow.missNextGame == 1,
+                Mvp = playerRow.mvp,
                 Name = playerRow.name,
                 Niggling = playerRow.niggling,
                 Pass = playerRow.pass,
@@ -200,14 +204,14 @@ namespace DataAccessLayer
         {
             var pta = new playerTableAdapter();
             //name, map, agp, avp, stp, cost, spp, td, cas, pass, inter, niggling, missNextGame, mam, agm, avm, stm, retired, dead
-            pta.Insert(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, player.Cost, player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead?1:0), player.Positional.Id, player.Position);
+            pta.Insert(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, Convert.ToInt32(player.Cost), player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Mvp, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead?1:0), player.Positional.Id, player.Position);
         }
 
         public static void UpdatePlayer(LegaGladio.Entities.Player player, int oldId)
         {
             var pta = new playerTableAdapter();
 
-            pta.Update(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, CalculatePlayerValue(oldId), player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead ? 1 : 0), player.Positional.Id, player.Position, oldId);
+            pta.Update(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, CalculatePlayerValue(oldId), player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Mvp, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead ? 1 : 0), player.Positional.Id, player.Position, oldId);
         }
 
         private static int CalculatePlayerValue(Int32 id)
@@ -227,7 +231,7 @@ namespace DataAccessLayer
                     throw new Exception("Wrong number of rows returned for player in CalculatePlayerValue");
                 var playerRow = (LegaGladioDS.playerRow)pdt.Rows[0];
 
-                if (playerRow.missNextGame)
+                if (playerRow.missNextGame == 1)
                 {
                     return 0;
                 }

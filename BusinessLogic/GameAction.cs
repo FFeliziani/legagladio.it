@@ -39,6 +39,31 @@ namespace BusinessLogic
             try
             {
                 DataAccessLayer.GameAction.NewGameAction(ga);
+                var p = Player.GetPlayer(ga.Player.Id);
+                var a = Action.GetAction(ga.Action.Id);
+
+                switch (a.Id)
+                {
+                    case 1: //TD
+                        p.Td++;
+                        break;
+                    case 2: //CAS
+                        p.Cas++;
+                        break;
+                    case 3: //INT
+                        p.Inter++;
+                        break;
+                    case 4: //CP
+                        p.Pass++;
+                        break;
+                    case 5: //MVP
+                        p.Mvp++;
+                        break;
+                }
+
+                p.Spp += a.Spp;
+
+                Player.UpdatePlayer(p, p.Id);
             }
             catch (Exception ex)
             {
@@ -47,28 +72,43 @@ namespace BusinessLogic
             }
         }
 
-        public static void UpdateGameAction(LegaGladio.Entities.GameAction ga, Int32 oldId)
-        {
-            try
-            {
-                DataAccessLayer.GameAction.UpdateGameAction(ga, oldId);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex, "Error while updating a game action");
-                throw;
-            }
-        }
+        
 
         public static void DeleteGameAction(Int32 id)
         {
             try
             {
-                DataAccessLayer.GameAction.DeleteGameAction(id);
+                var ga = GetGameAction(id);
+                var p = Player.GetPlayer(ga.Player.Id);
+                var a = Action.GetAction(ga.Action.Id);
+
+                switch (a.Id)
+                {
+                    case 1: //TD
+                        p.Td--;
+                        break;
+                    case 2: //CAS
+                        p.Cas--;
+                        break;
+                    case 3: //INT
+                        p.Inter--;
+                        break;
+                    case 4: //CP
+                        p.Pass--;
+                        break;
+                    case 5: //MVP
+                        p.Mvp--;
+                        break;
+                }
+
+                p.Spp += a.Spp;
+
+                Player.UpdatePlayer(p, p.Id);
+                DataAccessLayer.GameAction.DeleteGameAction(ga.Id);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error whule deleting a game action");
+                Logger.Error(ex, "Error while deleting a game action");
                 throw;
             }
         }

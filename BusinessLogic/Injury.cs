@@ -71,7 +71,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error whule deleting injury");
+                Logger.Error(ex, "Error while deleting injury");
                 throw;
             }
         }

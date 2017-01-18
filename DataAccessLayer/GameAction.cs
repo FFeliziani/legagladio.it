@@ -17,7 +17,6 @@ namespace DataAccessLayer
             var gar = (LegaGladioDS.game_actionRow) gadt.Rows[0];
             ga.Game = Game.GetGameSimple(gar.gameID);
             ga.Action = Action.GetAction(gar.actionID);
-            ga.Team = Team.GetTeamSimple(gar.teamID);
             ga.Player = Player.GetPlayer(gar.playerID);
             ga.Id = gar.id;
             ga.Notes = gar.notes;
@@ -35,7 +34,6 @@ namespace DataAccessLayer
                 {
                     //Game = Game.GetGame(gar.gameID),
                     Action = Action.GetAction(gar.actionID),
-                    //Team = Team.GetTeam(gar.teamID),
                     Player = Player.GetPlayer(gar.playerID),
                     Id = gar.id,
                     Notes = gar.notes
@@ -47,21 +45,7 @@ namespace DataAccessLayer
         {
             var gata = new game_actionTableAdapter();
 
-            gata.Insert(ga.Game.Id, ga.Action.Id, ga.Team.Id, ga.Player.Id, ga.Notes);
-
-            var p = Player.GetPlayer(ga.Player.Id);
-            var a = Action.GetAction(ga.Action.Id);
-
-            p.Spp += a.Spp;
-
-            Player.UpdatePlayer(p, p.Id);
-        }
-
-        public static void UpdateGameAction(LegaGladio.Entities.GameAction ga, Int32 oldId)
-        {
-            var gata = new game_actionTableAdapter();
-
-            gata.Update(ga.Game.Id, ga.Action.Id, ga.Team.Id, ga.Player.Id, ga.Notes, oldId);
+            gata.Insert(ga.Game.Id, ga.Action.Id, ga.Player.Id, ga.Notes);
         }
 
         public static void DeleteGameAction(Int32 id)

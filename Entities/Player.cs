@@ -31,6 +31,7 @@ namespace LegaGladio.Entities
         public int Cas { get; set; }
         public int Pass { get; set; }
         public int Inter { get; set; }
+        public int Mvp { get; set; }
 
         public int Niggling { get; set; }
 
