@@ -1,37 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using BusinessLogic;
-using Group = LegaGladio.Entities.Group;
-using Series = LegaGladio.Entities.Series;
+using Game = LegaGladio.Entities.Game;
+using GameAction = LegaGladio.Entities.GameAction;
+using Player = LegaGladio.Entities.Player;
 
 namespace LegaGladio.Controllers
 {
-    public class GroupController : ApiController
+    public class GameActionController : ApiController
     {
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("GetPlayer")]
-        public Group Get(int id)
+        [ActionName("get")]
+        public GameAction Get(Int32 id)
         {
-            return BusinessLogic.Group.GetGroup(id);
+            return BusinessLogic.GameAction.GetGameAction(id);
         }
-
-        // GET api/player/5
+        
+        //GET: api/player
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("getBySeries")]
-        public IEnumerable<Group> GetBySeries(int id)
+        [ActionName("getByGame")]
+        public IEnumerable<GameAction> GetByGame(Int32 id)
         {
-            var series = new Series { Id = id };
-            return BusinessLogic.Group.ListGroup(series);
+            return BusinessLogic.GameAction.ListGameAction(new Game(){Id = id});
         }
 
         // POST api/player
         [HttpPost]
         [ActionName("post")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri]String token, [FromBody]Group data)
+        public void Post([FromUri]String token, [FromBody]GameAction data)
         {
             if (String.IsNullOrEmpty(token))
             {
@@ -39,7 +42,7 @@ namespace LegaGladio.Controllers
             }
             if (LoginManager.CheckLogged(token))
             {
-                BusinessLogic.Group.NewGroup(data);
+                BusinessLogic.GameAction.NewGameAction(data);
             }
             else
             {
@@ -51,7 +54,7 @@ namespace LegaGladio.Controllers
         [HttpPut]
         [ActionName("put")]
         [AcceptVerbs("PUT")]
-        public void Put([FromUri]String token, [FromUri]int id, [FromBody]Group data)
+        public void Put([FromUri]String token, [FromUri]int id, [FromBody]GameAction data)
         {
             if (String.IsNullOrEmpty(token))
             {
@@ -59,7 +62,7 @@ namespace LegaGladio.Controllers
             }
             if (LoginManager.CheckLogged(token))
             {
-                BusinessLogic.Group.UpdateGroup(data, id);
+                BusinessLogic.GameAction.UpdateGameAction(data, id);
             }
             else
             {
@@ -79,7 +82,7 @@ namespace LegaGladio.Controllers
             }
             if (LoginManager.CheckLogged(token))
             {
-                BusinessLogic.Group.RemoveGroup(id);
+                BusinessLogic.GameAction.DeleteGameAction(id);
             }
             else
             {

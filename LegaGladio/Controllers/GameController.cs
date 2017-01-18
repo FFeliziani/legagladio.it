@@ -47,7 +47,7 @@ namespace LegaGladio.Controllers
         // GET api/game/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("Get")]
+        [ActionName("get")]
         public Game Get(int id)
         {
             return BusinessLogic.Game.Get(id);
@@ -56,7 +56,7 @@ namespace LegaGladio.Controllers
         // POST api/game
         [HttpPost]
         [AcceptVerbs("POST")]
-        [ActionName("POST")]
+        [ActionName("post")]
         public void Post([FromUri]String token, [FromBody]Game data)
         {
             if (String.IsNullOrEmpty(token))

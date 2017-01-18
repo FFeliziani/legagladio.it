@@ -12,7 +12,7 @@ namespace LegaGladio.Controllers
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("Get")]
+        [ActionName("GetPlayer")]
         public Series Get(int id)
         {
             return BusinessLogic.Series.Get(id);

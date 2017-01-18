@@ -9,10 +9,28 @@ namespace DataAccessLayer
     {
         public static LegaGladio.Entities.Game GetGame(int id)
         {
-            var game = new LegaGladio.Entities.Game();
-            var gtd = new LegaGladioDS.gameDataTable();
+            var gdt = new LegaGladioDS.gameDataTable();
             var gta = new gameTableAdapter();
-            gta.FillById(gtd, id);
+            gta.FillById(gdt, id);
+            if(gdt.Rows.Count != 1) throw new Exception("Wrong number of rows returned while getting game");
+            var gr = (LegaGladioDS.gameRow)gdt.Rows[0];
+            var game = new LegaGladio.Entities.Game()
+            {
+                Id = gr.id,
+                CasGuest = gr.casGuest,
+                CasHome = gr.casHome,
+                EarningGuest = gr.earningGuest,
+                EarningHome = gr.earningHome,
+                Guest = Team.GetTeam(gr.guestID, true),
+                Home = Team.GetTeam(gr.homeID, true),
+                Notes = gr.notes,
+                SpGuest = gr.spGuest,
+                SpHome = gr.spHome,
+                TdGuest = gr.tdGuest,
+                TdHome = gr.tdHome,
+                VarFfGuest = gr.varFFGuest,
+                VarFfHome = gr.varFFHome
+            };
             return game;
         }
 
@@ -24,7 +42,7 @@ namespace DataAccessLayer
             var gameList = (from LegaGladioDS.gameRow gr in gdt.Rows
                 select new LegaGladio.Entities.Game
                 {
-                    Id = gr.id, Home = Team.GetTeam(gr.homeID), Guest = Team.GetTeam(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
+                    Id = gr.id, Home = Team.GetTeamSimple(gr.homeID), Guest = Team.GetTeamSimple(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
                 }).ToList();
             return gameList;
         }
@@ -37,7 +55,7 @@ namespace DataAccessLayer
             var gameList = (from LegaGladioDS.gameRow gr in gdt.Rows
                 select new LegaGladio.Entities.Game
                 {
-                    Id = gr.id, Home = Team.GetTeam(gr.homeID), Guest = Team.GetTeam(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
+                    Id = gr.id, Home = Team.GetTeamSimple(gr.homeID), Guest = Team.GetTeamSimple(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
                 }).ToList();
             return gameList;
         }
@@ -50,7 +68,7 @@ namespace DataAccessLayer
             var gameList = (from LegaGladioDS.gameRow gr in gdt.Rows
                 select new LegaGladio.Entities.Game
                 {
-                    Id = gr.id, Home = Team.GetTeam(gr.homeID), Guest = Team.GetTeam(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
+                    Id = gr.id, Home = Team.GetTeamSimple(gr.homeID), Guest = Team.GetTeamSimple(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
                 }).ToList();
             return gameList;
         }
@@ -65,7 +83,7 @@ namespace DataAccessLayer
             var gL = (from LegaGladioDS.gameRow gr in gdt.Rows
                 select new LegaGladio.Entities.Game
                 {
-                    Id = gr.id, Home = Team.GetTeam(gr.homeID), Guest = Team.GetTeam(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
+                    Id = gr.id, Home = Team.GetTeamSimple(gr.homeID), Guest = Team.GetTeamSimple(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
                 }).ToList();
 
             return gL;

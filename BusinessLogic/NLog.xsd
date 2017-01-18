@@ -101,9 +101,9 @@
         <xs:documentation>Name of the logger. May include '*' character which acts like a wildcard. Allowed forms are: *, Name, *Name, Name* and *Name*</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="levels" type="NLogLevelList">
+    <xs:attribute name="levels" type="NLogLevelListPlayer">
       <xs:annotation>
-        <xs:documentation>Comma separated List of levels that this rule matches.</xs:documentation>
+        <xs:documentation>Comma separated ListPlayer of levels that this rule matches.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="minlevel" type="NLogLevel">
@@ -121,9 +121,9 @@
         <xs:documentation>Level that this rule matches.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
-    <xs:attribute name="writeTo" type="NLogTargetIDList">
+    <xs:attribute name="writeTo" type="NLogTargetIDListPlayer">
       <xs:annotation>
-        <xs:documentation>Comma separated List of target names.</xs:documentation>
+        <xs:documentation>Comma separated ListPlayer of target names.</xs:documentation>
       </xs:annotation>
     </xs:attribute>
     <xs:attribute name="final" type="xs:boolean" default="false">
@@ -166,7 +166,7 @@
       <xs:enumeration value="None" />
     </xs:restriction>
   </xs:simpleType>
-  <xs:simpleType name="NLogLevelList">
+  <xs:simpleType name="NLogLevelListPlayer">
     <xs:restriction base="xs:string">
       <xs:pattern value="(|Trace|Debug|Info|Warn|Error|Fatal)(,(Trace|Debug|Info|Warn|Error|Fatal))*" />
     </xs:restriction>
@@ -195,7 +195,7 @@
       </xs:annotation>
     </xs:attribute>
   </xs:complexType>
-  <xs:simpleType name="NLogTargetIDList">
+  <xs:simpleType name="NLogTargetIDListPlayer">
     <xs:restriction base="xs:string">
       <xs:pattern value="(|([a-zA-Z][a-zA-Z0-9_\-]*))(,([a-zA-Z][a-zA-Z0-9_\-]*))*" />
     </xs:restriction>
@@ -1595,7 +1595,7 @@
         </xs:attribute>
         <xs:attribute name="smtpPort" type="xs:integer">
           <xs:annotation>
-            <xs:documentation>Port number that SMTP Server is Listening on.</xs:documentation>
+            <xs:documentation>Port number that SMTP Server is ListPlayerening on.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="useSystemNetMailSettings" type="xs:boolean">

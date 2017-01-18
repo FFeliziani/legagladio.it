@@ -14,19 +14,19 @@ namespace LegaGladio.Controllers
         //GET: api/player
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("Get")]
+        [ActionName("GetPlayer")]
         public IEnumerable<Player> Get()
         {
-            return BusinessLogic.Player.List();
+            return BusinessLogic.Player.ListPlayer();
         }
 
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("Get")]
+        [ActionName("GetPlayer")]
         public Player Get(int id)
         {
-            return BusinessLogic.Player.Get(id);
+            return BusinessLogic.Player.GetPlayer(id);
         }
 
         // GET api/player/5
@@ -35,7 +35,7 @@ namespace LegaGladio.Controllers
         [ActionName("getByTeam")]
         public IEnumerable<Player> GetByTeam(int id)
         {
-            return BusinessLogic.Player.List(id);
+            return BusinessLogic.Player.ListPlayer(id);
         }
 
         // GET api/player/5
@@ -44,7 +44,7 @@ namespace LegaGladio.Controllers
         [ActionName("getByTeamActive")]
         public IEnumerable<Player> GetByTeamActive(int id)
         {
-            return BusinessLogic.Player.List(id, true);
+            return BusinessLogic.Player.ListPlayer(id, true);
         }
 
         // GET api/player/5
@@ -53,7 +53,7 @@ namespace LegaGladio.Controllers
         [ActionName("getByTeamInactive")]
         public IEnumerable<Player> GetByTeamInactive(int id)
         {
-            return BusinessLogic.Player.List(id, false);
+            return BusinessLogic.Player.ListPlayer(id, false);
         }
 
         // POST api/player

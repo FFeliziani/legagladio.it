@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using DataAccessLayer.LegaGladioDSTableAdapters;
 
 namespace DataAccessLayer
@@ -11,9 +13,23 @@ namespace DataAccessLayer
             var idt = new LegaGladioDS.injuryDataTable();
             ita.FillById(idt, id);
             if (idt.Rows.Count != 1) throw new ArgumentException("Wrong number of injuries returned!");
-            var ir = (LegaGladioDS.injuryRow) idt.Rows[0];
-            var i = new LegaGladio.Entities.Injury {Id = ir.id, Name = ir.name};
+            var ir = (LegaGladioDS.injuryRow)idt.Rows[0];
+            var i = new LegaGladio.Entities.Injury { Id = ir.id, Name = ir.name };
             return i;
+        }
+
+        public static IEnumerable<LegaGladio.Entities.Injury> ListInInjury()
+        {
+            var ita = new injuryTableAdapter();
+            var idt = new LegaGladioDS.injuryDataTable();
+            ita.Fill(idt);
+            var injuryList = (from LegaGladioDS.injuryRow ir in idt.Rows
+                select new LegaGladio.Entities.Injury()
+                {
+                    Id = ir.id,
+                    Name = ir.name
+                }).ToList();
+            return injuryList;
         }
     }
 }

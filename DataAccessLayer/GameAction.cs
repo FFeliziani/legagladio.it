@@ -5,7 +5,7 @@ using DataAccessLayer.LegaGladioDSTableAdapters;
 
 namespace DataAccessLayer
 {
-    class GameAction
+    public static class GameAction
     {
         public static LegaGladio.Entities.GameAction GetGameAction(Int32 id)
         {
@@ -24,7 +24,7 @@ namespace DataAccessLayer
             return ga;
         }
 
-        public static IEnumerable<LegaGladio.Entities.GameAction> GetGameAction(LegaGladio.Entities.Game game)
+        public static IEnumerable<LegaGladio.Entities.GameAction> ListGameAction(LegaGladio.Entities.Game game)
         {
             var gata = new game_actionTableAdapter();
             var gadt = new LegaGladioDS.game_actionDataTable();

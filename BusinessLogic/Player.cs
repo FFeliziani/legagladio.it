@@ -21,7 +21,7 @@ namespace BusinessLogic
             }
         }
 
-        public static IEnumerable<LegaGladio.Entities.Player> List()
+        public static IEnumerable<LegaGladio.Entities.Player> ListPlayer()
         {
             try
             {
@@ -33,7 +33,7 @@ namespace BusinessLogic
                 throw;
             }
         }
-        public static IEnumerable<LegaGladio.Entities.Player> List(int teamId)
+        public static IEnumerable<LegaGladio.Entities.Player> ListPlayer(int teamId)
         {
             try
             {
@@ -46,7 +46,7 @@ namespace BusinessLogic
             }
         }
 
-        public static IEnumerable<LegaGladio.Entities.Player> List(int teamId, Boolean active)
+        public static IEnumerable<LegaGladio.Entities.Player> ListPlayer(int teamId, Boolean active)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace BusinessLogic
             }
         }
 
-        public static LegaGladio.Entities.Player Get(int id)
+        public static LegaGladio.Entities.Player GetPlayer(int id)
         {
             try
             {

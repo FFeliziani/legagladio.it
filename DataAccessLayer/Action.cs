@@ -9,25 +9,27 @@ namespace DataAccessLayer
     {
         public static LegaGladio.Entities.Action GetAction(Int32 id)
         {
-            var action = new LegaGladio.Entities.Action();
             var ata = new actionTableAdapter();
             var adt = new LegaGladioDS.actionDataTable();
             ata.FillById(adt, id);
-            if (adt.Rows.Count != 1) return action;
+            if (adt.Rows.Count != 1) throw new Exception("Wrong number of action returned!");
             var ar = (LegaGladioDS.actionRow)adt.Rows[0];
-            action.Id = ar.id;
-            action.Description = ar.description;
-            action.Notes = ar.note;
-            action.Spp = ar.spp;
+            var action = new LegaGladio.Entities.Action
+            {
+                Id = ar.id,
+                Description = ar.description,
+                Notes = ar.note,
+                Spp = ar.spp
+            };
             return action;
         }
 
-        public static IEnumerable<LegaGladio.Entities.Action> GetAction()
+        public static IEnumerable<LegaGladio.Entities.Action> ListAction()
         {
-            var actions = new List<LegaGladio.Entities.Action>();
             var ata = new actionTableAdapter();
             var adt = new LegaGladioDS.actionDataTable();
             ata.Fill(adt);
+            var actions = new List<LegaGladio.Entities.Action>();
             if (adt.Rows.Count > 0)
             {
                 actions.AddRange(from LegaGladioDS.actionRow ar in adt.Rows
@@ -36,7 +38,6 @@ namespace DataAccessLayer
                         Id = ar.id, Description = ar.description, Notes = ar.note, Spp = ar.spp
                     });
             }
-
             return actions;
         }
 
