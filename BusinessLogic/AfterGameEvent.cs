@@ -8,6 +8,19 @@ namespace BusinessLogic
     {
         private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
 
+        public static LegaGladio.Entities.AfterGameEvent GetAfterGameEvent(Int32 id)
+        {
+            try
+            {
+                return DataAccessLayer.AfterGameEvent.GetAfterGameEvent(id);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while getting after game events");
+                throw;
+            }
+        }
+        
         public static IEnumerable<LegaGladio.Entities.AfterGameEvent> GetAfterGameEvent(LegaGladio.Entities.Game game)
         {
             try
@@ -107,7 +120,63 @@ namespace BusinessLogic
         {
             try
             {
-
+                var afterGameEvent = GetAfterGameEvent(id);
+                if (afterGameEvent.Skill != null)
+                {
+                    Skill.RemoveSkillFromPlayer(afterGameEvent.Skill.Id, afterGameEvent.Player.Id);
+                }
+                var p = Player.GetPlayer(afterGameEvent.Player.Id);
+                if (afterGameEvent.Injury != null)
+                {
+                    switch (afterGameEvent.Injury.Id)
+                    {
+                        case 1: //killed
+                            p.Dead = false;
+                            break;
+                        case 2: //-ST
+                            p.StMinus--;
+                            p.MissNextGame = false;
+                            break;
+                        case 3: //-AG
+                            p.AgMinus--;
+                            p.MissNextGame = false;
+                            break;
+                        case 4: //-MV
+                            p.MaMinus--;
+                            p.MissNextGame = false;
+                            break;
+                        case 5: //-AV
+                            p.AvMinus--;
+                            p.MissNextGame = false;
+                            break;
+                        case 6: //NIGG
+                            p.Niggling--;
+                            p.MissNextGame = false;
+                            break;
+                        case 7: //MNG
+                            p.MissNextGame = false;
+                            break;
+                    }
+                }
+                if (afterGameEvent.Augmentation != null)
+                {
+                    switch (afterGameEvent.Augmentation.Id)
+                    {
+                        case 1: //+ST
+                            p.StPlus--;
+                            break;
+                        case 2: //+AG
+                            p.AgPlus--;
+                            break;
+                        case 3: //+AV
+                            p.AvPlus--;
+                            break;
+                        case 4: //+MV
+                            p.MaPlus--;
+                            break;
+                    }
+                }
+                Player.UpdatePlayer(p, afterGameEvent.Player.Id);
                 DataAccessLayer.AfterGameEvent.DeleteAfterGameEvent(id);
             }
             catch (Exception ex)

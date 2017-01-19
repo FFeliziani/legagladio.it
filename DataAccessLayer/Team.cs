@@ -228,20 +228,24 @@ namespace DataAccessLayer
         {
             var teamValue = 0;
 
-            var team = new LegaGladio.Entities.Team();
+            
             var ttd = new LegaGladioDS.teamDataTable();
             var tta = new teamTableAdapter();
             tta.FillById(ttd, id);
 
+            if (ttd.Rows.Count != 1) throw new Exception("Wrong number of teams returned");
             var teamRow = (LegaGladioDS.teamRow)ttd.Rows[0];
-
-            team.Id = teamRow.id;
-            team.Reroll = teamRow.reroll;
+            var team = new LegaGladio.Entities.Team
+            {
+                Id = teamRow.id,
+                Reroll = teamRow.reroll,
+                AssistantCoach = teamRow.assistantCoach,
+                Cheerleader = teamRow.cheerleader,
+                FanFactor = teamRow.funFactor
+            };
             team.Race = Race.GetRaceByTeamId(team.Id);
             team.ListPlayer = Player.ListPlayer(team.Id, true);
-            team.AssistantCoach = teamRow.assistantCoach;
-            team.Cheerleader = teamRow.cheerleader;
-            team.FanFactor = teamRow.funFactor;
+            
             team.HasMedic = teamRow.hasMedic == 1;
 
             teamValue += team.ListPlayer.Sum(p => Convert.ToInt32(p.Cost));

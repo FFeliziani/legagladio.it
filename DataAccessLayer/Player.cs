@@ -204,14 +204,14 @@ namespace DataAccessLayer
         {
             var pta = new playerTableAdapter();
             //name, map, agp, avp, stp, cost, spp, td, cas, pass, inter, niggling, missNextGame, mam, agm, avm, stm, retired, dead
-            pta.Insert(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, Convert.ToInt32(player.Cost), player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Mvp, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead?1:0), player.Positional.Id, player.Position);
+            pta.Insert(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, player.Cost, player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Mvp, player.Niggling, (player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (player.Retired ? 1 : 0), (player.Dead?1:0), player.Positional.Id, player.Position);
         }
 
         public static void UpdatePlayer(LegaGladio.Entities.Player player, int oldId)
         {
             var pta = new playerTableAdapter();
 
-            pta.Update(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, CalculatePlayerValue(oldId), player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Mvp, player.Niggling, (byte)(player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (byte)(player.Retired ? 1 : 0), (byte)(player.Dead ? 1 : 0), player.Positional.Id, player.Position, oldId);
+            pta.Update(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, CalculatePlayerValue(oldId), player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Mvp, player.Niggling, (player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (player.Retired ? 1 : 0), (player.Dead ? 1 : 0), player.Positional.Id, player.Position, oldId);
         }
 
         private static int CalculatePlayerValue(Int32 id)

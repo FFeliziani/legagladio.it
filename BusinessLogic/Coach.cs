@@ -8,7 +8,7 @@ namespace BusinessLogic
     {
         private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        /*public static int Count()
+        /*public static int CountTeam()
         {
             try
             {

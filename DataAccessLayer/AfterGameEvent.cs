@@ -7,6 +7,24 @@ namespace DataAccessLayer
 {
     public static class AfterGameEvent
     {
+        public static LegaGladio.Entities.AfterGameEvent GetAfterGameEvent(Int32 id)
+        {
+            var ageta = new after_game_eventTableAdapter();
+            var agedt = new LegaGladioDS.after_game_eventDataTable();
+            ageta.FillById(agedt, id);
+            if(agedt.Rows.Count != 1) throw new Exception("Wrong number of rows returned for After Game Event");
+            var ager = (LegaGladioDS.after_game_eventRow)agedt.Rows[0];
+            return new LegaGladio.Entities.AfterGameEvent()
+            {
+                Id = ager.id,
+                Augmentation = ager.augmentationID != 0 ? Augmentation.GetAugmentation(ager.augmentationID) : null,
+                Injury = ager.injuryID != 0 ? Injury.GetInjury(ager.injuryID) : null,
+                Player = Player.GetPlayer(ager.playerID),
+                Skill = ager.skillID != 0 ? Skill.GetSkill(ager.skillID) : null,
+                Game = Game.GetGameSimple(ager.gameID)
+            };
+        }
+
         public static IEnumerable<LegaGladio.Entities.AfterGameEvent> GetAfterGameEvent(LegaGladio.Entities.Game game)
         {
             var ageta = new after_game_eventTableAdapter();

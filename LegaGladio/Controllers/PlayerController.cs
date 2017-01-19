@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using BusinessLogic;
+using LegaGladio.Models;
 using Player = LegaGladio.Entities.Player;
+using Team = LegaGladio.Entities.Team;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -14,7 +16,7 @@ namespace LegaGladio.Controllers
         //GET: api/player
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("Get")]
+        [ActionName("GetTeam")]
         public IEnumerable<Player> Get()
         {
             return BusinessLogic.Player.ListPlayer();
@@ -23,7 +25,7 @@ namespace LegaGladio.Controllers
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("Get")]
+        [ActionName("GetTeam")]
         public Player Get(int id)
         {
             return BusinessLogic.Player.GetPlayer(id);
@@ -54,6 +56,48 @@ namespace LegaGladio.Controllers
         public IEnumerable<Player> GetByTeamInactive(int id)
         {
             return BusinessLogic.Player.ListPlayer(id, false);
+        }
+
+        [HttpPost]
+        [AcceptVerbs("POST")]
+        [ActionName("AddPlayerToTeam")]
+        public void AddPlayerToTeam([FromUri] String token, [FromBody] AddItemsData addItemsData)
+        {
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LoginManager.CheckLogged(token))
+            {
+                var p = new Player() { Id = Convert.ToInt32(addItemsData.Id2) };
+                var t = new Team() { Id = Convert.ToInt32(addItemsData.Id1) };
+                BusinessLogic.Player.AddPlayerToTeam(p, t);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
+        }
+
+        [HttpPost]
+        [AcceptVerbs("POST")]
+        [ActionName("RemovePlayerFromTeam")]
+        public void RemovePlayerFromTeam([FromUri] String token, [FromBody] AddItemsData addItemsData)
+        {
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LoginManager.CheckLogged(token))
+            {
+                var p = new Entities.Player() { Id = Convert.ToInt32(addItemsData.Id2) };
+                var t = new Entities.Team() { Id = Convert.ToInt32(addItemsData.Id1) };
+                BusinessLogic.Player.RemovePlayerFromTeam(p, t);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
 
         // POST api/player

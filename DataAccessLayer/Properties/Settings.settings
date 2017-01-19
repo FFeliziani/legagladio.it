@@ -5,10 +5,10 @@
     <Setting Name="legagladioConnectionString2" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;server=127.0.0.1;user id=root;password=Xri8jgmk!;persistsecurityinfo=True;database=legagladio&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;server=62.149.150.47;user id=Sql136415;password=5dabc392;database=Sql136415_4&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;MySql.Data.MySqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">server=127.0.0.1;user id=root;password=Xri8jgmk!;persistsecurityinfo=True;database=legagladio</Value>
+      <Value Profile="(Default)">server=62.149.150.47;user id=Sql136415;password=5dabc392;database=Sql136415_4</Value>
     </Setting>
   </Settings>
 </SettingsFile>

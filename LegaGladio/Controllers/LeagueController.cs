@@ -11,7 +11,7 @@ namespace LegaGladio.Controllers
         // GET api/league
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("Get")]
+        [ActionName("GetTeam")]
         public IEnumerable<League> Get()
         {
             return BusinessLogic.League.ListLeague();
@@ -20,7 +20,7 @@ namespace LegaGladio.Controllers
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("Get")]
+        [ActionName("GetTeam")]
         public League Get(int id)
         {
             return BusinessLogic.League.GetLeague(id);

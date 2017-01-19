@@ -2000,7 +2000,7 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="PerfCounter">
+  <xs:complexType name="PerfCountTeamer">
     <xs:complexContent>
       <xs:extension base="Target">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
@@ -2009,7 +2009,7 @@
           <xs:element name="categoryName" minOccurs="0" maxOccurs="1" type="xs:string" />
           <xs:element name="counterHelp" minOccurs="0" maxOccurs="1" type="xs:string" />
           <xs:element name="counterName" minOccurs="0" maxOccurs="1" type="xs:string" />
-          <xs:element name="counterType" minOccurs="0" maxOccurs="1" type="System.Diagnostics.PerformanceCounterType" />
+          <xs:element name="counterType" minOccurs="0" maxOccurs="1" type="System.Diagnostics.PerformanceCountTeamerType" />
           <xs:element name="incrementValue" minOccurs="0" maxOccurs="1" type="Layout" />
           <xs:element name="instanceName" minOccurs="0" maxOccurs="1" type="xs:string" />
         </xs:choice>
@@ -2030,7 +2030,7 @@
         </xs:attribute>
         <xs:attribute name="counterHelp" type="xs:string">
           <xs:annotation>
-            <xs:documentation>Counter help text.</xs:documentation>
+            <xs:documentation>CountTeamer help text.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
         <xs:attribute name="counterName" type="xs:string">
@@ -2038,7 +2038,7 @@
             <xs:documentation>Name of the performance counter.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="counterType" type="System.Diagnostics.PerformanceCounterType">
+        <xs:attribute name="counterType" type="System.Diagnostics.PerformanceCountTeamerType">
           <xs:annotation>
             <xs:documentation>Performance counter type.</xs:documentation>
           </xs:annotation>
@@ -2056,36 +2056,36 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:simpleType name="System.Diagnostics.PerformanceCounterType">
+  <xs:simpleType name="System.Diagnostics.PerformanceCountTeamerType">
     <xs:restriction base="xs:string">
       <xs:enumeration value="NumberOfItems32" />
       <xs:enumeration value="NumberOfItems64" />
       <xs:enumeration value="NumberOfItemsHEX32" />
       <xs:enumeration value="NumberOfItemsHEX64" />
-      <xs:enumeration value="RateOfCountsPerSecond32" />
-      <xs:enumeration value="RateOfCountsPerSecond64" />
-      <xs:enumeration value="CountPerTimeInterval32" />
-      <xs:enumeration value="CountPerTimeInterval64" />
+      <xs:enumeration value="RateOfCountTeamsPerSecond32" />
+      <xs:enumeration value="RateOfCountTeamsPerSecond64" />
+      <xs:enumeration value="CountTeamPerTimeInterval32" />
+      <xs:enumeration value="CountTeamPerTimeInterval64" />
       <xs:enumeration value="RawFraction" />
       <xs:enumeration value="RawBase" />
       <xs:enumeration value="AverageTimer32" />
       <xs:enumeration value="AverageBase" />
-      <xs:enumeration value="AverageCount64" />
+      <xs:enumeration value="AverageCountTeam64" />
       <xs:enumeration value="SampleFraction" />
-      <xs:enumeration value="SampleCounter" />
+      <xs:enumeration value="SampleCountTeamer" />
       <xs:enumeration value="SampleBase" />
-      <xs:enumeration value="CounterTimer" />
-      <xs:enumeration value="CounterTimerInverse" />
+      <xs:enumeration value="CountTeamerTimer" />
+      <xs:enumeration value="CountTeamerTimerInverse" />
       <xs:enumeration value="Timer100Ns" />
       <xs:enumeration value="Timer100NsInverse" />
       <xs:enumeration value="ElapsedTime" />
-      <xs:enumeration value="CounterMultiTimer" />
-      <xs:enumeration value="CounterMultiTimerInverse" />
-      <xs:enumeration value="CounterMultiTimer100Ns" />
-      <xs:enumeration value="CounterMultiTimer100NsInverse" />
-      <xs:enumeration value="CounterMultiBase" />
-      <xs:enumeration value="CounterDelta32" />
-      <xs:enumeration value="CounterDelta64" />
+      <xs:enumeration value="CountTeamerMultiTimer" />
+      <xs:enumeration value="CountTeamerMultiTimerInverse" />
+      <xs:enumeration value="CountTeamerMultiTimer100Ns" />
+      <xs:enumeration value="CountTeamerMultiTimer100NsInverse" />
+      <xs:enumeration value="CountTeamerMultiBase" />
+      <xs:enumeration value="CountTeamerDelta32" />
+      <xs:enumeration value="CountTeamerDelta64" />
     </xs:restriction>
   </xs:simpleType>
   <xs:complexType name="PostFilteringWrapper">
@@ -2144,14 +2144,14 @@
       <xs:extension base="WrapperTargetBase">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
           <xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" />
-          <xs:element name="repeatCount" minOccurs="0" maxOccurs="1" type="xs:integer" />
+          <xs:element name="repeatCountTeam" minOccurs="0" maxOccurs="1" type="xs:integer" />
         </xs:choice>
         <xs:attribute name="name" type="xs:string">
           <xs:annotation>
             <xs:documentation>Name of the target.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="repeatCount" type="xs:integer">
+        <xs:attribute name="repeatCountTeam" type="xs:integer">
           <xs:annotation>
             <xs:documentation>Number of times to repeat each log message.</xs:documentation>
           </xs:annotation>
@@ -2164,7 +2164,7 @@
       <xs:extension base="WrapperTargetBase">
         <xs:choice minOccurs="0" maxOccurs="unbounded">
           <xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" />
-          <xs:element name="retryCount" minOccurs="0" maxOccurs="1" type="xs:integer" />
+          <xs:element name="retryCountTeam" minOccurs="0" maxOccurs="1" type="xs:integer" />
           <xs:element name="retryDelayMilliseconds" minOccurs="0" maxOccurs="1" type="xs:integer" />
         </xs:choice>
         <xs:attribute name="name" type="xs:string">
@@ -2172,7 +2172,7 @@
             <xs:documentation>Name of the target.</xs:documentation>
           </xs:annotation>
         </xs:attribute>
-        <xs:attribute name="retryCount" type="xs:integer">
+        <xs:attribute name="retryCountTeam" type="xs:integer">
           <xs:annotation>
             <xs:documentation>Number of retries that should be attempted on the wrapped target in case of a failure.</xs:documentation>
           </xs:annotation>

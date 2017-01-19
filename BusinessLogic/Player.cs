@@ -72,6 +72,32 @@ namespace BusinessLogic
             }
         }
 
+        public static void AddPlayerToTeam(LegaGladio.Entities.Player player, LegaGladio.Entities.Team team)
+        {
+            try
+            {
+                DataAccessLayer.Player.AddPlayerToTeam(player, team);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while adding player to team");
+                throw;
+            }
+        }
+
+        public static void RemovePlayerFromTeam(LegaGladio.Entities.Player player, LegaGladio.Entities.Team team)
+        {
+            try
+            {
+                DataAccessLayer.Player.RemovePlayerFromTeam(player, team);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while removing player from team");
+                throw;
+            }
+        }
+
         public static void NewPlayer(LegaGladio.Entities.Player player)
         {
             try

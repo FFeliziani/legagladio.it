@@ -88,6 +88,16 @@ namespace BusinessLogic
             try
             {
                 DataAccessLayer.Game.UpdateGame(game, oldId);
+                var h = Team.GetTeam(game.Home.Id);
+                var g = Team.GetTeam(game.Guest.Id);
+
+                h.Treasury = Team.CalculateTreasury(h.Id);
+                h.FanFactor = Team.CalculateFanFactor(h.Id);
+                g.Treasury = Team.CalculateTreasury(g.Id);
+                g.FanFactor = Team.CalculateFanFactor(g.Id);
+
+                Team.UpdateTeam(h, h.Id);
+                Team.UpdateTeam(g, g.Id);
             }
             catch (Exception ex)
             {

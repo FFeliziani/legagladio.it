@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NLog;
 
 namespace BusinessLogic
@@ -72,7 +73,31 @@ namespace BusinessLogic
             }
         }
 
-        
+        public static void NewGameActionList(IEnumerable<LegaGladio.Entities.GameAction> gameActions)
+        {
+            try
+            {
+                var actions = gameActions as IList<LegaGladio.Entities.GameAction> ?? gameActions.ToList();
+                if (actions.Any())
+                {
+                    var gaL = ListGameAction(actions[0].Game);
+                    // TODO: FIND AN ACTUAL WAY TO DO THIS SHIT;
+                    foreach (var ga in gaL)
+                    {
+                        DeleteGameAction(ga.Id); //don't even.
+                    }
+                    foreach (var ga in actions)
+                    {
+                        NewGameAction(ga);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while deleting and then recreating game actions.... there must be a better way");
+                throw;
+            }
+        }
 
         public static void DeleteGameAction(Int32 id)
         {
@@ -101,7 +126,7 @@ namespace BusinessLogic
                         break;
                 }
 
-                p.Spp += a.Spp;
+                p.Spp -= a.Spp;
 
                 Player.UpdatePlayer(p, p.Id);
                 DataAccessLayer.GameAction.DeleteGameAction(ga.Id);

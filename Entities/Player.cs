@@ -17,7 +17,7 @@ namespace LegaGladio.Entities
         public int AgMinus { get; set; }
         public int AvMinus { get; set; }
         public int StMinus { get; set; }
-        public float Cost { get; set; }
+        public int Cost { get; set; }
         public String Name { get; set; }
         public int Spp { get; set; }
         public int Position { get; set; }

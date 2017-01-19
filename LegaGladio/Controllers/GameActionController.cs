@@ -58,10 +58,7 @@ namespace LegaGladio.Controllers
             }
             if (LoginManager.CheckLogged(token))
             {
-                foreach (var ga in data)
-                {
-                    BusinessLogic.GameAction.NewGameAction(ga);
-                }
+                BusinessLogic.GameAction.NewGameActionList(data);
             }
             else
             {
