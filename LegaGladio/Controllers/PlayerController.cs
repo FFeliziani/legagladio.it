@@ -16,7 +16,7 @@ namespace LegaGladio.Controllers
         //GET: api/player
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("GetTeam")]
+        [ActionName("Get")]
         public IEnumerable<Player> Get()
         {
             return BusinessLogic.Player.ListPlayer();
@@ -25,7 +25,7 @@ namespace LegaGladio.Controllers
         // GET api/player/5
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
-        [ActionName("GetTeam")]
+        [ActionName("Get")]
         public Player Get(int id)
         {
             return BusinessLogic.Player.GetPlayer(id);
