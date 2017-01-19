@@ -114,42 +114,59 @@ namespace BusinessLogic
 
         public static int CalculateFanFactor(Int32 Id)
         {
-            var fanFactor = GetTeam(Id).FanFactor;
-
-            var gamesList = Game.ListGame(new LegaGladio.Entities.Team() { Id = Id });
-            foreach (var game in gamesList)
+            try
             {
-                if (game.Home.Id == Id)
-                {
-                    fanFactor += game.VarFfHome;
-                }
-                if (game.Guest.Id == Id)
-                {
-                    fanFactor += game.VarFfGuest;
-                }
-            }
+                var fanFactor = GetTeam(Id).FanFactor;
 
-            return fanFactor;
+                var gamesList = Game.ListGame(new LegaGladio.Entities.Team() { Id = Id });
+                foreach (var game in gamesList)
+                {
+                    if (game.Home.Id == Id)
+                    {
+                        fanFactor += game.VarFfHome;
+                    }
+                    if (game.Guest.Id == Id)
+                    {
+                        fanFactor += game.VarFfGuest;
+                    }
+                }
+
+                return fanFactor;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while calculating Fan factor");
+                throw;
+            }
+           
         }
 
         public static int CalculateTreasury(Int32 Id)
         {
-            var treasury = GetTeam(Id).Treasury;
-
-            var gamesList = Game.ListGame(new LegaGladio.Entities.Team() { Id = Id });
-            foreach (var game in gamesList)
+            try
             {
-                if (game.Home.Id == Id)
-                {
-                    treasury += game.EarningHome;
-                }
-                if (game.Guest.Id == Id)
-                {
-                    treasury += game.EarningGuest;
-                }
-            }
+                var treasury = GetTeam(Id).Treasury;
 
-            return treasury;
+                var gamesList = Game.ListGame(new LegaGladio.Entities.Team() { Id = Id });
+                foreach (var game in gamesList)
+                {
+                    if (game.Home.Id == Id)
+                    {
+                        treasury += game.EarningHome;
+                    }
+                    if (game.Guest.Id == Id)
+                    {
+                        treasury += game.EarningGuest;
+                    }
+                }
+
+                return treasury;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while calculating Treasury");
+                throw;
+            }
         }
 
         /*public static Boolean DeleteTeam(int id)
