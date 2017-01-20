@@ -28,7 +28,7 @@ namespace DataAccessLayer
             var gata = new game_actionTableAdapter();
             var gadt = new LegaGladioDS.game_actionDataTable();
             gata.FillByGameId(gadt, game.Id);
-            if (gadt.Rows.Count < 1) throw new ArgumentException("Wrong number of GameActions returned");
+            //if (gadt.Rows.Count < 1) throw new ArgumentException("Wrong number of GameActions returned");
             var gaL = (from LegaGladioDS.game_actionRow gar in gadt.Rows
                 select new LegaGladio.Entities.GameAction
                 {
