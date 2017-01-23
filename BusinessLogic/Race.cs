@@ -34,7 +34,7 @@ namespace BusinessLogic
             }
         }
 
-        public static LegaGladio.Entities.Race Get(int id)
+        public static LegaGladio.Entities.Race Get(Int32 id)
         {
             try
             {
@@ -42,7 +42,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting races");
+                Logger.Error(ex, "Error while getting race - RaceId: [" + id + "]");
                 throw;
             }
         }
@@ -55,7 +55,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating races");
+                Logger.Error(ex, "Error while creating race - Race Data: " + (race != null ? "Race Name: [" + race.Name + "]" : "RACE IS NULL!!!"));
                 throw;
             }
         }
@@ -68,7 +68,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while updating races");
+                Logger.Error(ex, "Error while updating race - Race Data: id: [" + oldId + "]" + (race != null ? "Race Name: [" + race.Name + "]" : "RACE IS NULL!!!"));
                 throw;
             }
         }
@@ -81,7 +81,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting races");
+                Logger.Error(ex, "Error while deleting race - id: [" + id + "]");
                 throw;
             }
         }

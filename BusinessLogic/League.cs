@@ -29,7 +29,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting league");
+                Logger.Error(ex, "Error while getting league - Id: [" + id + "]");
                 throw;
             }
         }
@@ -42,7 +42,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating new League");
+                Logger.Error(ex, "Error while creating new League - League Data: " + (league != null ? " League Name: [" + league.Name + "]" : "LEAGUE IS NULL!!!"));
                 throw;
             }
         }
@@ -55,7 +55,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while updating league");
+                Logger.Error(ex, "Error while updating league - League Data: " + (league != null ? " oldId: [" + oldId + "], League Name: [" + league.Name + "]" : "LEAGUE IS NULL!!!"));
                 throw;
             }
         }
@@ -68,7 +68,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting league");
+                Logger.Error(ex, "Error while deleting league - Id: [" + id + "]");
                 throw;
             }
         }

@@ -19,7 +19,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while gettin injury");
+                Logger.Error(ex, "Error while gettin injury - Injury Id: [" + id + "]");
                 throw;
             }
         }
@@ -45,7 +45,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating new injury");
+                Logger.Error(ex, "Error while creating new injury - Injury Data: " + (injury != null ? "Injury Name: [" + injury.Name + "]" : "INJURY IS NULL!!!"));
                 throw;
             }
         }
@@ -58,7 +58,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while updating injury");
+                Logger.Error(ex, "Error while updating injury - Injury Data: " + (injury != null ? "OldId: [" + oldId + "], Injury Name: [" + injury.Name + "]" : "INJURY IS NULL!!!"));
                 throw;
             }
         }
@@ -71,7 +71,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting injury");
+                Logger.Error(ex, "Error while deleting injury - Id: [" + id + "]");
                 throw;
             }
         }

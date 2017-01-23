@@ -104,7 +104,7 @@ namespace LegaGladio.Controllers
         [HttpPost]
         [ActionName("post")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri]String token, [FromBody]Player data)
+        public Int32 Post([FromUri]String token, [FromBody]Player data)
         {
             if (String.IsNullOrEmpty(token))
             {
@@ -112,7 +112,7 @@ namespace LegaGladio.Controllers
             }
             if (LoginManager.CheckLogged(token))
             {
-                BusinessLogic.Player.NewPlayer(data);
+                return BusinessLogic.Player.NewPlayer(data);
             }
             else
             {

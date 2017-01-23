@@ -16,7 +16,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting group");
+                Logger.Error(ex, "Error while getting group - Id: [" + id + "]");
                 throw;
             }
         }
@@ -29,7 +29,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting group");
+                Logger.Error(ex, "Error while getting group by series - Series Id: [" + series.Id + "]");
                 throw;
             }
         }
@@ -42,7 +42,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating new Group");
+                Logger.Error(ex, "Error while creating new Group - Group Data: " + (group != null ? "Group Name: [" + group.Name + "]" : "GROUP IS NULL!!!"));
                 throw;
             }
         }
@@ -55,7 +55,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while updating group");
+                Logger.Error(ex, "Error while updating group - Group Data: " + (group != null ? "Group Name: [" + group.Name + "], oldId: [" + oldId + "]" : "GROUP IS NULL!!!"));
                 throw;
             }
         }
@@ -68,7 +68,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while adding group to series");
+                Logger.Error(ex, "Error while adding group to series - Series Id: [" + seriesId + "], Group Id: [" + groupId + "]");
                 throw;
             }
         }
@@ -81,7 +81,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while removing group from series");
+                Logger.Error(ex, "Error while removing group from series - Series Id: [" + seriesId + "], Group Id: [" + groupId + "]");
                 throw;
             }
         }
@@ -94,7 +94,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting group");
+                Logger.Error(ex, "Error while deleting group - Id: [" + id + "]");
                 throw;
             }
         }

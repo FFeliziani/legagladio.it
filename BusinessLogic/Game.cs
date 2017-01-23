@@ -8,15 +8,15 @@ namespace BusinessLogic
     {
         private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
 
-        public static LegaGladio.Entities.Game Get(int id) 
+        public static LegaGladio.Entities.Game Get(int id)
         {
             try
             {
                 return DataAccessLayer.Game.GetGame(id);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting games");
+                Logger.Error(ex, "Error while getting games - Id: [" + id + "]");
                 throw;
             }
         }
@@ -26,7 +26,7 @@ namespace BusinessLogic
             {
                 return DataAccessLayer.Game.ListGame();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Logger.Error(ex, "Error while listing games");
                 throw;
@@ -40,7 +40,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while listing games for team");
+                Logger.Error(ex, "Error while listing games for team - Team Id: [" + team.Id + "]");
                 throw;
             }
         }
@@ -52,7 +52,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while listing games for coach");
+                Logger.Error(ex, "Error while listing games for coach - Coach Id: [" + coach.Id + "]");
                 throw;
             }
         }
@@ -65,7 +65,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while listing games for round");
+                Logger.Error(ex, "Error while listing games for round - Round Id: [" + round.Id + "]");
                 throw;
             }
         }
@@ -78,7 +78,15 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating a new Game");
+                Logger.Error(ex, "Error while creating a new Game - Game Data: " 
+                    + (game != null ? (game.Home != null ? "Home Team Id: [" + game.Home.Id + "], " : "HOME TEAM IS NULL!!! ") 
+                    + (game.Guest != null ? "Guest Team Id: [" + game.Guest.Id + "], " : "GUEST TEAM IS NULL!!!") : "GAME IS NULL!!!! ")
+                    + "TD: [" + game.TdHome + "|" + game.TdGuest + "], "
+                    + "CAS: [" + game.CasHome + "|" + game.CasGuest + "], "
+                    + "SPETT: [" + game.SpHome + "|" + game.SpGuest + "], "
+                    + "EARNINGS: [" + game.EarningHome + "|" + game.EarningGuest + "], "
+                    + " VAR FF: [" + game.VarFfHome + "|" + game.VarFfGuest +"]"
+                    );
                 throw;
             }
         }
@@ -101,7 +109,16 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while updating Game");
+                Logger.Error(ex, "Error while updating Game - Game Data: "
+                    + (game != null ? "Old Id: [" + oldId +" ], " 
+                    + (game.Home != null ? "Home Team Id: [" + game.Home.Id + "], " : "HOME TEAM IS NULL!!! ")
+                    + (game.Guest != null ? "Guest Team Id: [" + game.Guest.Id + "], " : "GUEST TEAM IS NULL!!!") : "GAME IS NULL!!!! ")
+                    + "TD: [" + game.TdHome + "|" + game.TdGuest + "], "
+                    + "CAS: [" + game.CasHome + "|" + game.CasGuest + "], "
+                    + "SPETT: [" + game.SpHome + "|" + game.SpGuest + "], "
+                    + "EARNINGS: [" + game.EarningHome + "|" + game.EarningGuest + "], "
+                    + " VAR FF: [" + game.VarFfHome + "|" + game.VarFfGuest + "]"
+                    );
                 throw;
             }
         }
@@ -114,7 +131,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting game");
+                Logger.Error(ex, "Error while deleting game - Id: [" + id + "]");
                 throw;
             }
         }

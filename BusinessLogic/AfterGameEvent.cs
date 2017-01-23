@@ -16,7 +16,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting after game events");
+                Logger.Error(ex, "Error while getting after game events - After Game Event Id: [" + id + "]");
                 throw;
             }
         }
@@ -29,7 +29,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting after game events");
+                Logger.Error(ex, "Error while getting after game events - Game Id: [" + (game != null ? game.Id.ToString() : "GAME IS NULL!") + "]");
                 throw;
             }
         }
@@ -98,7 +98,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating a new after game event");
+                Logger.Error(ex, "Error while creating a new after game event = After Game Event Data:" + (afterGameEvent.Game != null ? " Game Id: [" + afterGameEvent.Game.Id + "], " : " Game is null,") + (afterGameEvent.Player != null ? " Player Id: [" + afterGameEvent.Player.Id.ToString() + "], Player Name: [" + afterGameEvent.Player.Name + "]," : " PLAYER ID IS NULL! ") + (afterGameEvent.Skill != null ? " Skill Id: [" + afterGameEvent.Skill.Id.ToString() + "], Skill Name: " + afterGameEvent.Skill.Name + "]," : " Skill is null,") + (afterGameEvent.Injury != null ? " Injury Id: [" + afterGameEvent.Injury.Id.ToString() + "], Injury Name: [" + afterGameEvent.Injury.Name + "]," : " Injury is null") + (afterGameEvent.Augmentation != null ? " Augmentation Id: [" + afterGameEvent.Augmentation.Id.ToString() + "], Augmentation Name: [" + afterGameEvent.Augmentation.Name + "]" : " Augmentation is null"));
                 throw;
             }
         }
@@ -181,7 +181,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting an after game event");
+                Logger.Error(ex, "Error while deleting an after game event - AfterGameEvent Id: [" + id + "]");
                 throw;
             }
         }

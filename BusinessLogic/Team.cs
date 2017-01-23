@@ -42,7 +42,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while listing teams for coach");
+                Logger.Error(ex, "Error while listing teams for coach - Coach Id: [" + coachId + "]");
                 throw;
             }
         }
@@ -55,7 +55,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while listing active teams");
+                Logger.Error(ex, "Error while listing active teams - Active: [" + active + "]");
                 throw;
             }
         }
@@ -68,7 +68,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting teams");
+                Logger.Error(ex, "Error while getting teams - Id: [" + id + "]");
                 throw;
             }
         }
@@ -81,7 +81,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting teams");
+                Logger.Error(ex, "Error while getting teams - Id [" + id + "], Active: [" + active + "]");
                 throw;
             }
         }
@@ -135,7 +135,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while calculating Fan factor");
+                Logger.Error(ex, "Error while calculating Fan factor - Id: [" + Id + "]");
                 throw;
             }
            
@@ -164,7 +164,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while calculating Treasury");
+                Logger.Error(ex, "Error while calculating Treasury - Id: [" + Id + "]");
                 throw;
             }
         }

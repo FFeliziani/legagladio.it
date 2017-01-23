@@ -42,7 +42,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while listing positionals for race " + raceId);
+                Logger.Error(ex, "Error while listing positionals for race - Race Id: [" + raceId + "]");
                 throw;
             }
         }
@@ -55,7 +55,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting positionals");
+                Logger.Error(ex, "Error while getting positional - Id: [" + id + "]");
                 throw;
             }
         }
@@ -68,7 +68,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating positionals");
+                Logger.Error(ex, "Error while creating positional - Positional Data: " + (positional != null ? "Positional Title: [" + positional.Title + "]" : "POSITIONAL IS NULL!!!"));
                 throw;
             }
         }
@@ -81,7 +81,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while updating positionals");
+                Logger.Error(ex, "Error while updating positional - Positional Data: oldId: [" + oldId + "]" + (positional != null ? "Positional Title: [" + positional.Title + "]" : "POSITIONAL IS NULL!!!"));
                 throw;
             }
         }
@@ -94,7 +94,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting positionals");
+                Logger.Error(ex, "Error while deleting positional - Id: [" + id + "]");
                 throw;
             }
         }

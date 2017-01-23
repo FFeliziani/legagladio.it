@@ -17,7 +17,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting a game action");
+                Logger.Error(ex, "Error while getting a game action - Id: [" + id + "]");
                 throw;
             }
         }
@@ -30,7 +30,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while listing game actions");
+                Logger.Error(ex, "Error while listing game actions - Game Id: [" + game.Id +"]");
                 throw;
             }
         }
@@ -68,7 +68,8 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating a new game action");
+                Logger.Error(ex, "Error while creating a new game action - Game Action Data: " 
+                    + (ga != null ? (ga.Player != null ? "Player Id: [" + ga.Player.Id + "] " : "PLAYER IS NULL!!! ") + (ga.Action != null ? "Action Id: [" + ga.Action.Id + "] " : "ACTION IS NULL!!!"): "GAME ACTION IS NULL!!!"));
                 throw;
             }
         }
@@ -133,7 +134,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting a game action");
+                Logger.Error(ex, "Error while deleting a game action - Game Action Id: [" + id + "]");
                 throw;
             }
         }

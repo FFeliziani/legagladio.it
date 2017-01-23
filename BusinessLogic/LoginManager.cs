@@ -31,7 +31,7 @@ namespace BusinessLogic
             }
             catch (Exception)
             {
-                Logger.Error("Error while trying to login");
+                Logger.Error("Error while trying to login - Username: [" + username + "]");
                 throw;
             }
             return token;

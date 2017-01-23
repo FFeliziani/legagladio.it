@@ -41,7 +41,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while listing players for team");
+                Logger.Error(ex, "Error while listing players for team - TeamId: [" + teamId + "]");
                 throw;
             }
         }
@@ -54,7 +54,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while listing active players for team");
+                Logger.Error(ex, "Error while listing active players for team - TeamId: [" + teamId + "], Active: [" + active + "]");
                 throw;
             }
         }
@@ -67,7 +67,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting players");
+                Logger.Error(ex, "Error while getting players - Player Id: [" + id + "]");
                 throw;
             }
         }
@@ -80,7 +80,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while adding player to team");
+                Logger.Error(ex, "Error while adding player to team - PlayerId: [" + player.Id + "], TeamId: [" + team.Id + "]");
                 throw;
             }
         }
@@ -93,20 +93,20 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while removing player from team");
+                Logger.Error(ex, "Error while removing player from team - PlayerId: [" + player.Id + "], TeamId: [" + team.Id + "]");
                 throw;
             }
         }
 
-        public static void NewPlayer(LegaGladio.Entities.Player player)
+        public static Int32 NewPlayer(LegaGladio.Entities.Player player)
         {
             try
             {
-                DataAccessLayer.Player.NewPlayer(player);
+                return DataAccessLayer.Player.NewPlayer(player);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating players");
+                Logger.Error(ex, "Error while creating player - Player Data: " + (player != null ? "Player Name: [" + player.Name + "]" + (player.Positional != null ? " Player Postional Id: [" + player.Positional.Id + "]" : "POSITIONAL IS NULL!!!") : "PLAYER IS NULL!!!"));
                 throw;
             }
         }
@@ -119,7 +119,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while updating players");
+                Logger.Error(ex, "Error while updating players - Player Data: OldId: [" + oldId + "], " + (player != null ? "Player Name: [" + player.Name + "]" + (player.Positional != null ? " Player Postional Id: [" + player.Positional.Id + "]" : "POSITIONAL IS NULL!!!") : "PLAYER IS NULL!!!"));
                 throw;
             }
         }
@@ -132,7 +132,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting players");
+                Logger.Error(ex, "Error while deleting players - Id: [" + id + "]");
                 throw;
             }
         }

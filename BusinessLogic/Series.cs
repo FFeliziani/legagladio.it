@@ -17,7 +17,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while listing players");
+                Logger.Error(ex, "Error while listing Series for League - League Id: [" + league.Id + "]");
                 throw;
             }
         }
@@ -30,7 +30,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting players");
+                Logger.Error(ex, "Error while getting Series by Id - Id: [" + id + "]");
                 throw;
             }
         }
@@ -43,7 +43,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while adding series to league");
+                Logger.Error(ex, "Error while adding series to league - Series Id: [" + seriesId + "], League Id: [" + leagueId + "]");
                 throw;
             }
         }
@@ -56,7 +56,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while removing series from league");
+                Logger.Error(ex, "Error while removing series from league - Series Id: [" + seriesId + "], League Id: [" + leagueId + "]");
             }
         }
 
@@ -68,7 +68,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating players");
+                Logger.Error(ex, "Error while creating series - Series Data: " + (series != null ? "Series Name: [" + series.Name + "]" : "SERIES IS NULL!!!"));
                 throw;
             }
         }
@@ -81,7 +81,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while updating players");
+                Logger.Error(ex, "Error while updating Series - Series Data: oldId: [" + oldId + "], " + (series != null ? "Series Name: [" + series.Name + "]" : "SERIES IS NULL!!!"));
                 throw;
             }
         }
@@ -94,7 +94,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting players");
+                Logger.Error(ex, "Error while deleting series - id: [" + id + "]");
                 throw;
             }
         }

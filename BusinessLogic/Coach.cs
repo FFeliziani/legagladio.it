@@ -42,7 +42,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while listing coaches");
+                Logger.Error(ex, "Error while listing coaches - Active was: [" + active + "]");
                 throw;
             }
         }
@@ -60,7 +60,7 @@ namespace BusinessLogic
             }
         }
 
-        public static LegaGladio.Entities.Coach Get(int id)
+        public static LegaGladio.Entities.Coach Get(Int32 id)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting coaches");
+                Logger.Error(ex, "Error while getting coaches - Id: [" + id + "]");
                 throw;
             }
         }
@@ -81,7 +81,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating coaches");
+                Logger.Error(ex, "Error while creating coaches - Coach Data: " + (coach != null ? "Coach Name: [" + coach.Name + "], Coach Value: [" + coach.Value + "], Coach Naf Id: [" + coach.NafId + "], Coach Naf Name: [" + coach.NafNick + "], Coach is active? [" + coach.Active + "]" : "COACH IS NULL!!!"));
                 throw;
             }
         }
@@ -94,7 +94,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while updating coaches");
+                Logger.Error(ex, "Error while updating coaches - Coach Data: " + (coach != null ? "Coach Id: [" + oldId + "], Coach Name: [" + coach.Name + "], Coach Value: [" + coach.Value + "], Coach Naf Id: [" + coach.NafId + "], Coach Naf Name: [" + coach.NafNick + "], Coach is active? [" + coach.Active + "]" : "COACH IS NULL!!!"));
                 throw;
             }
         }
@@ -107,7 +107,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting coaches");
+                Logger.Error(ex, "Error while deleting coaches - Id: [" + id + "]");
                 throw;
             }
         }

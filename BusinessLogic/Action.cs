@@ -19,7 +19,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting action");
+                Logger.Error(ex, "Error while getting action - Action Id: [" + id +"]");
                 throw;
             }
         }
@@ -45,7 +45,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating a new action");
+                Logger.Error(ex, "Error while creating a new action - Action Data: Description: [" + a.Description + "], SPP: [" + a.Spp + "]");
                 throw;
             }
         }

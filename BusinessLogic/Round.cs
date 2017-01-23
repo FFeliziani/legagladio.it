@@ -16,7 +16,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting round");
+                Logger.Error(ex, "Error while getting round - Id: [" + id + "]");
                 throw;
             }
         }
@@ -29,7 +29,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Exception while listing rounds for group");
+                Logger.Error(ex, "Exception while listing rounds for group - Group Id: [" + group.Id + "]");
                 throw;
             }
         }
@@ -42,7 +42,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating new Round");
+                Logger.Error(ex, "Error while creating new Round - Round Data: " + (round != null ? "Round Name: ["  + round.Name + "]" : "ROUND IS NULL!!!"));
                 throw;
             }
         }
@@ -55,7 +55,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while updating round");
+                Logger.Error(ex, "Error while updating round - Round Data: oldId: [" + oldId + "], " + (round != null ? "Round Name: [" + round.Name + "]" : "ROUND IS NULL!!!"));
                 throw;
             }
         }
@@ -68,7 +68,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while adding round to series");
+                Logger.Error(ex, "Error while adding round to group - Round Id: [" + roundId + "], Group Id: [" + groupId + "]");
                 throw;
             }
         }
@@ -81,7 +81,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while removing round from series");
+                Logger.Error(ex, "Error while removing round from group - Round Id: [" + roundId + "], Group Id: [" + groupId + "]");
                 throw;
             }
         }
@@ -94,7 +94,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting round");
+                Logger.Error(ex, "Error while deleting round - Id: [" + id + "]");
                 throw;
             }
         }

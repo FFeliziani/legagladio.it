@@ -42,7 +42,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting skills");
+                Logger.Error(ex, "Error while getting skills - Id: [" + id + "]");
                 throw;
             }
         }
@@ -55,7 +55,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while adding skill to player");
+                Logger.Error(ex, "Error while adding skill to player - Skill Id: [" + skillId + "], Player Id: [" + playerId + "]");
                 throw;
             }
         }
@@ -68,7 +68,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while removing skill from player");
+                Logger.Error(ex, "Error while removing skill from player - Skill Id: [" + skillId + "], Player Id: [" + playerId + "]");
                 throw;
             }
         }
@@ -81,7 +81,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating skills");
+                Logger.Error(ex, "Error while creating skill - Skill Data: " + (skill != null ? "Skill Name: [" + skill.Name + "]" : "SKILL IS NULL!!!"));
                 throw;
             }
         }
@@ -94,7 +94,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while updating skills");
+                Logger.Error(ex, "Error while updating skill - Skill Data: oldId: [" + oldId + "], " + (skill != null ? "Skill Name: [" + skill.Name + "]" : "SKILL IS NULL!!!"));
                 throw;
             }
         }
@@ -107,7 +107,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting skills");
+                Logger.Error(ex, "Error while deleting skill - Id: [" + id + "]");
                 throw;
             }
         }

@@ -18,7 +18,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while getting augmentation");
+                Logger.Error(ex, "Error while getting augmentation - Augmentation Id: [" + id + "]");
                 throw;
             }
         }
@@ -44,7 +44,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating new augmentation");
+                Logger.Error(ex, "Error while creating new augmentation - Augmentation Data: " + (augmentation != null ? "Augmentation Id: [" + augmentation.Id + "], Augmentation Name: [" + augmentation.Name + "]" : "Augmentation is null!!!!"));
                 throw;
             }
         }
@@ -57,7 +57,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while updating augmentation");
+                Logger.Error(ex, "Error while updating augmentation - Augmentation Data: " + (augmentation != null ? "Old Id: [" + oldId + "], Augmentation Name: [" + augmentation.Name + "]" : "Augmentation is null!!!"));
                 throw;
             }
         }
@@ -70,7 +70,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while deleting augmentation");
+                Logger.Error(ex, "Error while deleting augmentation - Augmentation Id: [" + id + "]");
                 throw;
             }
         }

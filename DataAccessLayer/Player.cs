@@ -200,11 +200,11 @@ namespace DataAccessLayer
             pta.RemovePlayerFromTeam(playerId, teamId);
         }
 
-        public static void NewPlayer(LegaGladio.Entities.Player player)
+        public static Int32 NewPlayer(LegaGladio.Entities.Player player)
         {
             var pta = new playerTableAdapter();
             //name, map, agp, avp, stp, cost, spp, td, cas, pass, inter, niggling, missNextGame, mam, agm, avm, stm, retired, dead
-            pta.Insert(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, player.Cost, player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Mvp, player.Niggling, (player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (player.Retired ? 1 : 0), (player.Dead?1:0), player.Positional.Id, player.Position);
+            return (Int32)pta.NewPlayer(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, player.Cost, player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Mvp, player.Niggling, (player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (player.Retired ? 1 : 0), (player.Dead?1:0), player.Positional.Id, player.Position);
         }
 
         public static void UpdatePlayer(LegaGladio.Entities.Player player, int oldId)
