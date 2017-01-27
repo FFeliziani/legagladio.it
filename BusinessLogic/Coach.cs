@@ -21,7 +21,7 @@ namespace BusinessLogic
             }
         }*/
 
-        public static IEnumerable<LegaGladio.Entities.Coach> List()
+        public static ICollection<LegaGladio.Entities.Coach> List()
         {
             try
             {
@@ -34,7 +34,7 @@ namespace BusinessLogic
             }
         }
 
-        public static IEnumerable<LegaGladio.Entities.Coach> List(Boolean active)
+        public static ICollection<LegaGladio.Entities.Coach> List(Boolean active)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace BusinessLogic
             }
         }
 
-        public static IEnumerable<LegaGladio.Entities.Coach> ListSimple()
+        public static ICollection<LegaGladio.Entities.Coach> ListSimple()
         {
             try
             {

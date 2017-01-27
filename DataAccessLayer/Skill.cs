@@ -15,7 +15,7 @@ namespace DataAccessLayer
             return count;
         }
 
-        public static IEnumerable<LegaGladio.Entities.Skill> ListSkill()
+        public static ICollection<LegaGladio.Entities.Skill> ListSkill()
         {
             var sdt = new LegaGladioDS.skillDataTable();
             var sta = new skillTableAdapter();
@@ -31,7 +31,7 @@ namespace DataAccessLayer
         }
 
         // FF: Return all skills for player
-        public static IEnumerable<LegaGladio.Entities.Skill> ListSkill(int playerId)
+        public static ICollection<LegaGladio.Entities.Skill> ListSkill(int playerId)
         {
             var sdt = new LegaGladioDS.skillDataTable();
             var sta = new skillTableAdapter();
@@ -40,7 +40,7 @@ namespace DataAccessLayer
             return skillList;
         }
 
-        public static IEnumerable<LegaGladio.Entities.Skill> ListSkill(LegaGladio.Entities.Positional positional)
+        public static ICollection<LegaGladio.Entities.Skill> ListSkill(LegaGladio.Entities.Positional positional)
         {
             var sdt = new LegaGladioDS.skillDataTable();
             var sta = new skillTableAdapter();
@@ -103,7 +103,7 @@ namespace DataAccessLayer
             return rowNum == 1;
         }
 
-        public static Boolean NewSkills(IEnumerable<LegaGladio.Entities.Skill> skillList)
+        public static Boolean NewSkills(ICollection<LegaGladio.Entities.Skill> skillList)
         {
             return skillList.Aggregate(true, (current, skill) => current & NewSkill(skill));
         }
@@ -126,7 +126,7 @@ namespace DataAccessLayer
             return rowNum == 1;
         }
 
-        public static Boolean DeleteSkills(IEnumerable<LegaGladio.Entities.Skill> skillList)
+        public static Boolean DeleteSkills(ICollection<LegaGladio.Entities.Skill> skillList)
         {
             return skillList.Aggregate(true, (current, skill) => current & DeleteSkill(skill.Id));
         }

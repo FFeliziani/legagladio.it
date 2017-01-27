@@ -21,7 +21,7 @@ namespace BusinessLogic
             }
         }
 
-        public static IEnumerable<LegaGladio.Entities.Positional> List()
+        public static ICollection<LegaGladio.Entities.Positional> List()
         {
             try
             {
@@ -34,7 +34,7 @@ namespace BusinessLogic
             }
         }
 
-        public static IEnumerable<LegaGladio.Entities.Positional> ListByRace(int raceId)
+        public static ICollection<LegaGladio.Entities.Positional> ListByRace(int raceId)
         {
             try
             {

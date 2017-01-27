@@ -21,7 +21,7 @@ namespace BusinessLogic
             }
         }
 
-        public static IEnumerable<LegaGladio.Entities.Race> List()
+        public static ICollection<LegaGladio.Entities.Race> List()
         {
             try
             {

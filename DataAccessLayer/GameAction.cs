@@ -23,7 +23,7 @@ namespace DataAccessLayer
             return ga;
         }
 
-        public static IEnumerable<LegaGladio.Entities.GameAction> ListGameAction(LegaGladio.Entities.Game game)
+        public static ICollection<LegaGladio.Entities.GameAction> ListGameAction(LegaGladio.Entities.Game game)
         {
             var gata = new game_actionTableAdapter();
             var gadt = new LegaGladioDS.game_actionDataTable();

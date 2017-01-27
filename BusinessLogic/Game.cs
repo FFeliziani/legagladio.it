@@ -20,7 +20,7 @@ namespace BusinessLogic
                 throw;
             }
         }
-        public static IEnumerable<LegaGladio.Entities.Game> ListGame()
+        public static ICollection<LegaGladio.Entities.Game> ListGame()
         {
             try
             {
@@ -32,7 +32,7 @@ namespace BusinessLogic
                 throw;
             }
         }
-        public static IEnumerable<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Team team)
+        public static ICollection<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Team team)
         {
             try
             {
@@ -44,7 +44,7 @@ namespace BusinessLogic
                 throw;
             }
         }
-        public static IEnumerable<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Coach coach)
+        public static ICollection<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Coach coach)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace BusinessLogic
             }
         }
 
-        public static IEnumerable<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Round round)
+        public static ICollection<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Round round)
         {
             try
             {

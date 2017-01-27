@@ -15,7 +15,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
-        public IEnumerable<Game> Get()
+        public ICollection<Game> Get()
         {
             return BusinessLogic.Game.ListGame();
         }
@@ -23,7 +23,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByCoach")]
-        public IEnumerable<Game> GetByCoach(int id)
+        public ICollection<Game> GetByCoach(int id)
         {
             return BusinessLogic.Game.ListGame(new Coach { Id = id });
         }
@@ -31,7 +31,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByTeam")]
-        public IEnumerable<Game> GetByTeam(int id)
+        public ICollection<Game> GetByTeam(int id)
         {
             return BusinessLogic.Game.ListGame(new Team { Id = id });
         }
@@ -39,7 +39,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByRound")]
-        public IEnumerable<Game> GetByRound(int id)
+        public ICollection<Game> GetByRound(int id)
         {
             return BusinessLogic.Game.ListGame(new Round { Id = id });
         }

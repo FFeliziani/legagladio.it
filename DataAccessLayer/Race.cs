@@ -28,7 +28,6 @@ namespace DataAccessLayer
 
         public static LegaGladio.Entities.Race GetRace(int id)
         {
-            
             var rdt = new LegaGladioDS.raceDataTable();
             var rta = new raceTableAdapter();
             rta.FillById(rdt, id);

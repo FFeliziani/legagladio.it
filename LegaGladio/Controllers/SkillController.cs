@@ -13,7 +13,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
-        public IEnumerable<Skill> Get()
+        public ICollection<Skill> Get()
         {
             return BusinessLogic.Skill.List();
         }

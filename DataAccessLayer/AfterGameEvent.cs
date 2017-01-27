@@ -25,7 +25,7 @@ namespace DataAccessLayer
             };
         }
 
-        public static IEnumerable<LegaGladio.Entities.AfterGameEvent> GetAfterGameEvent(LegaGladio.Entities.Game game)
+        public static ICollection<LegaGladio.Entities.AfterGameEvent> GetAfterGameEvent(LegaGladio.Entities.Game game)
         {
             var ageta = new after_game_eventTableAdapter();
             var agedt = new LegaGladioDS.after_game_eventDataTable();

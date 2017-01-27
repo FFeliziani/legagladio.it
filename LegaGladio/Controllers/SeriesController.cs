@@ -22,7 +22,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByLeague")]
-        public IEnumerable<Series> GetByLeague(int id)
+        public ICollection<Series> GetByLeague(int id)
         {
             var league = new League { Id = id };
             return BusinessLogic.Series.List(league);

@@ -14,7 +14,7 @@ namespace DataAccessLayer
             return count;
         }
 
-        public static IEnumerable<LegaGladio.Entities.Team> ListTeam()
+        public static ICollection<LegaGladio.Entities.Team> ListTeam()
         {
             var tdt = new LegaGladioDS.teamDataTable();
             var tta = new teamTableAdapter();
@@ -22,18 +22,18 @@ namespace DataAccessLayer
             var teamList = new List<LegaGladio.Entities.Team>();
             foreach (var team in from LegaGladioDS.teamRow tr in tdt.Rows
                                  select new LegaGladio.Entities.Team
-                                     {
-                                         Id = tr.id,
-                                         AssistantCoach = tr.assistantCoach,
-                                         Cheerleader = tr.cheerleader,
-                                         Name = tr.name,
-                                         HasMedic = tr.hasMedic == 1,
-                                         FanFactor = tr.funFactor,
-                                         Reroll = tr.reroll,
-                                         Value = tr.value,
-                                         Treasury = tr.treasury,
-                                         Active = tr.active == 1
-                                     })
+                                 {
+                                     Id = tr.id,
+                                     AssistantCoach = tr.assistantCoach,
+                                     Cheerleader = tr.cheerleader,
+                                     Name = tr.name,
+                                     HasMedic = tr.hasMedic == 1,
+                                     FanFactor = tr.funFactor,
+                                     Reroll = tr.reroll,
+                                     Value = tr.value,
+                                     Treasury = tr.treasury,
+                                     Active = tr.active == 1
+                                 })
             {
                 team.Race = Race.GetRaceByTeamId(team.Id);
                 team.CoachName = Coach.GetCoachName(team.Id);
@@ -43,7 +43,7 @@ namespace DataAccessLayer
             return teamList;
         }
 
-        public static IEnumerable<LegaGladio.Entities.Team> ListTeam(int coachId)
+        public static ICollection<LegaGladio.Entities.Team> ListTeam(int coachId)
         {
             var tdt = new LegaGladioDS.teamDataTable();
             var tta = new teamTableAdapter();
@@ -51,18 +51,18 @@ namespace DataAccessLayer
             var teamList = new List<LegaGladio.Entities.Team>();
             foreach (var team in from LegaGladioDS.teamRow tr in tdt.Rows
                                  select new LegaGladio.Entities.Team
-                                     {
-                                         Id = tr.id,
-                                         AssistantCoach = tr.assistantCoach,
-                                         Cheerleader = tr.cheerleader,
-                                         Name = tr.name,
-                                         HasMedic = tr.hasMedic == 1,
-                                         FanFactor = tr.funFactor,
-                                         Reroll = tr.reroll,
-                                         Value = tr.value,
-                                         Treasury = tr.treasury,
-                                         Active = tr.active == 1
-                                     })
+                                 {
+                                     Id = tr.id,
+                                     AssistantCoach = tr.assistantCoach,
+                                     Cheerleader = tr.cheerleader,
+                                     Name = tr.name,
+                                     HasMedic = tr.hasMedic == 1,
+                                     FanFactor = tr.funFactor,
+                                     Reroll = tr.reroll,
+                                     Value = tr.value,
+                                     Treasury = tr.treasury,
+                                     Active = tr.active == 1
+                                 })
             {
                 team.Race = Race.GetRaceByTeamId(team.Id);
                 team.CoachName = Coach.GetCoachName(team.Id);
@@ -72,7 +72,7 @@ namespace DataAccessLayer
             return teamList;
         }
 
-        public static IEnumerable<LegaGladio.Entities.Team> ListTeam(Boolean active)
+        public static ICollection<LegaGladio.Entities.Team> ListTeam(Boolean active)
         {
             var tdt = new LegaGladioDS.teamDataTable();
             var tta = new teamTableAdapter();
@@ -165,7 +165,6 @@ namespace DataAccessLayer
 
         public static LegaGladio.Entities.Team GetTeam(Int32 id, Boolean active)
         {
-
             var ttd = new LegaGladioDS.teamDataTable();
             var tta = new teamTableAdapter();
             tta.FillById(ttd, id);
@@ -188,6 +187,18 @@ namespace DataAccessLayer
             team.CoachName = Coach.GetCoachName(team.Id);
             team.CoachId = Coach.GetCoachId(team.Id);
             team.ListPlayer = Player.ListPlayer(team.Id, active);
+            team.ListJourneymen = new List<LegaGladio.Entities.Player>();
+            var playerCount = team.ListPlayer.Count(x => !x.MissNextGame);
+            if (playerCount + team.ListJourneymen.Count < 11)
+            {
+                var positionals = Positional.ListPositionalByRace(team.Race.Id);
+                var positional = positionals.Aggregate((curMax, x) => ((curMax == null || (x.Qty > curMax.Qty) ? x : curMax)));
+                while (playerCount + team.ListJourneymen.Count < 11)
+                {
+                    var maxPosition = Math.Max(team.ListPlayer.Max(x => x.Position), team.ListJourneymen.Count > 0 ? team.ListJourneymen.Max(x => x.Position) : 0);
+                    team.ListJourneymen.Add(new LegaGladio.Entities.Player() { Name = Player.GenerateName(team.Race), Positional = positional, Position = maxPosition + 1, ListAbility = new List<LegaGladio.Entities.Skill>() { Skill.GetSkill("Loner") }, Cost = positional.Cost });
+                }
+            }
             team.Value = CalculateTeamValue(team.Id);
             return team;
         }
@@ -228,7 +239,7 @@ namespace DataAccessLayer
         {
             var teamValue = 0;
 
-            
+
             var ttd = new LegaGladioDS.teamDataTable();
             var tta = new teamTableAdapter();
             tta.FillById(ttd, id);
@@ -245,10 +256,23 @@ namespace DataAccessLayer
             };
             team.Race = Race.GetRaceByTeamId(team.Id);
             team.ListPlayer = Player.ListPlayer(team.Id, true);
-            
+            team.ListJourneymen = new List<LegaGladio.Entities.Player>();
+            var playerCount = team.ListPlayer.Count(x => !x.MissNextGame);
+            if (playerCount + team.ListJourneymen.Count < 11)
+            {
+                var positionals = Positional.ListPositionalByRace(team.Race.Id);
+                var positional = positionals.Aggregate((curMax, x) => ((curMax == null || (x.Qty > curMax.Qty) ? x : curMax)));
+                while (playerCount + team.ListJourneymen.Count < 11)
+                {
+                    var maxPosition = Math.Max(team.ListPlayer.Max(x => x.Position), team.ListJourneymen.Count > 0 ? team.ListJourneymen.Max(x => x.Position) : 0);
+                    team.ListJourneymen.Add(new LegaGladio.Entities.Player() { Name = Player.GenerateName(team.Race), Positional = positional, Position = maxPosition + 1, ListAbility = new List<LegaGladio.Entities.Skill>() { Skill.GetSkill("Loner") }, Cost = positional.Cost });
+                }
+            }
+
             team.HasMedic = teamRow.hasMedic == 1;
 
             teamValue += team.ListPlayer.Sum(p => Convert.ToInt32(p.Cost));
+            teamValue += team.ListJourneymen.Sum(p => Convert.ToInt32(p.Cost));
 
             teamValue += (10000 * team.AssistantCoach);
             teamValue += (10000 * team.Cheerleader);

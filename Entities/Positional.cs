@@ -15,7 +15,7 @@ namespace LegaGladio.Entities
         public int Cost { get; set; }
         public String Title { get; set; }
 
-        public IEnumerable<Skill> ListAbility { get; set; }
+        public ICollection<Skill> ListAbility { get; set; }
 
         public int General { get; set; }
         public int Agility { get; set; }

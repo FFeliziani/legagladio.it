@@ -22,7 +22,7 @@ namespace BusinessLogic
             }
         }
 
-        public static IEnumerable<LegaGladio.Entities.GameAction> ListGameAction(LegaGladio.Entities.Game game)
+        public static ICollection<LegaGladio.Entities.GameAction> ListGameAction(LegaGladio.Entities.Game game)
         {
             try
             {
@@ -74,7 +74,7 @@ namespace BusinessLogic
             }
         }
 
-        public static void NewGameActionList(IEnumerable<LegaGladio.Entities.GameAction> gameActions)
+        public static void NewGameActionList(ICollection<LegaGladio.Entities.GameAction> gameActions)
         {
             try
             {

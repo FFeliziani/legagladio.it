@@ -24,7 +24,7 @@ namespace BusinessLogic
             }
         }
 
-        public static IEnumerable<LegaGladio.Entities.Injury> ListInjury()
+        public static ICollection<LegaGladio.Entities.Injury> ListInjury()
         {
             try
             {

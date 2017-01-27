@@ -18,7 +18,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("GET")]
-        public IEnumerable<Augmentation> Get()
+        public ICollection<Augmentation> Get()
         {
             return BusinessLogic.Augmentation.ListAugmentation();
         }

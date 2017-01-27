@@ -12,7 +12,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("Get")]
-        public IEnumerable<Race> Get()
+        public ICollection<Race> Get()
         {
             return BusinessLogic.Race.List();
         }

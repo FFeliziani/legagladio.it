@@ -12,7 +12,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
-        public IEnumerable<Team> Get()
+        public ICollection<Team> Get()
         {
             return BusinessLogic.Team.ListTeam();
         }
@@ -38,7 +38,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByCoach")]
-        public IEnumerable<Team> GetByCoach(int id)
+        public ICollection<Team> GetByCoach(int id)
         {
             return BusinessLogic.Team.ListTeam(id);
         }
@@ -46,7 +46,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getActive")]
-        public IEnumerable<Team> GetActive()
+        public ICollection<Team> GetActive()
         {
             return BusinessLogic.Team.ListTeam(true);
         }
@@ -54,7 +54,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getInactive")]
-        public IEnumerable<Team> GetInactive()
+        public ICollection<Team> GetInactive()
         {
             return BusinessLogic.Team.ListTeam(false);
         }

@@ -21,7 +21,7 @@ namespace BusinessLogic
             }
         }
         
-        public static IEnumerable<LegaGladio.Entities.AfterGameEvent> GetAfterGameEvent(LegaGladio.Entities.Game game)
+        public static ICollection<LegaGladio.Entities.AfterGameEvent> GetAfterGameEvent(LegaGladio.Entities.Game game)
         {
             try
             {

@@ -13,7 +13,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
-        public IEnumerable<AfterGameEvent> Get(Int32 id)
+        public ICollection<AfterGameEvent> Get(Int32 id)
         {
             var game = new Game {Id=id};
             return BusinessLogic.AfterGameEvent.GetAfterGameEvent(game);

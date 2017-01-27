@@ -23,7 +23,7 @@ namespace BusinessLogic
             }
         }
 
-        public static IEnumerable<LegaGladio.Entities.Augmentation> ListAugmentation()
+        public static ICollection<LegaGladio.Entities.Augmentation> ListAugmentation()
         {
             try
             {

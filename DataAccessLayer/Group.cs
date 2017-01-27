@@ -7,7 +7,7 @@ namespace DataAccessLayer
 {
     public static class Group
     {
-        public static IEnumerable<LegaGladio.Entities.Group> ListGroup(LegaGladio.Entities.Series s)
+        public static ICollection<LegaGladio.Entities.Group> ListGroup(LegaGladio.Entities.Series s)
         {
             var gta = new groupTableAdapter();
             var gdt = new LegaGladioDS.groupDataTable();

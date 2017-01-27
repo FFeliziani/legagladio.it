@@ -59,7 +59,7 @@ namespace DataAccessLayer
             return game;
         }
 
-        public static IEnumerable<LegaGladio.Entities.Game> ListGame()
+        public static ICollection<LegaGladio.Entities.Game> ListGame()
         {
             var gdt = new LegaGladioDS.gameDataTable();
             var gta = new gameTableAdapter();
@@ -72,7 +72,7 @@ namespace DataAccessLayer
             return gameList;
         }
 
-        public static IEnumerable<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Team team)
+        public static ICollection<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Team team)
         {
             var gdt = new LegaGladioDS.gameDataTable();
             var gta = new gameTableAdapter();
@@ -85,7 +85,7 @@ namespace DataAccessLayer
             return gameList;
         }
 
-        public static IEnumerable<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Coach coach)
+        public static ICollection<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Coach coach)
         {
             var gdt = new LegaGladioDS.gameDataTable();
             var gta = new gameTableAdapter();
@@ -98,7 +98,7 @@ namespace DataAccessLayer
             return gameList;
         }
 
-        public static IEnumerable<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Round round)
+        public static ICollection<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Round round)
         {
             var gta = new gameTableAdapter();
             var gdt = new LegaGladioDS.gameDataTable();

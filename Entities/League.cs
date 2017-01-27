@@ -9,6 +9,6 @@ namespace LegaGladio.Entities
         public String Name { get; set; }
         public String Details { get; set; }
         public String Notes { get; set; }
-        public IEnumerable<Series> SeriesList { get; set; }
+        public ICollection<Series> SeriesList { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace LegaGladio.Entities
     {
         public int Id{ get; set; }
         
-        public IEnumerable<Team> ListTeam{ get; set; }
+        public ICollection<Team> ListTeam{ get; set; }
         public String Name{ get; set; }
         public int Value{ get; set; }
         public String NafId{ get; set; }

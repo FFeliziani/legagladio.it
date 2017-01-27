@@ -18,7 +18,7 @@ namespace DataAccessLayer
             return i;
         }
 
-        public static IEnumerable<LegaGladio.Entities.Injury> ListInInjury()
+        public static ICollection<LegaGladio.Entities.Injury> ListInInjury()
         {
             var ita = new injuryTableAdapter();
             var idt = new LegaGladioDS.injuryDataTable();

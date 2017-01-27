@@ -22,7 +22,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByGame")]
-        public IEnumerable<GameAction> GetByGame(Int32 id)
+        public ICollection<GameAction> GetByGame(Int32 id)
         {
             return BusinessLogic.GameAction.ListGameAction(new Game(){Id = id});
         }
@@ -50,7 +50,7 @@ namespace LegaGladio.Controllers
         [HttpPost]
         [ActionName("postList")]
         [AcceptVerbs("POST")]
-        public void Post([FromUri] String token, [FromBody] IEnumerable<GameAction> data)
+        public void Post([FromUri] String token, [FromBody] ICollection<GameAction> data)
         {
             if (String.IsNullOrEmpty(token))
             {

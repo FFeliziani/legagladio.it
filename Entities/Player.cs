@@ -22,7 +22,7 @@ namespace LegaGladio.Entities
         public int Spp { get; set; }
         public int Position { get; set; }
 
-        public IEnumerable<Skill> ListAbility { get; set; }
+        public ICollection<Skill> ListAbility { get; set; }
 
         public Boolean Retired { get; set; }
         public Boolean Dead { get; set; }

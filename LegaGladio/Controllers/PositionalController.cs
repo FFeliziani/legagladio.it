@@ -12,7 +12,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("Get")]
-        public IEnumerable<Positional> Get()
+        public ICollection<Positional> Get()
         {
             return BusinessLogic.Positional.List();
         }
@@ -29,7 +29,7 @@ namespace LegaGladio.Controllers
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByRace")]
         // GET api/positional/5
-        public IEnumerable<Positional> GetByRace(int id)
+        public ICollection<Positional> GetByRace(int id)
         {
             return BusinessLogic.Positional.ListByRace(id);
         }

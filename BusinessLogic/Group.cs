@@ -21,7 +21,7 @@ namespace BusinessLogic
             }
         }
 
-        public static IEnumerable<LegaGladio.Entities.Group> ListGroup(LegaGladio.Entities.Series series)
+        public static ICollection<LegaGladio.Entities.Group> ListGroup(LegaGladio.Entities.Series series)
         {
             try
             {
