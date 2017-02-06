@@ -29,7 +29,8 @@ namespace DataAccessLayer
                 TdGuest = gr.tdGuest,
                 TdHome = gr.tdHome,
                 VarFfGuest = gr.varFFGuest,
-                VarFfHome = gr.varFFHome
+                VarFfHome = gr.varFFHome,
+                GameDate = gr.IsgameDateNull() ? null : (DateTime?)gr.gameDate
             };
             return game;
         }
@@ -54,7 +55,8 @@ namespace DataAccessLayer
                 TdGuest = gr.tdGuest,
                 TdHome = gr.tdHome,
                 VarFfGuest = gr.varFFGuest,
-                VarFfHome = gr.varFFHome
+                VarFfHome = gr.varFFHome,
+                GameDate = gr.IsgameDateNull() ? null : (DateTime?)gr.gameDate
             };
             return game;
         }
@@ -67,7 +69,20 @@ namespace DataAccessLayer
             var gameList = (from LegaGladioDS.gameRow gr in gdt.Rows
                 select new LegaGladio.Entities.Game
                 {
-                    Id = gr.id, Home = Team.GetTeamSimple(gr.homeID), Guest = Team.GetTeamSimple(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
+                    Id = gr.id,
+                    Home = Team.GetTeamSimple(gr.homeID),
+                    Guest = Team.GetTeamSimple(gr.guestID),
+                    TdHome = gr.tdHome,
+                    TdGuest = gr.tdGuest,
+                    CasHome = gr.casHome,
+                    CasGuest = gr.casGuest,
+                    SpHome = gr.spHome,
+                    SpGuest = gr.spGuest,
+                    EarningHome = gr.earningHome,
+                    EarningGuest = gr.earningGuest,
+                    VarFfHome = gr.varFFHome,
+                    VarFfGuest = gr.varFFGuest,
+                    GameDate = gr.IsgameDateNull() ? null : (DateTime?)gr.gameDate
                 }).ToList();
             return gameList;
         }
@@ -80,7 +95,20 @@ namespace DataAccessLayer
             var gameList = (from LegaGladioDS.gameRow gr in gdt.Rows
                 select new LegaGladio.Entities.Game
                 {
-                    Id = gr.id, Home = Team.GetTeamSimple(gr.homeID), Guest = Team.GetTeamSimple(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
+                    Id = gr.id,
+                    Home = Team.GetTeamSimple(gr.homeID),
+                    Guest = Team.GetTeamSimple(gr.guestID),
+                    TdHome = gr.tdHome,
+                    TdGuest = gr.tdGuest,
+                    CasHome = gr.casHome,
+                    CasGuest = gr.casGuest,
+                    SpHome = gr.spHome,
+                    SpGuest = gr.spGuest,
+                    EarningHome = gr.earningHome,
+                    EarningGuest = gr.earningGuest,
+                    VarFfHome = gr.varFFHome,
+                    VarFfGuest = gr.varFFGuest,
+                    GameDate = gr.IsgameDateNull() ? null : (DateTime?)gr.gameDate
                 }).ToList();
             return gameList;
         }
@@ -93,7 +121,20 @@ namespace DataAccessLayer
             var gameList = (from LegaGladioDS.gameRow gr in gdt.Rows
                 select new LegaGladio.Entities.Game
                 {
-                    Id = gr.id, Home = Team.GetTeamSimple(gr.homeID), Guest = Team.GetTeamSimple(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
+                    Id = gr.id,
+                    Home = Team.GetTeamSimple(gr.homeID),
+                    Guest = Team.GetTeamSimple(gr.guestID),
+                    TdHome = gr.tdHome,
+                    TdGuest = gr.tdGuest,
+                    CasHome = gr.casHome,
+                    CasGuest = gr.casGuest,
+                    SpHome = gr.spHome,
+                    SpGuest = gr.spGuest,
+                    EarningHome = gr.earningHome,
+                    EarningGuest = gr.earningGuest,
+                    VarFfHome = gr.varFFHome,
+                    VarFfGuest = gr.varFFGuest,
+                    GameDate = gr.IsgameDateNull() ? null : (DateTime?)gr.gameDate
                 }).ToList();
             return gameList;
         }
@@ -108,8 +149,79 @@ namespace DataAccessLayer
             var gL = (from LegaGladioDS.gameRow gr in gdt.Rows
                 select new LegaGladio.Entities.Game
                 {
-                    Id = gr.id, Home = Team.GetTeamSimple(gr.homeID), Guest = Team.GetTeamSimple(gr.guestID), TdHome = gr.tdHome, TdGuest = gr.tdGuest, CasHome = gr.casHome, CasGuest = gr.casGuest, SpHome = gr.spHome, SpGuest = gr.spGuest, EarningHome = gr.earningHome, EarningGuest = gr.earningGuest, VarFfHome = gr.varFFHome, VarFfGuest = gr.varFFGuest
+                    Id = gr.id,
+                    Home = Team.GetTeamSimple(gr.homeID),
+                    Guest = Team.GetTeamSimple(gr.guestID),
+                    TdHome = gr.tdHome,
+                    TdGuest = gr.tdGuest,
+                    CasHome = gr.casHome,
+                    CasGuest = gr.casGuest,
+                    SpHome = gr.spHome,
+                    SpGuest = gr.spGuest,
+                    EarningHome = gr.earningHome,
+                    EarningGuest = gr.earningGuest,
+                    VarFfHome = gr.varFFHome,
+                    VarFfGuest = gr.varFFGuest,
+                    GameDate = gr.IsgameDateNull() ? null : (DateTime?)gr.gameDate
                 }).ToList();
+
+            return gL;
+        }
+
+        public static ICollection<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Group group)
+        {
+            var gta = new gameTableAdapter();
+            var gdt = new LegaGladioDS.gameDataTable();
+
+            gta.FillByGroupId(gdt, group.Id);
+
+            var gL = (from LegaGladioDS.gameRow gr in gdt.Rows
+                      select new LegaGladio.Entities.Game
+                      {
+                          Id = gr.id,
+                          Home = Team.GetTeamSimple(gr.homeID),
+                          Guest = Team.GetTeamSimple(gr.guestID),
+                          TdHome = gr.tdHome,
+                          TdGuest = gr.tdGuest,
+                          CasHome = gr.casHome,
+                          CasGuest = gr.casGuest,
+                          SpHome = gr.spHome,
+                          SpGuest = gr.spGuest,
+                          EarningHome = gr.earningHome,
+                          EarningGuest = gr.earningGuest,
+                          VarFfHome = gr.varFFHome,
+                          VarFfGuest = gr.varFFGuest,
+                          GameDate = gr.IsgameDateNull() ? null : (DateTime?)gr.gameDate
+                      }).ToList();
+
+            return gL;
+        }
+
+        public static ICollection<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Series series)
+        {
+            var gta = new gameTableAdapter();
+            var gdt = new LegaGladioDS.gameDataTable();
+
+            gta.FillBySeriesId(gdt, series.Id);
+
+            var gL = (from LegaGladioDS.gameRow gr in gdt.Rows
+                      select new LegaGladio.Entities.Game
+                      {
+                          Id = gr.id,
+                          Home = Team.GetTeamSimple(gr.homeID),
+                          Guest = Team.GetTeamSimple(gr.guestID),
+                          TdHome = gr.tdHome,
+                          TdGuest = gr.tdGuest,
+                          CasHome = gr.casHome,
+                          CasGuest = gr.casGuest,
+                          SpHome = gr.spHome,
+                          SpGuest = gr.spGuest,
+                          EarningHome = gr.earningHome,
+                          EarningGuest = gr.earningGuest,
+                          VarFfHome = gr.varFFHome,
+                          VarFfGuest = gr.varFFGuest,
+                          GameDate = gr.IsgameDateNull() ? null : (DateTime?)gr.gameDate
+                      }).ToList();
 
             return gL;
         }
@@ -132,7 +244,7 @@ namespace DataAccessLayer
         {
             var gta = new gameTableAdapter();
 
-            gta.Insert(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFfHome, game.VarFfGuest, game.Notes);
+            gta.InsertGame(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFfHome, game.VarFfGuest, game.Notes, game.GameDate);
         }
 
         public static void UpdateGame(LegaGladio.Entities.Game game, Int32 oldId)
@@ -144,14 +256,14 @@ namespace DataAccessLayer
             game.Home = oldGame.Home;
             game.Guest = oldGame.Guest;
 
-            gta.Update(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFfHome, game.VarFfGuest, game.Notes, oldId);
+            gta.UpdateGame(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFfHome, game.VarFfGuest, game.Notes, game.GameDate, oldId);
         }
 
         public static void DeleteGame(Int32 id)
         {
             var gta = new gameTableAdapter();
 
-            gta.Delete(id);
+            gta.DeleteGame(id);
         }
     }
 }

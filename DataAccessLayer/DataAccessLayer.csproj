@@ -45,6 +45,7 @@
     <Compile Include="Action.cs" />
     <Compile Include="AfterGameEvent.cs" />
     <Compile Include="Augmentation.cs" />
+    <Compile Include="Article.cs" />
     <Compile Include="Coach.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameAction.cs" />

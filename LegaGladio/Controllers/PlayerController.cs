@@ -69,9 +69,7 @@ namespace LegaGladio.Controllers
             }
             if (LoginManager.CheckLogged(token))
             {
-                var p = new Player() { Id = Convert.ToInt32(addItemsData.Id2) };
-                var t = new Team() { Id = Convert.ToInt32(addItemsData.Id1) };
-                BusinessLogic.Player.AddPlayerToTeam(p, t);
+                BusinessLogic.Player.AddPlayerToTeam(Convert.ToInt32(addItemsData.Id2), Convert.ToInt32(addItemsData.Id1));
             }
             else
             {
@@ -90,9 +88,7 @@ namespace LegaGladio.Controllers
             }
             if (LoginManager.CheckLogged(token))
             {
-                var p = new Entities.Player() { Id = Convert.ToInt32(addItemsData.Id2) };
-                var t = new Entities.Team() { Id = Convert.ToInt32(addItemsData.Id1) };
-                BusinessLogic.Player.RemovePlayerFromTeam(p, t);
+                BusinessLogic.Player.RemovePlayerFromTeam(Convert.ToInt32(addItemsData.Id2), Convert.ToInt32(addItemsData.Id1));
             }
             else
             {

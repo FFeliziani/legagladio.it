@@ -23,7 +23,7 @@ namespace DataAccessLayer
             return r;
         }
 
-        public static List<LegaGladio.Entities.Round> ListRound(LegaGladio.Entities.Group g)
+        public static ICollection<LegaGladio.Entities.Round> ListRound(LegaGladio.Entities.Group g)
         {
             var rta = new roundTableAdapter();
             var rdt = new LegaGladioDS.roundDataTable();
@@ -38,6 +38,26 @@ namespace DataAccessLayer
 
             return rL;
         }
+
+        public static ICollection<LegaGladio.Entities.Round> ListRoundDetailed(LegaGladio.Entities.Group g)
+        {
+
+            var rta = new roundTableAdapter();
+            var rdt = new LegaGladioDS.roundDataTable();
+
+            rta.FillByGroupId(rdt, g.Id);
+
+            var rL = (from LegaGladioDS.roundRow rr in rdt.Rows
+                      select new LegaGladio.Entities.Round
+                      {
+                          Id = rr.id,
+                          Name = rr.name,
+                          Number = rr.number,
+                          GameList = Game.ListGame(new LegaGladio.Entities.Round(){Id = rr.id})
+                      }).ToList();
+
+            return rL;
+        } 
 
         public static void AddRoundToGroup(Int32 roundId, Int32 groupId)
         {

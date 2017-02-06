@@ -34,6 +34,19 @@ namespace BusinessLogic
             }
         }
 
+        public static ICollection<LegaGladio.Entities.Round> ListRoundDetailed(LegaGladio.Entities.Group group)
+        {
+            try
+            {
+                return DataAccessLayer.Round.ListRoundDetailed(group);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Exception while listing rounds for group - Group Id: [" + group.Id + "]");
+                throw;
+            }
+        }
+
         public static void NewRound(LegaGladio.Entities.Round round)
         {
             try

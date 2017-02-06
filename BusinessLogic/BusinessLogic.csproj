@@ -62,6 +62,7 @@
     <Compile Include="Round.cs" />
     <Compile Include="Series.cs" />
     <Compile Include="Skill.cs" />
+    <Compile Include="Standings.cs" />
     <Compile Include="Team.cs" />
   </ItemGroup>
   <ItemGroup>

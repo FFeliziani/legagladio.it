@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="Action.cs" />
     <Compile Include="AfterGameEvent.cs" />
+    <Compile Include="Article.cs" />
+    <Compile Include="ArticleType.cs" />
     <Compile Include="Augmentation.cs" />
     <Compile Include="Coach.cs" />
     <Compile Include="Game.cs" />
@@ -59,7 +61,9 @@
     <Compile Include="Skill.cs" />
     <Compile Include="SkillCost.cs" />
     <Compile Include="SkillType.cs" />
+    <Compile Include="Standing.cs" />
     <Compile Include="Team.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

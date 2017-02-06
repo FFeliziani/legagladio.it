@@ -18,6 +18,7 @@ namespace LegaGladio.Entities
         public int VarFfHome { get; set; }
         public int VarFfGuest { get; set; }
         public String Notes { get; set; }
+        public DateTime? GameDate { get; set; }
 /*
         public List<GameAction> ListGameAction { get; set; }
 */

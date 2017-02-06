@@ -26,6 +26,15 @@ namespace LegaGladio.Controllers
             var group = new Group { Id = id };
             return BusinessLogic.Round.ListRound(group);
         }
+        
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
+        [ActionName("getDetailedByGroup")]
+        public ICollection<Round> GetDetailedByGroup(int id)
+        {
+            var group = new Group { Id = id };
+            return BusinessLogic.Round.ListRoundDetailed(group);
+        }
 
         // POST api/player
         [HttpPost]

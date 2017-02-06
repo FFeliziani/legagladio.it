@@ -171,32 +171,14 @@ namespace DataAccessLayer
             return player;
         }
 
-        public static void AddPlayerToTeam(LegaGladio.Entities.Player player, LegaGladio.Entities.Team team)
-        {
-            if (player == null || team == null) return;
-            if (team.ListPlayer.All(x => x.Id != player.Id))
-            {
-                AddPlayerToTeam(player.Id, team.Id);
-            }
-        }
-
-        private static void AddPlayerToTeam(Int32 playerId, Int32 teamId)
+        public static void AddPlayerToTeam(Int32 playerId, Int32 teamId)
         {
             var pta = new playerTableAdapter();
 
             pta.AddPlayerToTeam(playerId, teamId);
         }
 
-        public static void RemovePlayerFromTeam(LegaGladio.Entities.Player player, LegaGladio.Entities.Team team)
-        {
-            if (player == null || team == null) return;
-            if (team.ListPlayer.Any(x => x.Id == player.Id))
-            {
-                RemovePlayerFromTeam(player.Id, team.Id);
-            }
-        }
-
-        private static void RemovePlayerFromTeam(Int32 playerId, Int32 teamId)
+        public static void RemovePlayerFromTeam(Int32 playerId, Int32 teamId)
         {
             var pta = new playerTableAdapter();
 

@@ -70,6 +70,32 @@ namespace BusinessLogic
             }
         }
 
+        public static ICollection<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Group group)
+        {
+            try
+            {
+                return DataAccessLayer.Game.ListGame(group);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while listing games for round - Round Id: [" + group.Id + "]");
+                throw;
+            }
+        }
+
+        public static ICollection<LegaGladio.Entities.Game> ListGame(LegaGladio.Entities.Series series)
+        {
+            try
+            {
+                return DataAccessLayer.Game.ListGame(series);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while listing games for round - Round Id: [" + series.Id + "]");
+                throw;
+            }
+        }
+
         public static void NewGame(LegaGladio.Entities.Game game)
         {
             try
