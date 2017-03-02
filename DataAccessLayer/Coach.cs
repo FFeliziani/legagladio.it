@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataAccessLayer.LegaGladioDSTableAdapters;
+using Utilities;
 
 namespace DataAccessLayer
 {
@@ -20,16 +21,7 @@ namespace DataAccessLayer
             var cta = new coachTableAdapter();
             cta.Fill(cdt);
             var coachList = new List<LegaGladio.Entities.Coach>();
-            foreach (var coach in from LegaGladioDS.coachRow cr in cdt.Rows select new LegaGladio.Entities.Coach
-            {
-                Id = cr.id,
-                NafId = cr.nafID,
-                Name = cr.name,
-                Notes = cr.note,
-                Active = cr.active == 1,
-                NafNick = cr.nafNick,
-                Value = cr.value
-            })
+            foreach (var coach in from LegaGladioDS.coachRow cr in cdt.Rows select GetCoachFromRow(cr))
             {
                 coach.ListTeam = Team.ListTeam(coach.Id);
                 coachList.Add(coach);
@@ -43,16 +35,7 @@ namespace DataAccessLayer
             var cta = new coachTableAdapter();
             cta.FillByActive(cdt, active ? 1 : 0);
             var coachList = new List<LegaGladio.Entities.Coach>();
-            foreach (var coach in from LegaGladioDS.coachRow cr in cdt.Rows select new LegaGladio.Entities.Coach
-            {
-                Id = cr.id,
-                NafId = cr.nafID,
-                Name = cr.name,
-                Notes = cr.note,
-                Active = cr.active == 1,
-                NafNick = cr.nafNick,
-                Value = cr.value
-            })
+            foreach (var coach in from LegaGladioDS.coachRow cr in cdt.Rows select GetCoachFromRow(cr))
             {
                 coach.ListTeam = Team.ListTeam(coach.Id);
                 coachList.Add(coach);
@@ -67,14 +50,8 @@ namespace DataAccessLayer
             var cta = new coachTableAdapter();
             cta.FillById(ctd, id);
             var coachRow = (LegaGladioDS.coachRow)ctd.Rows[0];
-            coach.Id = coachRow.id;
+            GetCoachFromRow(coachRow);
             coach.ListTeam = Team.ListTeam(coach.Id);
-            coach.NafId = coachRow.nafID;
-            coach.NafNick = coachRow.nafNick;
-            coach.Name = coachRow.name;
-            coach.Notes = coachRow.note;
-            coach.Active = coachRow.active == 1;
-            coach.Value = coachRow.value;
             return coach;
         }
 
@@ -104,20 +81,35 @@ namespace DataAccessLayer
         public static void NewCoach(LegaGladio.Entities.Coach coach)
         {
             var cta = new coachTableAdapter();
-            cta.Insert(coach.Name, coach.Value, coach.NafId, coach.Notes, coach.Active ? 1 : 0, coach.NafNick);
+            cta.InsertCoach(coach.Name, coach.Value, coach.NafId, coach.Notes, coach.NafNick, coach.ImagePath, (Byte)(coach.Active ? 1 : 0));
         }
 
         public static void UpdateCoach(LegaGladio.Entities.Coach coach, int oldId)
         {
             var cta = new coachTableAdapter();
-
-            cta.Update(coach.Name, coach.Value, coach.NafId, coach.Notes, coach.Active ? 1 : 0, coach.NafNick, oldId);
+            cta.UpdateCoach(coach.Name, coach.Value, coach.NafId, coach.Notes, coach.NafNick, coach.ImagePath, (Byte)(coach.Active ? 1 : 0), oldId);
         }
 
         public static void DeleteCoach(int id)
         {
             var cta = new coachTableAdapter();
-            cta.Delete(id);
+            
+            cta.DeleteCoach(id);
+        }
+
+        private static LegaGladio.Entities.Coach GetCoachFromRow(LegaGladioDS.coachRow coachRow)
+        {
+            return new LegaGladio.Entities.Coach
+            {
+                Id = coachRow.id,
+                NafId = !coachRow.IsnafIDNull() ? coachRow.nafID : "",
+                NafNick = !coachRow.IsnafNickNull() ? coachRow.nafNick : "",
+                Name = !coachRow.IsnameNull() ? coachRow.name : "",
+                Notes = !coachRow.IsnoteNull() ? coachRow.note : "",
+                Active = !coachRow.IsactiveNull() && coachRow.active == 1,
+                Value = !coachRow.IsvalueNull() ? coachRow.value : 0,
+                ImagePath = !coachRow.IsimagePathNull() ? coachRow.imagePath : Constants.DEFAULT_COACH_IMAGE
+            };
         }
     }
 }

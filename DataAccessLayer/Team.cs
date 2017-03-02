@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DataAccessLayer.LegaGladioDSTableAdapters;
+using Utilities;
 
 namespace DataAccessLayer
 {
@@ -19,28 +20,7 @@ namespace DataAccessLayer
             var tdt = new LegaGladioDS.teamDataTable();
             var tta = new teamTableAdapter();
             tta.Fill(tdt);
-            var teamList = new List<LegaGladio.Entities.Team>();
-            foreach (var team in from LegaGladioDS.teamRow tr in tdt.Rows
-                                 select new LegaGladio.Entities.Team
-                                 {
-                                     Id = tr.id,
-                                     AssistantCoach = tr.assistantCoach,
-                                     Cheerleader = tr.cheerleader,
-                                     Name = tr.name,
-                                     HasMedic = tr.hasMedic == 1,
-                                     FanFactor = tr.funFactor,
-                                     Reroll = tr.reroll,
-                                     Value = tr.value,
-                                     Treasury = tr.treasury,
-                                     Active = tr.active == 1
-                                 })
-            {
-                team.Race = Race.GetRaceByTeamId(team.Id);
-                team.CoachName = Coach.GetCoachName(team.Id);
-                team.CoachId = Coach.GetCoachId(team.Id);
-                teamList.Add(team);
-            }
-            return teamList;
+            return (from LegaGladioDS.teamRow tr in tdt.Rows select GetTeamFromRow(tr)).ToList();
         }
 
         public static ICollection<LegaGladio.Entities.Team> ListTeam(int coachId)
@@ -48,28 +28,7 @@ namespace DataAccessLayer
             var tdt = new LegaGladioDS.teamDataTable();
             var tta = new teamTableAdapter();
             tta.FillByCoachId(tdt, coachId);
-            var teamList = new List<LegaGladio.Entities.Team>();
-            foreach (var team in from LegaGladioDS.teamRow tr in tdt.Rows
-                                 select new LegaGladio.Entities.Team
-                                 {
-                                     Id = tr.id,
-                                     AssistantCoach = tr.assistantCoach,
-                                     Cheerleader = tr.cheerleader,
-                                     Name = tr.name,
-                                     HasMedic = tr.hasMedic == 1,
-                                     FanFactor = tr.funFactor,
-                                     Reroll = tr.reroll,
-                                     Value = tr.value,
-                                     Treasury = tr.treasury,
-                                     Active = tr.active == 1
-                                 })
-            {
-                team.Race = Race.GetRaceByTeamId(team.Id);
-                team.CoachName = Coach.GetCoachName(team.Id);
-                team.CoachId = Coach.GetCoachId(team.Id);
-                teamList.Add(team);
-            }
-            return teamList;
+            return (from LegaGladioDS.teamRow tr in tdt.Rows select GetTeamFromRow(tr)).ToList();
         }
 
         public static ICollection<LegaGladio.Entities.Team> ListTeam(Boolean active)
@@ -77,35 +36,7 @@ namespace DataAccessLayer
             var tdt = new LegaGladioDS.teamDataTable();
             var tta = new teamTableAdapter();
             tta.FillByActive(tdt, active ? 1 : 0);
-            var teamList = new List<LegaGladio.Entities.Team>();
-            foreach (LegaGladioDS.teamRow tr in tdt.Rows)
-            {
-                try
-                {
-                    var team = new LegaGladio.Entities.Team
-                    {
-                        Id = tr.id,
-                        AssistantCoach = tr.assistantCoach,
-                        Cheerleader = tr.cheerleader,
-                        Name = tr.name,
-                        HasMedic = tr.hasMedic == 1,
-                        FanFactor = tr.funFactor,
-                        Reroll = tr.reroll,
-                        Value = tr.value,
-                        Treasury = tr.treasury,
-                        Active = tr.active == 1
-                    };
-                    team.Race = Race.GetRaceByTeamId(team.Id);
-                    team.CoachName = Coach.GetCoachName(team.Id);
-                    team.CoachId = Coach.GetCoachId(team.Id);
-                    teamList.Add(team);
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.StackTrace);
-                }
-            }
-            return teamList;
+            return (from LegaGladioDS.teamRow tr in tdt.Rows select GetTeamFromRow(tr)).ToList();
         }
 
         public static LegaGladio.Entities.Team GetTeam(int id)
@@ -116,21 +47,7 @@ namespace DataAccessLayer
             if (ttd.Rows.Count != 1) throw new Exception("Wrong number of rows returned for team");
             var teamRow = ttd.Rows[0] as LegaGladioDS.teamRow;
             if (teamRow == null) return null;
-            var team = new LegaGladio.Entities.Team
-            {
-                Id = teamRow.id,
-                AssistantCoach = teamRow.assistantCoach,
-                Cheerleader = teamRow.cheerleader,
-                HasMedic = teamRow.hasMedic == 1,
-                FanFactor = teamRow.funFactor,
-                Name = teamRow.name,
-                Reroll = teamRow.reroll,
-                Treasury = teamRow.treasury,
-                Active = teamRow.active == 1
-            };
-            team.Race = Race.GetRaceByTeamId(team.Id);
-            team.CoachName = Coach.GetCoachName(team.Id);
-            team.CoachId = Coach.GetCoachId(team.Id);
+            var team = GetTeamFromRow(teamRow);
             team.ListPlayer = Player.ListPlayer(team.Id);
             team.Value = CalculateTeamValue(team.Id);
             return team;
@@ -144,22 +61,7 @@ namespace DataAccessLayer
             if (ttd.Rows.Count != 1) throw new Exception("Wrong number of rows returned for team");
             var teamRow = ttd.Rows[0] as LegaGladioDS.teamRow;
             if (teamRow == null) return null;
-            var team = new LegaGladio.Entities.Team
-            {
-                Id = teamRow.id,
-                AssistantCoach = teamRow.assistantCoach,
-                Cheerleader = teamRow.cheerleader,
-                HasMedic = teamRow.hasMedic == 1,
-                FanFactor = teamRow.funFactor,
-                Name = teamRow.name,
-                Reroll = teamRow.reroll,
-                Treasury = teamRow.treasury,
-                Active = teamRow.active == 1,
-                Value = teamRow.value
-            };
-            team.Race = Race.GetRaceByTeamId(team.Id);
-            team.CoachName = Coach.GetCoachName(team.Id);
-            team.CoachId = Coach.GetCoachId(team.Id);
+            var team = GetTeamFromRow(teamRow);
             return team;
         }
 
@@ -171,21 +73,7 @@ namespace DataAccessLayer
             if (ttd.Rows.Count != 1) throw new Exception("Wrong number of rows returned for team");
             var teamRow = (LegaGladioDS.teamRow)ttd.Rows[0];
             if (teamRow == null) return null;
-            var team = new LegaGladio.Entities.Team
-            {
-                Id = teamRow.id,
-                AssistantCoach = teamRow.assistantCoach,
-                Cheerleader = teamRow.cheerleader,
-                HasMedic = teamRow.hasMedic == 1,
-                FanFactor = teamRow.funFactor,
-                Name = teamRow.name,
-                Reroll = teamRow.reroll,
-                Treasury = teamRow.treasury,
-                Active = teamRow.active == 1
-            };
-            team.Race = Race.GetRaceByTeamId(team.Id);
-            team.CoachName = Coach.GetCoachName(team.Id);
-            team.CoachId = Coach.GetCoachId(team.Id);
+            var team = GetTeamFromRow(teamRow);
             team.ListPlayer = Player.ListPlayer(team.Id, active);
             team.ListJourneymen = new List<LegaGladio.Entities.Player>();
             var playerCount = team.ListPlayer.Count(x => !x.MissNextGame);
@@ -200,6 +88,28 @@ namespace DataAccessLayer
                 }
             }
             team.Value = CalculateTeamValue(team.Id);
+            return team;
+        }
+
+        private static LegaGladio.Entities.Team GetTeamFromRow(LegaGladioDS.teamRow tr)
+        {
+            var team = new LegaGladio.Entities.Team
+            {
+                Id = tr.id,
+                AssistantCoach = !tr.IsassistantCoachNull() ? tr.assistantCoach : 0,
+                Cheerleader = !tr.IscheerleaderNull() ? tr.cheerleader : 0,
+                Name = !tr.IsnameNull() ? tr.name : "",
+                HasMedic = !tr.IshasMedicNull() && tr.hasMedic == 1,
+                FanFactor = !tr.IsfunFactorNull() ? tr.funFactor : 0,
+                Reroll = !tr.IsrerollNull() ? tr.reroll : 0,
+                Value = !tr.IsvalueNull() ? tr.value : 0,
+                Treasury = !tr.IstreasuryNull() ? tr.treasury : 0,
+                Active = !tr.IsactiveNull() && tr.active == 1,
+                ImagePath = !tr.IsimagePathNull() ? tr.imagePath : Constants.DEFAULT_TEAM_IMAGE
+            };
+            team.Race = Race.GetRaceByTeamId(team.Id);
+            team.CoachName = Coach.GetCoachName(team.Id);
+            team.CoachId = Coach.GetCoachId(team.Id);
             return team;
         }
 
@@ -274,10 +184,10 @@ namespace DataAccessLayer
             teamValue += team.ListPlayer.Sum(p => Convert.ToInt32(p.Cost));
             teamValue += team.ListJourneymen.Sum(p => Convert.ToInt32(p.Cost));
 
-            teamValue += (10000 * team.AssistantCoach);
-            teamValue += (10000 * team.Cheerleader);
-            teamValue += (10000 * team.FanFactor);
-            teamValue += (team.HasMedic ? 50000 : 0);
+            teamValue += (Constants.ASSISTANT_COACH_VALUE * team.AssistantCoach);
+            teamValue += (Constants.CHEERLEADER_VALUE * team.Cheerleader);
+            teamValue += (Constants.FAN_FACTOR_VALUE * team.FanFactor);
+            teamValue += (team.HasMedic ? Constants.MEDIC_VALUE : 0);
             teamValue += (team.Race.Reroll * team.Reroll);
 
             return teamValue;
@@ -286,15 +196,13 @@ namespace DataAccessLayer
         public static void NewTeam(LegaGladio.Entities.Team team)
         {
             var tta = new teamTableAdapter();
-            //value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach, active
-            tta.Insert(team.Value, team.Name, team.FanFactor, team.Reroll, (byte)(team.HasMedic ? 1 : 0), team.Cheerleader, team.AssistantCoach, (byte)(team.Active ? 1 : 0), team.Treasury);
+            tta.InsertTeam(team.Value, team.Name, team.FanFactor, team.Reroll, team.Cheerleader, team.AssistantCoach, team.Treasury, team.ImagePath, (Byte)(team.HasMedic ? 1 : 0), (Byte)(team.Active ? 1 : 0));
         }
 
         public static void UpdateTeam(LegaGladio.Entities.Team team, int oldId)
         {
             var tta = new teamTableAdapter();
-
-            tta.Update(CalculateTeamValue(oldId), team.Name, team.FanFactor, team.Reroll, (team.HasMedic ? 1 : 0), team.Cheerleader, team.AssistantCoach, (team.Active ? 1 : 0), team.Treasury, oldId);
+            tta.UpdateTeam(CalculateTeamValue(oldId), team.Name, team.FanFactor, team.Reroll, team.Cheerleader,team.AssistantCoach, team.Treasury, team.ImagePath, (Byte)(team.HasMedic ? 1 : 0), (Byte)(team.Active ? 1 : 0), oldId);
         }
 
         /*public static Boolean DeleteTeam(int id)

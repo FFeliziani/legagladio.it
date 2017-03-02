@@ -13,6 +13,7 @@ namespace LegaGladio.Entities
         public Int32 Value { get; set; }
         public String Name { get; set; }
 
+        public String ImagePath { get; set; }
         public Boolean Active { get; set; }
         public Int32 FanFactor { get; set; }
         public Int32 Reroll { get; set; }

@@ -11,6 +11,7 @@ namespace LegaGladio.Entities
         public String Name{ get; set; }
         public int Value{ get; set; }
         public String NafId{ get; set; }
+        public String ImagePath { get; set; }
 
         public Boolean Active { get; set; }
         public String NafNick { get; set; }
