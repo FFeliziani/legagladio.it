@@ -107,11 +107,11 @@ namespace BusinessLogic
                 Logger.Error(ex, "Error while creating a new Game - Game Data: " 
                     + (game != null ? (game.Home != null ? "Home Team Id: [" + game.Home.Id + "], " : "HOME TEAM IS NULL!!! ") 
                     + (game.Guest != null ? "Guest Team Id: [" + game.Guest.Id + "], " : "GUEST TEAM IS NULL!!!") : "GAME IS NULL!!!! ")
-                    + "TD: [" + game.TdHome + "|" + game.TdGuest + "], "
-                    + "CAS: [" + game.CasHome + "|" + game.CasGuest + "], "
-                    + "SPETT: [" + game.SpHome + "|" + game.SpGuest + "], "
-                    + "EARNINGS: [" + game.EarningHome + "|" + game.EarningGuest + "], "
-                    + " VAR FF: [" + game.VarFfHome + "|" + game.VarFfGuest +"]"
+                    + "TD: [" + (game?.TdHome ?? 0) + "|" + (game?.TdGuest ?? 0) + "], "
+                    + "CAS: [" + (game?.CasHome ?? 0) + "|" + (game?.CasGuest ?? 0) + "], "
+                    + "SPETT: [" + (game?.SpHome ?? 0) + "|" + (game?.SpGuest ?? 0) + "], "
+                    + "EARNINGS: [" + (game?.EarningHome ?? 0) + "|" + (game?.EarningGuest ?? 0) + "], "
+                    + " VAR FF: [" + (game?.VarFfHome ?? 0) + "|" + (game?.VarFfGuest ?? 0) + "]"
                     );
                 throw;
             }
@@ -139,11 +139,11 @@ namespace BusinessLogic
                     + (game != null ? "Old Id: [" + oldId +" ], " 
                     + (game.Home != null ? "Home Team Id: [" + game.Home.Id + "], " : "HOME TEAM IS NULL!!! ")
                     + (game.Guest != null ? "Guest Team Id: [" + game.Guest.Id + "], " : "GUEST TEAM IS NULL!!!") : "GAME IS NULL!!!! ")
-                    + "TD: [" + game.TdHome + "|" + game.TdGuest + "], "
-                    + "CAS: [" + game.CasHome + "|" + game.CasGuest + "], "
-                    + "SPETT: [" + game.SpHome + "|" + game.SpGuest + "], "
-                    + "EARNINGS: [" + game.EarningHome + "|" + game.EarningGuest + "], "
-                    + " VAR FF: [" + game.VarFfHome + "|" + game.VarFfGuest + "]"
+                    + "TD: [" + (game?.TdHome ?? 0) + "|" + (game?.TdGuest ?? 0) + "], "
+                    + "CAS: [" + (game?.CasHome ?? 0) + "|" + (game?.CasGuest ?? 0) + "], "
+                    + "SPETT: [" + (game?.SpHome ?? 0) + "|" + (game?.SpGuest ?? 0) + "], "
+                    + "EARNINGS: [" + (game?.EarningHome ?? 0) + "|" + (game?.EarningGuest ?? 0) + "], "
+                    + " VAR FF: [" + (game?.VarFfHome ?? 0) + "|" + (game?.VarFfGuest ?? 0) + "]"
                     );
                 throw;
             }

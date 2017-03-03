@@ -48,11 +48,11 @@ namespace DataAccessLayer
             ata.Insert(action.Description, action.Spp, action.Notes);
         }
         
-        private static void DeleteAction(Int32 id)
+        /*private static void DeleteAction(Int32 id)
         {
             var ata = new actionTableAdapter();
 
             ata.Delete(id);
-        }
+        }*/
     }
 }

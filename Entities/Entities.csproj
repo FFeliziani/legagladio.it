@@ -61,7 +61,7 @@
     <Compile Include="Skill.cs" />
     <Compile Include="SkillCost.cs" />
     <Compile Include="SkillType.cs" />
-    <Compile Include="Standing.cs" />
+    <Compile Include="Standings.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>

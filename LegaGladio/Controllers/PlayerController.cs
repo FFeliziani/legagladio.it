@@ -4,7 +4,6 @@ using System.Web.Http;
 using BusinessLogic;
 using LegaGladio.Models;
 using Player = LegaGladio.Entities.Player;
-using Team = LegaGladio.Entities.Team;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -110,10 +109,7 @@ namespace LegaGladio.Controllers
             {
                 return BusinessLogic.Player.NewPlayer(data);
             }
-            else
-            {
-                throw new UnauthorizedAccessException("User not logged");
-            }
+            throw new UnauthorizedAccessException("User not logged");
         }
 
         // PUT api/player/5

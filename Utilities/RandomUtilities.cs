@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Utilities
 {
-    public class RandomUtilities
+    public static class RandomUtilities
     {
         public static Random Random { get; private set; }
 

@@ -154,6 +154,7 @@
     </Compile>
     <Compile Include="Models\AddItemsData.cs" />
     <Compile Include="Models\LoginData.cs" />
+    <Compile Include="Models\TypeCountData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

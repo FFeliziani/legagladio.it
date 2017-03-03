@@ -24,7 +24,7 @@ namespace DataAccessLayer
             var idt = new LegaGladioDS.injuryDataTable();
             ita.Fill(idt);
             var injuryList = (from LegaGladioDS.injuryRow ir in idt.Rows
-                select new LegaGladio.Entities.Injury()
+                select new LegaGladio.Entities.Injury
                 {
                     Id = ir.id,
                     Name = ir.name

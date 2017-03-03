@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using LegaGladio.Entities;
 using NLog;
 
 namespace BusinessLogic
@@ -35,6 +34,45 @@ namespace BusinessLogic
                 throw;
             }
         }
+
+        public static ICollection<LegaGladio.Entities.Article> ListLastArticle(Int32 count)
+        {
+            try
+            {
+                return DataAccessLayer.Article.ListLastArticle(count);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while listing last blog article");
+                throw;
+            }
+        }
+
+        public static ICollection<LegaGladio.Entities.Article> ListArticleByType(ArticleType type)
+        {
+            try
+            {
+                return DataAccessLayer.Article.ListArticleByType(type);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while listing blog articles for type");
+                throw;
+            }
+        }
+
+        public static ICollection<LegaGladio.Entities.Article> ListArticleLastByType(Int32 count, ArticleType type)
+        {
+            try
+            {
+                return DataAccessLayer.Article.ListLastArticleByType(count, type);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while listing last blog articles for type");
+                throw;
+            }
+        } 
 
         public static Int32 NewArticle(LegaGladio.Entities.Article article)
         {

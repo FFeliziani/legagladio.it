@@ -79,18 +79,16 @@ namespace BusinessLogic
             try
             {
                 var actions = gameActions as IList<LegaGladio.Entities.GameAction> ?? gameActions.ToList();
-                if (actions.Any())
+                if (!actions.Any()) return;
+                var gaL = ListGameAction(actions[0].Game);
+                // TODO: FIND AN ACTUAL WAY TO DO THIS SHIT;
+                foreach (var ga in gaL)
                 {
-                    var gaL = ListGameAction(actions[0].Game);
-                    // TODO: FIND AN ACTUAL WAY TO DO THIS SHIT;
-                    foreach (var ga in gaL)
-                    {
-                        DeleteGameAction(ga.Id); //don't even.
-                    }
-                    foreach (var ga in actions)
-                    {
-                        NewGameAction(ga);
-                    }
+                    DeleteGameAction(ga.Id); //don't even.
+                }
+                foreach (var ga in actions)
+                {
+                    NewGameAction(ga);
                 }
             }
             catch (Exception ex)

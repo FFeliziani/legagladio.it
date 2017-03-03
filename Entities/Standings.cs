@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
-using System.Text;
 
 namespace LegaGladio.Entities
 {
-    public class Standing
+    public class Standings
     {
         public Team Team { get; set; }
         public Int32 Wins { get; set; }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
-using System.Text;
 using DataAccessLayer.LegaGladioDSTableAdapters;
 
 namespace DataAccessLayer
@@ -15,7 +13,7 @@ namespace DataAccessLayer
             var adt = new LegaGladioDS.augmentationDataTable();
             ata.Fill(adt);
             var augmentationList = (from LegaGladioDS.augmentationRow ar in adt.Rows
-                select new LegaGladio.Entities.Augmentation()
+                select new LegaGladio.Entities.Augmentation
                 {
                     Id = ar.id,
                     Name = ar.name
@@ -30,7 +28,7 @@ namespace DataAccessLayer
             ata.FillById(adt, id);
             if(adt.Rows.Count != 1) throw new Exception("Wrong number of augmentations returned");
             var ar = (LegaGladioDS.augmentationRow) adt.Rows[0];
-            return new LegaGladio.Entities.Augmentation()
+            return new LegaGladio.Entities.Augmentation
             {
                 Id = ar.id,
                 Name = ar.name

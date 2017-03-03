@@ -108,7 +108,7 @@ namespace DataAccessLayer
                 Notes = !coachRow.IsnoteNull() ? coachRow.note : "",
                 Active = !coachRow.IsactiveNull() && coachRow.active == 1,
                 Value = !coachRow.IsvalueNull() ? coachRow.value : 0,
-                ImagePath = !coachRow.IsimagePathNull() ? coachRow.imagePath : Constants.DEFAULT_COACH_IMAGE
+                ImagePath = !coachRow.IsimagePathNull() ? coachRow.imagePath : Constants.DefaultCoachImage
             };
         }
     }

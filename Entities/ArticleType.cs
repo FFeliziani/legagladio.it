@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace LegaGladio.Entities
+﻿namespace LegaGladio.Entities
 {
     public enum ArticleType
     {
-        BLOG = 1,
-        NEWS = 2
+        Blog = 1,
+        News = 2
     }
 }

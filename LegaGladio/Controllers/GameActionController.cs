@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using BusinessLogic;
-using LegaGladio.Models;
 using Game = LegaGladio.Entities.Game;
 using GameAction = LegaGladio.Entities.GameAction;
 
@@ -24,7 +23,7 @@ namespace LegaGladio.Controllers
         [ActionName("getByGame")]
         public ICollection<GameAction> GetByGame(Int32 id)
         {
-            return BusinessLogic.GameAction.ListGameAction(new Game(){Id = id});
+            return BusinessLogic.GameAction.ListGameAction(new Game{Id = id});
         }
 
         // POST api/player
