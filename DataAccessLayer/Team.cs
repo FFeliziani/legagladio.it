@@ -84,7 +84,7 @@ namespace DataAccessLayer
                 while (playerCount + team.ListJourneymen.Count < 11)
                 {
                     var maxPosition = Math.Max(team.ListPlayer.Max(x => x.Position), team.ListJourneymen.Count > 0 ? team.ListJourneymen.Max(x => x.Position) : 0);
-                    team.ListJourneymen.Add(new LegaGladio.Entities.Player() { Name = Player.GenerateName(team.Race), Positional = positional, Position = maxPosition + 1, ListAbility = new List<LegaGladio.Entities.Skill>() { Skill.GetSkill("Loner") }, Cost = positional.Cost });
+                    team.ListJourneymen.Add(new LegaGladio.Entities.Player { Name = Player.GenerateName(team.Race), Positional = positional, Position = maxPosition + 1, ListAbility = new List<LegaGladio.Entities.Skill> { Skill.GetSkill("Loner") }, Cost = positional.Cost });
                 }
             }
             team.Value = CalculateTeamValue(team.Id);
@@ -105,7 +105,7 @@ namespace DataAccessLayer
                 Value = !tr.IsvalueNull() ? tr.value : 0,
                 Treasury = !tr.IstreasuryNull() ? tr.treasury : 0,
                 Active = !tr.IsactiveNull() && tr.active == 1,
-                ImagePath = !tr.IsimagePathNull() ? tr.imagePath : Constants.DEFAULT_TEAM_IMAGE
+                ImagePath = !tr.IsimagePathNull() ? tr.imagePath : Constants.DefaultTeamImage
             };
             team.Race = Race.GetRaceByTeamId(team.Id);
             team.CoachName = Coach.GetCoachName(team.Id);
@@ -175,7 +175,7 @@ namespace DataAccessLayer
                 while (playerCount + team.ListJourneymen.Count < 11)
                 {
                     var maxPosition = Math.Max(team.ListPlayer.Max(x => x.Position), team.ListJourneymen.Count > 0 ? team.ListJourneymen.Max(x => x.Position) : 0);
-                    team.ListJourneymen.Add(new LegaGladio.Entities.Player() { Name = Player.GenerateName(team.Race), Positional = positional, Position = maxPosition + 1, ListAbility = new List<LegaGladio.Entities.Skill>() { Skill.GetSkill("Loner") }, Cost = positional.Cost });
+                    team.ListJourneymen.Add(new LegaGladio.Entities.Player { Name = Player.GenerateName(team.Race), Positional = positional, Position = maxPosition + 1, ListAbility = new List<LegaGladio.Entities.Skill> { Skill.GetSkill("Loner") }, Cost = positional.Cost });
                 }
             }
 
@@ -184,10 +184,10 @@ namespace DataAccessLayer
             teamValue += team.ListPlayer.Sum(p => Convert.ToInt32(p.Cost));
             teamValue += team.ListJourneymen.Sum(p => Convert.ToInt32(p.Cost));
 
-            teamValue += (Constants.ASSISTANT_COACH_VALUE * team.AssistantCoach);
-            teamValue += (Constants.CHEERLEADER_VALUE * team.Cheerleader);
-            teamValue += (Constants.FAN_FACTOR_VALUE * team.FanFactor);
-            teamValue += (team.HasMedic ? Constants.MEDIC_VALUE : 0);
+            teamValue += (Constants.AssistantCoachValue * team.AssistantCoach);
+            teamValue += (Constants.CheerleaderValue * team.Cheerleader);
+            teamValue += (Constants.FanFactorValue * team.FanFactor);
+            teamValue += (team.HasMedic ? Constants.MedicValue : 0);
             teamValue += (team.Race.Reroll * team.Reroll);
 
             return teamValue;

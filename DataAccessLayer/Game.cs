@@ -14,7 +14,7 @@ namespace DataAccessLayer
             gta.FillById(gdt, id);
             if(gdt.Rows.Count != 1) throw new Exception("Wrong number of rows returned while getting game");
             var gr = (LegaGladioDS.gameRow)gdt.Rows[0];
-            var game = new LegaGladio.Entities.Game()
+            var game = new LegaGladio.Entities.Game
             {
                 Id = gr.id,
                 CasGuest = gr.casGuest,
@@ -42,7 +42,7 @@ namespace DataAccessLayer
             gta.FillById(gdt, id);
             if (gdt.Rows.Count != 1) throw new Exception("Wrong number of rows returned while getting game");
             var gr = (LegaGladioDS.gameRow)gdt.Rows[0];
-            var game = new LegaGladio.Entities.Game()
+            var game = new LegaGladio.Entities.Game
             {
                 Id = gr.id,
                 CasGuest = gr.casGuest,

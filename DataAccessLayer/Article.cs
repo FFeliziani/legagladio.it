@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DataAccessLayer.LegaGladioDSTableAdapters;
 using LegaGladio.Entities;
 
@@ -28,6 +27,24 @@ namespace DataAccessLayer
             return GetArticleFromRow((LegaGladioDS.articleRow)adt.Rows[0]);
         }
 
+        public static ICollection<LegaGladio.Entities.Article> ListLastArticle(Int32 count)
+        {
+            return ListArticle().Take(count).ToList();
+        }
+
+        public static ICollection<LegaGladio.Entities.Article> ListArticleByType(ArticleType type)
+        {
+            var ata = new articleTableAdapter();
+            var adt = new LegaGladioDS.articleDataTable();
+            ata.FillByArticleType(adt, (Int32) type);
+            return (from LegaGladioDS.articleRow ar in adt.Rows select GetArticleFromRow(ar)).OrderByDescending(x => x.Created).ToList();
+        }
+
+        public static ICollection<LegaGladio.Entities.Article> ListLastArticleByType(Int32 count, ArticleType type)
+        {
+            return ListArticleByType(type).Take(count).ToList();
+        } 
+
         public static Int32 NewArticle(LegaGladio.Entities.Article article)
         {
             var ata = new articleTableAdapter();
@@ -48,10 +65,10 @@ namespace DataAccessLayer
 
         private static LegaGladio.Entities.Article GetArticleFromRow(LegaGladioDS.articleRow row)
         {
-            return new LegaGladio.Entities.Article()
+            return new LegaGladio.Entities.Article
             {
                 Id = row.id,
-                ArticleType = (ArticleType)row.articletype,
+                ArticleType = !row.IsarticletypeNull() ? (ArticleType)row.articletype : ArticleType.Blog,
                 Content = !row.IscontentNull() ? row.content : "",
                 Created = !row.IscreatedNull() ? row.created : (DateTime?)null,
                 Note = !row.IsnoteNull() ? row.note : "",

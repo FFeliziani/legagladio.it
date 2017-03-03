@@ -14,7 +14,7 @@ namespace DataAccessLayer
             ageta.FillById(agedt, id);
             if(agedt.Rows.Count != 1) throw new Exception("Wrong number of rows returned for After Game Event");
             var ager = (LegaGladioDS.after_game_eventRow)agedt.Rows[0];
-            return new LegaGladio.Entities.AfterGameEvent()
+            return new LegaGladio.Entities.AfterGameEvent
             {
                 Id = ager.id,
                 Augmentation = ager.augmentationID != 0 ? Augmentation.GetAugmentation(ager.augmentationID) : null,
@@ -47,7 +47,7 @@ namespace DataAccessLayer
         {
             var ageta = new after_game_eventTableAdapter();
 
-            ageta.Insert(afterGameEvent.Player.Id, afterGameEvent.Skill != null ? afterGameEvent.Skill.Id : 0, afterGameEvent.Injury != null ? afterGameEvent.Injury.Id : 0, afterGameEvent.Augmentation != null ? afterGameEvent.Augmentation.Id : 0, afterGameEvent.Game.Id);
+            ageta.Insert(afterGameEvent.Player.Id, afterGameEvent.Skill?.Id ?? 0, afterGameEvent.Injury?.Id ?? 0, afterGameEvent.Augmentation?.Id ?? 0, afterGameEvent.Game.Id);
         }
 
         public static void UpdateAfterGameEvent(LegaGladio.Entities.AfterGameEvent afterGameEvent, Int32 oldId)

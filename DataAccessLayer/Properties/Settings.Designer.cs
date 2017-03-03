@@ -26,8 +26,7 @@ namespace DataAccessLayer.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=127.0.0.1;user id=root;password=Xri8jgmk!;persistsecurityinfo=True;databas" +
-            "e=legagladio")]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=62.149.150.47;user id=Sql136415;password=5dabc392;database=Sql136415_4")]
         public string legagladioConnectionString2 {
             get {
                 return ((string)(this["legagladioConnectionString2"]));

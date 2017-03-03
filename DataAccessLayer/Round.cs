@@ -53,7 +53,7 @@ namespace DataAccessLayer
                           Id = rr.id,
                           Name = rr.name,
                           Number = rr.number,
-                          GameList = Game.ListGame(new LegaGladio.Entities.Round(){Id = rr.id})
+                          GameList = Game.ListGame(new LegaGladio.Entities.Round{Id = rr.id})
                       }).ToList();
 
             return rL;

@@ -112,20 +112,20 @@ namespace BusinessLogic
             }
         }
 
-        public static int CalculateFanFactor(Int32 Id)
+        public static int CalculateFanFactor(Int32 id)
         {
             try
             {
-                var fanFactor = GetTeam(Id).FanFactor;
+                var fanFactor = GetTeam(id).FanFactor;
 
-                var gamesList = Game.ListGame(new LegaGladio.Entities.Team() { Id = Id });
+                var gamesList = Game.ListGame(new LegaGladio.Entities.Team { Id = id });
                 foreach (var game in gamesList)
                 {
-                    if (game.Home.Id == Id)
+                    if (game.Home.Id == id)
                     {
                         fanFactor += game.VarFfHome;
                     }
-                    if (game.Guest.Id == Id)
+                    if (game.Guest.Id == id)
                     {
                         fanFactor += game.VarFfGuest;
                     }
@@ -135,26 +135,26 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while calculating Fan factor - Id: [" + Id + "]");
+                Logger.Error(ex, "Error while calculating Fan factor - Id: [" + id + "]");
                 throw;
             }
            
         }
 
-        public static int CalculateTreasury(Int32 Id)
+        public static int CalculateTreasury(Int32 id)
         {
             try
             {
-                var treasury = GetTeam(Id).Treasury;
+                var treasury = GetTeam(id).Treasury;
 
-                var gamesList = Game.ListGame(new LegaGladio.Entities.Team() { Id = Id });
+                var gamesList = Game.ListGame(new LegaGladio.Entities.Team { Id = id });
                 foreach (var game in gamesList)
                 {
-                    if (game.Home.Id == Id)
+                    if (game.Home.Id == id)
                     {
                         treasury += game.EarningHome;
                     }
-                    if (game.Guest.Id == Id)
+                    if (game.Guest.Id == id)
                     {
                         treasury += game.EarningGuest;
                     }
@@ -164,7 +164,7 @@ namespace BusinessLogic
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while calculating Treasury - Id: [" + Id + "]");
+                Logger.Error(ex, "Error while calculating Treasury - Id: [" + id + "]");
                 throw;
             }
         }
