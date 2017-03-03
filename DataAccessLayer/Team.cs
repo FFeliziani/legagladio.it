@@ -178,9 +178,7 @@ namespace DataAccessLayer
                     team.ListJourneymen.Add(new LegaGladio.Entities.Player { Name = Player.GenerateName(team.Race), Positional = positional, Position = maxPosition + 1, ListAbility = new List<LegaGladio.Entities.Skill> { Skill.GetSkill("Loner") }, Cost = positional.Cost });
                 }
             }
-
-            team.HasMedic = teamRow.hasMedic == 1;
-
+            
             teamValue += team.ListPlayer.Sum(p => Convert.ToInt32(p.Cost));
             teamValue += team.ListJourneymen.Sum(p => Convert.ToInt32(p.Cost));
 
