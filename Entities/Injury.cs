@@ -4,7 +4,7 @@ namespace LegaGladio.Entities
 {
     public class Injury
     {
-        public int Id { get; set; }
-        public String Name { get; set; }
+        public virtual int Id { get; set; }
+        public virtual String Name { get; set; }
     }
 }

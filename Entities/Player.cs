@@ -5,36 +5,36 @@ namespace LegaGladio.Entities
 {
     public class Player
     {
-        public Positional Positional { get; set; }
+        public virtual Positional Positional { get; set; }
 
-        public int Id { get; set; }
+        public virtual int Id { get; set; }
 
-        public int MaPlus { get; set;}
-        public int AgPlus { get; set; }
-        public int AvPlus { get; set; }
-        public int StPlus { get; set; }
-        public int MaMinus { get; set; }
-        public int AgMinus { get; set; }
-        public int AvMinus { get; set; }
-        public int StMinus { get; set; }
-        public int Cost { get; set; }
-        public String Name { get; set; }
-        public int Spp { get; set; }
-        public int Position { get; set; }
+        public virtual int MaPlus { get; set;}
+        public virtual int AgPlus { get; set; }
+        public virtual int AvPlus { get; set; }
+        public virtual int StPlus { get; set; }
+        public virtual int MaMinus { get; set; }
+        public virtual int AgMinus { get; set; }
+        public virtual int AvMinus { get; set; }
+        public virtual int StMinus { get; set; }
+        public virtual int Cost { get; set; }
+        public virtual String Name { get; set; }
+        public virtual int Spp { get; set; }
+        public virtual int Position { get; set; }
 
-        public ICollection<Skill> ListAbility { get; set; }
+        public virtual ICollection<Skill> ListAbility { get; set; }
 
-        public Boolean Retired { get; set; }
-        public Boolean Dead { get; set; }
+        public virtual Boolean Retired { get; set; }
+        public virtual Boolean Dead { get; set; }
 
-        public int Td { get; set; }
-        public int Cas { get; set; }
-        public int Pass { get; set; }
-        public int Inter { get; set; }
-        public int Mvp { get; set; }
+        public virtual int Td { get; set; }
+        public virtual int Cas { get; set; }
+        public virtual int Pass { get; set; }
+        public virtual int Inter { get; set; }
+        public virtual int Mvp { get; set; }
 
-        public int Niggling { get; set; }
+        public virtual int Niggling { get; set; }
 
-        public Boolean MissNextGame { get; set; }
+        public virtual Boolean MissNextGame { get; set; }
     }
 }

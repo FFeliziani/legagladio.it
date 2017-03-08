@@ -4,10 +4,10 @@ namespace LegaGladio.Entities
 {
     public class GameAction
     {
-        public int Id { get; set; }
-        public Game Game { get; set; }
-        public Action Action { get; set; }
-        public Player Player { get; set; }
-        public String Notes { get; set; }
+        public virtual int Id { get; set; }
+        public virtual Game Game { get; set; }
+        public virtual Action Action { get; set; }
+        public virtual Player Player { get; set; }
+        public virtual String Notes { get; set; }
     }
 }

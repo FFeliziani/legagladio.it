@@ -4,13 +4,13 @@ namespace LegaGladio.Entities
 {
     public class Article
     {
-        public Int32 Id { get; set; }
-        public String Title { get; set; }
-        public String Content { get; set; }
-        public DateTime? Created { get; set; }
-        public DateTime? Updated { get; set; }
-        public User Owner { get; set; }
-        public ArticleType ArticleType { get; set; }
-        public String Note { get; set; }
+        public virtual Int32 Id { get; set; }
+        public virtual String Title { get; set; }
+        public virtual String Content { get; set; }
+        public virtual DateTime? Created { get; set; }
+        public virtual DateTime? Updated { get; set; }
+        public virtual User Owner { get; set; }
+        public virtual ArticleType ArticleType { get; set; }
+        public virtual String Note { get; set; }
     }
 }

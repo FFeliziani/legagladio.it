@@ -5,18 +5,18 @@ namespace LegaGladio.Entities
 {
     public class Coach
     {
-        public int Id{ get; set; }
+        public virtual int Id{ get; set; }
         
-        public ICollection<Team> ListTeam{ get; set; }
-        public String Name{ get; set; }
-        public int Value{ get; set; }
-        public String NafId{ get; set; }
-        public String ImagePath { get; set; }
+        public virtual ICollection<Team> ListTeam{ get; set; }
+        public virtual String Name{ get; set; }
+        public virtual int Value{ get; set; }
+        public virtual String NafId{ get; set; }
+        public virtual String ImagePath { get; set; }
 
-        public Boolean Active { get; set; }
-        public String NafNick { get; set; }
+        public virtual Boolean Active { get; set; }
+        public virtual String NafNick { get; set; }
 
-        public String Notes{ get; set; }
+        public virtual String Notes{ get; set; }
 
         //private void scrapeCoachValue();
     }

@@ -1,5 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using FluentNHibernate.Utils;
+using NHibernate;
+using NHibernate.Criterion;
+using NHibernate.Dialect.Function;
+using NHibernate.Hql.Ast.ANTLR.Tree;
+using NHibernate.Util;
 using NLog;
 
 namespace BusinessLogic
@@ -7,6 +14,7 @@ namespace BusinessLogic
     public static class Player
     {
         private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
+        private readonly static ISessionFactory SessionFactory = Utilities.DatabaseUtilities.CreateSessionFactory();
         
         public static int Count()
         {
@@ -21,11 +29,18 @@ namespace BusinessLogic
             }
         }
 
-        public static ICollection<LegaGladio.Entities.Player> ListPlayer()
+        public static ICollection<LegaGladio.Entities.Dto.Player> ListPlayer()
         {
             try
             {
-                return DataAccessLayer.Player.ListPlayer();
+                using (var session = SessionFactory.OpenSession())
+                {
+                    return
+                        session.CreateCriteria(typeof (LegaGladio.Entities.Player))
+                            .List<LegaGladio.Entities.Player>()
+                            .Select(x => new LegaGladio.Entities.Dto.Player(x))
+                            .ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -59,11 +74,18 @@ namespace BusinessLogic
             }
         }
 
-        public static LegaGladio.Entities.Player GetPlayer(int id)
+        public static LegaGladio.Entities.Dto.Player GetPlayer(int id)
         {
             try
             {
-                return DataAccessLayer.Player.GetPlayer(id);
+                using (var session = SessionFactory.OpenSession())
+                {
+                    return
+                        new LegaGladio.Entities.Dto.Player(session.CreateCriteria(typeof(LegaGladio.Entities.Player)).Add(Restrictions.Eq("id", id))
+                            .UniqueResult<LegaGladio.Entities.Player>())
+                    ;
+                }
+                //return DataAccessLayer.Player.GetPlayer(id);
             }
             catch (Exception ex)
             {

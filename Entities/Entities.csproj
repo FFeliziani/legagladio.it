@@ -32,6 +32,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentNHibernate, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentNHibernate.2.0.3.0\lib\net40\FluentNHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NHibernate, Version=4.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <HintPath>..\packages\NHibernate.4.1.1.4000\lib\net40\NHibernate.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,11 +59,20 @@
     <Compile Include="ArticleType.cs" />
     <Compile Include="Augmentation.cs" />
     <Compile Include="Coach.cs" />
+    <Compile Include="Dto\Player.cs" />
+    <Compile Include="Dto\Positional.cs" />
+    <Compile Include="Dto\Skill.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameAction.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Injury.cs" />
     <Compile Include="League.cs" />
+    <Compile Include="Mappings\CoachMap.cs" />
+    <Compile Include="Mappings\PlayerMap.cs" />
+    <Compile Include="Mappings\PositionalMap.cs" />
+    <Compile Include="Mappings\RaceMap.cs" />
+    <Compile Include="Mappings\SkillMap.cs" />
+    <Compile Include="Mappings\TeamMap.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Positional.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +85,10 @@
     <Compile Include="Standings.cs" />
     <Compile Include="Team.cs" />
     <Compile Include="User.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

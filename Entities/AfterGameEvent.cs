@@ -2,11 +2,11 @@
 {
     public class AfterGameEvent
     {
-        public int Id { get; set; }
-        public Player Player { get; set; }
-        public Skill Skill { get; set; }
-        public Injury Injury { get; set; }
-        public Augmentation Augmentation { get; set; }
-        public Game Game { get; set; }
+        public virtual int Id { get; set; }
+        public virtual Player Player { get; set; }
+        public virtual Skill Skill { get; set; }
+        public virtual Injury Injury { get; set; }
+        public virtual Augmentation Augmentation { get; set; }
+        public virtual Game Game { get; set; }
     }
 }

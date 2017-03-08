@@ -5,23 +5,23 @@ namespace LegaGladio.Entities
 {
     public class Team
 	{
-        public Int32 Id { get; set; }
+        public virtual Int32 Id { get; set; }
 
-        public ICollection<Player> ListPlayer { get; set; }
-        public ICollection<Player> ListJourneymen { get; set; } 
-        public Race Race { get; set; }
-        public Int32 Value { get; set; }
-        public String Name { get; set; }
+        public virtual ICollection<Player> ListPlayer { get; set; }
+        public virtual ICollection<Player> ListJourneymen { get; set; }
+        public virtual Race Race { get; set; }
+        public virtual Int32 Value { get; set; }
+        public virtual String Name { get; set; }
 
-        public String ImagePath { get; set; }
-        public Boolean Active { get; set; }
-        public Int32 FanFactor { get; set; }
-        public Int32 Reroll { get; set; }
-        public bool HasMedic { get; set; }
-        public Int32 Cheerleader { get; set; }
-        public Int32 AssistantCoach { get; set; }
-        public String CoachName { get; set; }
-        public Int32 CoachId { get; set; }
-        public Int32 Treasury { get; set; }
+        public virtual String ImagePath { get; set; }
+        public virtual Boolean Active { get; set; }
+        public virtual Int32 FanFactor { get; set; }
+        public virtual Int32 Reroll { get; set; }
+        public virtual bool HasMedic { get; set; }
+        public virtual Int32 Cheerleader { get; set; }
+        public virtual Int32 AssistantCoach { get; set; }
+        public virtual String CoachName { get; set; }
+        public virtual Int32 CoachId { get; set; }
+        public virtual Int32 Treasury { get; set; }
     }
 }

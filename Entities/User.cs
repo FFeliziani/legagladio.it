@@ -4,10 +4,10 @@ namespace LegaGladio.Entities
 {
     public class User
     {
-        public Int32 Id { get; set; }
-        public String Username { get; set; }
-        public String Password { get; set; }
-        public DateTime LastLogin { get; set; }
-        public Guid LastToken { get; set; }
+        public virtual Int32 Id { get; set; }
+        public virtual String Username { get; set; }
+        public virtual String Password { get; set; }
+        public virtual DateTime LastLogin { get; set; }
+        public virtual Guid LastToken { get; set; }
     }
 }

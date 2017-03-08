@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Http;
 using BusinessLogic;
 using LegaGladio.Models;
+using NHibernate;
 using Player = LegaGladio.Entities.Player;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
@@ -12,11 +14,13 @@ namespace LegaGladio.Controllers
 
     public class PlayerController : ApiController
     {
+        private readonly static ISessionFactory SessionFactory = Utilities.DatabaseUtilities.CreateSessionFactory();
+
         //GET: api/player
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("Get")]
-        public ICollection<Player> Get()
+        public ICollection<Entities.Dto.Player> Get()
         {
             return BusinessLogic.Player.ListPlayer();
         }
@@ -25,7 +29,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("Get")]
-        public Player Get(int id)
+        public Entities.Dto.Player Get(int id)
         {
             return BusinessLogic.Player.GetPlayer(id);
         }

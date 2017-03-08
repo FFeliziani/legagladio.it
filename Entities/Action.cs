@@ -4,9 +4,9 @@ namespace LegaGladio.Entities
 {
     public class Action
     {
-        public int Id { get; set; }
-        public String Description { get; set; }
-        public int Spp { get; set; }
-        public String Notes { get; set; }
+        public virtual int Id { get; set; }
+        public virtual String Description { get; set; }
+        public virtual int Spp { get; set; }
+        public virtual String Notes { get; set; }
     }
 }

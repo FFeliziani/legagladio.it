@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using NLog;
+using NHibernate;
 
 namespace BusinessLogic
 {
     public static class GameAction
     {
         private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly ISessionFactory SessionFactory = Utilities.DatabaseUtilities.CreateSessionFactory();
 
         public static LegaGladio.Entities.GameAction GetGameAction(Int32 id)
         {
@@ -39,32 +41,36 @@ namespace BusinessLogic
         {
             try
             {
-                DataAccessLayer.GameAction.NewGameAction(ga);
-                var p = Player.GetPlayer(ga.Player.Id);
-                var a = Action.GetAction(ga.Action.Id);
-
-                switch (a.Id)
+                using (var session = SessionFactory.OpenSession())
                 {
-                    case 1: //TD
-                        p.Td++;
-                        break;
-                    case 2: //CAS
-                        p.Cas++;
-                        break;
-                    case 3: //INT
-                        p.Inter++;
-                        break;
-                    case 4: //CP
-                        p.Pass++;
-                        break;
-                    case 5: //MVP
-                        p.Mvp++;
-                        break;
+                    DataAccessLayer.GameAction.NewGameAction(ga);
+                    var p = session.CreateCriteria(typeof(LegaGladio.Entities.Player))
+                        .UniqueResult<LegaGladio.Entities.Player>();//Player.GetPlayer(ga.Player.Id);
+                    var a = Action.GetAction(ga.Action.Id);
+
+                    switch (a.Id)
+                    {
+                        case 1: //TD
+                            p.Td++;
+                            break;
+                        case 2: //CAS
+                            p.Cas++;
+                            break;
+                        case 3: //INT
+                            p.Inter++;
+                            break;
+                        case 4: //CP
+                            p.Pass++;
+                            break;
+                        case 5: //MVP
+                            p.Mvp++;
+                            break;
+                    }
+
+                    p.Spp += a.Spp;
+
+                    Player.UpdatePlayer(p, p.Id);
                 }
-
-                p.Spp += a.Spp;
-
-                Player.UpdatePlayer(p, p.Id);
             }
             catch (Exception ex)
             {
@@ -102,33 +108,37 @@ namespace BusinessLogic
         {
             try
             {
-                var ga = GetGameAction(id);
-                var p = Player.GetPlayer(ga.Player.Id);
-                var a = Action.GetAction(ga.Action.Id);
-
-                switch (a.Id)
+                using (var session = SessionFactory.OpenSession())
                 {
-                    case 1: //TD
-                        p.Td--;
-                        break;
-                    case 2: //CAS
-                        p.Cas--;
-                        break;
-                    case 3: //INT
-                        p.Inter--;
-                        break;
-                    case 4: //CP
-                        p.Pass--;
-                        break;
-                    case 5: //MVP
-                        p.Mvp--;
-                        break;
+                    var ga = GetGameAction(id);
+                    var p = session.CreateCriteria(typeof(LegaGladio.Entities.Player))
+                        .UniqueResult<LegaGladio.Entities.Player>(); //Player.GetPlayer(ga.Player.Id);
+                    var a = Action.GetAction(ga.Action.Id);
+
+                    switch (a.Id)
+                    {
+                        case 1: //TD
+                            p.Td--;
+                            break;
+                        case 2: //CAS
+                            p.Cas--;
+                            break;
+                        case 3: //INT
+                            p.Inter--;
+                            break;
+                        case 4: //CP
+                            p.Pass--;
+                            break;
+                        case 5: //MVP
+                            p.Mvp--;
+                            break;
+                    }
+
+                    p.Spp -= a.Spp;
+
+                    Player.UpdatePlayer(p, p.Id);
+                    DataAccessLayer.GameAction.DeleteGameAction(ga.Id);
                 }
-
-                p.Spp -= a.Spp;
-
-                Player.UpdatePlayer(p, p.Id);
-                DataAccessLayer.GameAction.DeleteGameAction(ga.Id);
             }
             catch (Exception ex)
             {

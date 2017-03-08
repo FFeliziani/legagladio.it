@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using NHibernate;
 using NLog;
 
 namespace BusinessLogic
@@ -7,6 +8,7 @@ namespace BusinessLogic
     public static class AfterGameEvent
     {
         private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
+        private readonly static ISessionFactory SessionFactory = Utilities.DatabaseUtilities.CreateSessionFactory();
 
         public static LegaGladio.Entities.AfterGameEvent GetAfterGameEvent(Int32 id)
         {
@@ -38,63 +40,67 @@ namespace BusinessLogic
         {
             try
             {
-                DataAccessLayer.AfterGameEvent.NewAfterGameEvent(afterGameEvent);
-                if (afterGameEvent.Skill != null)
+                using (var session = SessionFactory.OpenSession())
                 {
-                    Skill.AddSkillToPlayer(afterGameEvent.Skill.Id, afterGameEvent.Player.Id);
-                }
-                var p = Player.GetPlayer(afterGameEvent.Player.Id);
-                if (afterGameEvent.Injury != null)
-                {
-                    switch (afterGameEvent.Injury.Id)
+                    DataAccessLayer.AfterGameEvent.NewAfterGameEvent(afterGameEvent);
+                    if (afterGameEvent.Skill != null)
                     {
-                        case 1: //killed
-                            p.Dead = true;
-                            break;
-                        case 2: //-ST
-                            p.StMinus++;
-                            p.MissNextGame = true;
-                            break;
-                        case 3: //-AG
-                            p.AgMinus++;
-                            p.MissNextGame = true;
-                            break;
-                        case 4: //-MV
-                            p.MaMinus++;
-                            p.MissNextGame = true;
-                            break;
-                        case 5: //-AV
-                            p.AvMinus++;
-                            p.MissNextGame = true;
-                            break;
-                        case 6: //NIGG
-                            p.Niggling++;
-                            p.MissNextGame = true;
-                            break;
-                        case 7: //MNG
-                            p.MissNextGame = true;
-                            break;
+                        Skill.AddSkillToPlayer(afterGameEvent.Skill.Id, afterGameEvent.Player.Id);
                     }
-                }
-                if (afterGameEvent.Augmentation != null)
-                {
-                    switch (afterGameEvent.Augmentation.Id)
+                    var p = session.CreateCriteria(typeof (LegaGladio.Entities.Player))
+                        .UniqueResult<LegaGladio.Entities.Player>(); //Player.GetPlayer(afterGameEvent.Player.Id);
+                    if (afterGameEvent.Injury != null)
                     {
-                        case 1: //+ST
-                            p.StPlus++;
-                            break;
-                        case 2: //+AG
-                            p.AgPlus++;
-                            break;
-                        case 3: //+AV
-                            p.AvPlus++;
-                            break;
-                        case 4: //+MV
-                            p.MaPlus++;
-                            break;
+                        switch (afterGameEvent.Injury.Id)
+                        {
+                            case 1: //killed
+                                p.Dead = true;
+                                break;
+                            case 2: //-ST
+                                p.StMinus++;
+                                p.MissNextGame = true;
+                                break;
+                            case 3: //-AG
+                                p.AgMinus++;
+                                p.MissNextGame = true;
+                                break;
+                            case 4: //-MV
+                                p.MaMinus++;
+                                p.MissNextGame = true;
+                                break;
+                            case 5: //-AV
+                                p.AvMinus++;
+                                p.MissNextGame = true;
+                                break;
+                            case 6: //NIGG
+                                p.Niggling++;
+                                p.MissNextGame = true;
+                                break;
+                            case 7: //MNG
+                                p.MissNextGame = true;
+                                break;
+                        }
                     }
+                    if (afterGameEvent.Augmentation != null)
+                    {
+                        switch (afterGameEvent.Augmentation.Id)
+                        {
+                            case 1: //+ST
+                                p.StPlus++;
+                                break;
+                            case 2: //+AG
+                                p.AgPlus++;
+                                break;
+                            case 3: //+AV
+                                p.AvPlus++;
+                                break;
+                            case 4: //+MV
+                                p.MaPlus++;
+                                break;
+                        }
+                    }
+                    Player.UpdatePlayer(p, afterGameEvent.Player.Id);
                 }
-                Player.UpdatePlayer(p, afterGameEvent.Player.Id);
             }
             catch (Exception ex)
             {
@@ -120,64 +126,69 @@ namespace BusinessLogic
         {
             try
             {
-                var afterGameEvent = GetAfterGameEvent(id);
-                if (afterGameEvent.Skill != null)
+                using (var session = SessionFactory.OpenSession())
                 {
-                    Skill.RemoveSkillFromPlayer(afterGameEvent.Skill.Id, afterGameEvent.Player.Id);
-                }
-                var p = Player.GetPlayer(afterGameEvent.Player.Id);
-                if (afterGameEvent.Injury != null)
-                {
-                    switch (afterGameEvent.Injury.Id)
+                    var afterGameEvent = GetAfterGameEvent(id);
+                    if (afterGameEvent.Skill != null)
                     {
-                        case 1: //killed
-                            p.Dead = false;
-                            break;
-                        case 2: //-ST
-                            p.StMinus--;
-                            p.MissNextGame = false;
-                            break;
-                        case 3: //-AG
-                            p.AgMinus--;
-                            p.MissNextGame = false;
-                            break;
-                        case 4: //-MV
-                            p.MaMinus--;
-                            p.MissNextGame = false;
-                            break;
-                        case 5: //-AV
-                            p.AvMinus--;
-                            p.MissNextGame = false;
-                            break;
-                        case 6: //NIGG
-                            p.Niggling--;
-                            p.MissNextGame = false;
-                            break;
-                        case 7: //MNG
-                            p.MissNextGame = false;
-                            break;
+                        Skill.RemoveSkillFromPlayer(afterGameEvent.Skill.Id, afterGameEvent.Player.Id);
                     }
-                }
-                if (afterGameEvent.Augmentation != null)
-                {
-                    switch (afterGameEvent.Augmentation.Id)
+                    var p = session.CreateCriteria(typeof(LegaGladio.Entities.Player))
+                        .UniqueResult<LegaGladio.Entities.Player>();
+                    ;//Player.GetPlayer(afterGameEvent.Player.Id);
+                    if (afterGameEvent.Injury != null)
                     {
-                        case 1: //+ST
-                            p.StPlus--;
-                            break;
-                        case 2: //+AG
-                            p.AgPlus--;
-                            break;
-                        case 3: //+AV
-                            p.AvPlus--;
-                            break;
-                        case 4: //+MV
-                            p.MaPlus--;
-                            break;
+                        switch (afterGameEvent.Injury.Id)
+                        {
+                            case 1: //killed
+                                p.Dead = false;
+                                break;
+                            case 2: //-ST
+                                p.StMinus--;
+                                p.MissNextGame = false;
+                                break;
+                            case 3: //-AG
+                                p.AgMinus--;
+                                p.MissNextGame = false;
+                                break;
+                            case 4: //-MV
+                                p.MaMinus--;
+                                p.MissNextGame = false;
+                                break;
+                            case 5: //-AV
+                                p.AvMinus--;
+                                p.MissNextGame = false;
+                                break;
+                            case 6: //NIGG
+                                p.Niggling--;
+                                p.MissNextGame = false;
+                                break;
+                            case 7: //MNG
+                                p.MissNextGame = false;
+                                break;
+                        }
                     }
+                    if (afterGameEvent.Augmentation != null)
+                    {
+                        switch (afterGameEvent.Augmentation.Id)
+                        {
+                            case 1: //+ST
+                                p.StPlus--;
+                                break;
+                            case 2: //+AG
+                                p.AgPlus--;
+                                break;
+                            case 3: //+AV
+                                p.AvPlus--;
+                                break;
+                            case 4: //+MV
+                                p.MaPlus--;
+                                break;
+                        }
+                    }
+                    Player.UpdatePlayer(p, afterGameEvent.Player.Id);
+                    DataAccessLayer.AfterGameEvent.DeleteAfterGameEvent(id);
                 }
-                Player.UpdatePlayer(p, afterGameEvent.Player.Id);
-                DataAccessLayer.AfterGameEvent.DeleteAfterGameEvent(id);
             }
             catch (Exception ex)
             {

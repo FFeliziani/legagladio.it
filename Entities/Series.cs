@@ -5,9 +5,9 @@ namespace LegaGladio.Entities
 {
     public class Series
     {
-        public Int32 Id { get; set; }
-        public String Name { get; set; }
-        public String Notes { get; set; }
-        public ICollection<Group> GroupList { get; set; }
+        public virtual Int32 Id { get; set; }
+        public virtual String Name { get; set; }
+        public virtual String Notes { get; set; }
+        public virtual ICollection<Group> GroupList { get; set; }
     }
 }
