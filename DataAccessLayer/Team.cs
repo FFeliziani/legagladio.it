@@ -156,14 +156,7 @@ namespace DataAccessLayer
 
             if (ttd.Rows.Count != 1) throw new Exception("Wrong number of teams returned");
             var teamRow = (LegaGladioDS.teamRow)ttd.Rows[0];
-            var team = new LegaGladio.Entities.Team
-            {
-                Id = teamRow.id,
-                Reroll = teamRow.reroll,
-                AssistantCoach = teamRow.assistantCoach,
-                Cheerleader = teamRow.cheerleader,
-                FanFactor = teamRow.funFactor
-            };
+            var team = GetTeamFromRow(teamRow);
             team.Race = Race.GetRaceByTeamId(team.Id);
             team.ListPlayer = Player.ListPlayer(team.Id, true);
             team.ListJourneymen = new List<LegaGladio.Entities.Player>();

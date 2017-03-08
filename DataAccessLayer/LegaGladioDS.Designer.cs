@@ -2700,11 +2700,11 @@ namespace DataAccessLayer {
             
             private global::System.Data.DataColumn columntreasury;
             
+            private global::System.Data.DataColumn columnimagePath;
+            
             private global::System.Data.DataColumn columnhasMedic;
             
             private global::System.Data.DataColumn columnactive;
-            
-            private global::System.Data.DataColumn columnimagePath;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -2805,6 +2805,14 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn imagePathColumn {
+                get {
+                    return this.columnimagePath;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn hasMedicColumn {
                 get {
                     return this.columnhasMedic;
@@ -2816,14 +2824,6 @@ namespace DataAccessLayer {
             public global::System.Data.DataColumn activeColumn {
                 get {
                     return this.columnactive;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn imagePathColumn {
-                get {
-                    return this.columnimagePath;
                 }
             }
             
@@ -2864,7 +2864,7 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public teamRow AddteamRow(int value, string name, int funFactor, int reroll, int cheerleader, int assistantCoach, int treasury, byte hasMedic, byte active, string imagePath) {
+            public teamRow AddteamRow(int value, string name, int funFactor, int reroll, int cheerleader, int assistantCoach, int treasury, string imagePath, int hasMedic, int active) {
                 teamRow rowteamRow = ((teamRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         value,
@@ -2875,9 +2875,9 @@ namespace DataAccessLayer {
                         assistantCoach,
                         null,
                         treasury,
+                        imagePath,
                         hasMedic,
-                        active,
-                        imagePath};
+                        active};
                 rowteamRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowteamRow);
                 return rowteamRow;
@@ -2915,9 +2915,9 @@ namespace DataAccessLayer {
                 this.columnassistantCoach = base.Columns["assistantCoach"];
                 this.columnid = base.Columns["id"];
                 this.columntreasury = base.Columns["treasury"];
+                this.columnimagePath = base.Columns["imagePath"];
                 this.columnhasMedic = base.Columns["hasMedic"];
                 this.columnactive = base.Columns["active"];
-                this.columnimagePath = base.Columns["imagePath"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -2939,12 +2939,12 @@ namespace DataAccessLayer {
                 base.Columns.Add(this.columnid);
                 this.columntreasury = new global::System.Data.DataColumn("treasury", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntreasury);
-                this.columnhasMedic = new global::System.Data.DataColumn("hasMedic", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnhasMedic);
-                this.columnactive = new global::System.Data.DataColumn("active", typeof(byte), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnactive);
                 this.columnimagePath = new global::System.Data.DataColumn("imagePath", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnimagePath);
+                this.columnhasMedic = new global::System.Data.DataColumn("hasMedic", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnhasMedic);
+                this.columnactive = new global::System.Data.DataColumn("active", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnactive);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint2", new global::System.Data.DataColumn[] {
                                 this.columnid}, true));
                 this.columnname.MaxLength = 255;
@@ -11237,10 +11237,26 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte hasMedic {
+            public string imagePath {
                 get {
                     try {
-                        return ((byte)(this[this.tableteam.hasMedicColumn]));
+                        return ((string)(this[this.tableteam.imagePathColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'imagePath\' in table \'team\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableteam.imagePathColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public int hasMedic {
+                get {
+                    try {
+                        return ((int)(this[this.tableteam.hasMedicColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'hasMedic\' in table \'team\' is DBNull.", e);
@@ -11253,10 +11269,10 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public byte active {
+            public int active {
                 get {
                     try {
-                        return ((byte)(this[this.tableteam.activeColumn]));
+                        return ((int)(this[this.tableteam.activeColumn]));
                     }
                     catch (global::System.InvalidCastException e) {
                         throw new global::System.Data.StrongTypingException("The value for column \'active\' in table \'team\' is DBNull.", e);
@@ -11264,22 +11280,6 @@ namespace DataAccessLayer {
                 }
                 set {
                     this[this.tableteam.activeColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string imagePath {
-                get {
-                    try {
-                        return ((string)(this[this.tableteam.imagePathColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'imagePath\' in table \'team\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableteam.imagePathColumn] = value;
                 }
             }
             
@@ -11391,6 +11391,18 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsimagePathNull() {
+                return this.IsNull(this.tableteam.imagePathColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetimagePathNull() {
+                this[this.tableteam.imagePathColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IshasMedicNull() {
                 return this.IsNull(this.tableteam.hasMedicColumn);
             }
@@ -11411,18 +11423,6 @@ namespace DataAccessLayer {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetactiveNull() {
                 this[this.tableteam.activeColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IsimagePathNull() {
-                return this.IsNull(this.tableteam.imagePathColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetimagePathNull() {
-                this[this.tableteam.imagePathColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -18168,10 +18168,12 @@ select last_insert_id();";
             tableMapping.ColumnMappings.Add("id", "id");
             tableMapping.ColumnMappings.Add("treasury", "treasury");
             tableMapping.ColumnMappings.Add("imagePath", "imagePath");
+            tableMapping.ColumnMappings.Add("hasMedic", "hasMedic");
+            tableMapping.ColumnMappings.Add("active", "active");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `team` WHERE ((`id` = @p1) AND ((@p2 = 1 AND `value` IS NULL) OR (`value` = @p3)) AND ((@p4 = 1 AND `funFactor` IS NULL) OR (`funFactor` = @p5)) AND ((@p6 = 1 AND `reroll` IS NULL) OR (`reroll` = @p7)) AND ((@p8 = 1 AND `cheerleader` IS NULL) OR (`cheerleader` = @p9)) AND ((@p10 = 1 AND `assistantCoach` IS NULL) OR (`assistantCoach` = @p11)) AND ((@p12 = 1 AND `treasury` IS NULL) OR (`treasury` = @p13)) AND ((@p14 = 1 AND `imagePath` IS NULL) OR (`imagePath` = @p15)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM `team` WHERE ((`id` = @p1) AND ((@p2 = 1 AND `value` IS NULL) OR (`value` = @p3)) AND ((@p4 = 1 AND `funFactor` IS NULL) OR (`funFactor` = @p5)) AND ((@p6 = 1 AND `reroll` IS NULL) OR (`reroll` = @p7)) AND ((@p8 = 1 AND `cheerleader` IS NULL) OR (`cheerleader` = @p9)) AND ((@p10 = 1 AND `assistantCoach` IS NULL) OR (`assistantCoach` = @p11)) AND ((@p12 = 1 AND `treasury` IS NULL) OR (`treasury` = @p13)) AND ((@p14 = 1 AND `imagePath` IS NULL) OR (`imagePath` = @p15)) AND ((@p16 = 1 AND `hasMedic` IS NULL) OR (`hasMedic` = @p17)) AND ((@p18 = 1 AND `active` IS NULL) OR (`active` = @p19)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -18300,11 +18302,45 @@ select last_insert_id();";
             param.SourceColumn = "imagePath";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p16";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "hasMedic";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p17";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "hasMedic";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p18";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "active";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p19";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "active";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
             this._adapter.InsertCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
             this._adapter.InsertCommand.CommandText = "INSERT INTO `team` (`value`, `name`, `funFactor`, `reroll`, `cheerleader`, `assis" +
-                "tantCoach`, `treasury`, `imagePath`) VALUES (@p1, @p2, @p3, @p4, @p5, @p6, @p7, " +
-                "@p8)";
+                "tantCoach`, `treasury`, `imagePath`, `hasMedic`, `active`) VALUES (@p1, @p2, @p3" +
+                ", @p4, @p5, @p6, @p7, @p8, @p9, @p10)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -18361,9 +18397,23 @@ select last_insert_id();";
             param.IsNullable = true;
             param.SourceColumn = "imagePath";
             this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p9";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "hasMedic";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p10";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "active";
+            this._adapter.InsertCommand.Parameters.Add(param);
             this._adapter.UpdateCommand = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE `team` SET `value` = @p1, `name` = @p2, `funFactor` = @p3, `reroll` = @p4, `cheerleader` = @p5, `assistantCoach` = @p6, `treasury` = @p7, `imagePath` = @p8 WHERE ((`id` = @p9) AND ((@p10 = 1 AND `value` IS NULL) OR (`value` = @p11)) AND ((@p12 = 1 AND `funFactor` IS NULL) OR (`funFactor` = @p13)) AND ((@p14 = 1 AND `reroll` IS NULL) OR (`reroll` = @p15)) AND ((@p16 = 1 AND `cheerleader` IS NULL) OR (`cheerleader` = @p17)) AND ((@p18 = 1 AND `assistantCoach` IS NULL) OR (`assistantCoach` = @p19)) AND ((@p20 = 1 AND `treasury` IS NULL) OR (`treasury` = @p21)) AND ((@p22 = 1 AND `imagePath` IS NULL) OR (`imagePath` = @p23)))";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE `team` SET `value` = @p1, `name` = @p2, `funFactor` = @p3, `reroll` = @p4, `cheerleader` = @p5, `assistantCoach` = @p6, `treasury` = @p7, `imagePath` = @p8, `hasMedic` = @p9, `active` = @p10 WHERE ((`id` = @p11) AND ((@p12 = 1 AND `value` IS NULL) OR (`value` = @p13)) AND ((@p14 = 1 AND `funFactor` IS NULL) OR (`funFactor` = @p15)) AND ((@p16 = 1 AND `reroll` IS NULL) OR (`reroll` = @p17)) AND ((@p18 = 1 AND `cheerleader` IS NULL) OR (`cheerleader` = @p19)) AND ((@p20 = 1 AND `assistantCoach` IS NULL) OR (`assistantCoach` = @p21)) AND ((@p22 = 1 AND `treasury` IS NULL) OR (`treasury` = @p23)) AND ((@p24 = 1 AND `imagePath` IS NULL) OR (`imagePath` = @p25)) AND ((@p26 = 1 AND `hasMedic` IS NULL) OR (`hasMedic` = @p27)) AND ((@p28 = 1 AND `active` IS NULL) OR (`active` = @p29)))";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p1";
@@ -18425,24 +18475,21 @@ select last_insert_id();";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "id";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumn = "hasMedic";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p10";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "value";
-            param.SourceVersion = global::System.Data.DataRowVersion.Original;
-            param.SourceColumnNullMapping = true;
+            param.SourceColumn = "active";
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p11";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "value";
+            param.SourceColumn = "id";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
@@ -18450,7 +18497,7 @@ select last_insert_id();";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "funFactor";
+            param.SourceColumn = "value";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
@@ -18459,7 +18506,7 @@ select last_insert_id();";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "funFactor";
+            param.SourceColumn = "value";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
@@ -18467,7 +18514,7 @@ select last_insert_id();";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "reroll";
+            param.SourceColumn = "funFactor";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
@@ -18476,7 +18523,7 @@ select last_insert_id();";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "reroll";
+            param.SourceColumn = "funFactor";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
@@ -18484,7 +18531,7 @@ select last_insert_id();";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "cheerleader";
+            param.SourceColumn = "reroll";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
@@ -18493,7 +18540,7 @@ select last_insert_id();";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "cheerleader";
+            param.SourceColumn = "reroll";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
@@ -18501,7 +18548,7 @@ select last_insert_id();";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "assistantCoach";
+            param.SourceColumn = "cheerleader";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
@@ -18510,7 +18557,7 @@ select last_insert_id();";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "assistantCoach";
+            param.SourceColumn = "cheerleader";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
@@ -18518,7 +18565,7 @@ select last_insert_id();";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "treasury";
+            param.SourceColumn = "assistantCoach";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
@@ -18527,11 +18574,28 @@ select last_insert_id();";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
-            param.SourceColumn = "treasury";
+            param.SourceColumn = "assistantCoach";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@p22";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "treasury";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p23";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "treasury";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p24";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
@@ -18540,11 +18604,45 @@ select last_insert_id();";
             param.SourceColumnNullMapping = true;
             this._adapter.UpdateCommand.Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@p23";
+            param.ParameterName = "@p25";
             param.DbType = global::System.Data.DbType.String;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.VarChar;
             param.IsNullable = true;
             param.SourceColumn = "imagePath";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p26";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "hasMedic";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p27";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "hasMedic";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p28";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "active";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::MySql.Data.MySqlClient.MySqlParameter();
+            param.ParameterName = "@p29";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
+            param.IsNullable = true;
+            param.SourceColumn = "active";
             param.SourceVersion = global::System.Data.DataRowVersion.Original;
             this._adapter.UpdateCommand.Parameters.Add(param);
         }
@@ -18563,7 +18661,7 @@ select last_insert_id();";
             this._commandCollection[0] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT id, value, name, funFactor, reroll, cheerleader, assistantCoach, treasury," +
-                " imagePath FROM team ORDER BY name";
+                " imagePath, hasMedic, active FROM team ORDER BY name";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[1].Connection = this.Connection;
@@ -18601,8 +18699,8 @@ select last_insert_id();";
             this._commandCollection[3].Parameters.Add(param);
             this._commandCollection[4] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT assistantCoach, cheerleader, funFactor, id, imagePath, name, reroll, treas" +
-                "ury, value FROM team WHERE (active = @active) ORDER BY name";
+            this._commandCollection[4].CommandText = "SELECT active, assistantCoach, cheerleader, funFactor, hasMedic, id, imagePath, n" +
+                "ame, reroll, treasury, value FROM team WHERE (active = @active) ORDER BY name";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@active";
@@ -18613,9 +18711,9 @@ select last_insert_id();";
             this._commandCollection[4].Parameters.Add(param);
             this._commandCollection[5] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "SELECT t.assistantCoach, t.cheerleader, t.funFactor, t.id, t.imagePath, t.name, t" +
-                ".reroll, t.treasury, t.value FROM team t INNER JOIN coach_team ct ON t.id = ct.t" +
-                "eamID WHERE (ct.coachID = @coachId) ORDER BY t.name";
+            this._commandCollection[5].CommandText = "SELECT t.active, t.assistantCoach, t.cheerleader, t.funFactor, t.hasMedic, t.id, " +
+                "t.imagePath, t.name, t.reroll, t.treasury, t.value FROM team t INNER JOIN coach_" +
+                "team ct ON t.id = ct.teamID WHERE (ct.coachID = @coachId) ORDER BY t.name";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@coachId";
@@ -18626,8 +18724,8 @@ select last_insert_id();";
             this._commandCollection[5].Parameters.Add(param);
             this._commandCollection[6] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = "SELECT assistantCoach, cheerleader, funFactor, id, imagePath, name, reroll, treas" +
-                "ury, value FROM team WHERE (id = @id)";
+            this._commandCollection[6].CommandText = "SELECT active, assistantCoach, cheerleader, funFactor, hasMedic, id, imagePath, n" +
+                "ame, reroll, treasury, value FROM team WHERE (id = @id)";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@id";
@@ -18963,7 +19061,7 @@ select last_insert_id();";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int p1, global::System.Nullable<int> p3, global::System.Nullable<int> p5, global::System.Nullable<int> p7, global::System.Nullable<int> p9, global::System.Nullable<int> p11, global::System.Nullable<int> p13, string p15) {
+        public virtual int Delete(int p1, global::System.Nullable<int> p3, global::System.Nullable<int> p5, global::System.Nullable<int> p7, global::System.Nullable<int> p9, global::System.Nullable<int> p11, global::System.Nullable<int> p13, string p15, global::System.Nullable<int> p17, global::System.Nullable<int> p19) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(p1));
             if ((p3.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -19021,6 +19119,22 @@ select last_insert_id();";
                 this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
                 this.Adapter.DeleteCommand.Parameters[14].Value = ((string)(p15));
             }
+            if ((p17.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[16].Value = ((int)(p17.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
+            }
+            if ((p19.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[18].Value = ((int)(p19.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -19041,7 +19155,7 @@ select last_insert_id();";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(global::System.Nullable<int> p1, string p2, global::System.Nullable<int> p3, global::System.Nullable<int> p4, global::System.Nullable<int> p5, global::System.Nullable<int> p6, global::System.Nullable<int> p7, string p8) {
+        public virtual int Insert(global::System.Nullable<int> p1, string p2, global::System.Nullable<int> p3, global::System.Nullable<int> p4, global::System.Nullable<int> p5, global::System.Nullable<int> p6, global::System.Nullable<int> p7, string p8, global::System.Nullable<int> p9, global::System.Nullable<int> p10) {
             if ((p1.HasValue == true)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((int)(p1.Value));
             }
@@ -19090,6 +19204,18 @@ select last_insert_id();";
             else {
                 this.Adapter.InsertCommand.Parameters[7].Value = ((string)(p8));
             }
+            if ((p9.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[8].Value = ((int)(p9.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
+            }
+            if ((p10.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[9].Value = ((int)(p10.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -19119,14 +19245,18 @@ select last_insert_id();";
                     global::System.Nullable<int> p6, 
                     global::System.Nullable<int> p7, 
                     string p8, 
-                    int p9, 
-                    global::System.Nullable<int> p11, 
+                    global::System.Nullable<int> p9, 
+                    global::System.Nullable<int> p10, 
+                    int p11, 
                     global::System.Nullable<int> p13, 
                     global::System.Nullable<int> p15, 
                     global::System.Nullable<int> p17, 
                     global::System.Nullable<int> p19, 
                     global::System.Nullable<int> p21, 
-                    string p23) {
+                    global::System.Nullable<int> p23, 
+                    string p25, 
+                    global::System.Nullable<int> p27, 
+                    global::System.Nullable<int> p29) {
             if ((p1.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(p1.Value));
             }
@@ -19175,15 +19305,19 @@ select last_insert_id();";
             else {
                 this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(p8));
             }
-            this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(p9));
-            if ((p11.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(p11.Value));
+            if ((p9.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(p9.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
             }
+            if ((p10.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(p10.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(p11));
             if ((p13.HasValue == true)) {
                 this.Adapter.UpdateCommand.Parameters[11].Value = ((object)(0));
                 this.Adapter.UpdateCommand.Parameters[12].Value = ((int)(p13.Value));
@@ -19224,13 +19358,37 @@ select last_insert_id();";
                 this.Adapter.UpdateCommand.Parameters[19].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
             }
-            if ((p23 == null)) {
+            if ((p23.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((int)(p23.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
             }
+            if ((p25 == null)) {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
             else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(p23));
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(p25));
+            }
+            if ((p27.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((int)(p27.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
+            }
+            if ((p29.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((int)(p29.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[28].Value = global::System.DBNull.Value;
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 

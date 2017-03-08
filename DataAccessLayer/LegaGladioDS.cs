@@ -1,1 +1,7 @@
-﻿
+﻿namespace DataAccessLayer
+{
+}
+
+namespace DataAccessLayer
+{
+}
