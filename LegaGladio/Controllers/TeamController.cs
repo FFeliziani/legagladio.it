@@ -12,7 +12,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("get")]
-        public ICollection<Team> Get()
+        public ICollection<LegaGladio.Entities.Dto.Team> Get()
         {
             return BusinessLogic.Team.ListTeam();
         }
@@ -38,7 +38,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByCoach")]
-        public ICollection<Team> GetByCoach(int id)
+        public ICollection<LegaGladio.Entities.Dto.Team> GetByCoach(int id)
         {
             return BusinessLogic.Team.ListTeam(id);
         }

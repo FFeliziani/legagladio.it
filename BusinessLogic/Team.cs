@@ -1,18 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NLog;
+using NHibernate;
+using NHibernate.Criterion;
 
 namespace BusinessLogic
 {
     public static class Team
     {
         private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
+        private readonly static ISessionFactory SessionFactory = Utilities.DatabaseUtilities.CreateSessionFactory();
 
         public static int CountTeam()
         {
             try
             {
-                return DataAccessLayer.Team.CountTeam();
+                using (var session = SessionFactory.OpenSession())
+                {
+                    return session
+                        .CreateCriteria<LegaGladio.Entities.Team>()
+                        .SetProjection(Projections.Count(Projections.Id()))
+                        .UniqueResult<Int32>();
+                }
+                //return DataAccessLayer.Team.CountTeam();
             }
             catch (Exception ex)
             {
@@ -21,11 +32,19 @@ namespace BusinessLogic
             }
         }
 
-        public static ICollection<LegaGladio.Entities.Team> ListTeam()
+        public static ICollection<LegaGladio.Entities.Dto.Team> ListTeam()
         {
             try
             {
-                return DataAccessLayer.Team.ListTeam();
+                using(var session = SessionFactory.OpenSession())
+                {
+                    return session
+                        .CreateCriteria<LegaGladio.Entities.Team>()
+                        .List<LegaGladio.Entities.Team>()
+                        .Select(x => new LegaGladio.Entities.Dto.Team(x))
+                        .ToList();
+                }
+                //return DataAccessLayer.Team.ListTeam();
             }
             catch (Exception ex)
             {
@@ -34,11 +53,21 @@ namespace BusinessLogic
             }
         }
 
-        public static ICollection<LegaGladio.Entities.Team> ListTeam(int coachId)
+        public static ICollection<LegaGladio.Entities.Dto.Team> ListTeam(int coachId)
         {
             try
             {
-                return DataAccessLayer.Team.ListTeam(coachId);
+                using(var session = SessionFactory.OpenSession())
+                {
+                    return session
+                        .CreateCriteria<LegaGladio.Entities.Team>()
+                        .CreateCriteria("coach")
+                            .Add(Expression.Eq("Id", coachId))
+                        .List<LegaGladio.Entities.Team>()
+                        .Select(x => new LegaGladio.Entities.Dto.Team(x))
+                        .ToList();
+                }
+                //return DataAccessLayer.Team.ListTeam(coachId);
             }
             catch (Exception ex)
             {

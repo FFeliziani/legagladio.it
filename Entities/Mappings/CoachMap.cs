@@ -12,7 +12,7 @@ namespace LegaGladio.Entities.Mappings
         {
             Id(x => x.Id);
 
-            HasMany<Team>(x => x.ListTeam).Cascade.All().Table("coach_team");
+            HasMany<Team>(x => x.ListTeam).Cascade.All().Table("coach_team").KeyColumn("teamId");
 
             Map(x => x.Name);
             Map(x => x.Value);

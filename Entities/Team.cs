@@ -20,8 +20,7 @@ namespace LegaGladio.Entities
         public virtual bool HasMedic { get; set; }
         public virtual Int32 Cheerleader { get; set; }
         public virtual Int32 AssistantCoach { get; set; }
-        public virtual String CoachName { get; set; }
-        public virtual Int32 CoachId { get; set; }
+        public virtual Coach Coach { get; set; }
         public virtual Int32 Treasury { get; set; }
     }
 }

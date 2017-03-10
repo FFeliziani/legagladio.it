@@ -62,6 +62,7 @@
     <Compile Include="Dto\Player.cs" />
     <Compile Include="Dto\Positional.cs" />
     <Compile Include="Dto\Skill.cs" />
+    <Compile Include="Dto\Team.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameAction.cs" />
     <Compile Include="Group.cs" />

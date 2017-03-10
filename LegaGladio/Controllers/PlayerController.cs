@@ -38,7 +38,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByTeam")]
-        public ICollection<Player> GetByTeam(int id)
+        public ICollection<Entities.Dto.Player> GetByTeam(int id)
         {
             return BusinessLogic.Player.ListPlayer(id);
         }
@@ -47,7 +47,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByTeamActive")]
-        public ICollection<Player> GetByTeamActive(int id)
+        public ICollection<Entities.Dto.Player> GetByTeamActive(int id)
         {
             return BusinessLogic.Player.ListPlayer(id, true);
         }
@@ -56,7 +56,7 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("getByTeamInactive")]
-        public ICollection<Player> GetByTeamInactive(int id)
+        public ICollection<Entities.Dto.Player> GetByTeamInactive(int id)
         {
             return BusinessLogic.Player.ListPlayer(id, false);
         }

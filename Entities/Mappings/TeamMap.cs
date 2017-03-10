@@ -12,7 +12,7 @@ namespace LegaGladio.Entities.Mappings
         {
             Id(x => x.Id);
             HasMany<Player>(x => x.ListPlayer).Cascade.All().Table("team_player");
-            References<Race>(x => x.Race);
+            HasManyToMany<Race>(x => x.Race).Table("team_race").ParentKeyColumn("teamId").ChildKeyColumn("raceId");
             Map(x => x.Value);
             Map(x => x.Name);
 
@@ -23,9 +23,10 @@ namespace LegaGladio.Entities.Mappings
             Map(x => x.HasMedic);
             Map(x => x.Cheerleader);
             Map(x => x.AssistantCoach);
-            Map(x => x.CoachName);
-            Map(x => x.CoachId);
+            //Map(x => x.CoachName);
+            //Map(x => x.CoachId);
             Map(x => x.Treasury);
+            HasManyToMany<Coach>(x => x.Coach).Table("coach_team").ParentKeyColumn("teamId").ChildKeyColumn("coachId");
         }
     }
 }

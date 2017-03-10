@@ -20,7 +20,11 @@ namespace BusinessLogic
         {
             try
             {
-                return DataAccessLayer.Player.CountPlayer();
+                using (var session = SessionFactory.OpenSession())
+                {
+                    return session.CreateCriteria<LegaGladio.Entities.Player>()
+                        .SetProjection(Projections.Count(Projections.Id())).UniqueResult<Int32>();
+                }
             }
             catch (Exception ex)
             {
@@ -35,11 +39,11 @@ namespace BusinessLogic
             {
                 using (var session = SessionFactory.OpenSession())
                 {
-                    return
-                        session.CreateCriteria(typeof (LegaGladio.Entities.Player))
-                            .List<LegaGladio.Entities.Player>()
-                            .Select(x => new LegaGladio.Entities.Dto.Player(x))
-                            .ToList();
+                    return session
+                        .CreateCriteria(typeof (LegaGladio.Entities.Player))
+                        .List<LegaGladio.Entities.Player>()
+                        .Select(x => new LegaGladio.Entities.Dto.Player(x))
+                        .ToList();
                 }
             }
             catch (Exception ex)
@@ -48,11 +52,19 @@ namespace BusinessLogic
                 throw;
             }
         }
-        public static ICollection<LegaGladio.Entities.Player> ListPlayer(int teamId)
+        public static ICollection<LegaGladio.Entities.Dto.Player> ListPlayer(int teamId)
         {
             try
             {
-                return DataAccessLayer.Player.ListPlayer(teamId);
+                using(var session = SessionFactory.OpenSession())
+                {
+                    return session
+                        .CreateCriteria<LegaGladio.Entities.Player>()
+                        .CreateCriteria("team")
+                            .Add(Expression.Eq("id", teamId))
+                        .List<LegaGladio.Entities.Player>()
+                        .Select(x=> new LegaGladio.Entities.Dto.Player(x)).ToList();
+                }
             }
             catch (Exception ex)
             {
@@ -61,11 +73,21 @@ namespace BusinessLogic
             }
         }
 
-        public static ICollection<LegaGladio.Entities.Player> ListPlayer(int teamId, Boolean active)
+        public static ICollection<LegaGladio.Entities.Dto.Player> ListPlayer(int teamId, Boolean active)
         {
             try
             {
-                return DataAccessLayer.Player.ListPlayer(teamId, active);
+                using (var session = SessionFactory.OpenSession())
+                {
+                    return session
+                    .CreateCriteria<LegaGladio.Entities.Player>()
+                    .Add(Expression.Eq("active", active))
+                    .CreateCriteria("team")
+                        .Add(Expression.Eq("id", teamId))
+                    .List<LegaGladio.Entities.Player>()
+                    .Select(x => new LegaGladio.Entities.Dto.Player(x)).ToList();
+                    //return DataAccessLayer.Player.ListPlayer(teamId, active);
+                }
             }
             catch (Exception ex)
             {
@@ -98,7 +120,14 @@ namespace BusinessLogic
         {
             try
             {
-                DataAccessLayer.Player.AddPlayerToTeam(playerId, teamId);
+                using (var session = SessionFactory.OpenSession())
+                {
+                    var team = session.CreateCriteria<LegaGladio.Entities.Team>().Add(Expression.Eq("id", teamId)).UniqueResult<LegaGladio.Entities.Team>();
+                    var player = session.CreateCriteria<LegaGladio.Entities.Player>().Add(Expression.Eq("id", playerId)).UniqueResult<LegaGladio.Entities.Player>();
+                    team.ListPlayer.Add(player);
+                    session.Save(team);
+                }
+                //DataAccessLayer.Player.AddPlayerToTeam(playerId, teamId);
             }
             catch (Exception ex)
             {
@@ -111,7 +140,13 @@ namespace BusinessLogic
         {
             try
             {
-                DataAccessLayer.Player.RemovePlayerFromTeam(playerId, teamId);
+                using (var session = SessionFactory.OpenSession()) {
+                    var team = session.CreateCriteria<LegaGladio.Entities.Team>().Add(Expression.Eq("id", teamId)).UniqueResult<LegaGladio.Entities.Team>();
+                    team.ListPlayer = team.ListPlayer.Where(x => x.Id != playerId).ToList();
+                    session.Save(team);
+
+                //DataAccessLayer.Player.RemovePlayerFromTeam(playerId, teamId);
+                }
             }
             catch (Exception ex)
             {
@@ -124,7 +159,12 @@ namespace BusinessLogic
         {
             try
             {
-                return DataAccessLayer.Player.NewPlayer(player);
+                using(var session = SessionFactory.OpenSession())
+                {
+                    session.Save(player);
+                    return player.Id;
+                }
+                //return DataAccessLayer.Player.NewPlayer(player);
             }
             catch (Exception ex)
             {
@@ -137,7 +177,11 @@ namespace BusinessLogic
         {
             try
             {
-                DataAccessLayer.Player.UpdatePlayer(player, oldId);
+                using (var session = SessionFactory.OpenSession())
+                {
+                    session.Update(player, oldId);
+                    //DataAccessLayer.Player.UpdatePlayer(player, oldId);
+                }
             }
             catch (Exception ex)
             {
@@ -150,7 +194,11 @@ namespace BusinessLogic
         {
             try
             {
-                DataAccessLayer.Player.DeletePlayer(id);
+                using (var session = SessionFactory.OpenSession())
+                {
+                    session.Delete(new LegaGladio.Entities.Player { Id = id });
+                }
+                //DataAccessLayer.Player.DeletePlayer(id);
             }
             catch (Exception ex)
             {
