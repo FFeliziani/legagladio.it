@@ -25111,7 +25111,7 @@ select last_insert_id();";
             this._commandCollection[8].Parameters.Add(param);
             this._commandCollection[9] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[9].Connection = this.Connection;
-            this._commandCollection[9].CommandText = @"INSERT INTO `game` (`homeID`, `guestID`, `tdHome`, `tdGuest`, `casHome`, `casGuest`, `spHome`, `spGuest`, `earningHome`, `earningGuest`, `varFFHome`, `varFFGuest`, `notes`, `gameDate`) VALUES (@HomeId, @GuestId, @tdHome, @tdGuest, @casHome, @casGuest, @spHome, @spGuest, @earningHome, @earningGuest, @varFFHome, @varFFGuest, @notes, @gameDate);SELECTSCOPE_IDENTITY();";
+            this._commandCollection[9].CommandText = @"INSERT INTO `game` (`homeID`, `guestID`, `tdHome`, `tdGuest`, `casHome`, `casGuest`, `spHome`, `spGuest`, `earningHome`, `earningGuest`, `varFFHome`, `varFFGuest`, `notes`, `gameDate`) VALUES (@HomeId, @GuestId, @tdHome, @tdGuest, @casHome, @casGuest, @spHome, @spGuest, @earningHome, @earningGuest, @varFFHome, @varFFGuest, @notes, @gameDate);SELECT LAST_INSERT_ID();";
             this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
             param.ParameterName = "@HomeId";
