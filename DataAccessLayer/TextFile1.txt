@@ -15,3 +15,9 @@
 <add name="DataAccessLayer.Properties.Settings.legagladioConnectionString2"
     connectionString="server=62.149.150.47;user id=Sql136415;password=5dabc392;database=Sql136415_4"
     providerName="MySql.Data.MySqlClient" /> 
+
+----------CASA----------
+
+<add name="DataAccessLayer.Properties.Settings.legagladioConnectionString2"
+	connectionString="server=80.181.110.1;user id=legagladio;password=gcipRg5OECMzbi7W9LUfEbfzMHTV8wmL;database=legagladio"
+	providerName="MySql.Data.MySqlClient" />

@@ -48,7 +48,8 @@ namespace DataAccessLayer
         public static Int32 NewArticle(LegaGladio.Entities.Article article)
         {
             var ata = new articleTableAdapter();
-            return (Int32)ata.InsertArticle(article.Title, article.Content, article.Created, new DateTime?(), 0, article.ArticleType, article.Note);
+            ata.InsertArticle(article.Title, article.Content, DateTime.Now, DateTime.Now, 0, article.ArticleType, article.Note);
+            return 0;
         }
 
         public static void UpdateArticle(LegaGladio.Entities.Article article, Int32 oldId)
