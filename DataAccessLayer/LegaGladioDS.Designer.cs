@@ -26135,7 +26135,7 @@ WHERE        (id = @p15)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertGame(global::System.Nullable<int> HomeId, global::System.Nullable<int> GuestId, global::System.Nullable<int> tdHome, global::System.Nullable<int> tdGuest, global::System.Nullable<int> casHome, global::System.Nullable<int> casGuest, global::System.Nullable<int> spHome, global::System.Nullable<int> spGuest, global::System.Nullable<int> earningHome, global::System.Nullable<int> earningGuest, global::System.Nullable<int> varFFHome, global::System.Nullable<int> varFFGuest, string notes, global::System.Nullable<global::System.DateTime> gameDate) {
+        public virtual object InsertGame(global::System.Nullable<int> HomeId, global::System.Nullable<int> GuestId, global::System.Nullable<int> tdHome, global::System.Nullable<int> tdGuest, global::System.Nullable<int> casHome, global::System.Nullable<int> casGuest, global::System.Nullable<int> spHome, global::System.Nullable<int> spGuest, global::System.Nullable<int> earningHome, global::System.Nullable<int> earningGuest, global::System.Nullable<int> varFFHome, global::System.Nullable<int> varFFGuest, string notes, global::System.Nullable<global::System.DateTime> gameDate) {
             global::MySql.Data.MySqlClient.MySqlCommand command = this.CommandCollection[9];
             if ((HomeId.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(HomeId.Value));
@@ -26226,16 +26226,22 @@ WHERE        (id = @p15)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
