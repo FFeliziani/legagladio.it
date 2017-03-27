@@ -153,6 +153,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AddItemsData.cs" />
+    <Compile Include="Models\GenerateRoundData.cs" />
     <Compile Include="Models\LoginData.cs" />
     <Compile Include="Models\TypeCountData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

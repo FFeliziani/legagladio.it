@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using NLog;
 
 namespace BusinessLogic
 {
     public static class Round
     {
-        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public static LegaGladio.Entities.Round GetRound(Int32 id)
         {
@@ -108,6 +109,50 @@ namespace BusinessLogic
             catch (Exception ex)
             {
                 Logger.Error(ex, "Error while deleting round - Id: [" + id + "]");
+                throw;
+            }
+        }
+
+        public static void GenerateRounds(Int32 groupId, ICollection<Int32> teamIds)
+        {
+            try
+            {
+                var teams = teamIds.Select(Team.GetTeam).ToList();
+                var rounds = new List<LegaGladio.Entities.Round>();
+                for (var i = 0; i < teams.Count; i++)
+                {
+                    rounds.Add(new LegaGladio.Entities.Round());
+                }
+
+                foreach (var round in rounds)
+                {
+                    round.GameList = new List<LegaGladio.Entities.Game>();
+                    round.Name = "Giornata " + (rounds.IndexOf(round) + 1);
+                    round.Number = rounds.IndexOf(round);
+                    NewRound(round);
+                    var homeTeams = teams.OrderBy(x => Guid.NewGuid()).ToList();
+                    var guestTeams = teams.OrderBy(x => Guid.NewGuid()).ToList();
+                    foreach (var homeTeam in homeTeams)
+                    {
+                        foreach (var guestTeam in guestTeams)
+                        {
+                            if (homeTeam.Equals(guestTeam)) continue;
+                            var game = new LegaGladio.Entities.Game
+                            {
+                                Home = homeTeam,
+                                Guest = guestTeam
+                            };
+                            game.Id = Game.NewGame(game);
+                            round.GameList.Add(game);
+                            Game.AddGameToRound(game.Id, round.Id);
+                        }
+                    }
+                    AddRoundToGroup(round.Id, groupId);
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while creating new rounds");
                 throw;
             }
         }

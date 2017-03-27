@@ -4,6 +4,7 @@ using System.Web.Http;
 using BusinessLogic;
 using Group = LegaGladio.Entities.Group;
 using Round = LegaGladio.Entities.Round;
+using LegaGladio.Models;
 
 namespace LegaGladio.Controllers
 {
@@ -34,6 +35,14 @@ namespace LegaGladio.Controllers
         {
             var group = new Group { Id = id };
             return BusinessLogic.Round.ListRoundDetailed(group);
+        }
+
+        [HttpGet]
+        [AcceptVerbs("GET", "POST")]
+        [ActionName("generateRounds")]
+        public void GenerateRounds([FromBody]GenerateRoundData data)
+        {
+            BusinessLogic.Round.GenerateRounds(data.GroupId, data.TeamIds);
         }
 
         // POST api/player

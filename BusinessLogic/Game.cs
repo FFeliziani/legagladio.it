@@ -6,7 +6,7 @@ namespace BusinessLogic
 {
     public static class Game
     {
-        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
 
         public static LegaGladio.Entities.Game Get(int id)
         {
@@ -96,11 +96,37 @@ namespace BusinessLogic
             }
         }
 
-        public static void NewGame(LegaGladio.Entities.Game game)
+        public static void AddGameToRound(Int32 gameId, Int32 roundId)
         {
             try
             {
-                DataAccessLayer.Game.NewGame(game);
+                DataAccessLayer.Game.AddGametoRound(gameId, roundId);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Error while adding game to round");
+                throw;
+            }
+        }
+
+        public static void RemoveGameFromRound(Int32 gameId, Int32 roundId)
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex, "Erro while removing game from round");
+                throw;
+            }
+        }
+
+        public static Int32 NewGame(LegaGladio.Entities.Game game)
+        {
+            try
+            {
+                return DataAccessLayer.Game.NewGame(game);
             }
             catch (Exception ex)
             {

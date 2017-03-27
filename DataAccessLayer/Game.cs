@@ -240,11 +240,11 @@ namespace DataAccessLayer
             gta.RemoveGameFromRound(gameId, roundId);
         }
 
-        public static void NewGame(LegaGladio.Entities.Game game)
+        public static Int32 NewGame(LegaGladio.Entities.Game game)
         {
             var gta = new gameTableAdapter();
 
-            gta.InsertGame(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFfHome, game.VarFfGuest, game.Notes, game.GameDate);
+            return (int)gta.InsertGame(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFfHome, game.VarFfGuest, game.Notes, game.GameDate);
         }
 
         public static void UpdateGame(LegaGladio.Entities.Game game, Int32 oldId)
