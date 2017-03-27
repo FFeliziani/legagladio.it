@@ -40,9 +40,20 @@ namespace LegaGladio.Controllers
         [HttpGet]
         [AcceptVerbs("GET", "POST")]
         [ActionName("generateRounds")]
-        public void GenerateRounds([FromBody]GenerateRoundData data)
+        public void GenerateRounds([FromUri]String token, [FromBody]GenerateRoundData data)
         {
-            BusinessLogic.Round.GenerateRounds(data.GroupId, data.TeamIds);
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LoginManager.CheckLogged(token))
+            {
+                BusinessLogic.Round.GenerateRounds(data.GroupId, data.TeamIds);
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
 
         // POST api/player
