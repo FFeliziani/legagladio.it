@@ -56,6 +56,44 @@ namespace LegaGladio.Controllers
             }
         }
 
+        [HttpPost]
+        [ActionName("addRoundToGroup")]
+        [AcceptVerbs("POST")]
+        public void AddRoundToGroup([FromUri]String token, [FromBody]AddItemsData addItemsData)
+        {
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LoginManager.CheckLogged(token))
+            {
+                BusinessLogic.Round.AddRoundToGroup(Convert.ToInt32(addItemsData.Id2), Convert.ToInt32(addItemsData.Id1));
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
+        }
+
+        [HttpPost]
+        [ActionName("removeRoundFromGroup")]
+        [AcceptVerbs("POST")]
+        public void RemoveRoundFromGroup([FromUri]String token, [FromBody]AddItemsData addItemsData)
+        {
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LoginManager.CheckLogged(token))
+            {
+                BusinessLogic.Round.RemoveRoundFromGroup(Convert.ToInt32(addItemsData.Id2), Convert.ToInt32(addItemsData.Id1));
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
+        }
+
         // POST api/player
         [HttpPost]
         [ActionName("post")]

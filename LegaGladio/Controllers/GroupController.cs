@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using BusinessLogic;
+using LegaGladio.Models;
 using Group = LegaGladio.Entities.Group;
 using Series = LegaGladio.Entities.Series;
 
@@ -25,6 +26,44 @@ namespace LegaGladio.Controllers
         {
             var series = new Series { Id = id };
             return BusinessLogic.Group.ListGroup(series);
+        }
+
+        [HttpPost]
+        [ActionName("AddGroupToSeries")]
+        [AcceptVerbs("POST")]
+        public void AddGroupToSeries([FromUri]String token, [FromBody]AddItemsData addItemsData)
+        {
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LoginManager.CheckLogged(token))
+            {
+                BusinessLogic.Group.AddGroupToSeries(Convert.ToInt32(addItemsData.Id2), Convert.ToInt32(addItemsData.Id1));
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
+        }
+
+        [HttpPost]
+        [ActionName("RemoveGroupFromSeries")]
+        [AcceptVerbs("POST")]
+        public void RemoveGroupFromSeries([FromUri]String token, [FromBody]AddItemsData addItemsData)
+        {
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LoginManager.CheckLogged(token))
+            {
+                BusinessLogic.Group.RemoveGroupFromSeries(Convert.ToInt32(addItemsData.Id2), Convert.ToInt32(addItemsData.Id1));
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
         }
 
         // POST api/player

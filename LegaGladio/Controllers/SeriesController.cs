@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Web.Http;
 using BusinessLogic;
+using LegaGladio.Models;
 using League = LegaGladio.Entities.League;
 using Series = LegaGladio.Entities.Series;
 
@@ -27,7 +28,45 @@ namespace LegaGladio.Controllers
             var league = new League { Id = id };
             return BusinessLogic.Series.List(league);
         }
-        
+
+        [HttpPost]
+        [ActionName("addSeriesToLeague")]
+        [AcceptVerbs("POST")]
+        public void AddSeriesToLeague([FromUri]String token, [FromBody]AddItemsData addItemsData)
+        {
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LoginManager.CheckLogged(token))
+            {
+                BusinessLogic.Series.AddSeriesToLeague(Convert.ToInt32(addItemsData.Id2), Convert.ToInt32(addItemsData.Id1));
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
+        }
+
+        [HttpPost]
+        [ActionName("removeSeriesFromLeague")]
+        [AcceptVerbs("POST")]
+        public void RemoveSeriesFromLeague([FromUri]String token, [FromBody]AddItemsData addItemsData)
+        {
+            if (String.IsNullOrEmpty(token))
+            {
+                throw new UnauthorizedAccessException("Please send a token with your request.");
+            }
+            if (LoginManager.CheckLogged(token))
+            {
+                BusinessLogic.Series.RemoveSeriesFromLeague(Convert.ToInt32(addItemsData.Id2), Convert.ToInt32(addItemsData.Id1));
+            }
+            else
+            {
+                throw new UnauthorizedAccessException("User not logged");
+            }
+        }
+
         // POST api/player
         [HttpPost]
         [ActionName("post")]
