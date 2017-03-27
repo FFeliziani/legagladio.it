@@ -25010,17 +25010,17 @@ select last_insert_id();";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::MySql.Data.MySqlClient.MySqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "INSERT INTO round_game (gameId, roundId) VALUES (@roundId, @gameId)";
+            this._commandCollection[1].CommandText = "INSERT INTO round_game (gameId, roundId) VALUES (@gameId, @roundId)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             global::MySql.Data.MySqlClient.MySqlParameter param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@roundId";
+            param.ParameterName = "@gameId";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
             param.SourceColumn = "gameId";
             this._commandCollection[1].Parameters.Add(param);
             param = new global::MySql.Data.MySqlClient.MySqlParameter();
-            param.ParameterName = "@gameId";
+            param.ParameterName = "@roundId";
             param.DbType = global::System.Data.DbType.Int32;
             param.MySqlDbType = global::MySql.Data.MySqlClient.MySqlDbType.Int32;
             param.IsNullable = true;
@@ -26076,16 +26076,16 @@ WHERE        (id = @p15)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int AddGameToRound(global::System.Nullable<int> roundId, global::System.Nullable<int> gameId) {
+        public virtual int AddGameToRound(global::System.Nullable<int> gameId, global::System.Nullable<int> roundId) {
             global::MySql.Data.MySqlClient.MySqlCommand command = this.CommandCollection[1];
-            if ((roundId.HasValue == true)) {
-                command.Parameters[0].Value = ((int)(roundId.Value));
+            if ((gameId.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(gameId.Value));
             }
             else {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((gameId.HasValue == true)) {
-                command.Parameters[1].Value = ((int)(gameId.Value));
+            if ((roundId.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(roundId.Value));
             }
             else {
                 command.Parameters[1].Value = global::System.DBNull.Value;
