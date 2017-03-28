@@ -118,14 +118,11 @@ namespace BusinessLogic
             try
             {
                 var teams = teamIds.Select(Team.GetTeam).OrderBy(x => x.Name).ToList();
-
                 var rounds = new List<LegaGladio.Entities.Round>();
-
-                
 
                 if (teams.Count % 2 != 0)
                 {
-                    throw new Exception();
+                    throw new Exception("Must select an even number of teams!");
                 }
 
                 var numTeams = teamIds.Count;
@@ -159,8 +156,6 @@ namespace BusinessLogic
                         Guest = teams[0]
                     });
 
-                    //Console.WriteLine("{0} vs {1}", t[teamIdx], teams[0]);
-
                     for (int idx = 1; idx < halfSize; idx++)
                     {
                         int firstTeam = (day + idx) % teamsSize;
@@ -170,104 +165,13 @@ namespace BusinessLogic
                             Home = t[firstTeam],
                             Guest = t[secondTeam]
                         });
-                        //Console.WriteLine("{0} vs {1}", t[firstTeam], t[secondTeam]);
                     }
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-                //var teams = teamIds.Select(Team.GetTeam).OrderBy(x => x.Name).ToList();
-
-                //var mix = new Dictionary<LegaGladio.Entities.Team, List<LegaGladio.Entities.Team>>();
-
-                //foreach (var team in teams)
-                //{
-                //    mix.Add(team, teams.Where(x => x.Id != team.Id).ToList());
-                //}
-
-                //var games = new List<LegaGladio.Entities.Game>();
-
-                //foreach(var pair in mix)
-                //{
-                //    games.Add(new LegaGladio.Entities.Game
-                //    {
-                //        Home = pair.Key,
-                //        Guest = pair.Value.FirstOrDefault()
-                //    });
-                //    pair.Value.Remove(pair.Value.FirstOrDefault());
-                //}
-
-                //var rounds = new List<LegaGladio.Entities.Round>();
-
-                //for (var i = 0; i < teams.Count - 1; i++)
-                //{
-                //    rounds.Add(new LegaGladio.Entities.Round());
-                //}
-
-                ////foreach(var round in rounds)
-                ////{
-                ////    round.Name = "Giornata " + (rounds.IndexOf(round) + 1);
-                ////    round.Number = rounds.IndexOf(round);
-                ////    round.GameList = new List<LegaGladio.Entities.Game>();
-
-                ////    foreach(var team in teams)
-                ////    {
-                ////        var game = games.Where(x => x.Home == team || x.Guest == team).FirstOrDefault();
-                ////        if(!round.GameList.Any(x => x == game))
-                ////        {
-                ////            round.GameList.Add(game);
-                ////        }
-                ////        games.Remove(game);
-                ////    }
-                ////}
-
-
-                ////var gamesDone = new List<LegaGladio.Entities.Game>();
-
-                //foreach (var round in rounds)
-                //{
-                //    var teamsDone = new List<LegaGladio.Entities.Team>();
-
-                //    round.Name = "Giornata " + (rounds.IndexOf(round) + 1);
-                //    round.Number = rounds.IndexOf(round);
-                //    round.GameList = new List<LegaGladio.Entities.Game>();
-
-                //    while (teams.Where(x => !teamsDone.Any(y => x.Id == y.Id)).Count() > 0)
-                //    {
-                //        var homeTeam = teams.Where(x => !teamsDone.Any(y => x.Id == y.Id)).FirstOrDefault();
-                //        teamsDone.Add(homeTeam);
-                //        var guestTeam = teams.Where(x => !teamsDone.Any(y => x.Id == y.Id)).FirstOrDefault();
-                //        if (guestTeam == null) throw new Exception("No teams remaining. Please select an even number of teams");
-                //        teamsDone.Add(guestTeam);
-                //        var game = new LegaGladio.Entities.Game
-                //        {
-                //            Home = homeTeam,
-                //            Guest = guestTeam
-                //        };
-
-                //        round.GameList.Add(game);
-
-                //    }
-
-                //    var rot = teams.ElementAt(1);
-                //    teams.RemoveAt(1);
-                //    teams.Add(rot);
-                //}
 
                 foreach (var round in rounds)
                 {
                     round.Id = NewRound(round);
                     AddRoundToGroup(round.Id, groupId);
-                    //round.GameList = round.GameList.OrderBy(x => Guid.NewGuid()).ToList();
                     foreach (var game in round.GameList)
                     {
                         game.Id = Game.NewGame(game);

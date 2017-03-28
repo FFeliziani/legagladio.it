@@ -77,7 +77,7 @@ namespace LegaGladio.Controllers
         [HttpDelete]
         [ActionName("delete")]
         [AcceptVerbs("DELETE")]
-        public void Delete([FromUri]String token, [FromBody]Int32 id)
+        public void Delete([FromUri]String token, [FromUri]Int32 id)
         {
             if (String.IsNullOrEmpty(token))
             {

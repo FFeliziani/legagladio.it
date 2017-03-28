@@ -21,3 +21,24 @@
 <add name="DataAccessLayer.Properties.Settings.legagladioConnectionString2"
 	connectionString="server=80.181.110.1;user id=legagladio;password=gcipRg5OECMzbi7W9LUfEbfzMHTV8wmL;database=legagladio"
 	providerName="MySql.Data.MySqlClient" />
+
+
+---------------------------------MAIN------------------------------
+
+
+
+    <add name="DataAccessLayer.Properties.Settings.legagladioConnectionString2"
+      connectionString="server=www.legagladio.it;user id=legagladio;password=gcipRg5OECMzbi7W9LUfEbfzMHTV8wmL;database=legagladio"
+      providerName="MySql.Data.MySqlClient" />
+
+
+
+
+---------------------------------NEXT------------------------------
+
+
+
+
+    <add name="DataAccessLayer.Properties.Settings.legagladioConnectionString2"
+      connectionString="server=www.legagladio.it;user id=legagladio-next;password=legagladio80;database=legagladio-next"
+      providerName="MySql.Data.MySqlClient" />
