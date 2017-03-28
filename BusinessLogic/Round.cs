@@ -48,15 +48,15 @@ namespace BusinessLogic
             }
         }
 
-        public static void NewRound(LegaGladio.Entities.Round round)
+        public static Int32 NewRound(LegaGladio.Entities.Round round)
         {
             try
             {
-                DataAccessLayer.Round.NewRound(round);
+                return DataAccessLayer.Round.NewRound(round);
             }
             catch (Exception ex)
             {
-                Logger.Error(ex, "Error while creating new Round - Round Data: " + (round != null ? "Round Name: ["  + round.Name + "]" : "ROUND IS NULL!!!"));
+                Logger.Error(ex, "Error while creating new Round - Round Data: " + (round != null ? "Round Name: [" + round.Name + "]" : "ROUND IS NULL!!!"));
                 throw;
             }
         }
@@ -117,37 +117,56 @@ namespace BusinessLogic
         {
             try
             {
-                var teams = teamIds.Select(Team.GetTeam).ToList();
+                var teams = teamIds.Select(Team.GetTeam).OrderBy(x => x.Name).ToList();
+                
                 var rounds = new List<LegaGladio.Entities.Round>();
-                for (var i = 0; i < teams.Count; i++)
+
+                for (var i = 0; i < teams.Count - 1; i++)
                 {
                     rounds.Add(new LegaGladio.Entities.Round());
                 }
 
+                var gamesDone = new List<LegaGladio.Entities.Game>();
+                var repetitions = 0;
+
                 foreach (var round in rounds)
                 {
-                    round.GameList = new List<LegaGladio.Entities.Game>();
+                    var teamsDone = new List<LegaGladio.Entities.Team>();
                     round.Name = "Giornata " + (rounds.IndexOf(round) + 1);
                     round.Number = rounds.IndexOf(round);
-                    NewRound(round);
-                    var homeTeams = teams.OrderBy(x => Guid.NewGuid()).ToList();
-                    var guestTeams = teams.OrderBy(x => Guid.NewGuid()).ToList();
-                    foreach (var homeTeam in homeTeams)
+                    round.GameList = new List<LegaGladio.Entities.Game>();
+
+                    while (teams.Where(x => !teamsDone.Any(y => x.Id == y.Id)).Count() > 0)
                     {
-                        foreach (var guestTeam in guestTeams)
+                        var homeTeam = teams.Where(x => !teamsDone.Any(y => x.Id == y.Id)).FirstOrDefault();
+                        teamsDone.Add(homeTeam);
+                        var guestTeam = teams.Where(x => !teamsDone.Any(y => x.Id == y.Id)).FirstOrDefault();
+                        if (guestTeam == null) throw new Exception("No teams remaining. Please select an even number of teams");
+                        teamsDone.Add(guestTeam);
+                        var game = new LegaGladio.Entities.Game
                         {
-                            if (homeTeam.Equals(guestTeam)) continue;
-                            var game = new LegaGladio.Entities.Game
-                            {
-                                Home = homeTeam,
-                                Guest = guestTeam
-                            };
-                            game.Id = Game.NewGame(game);
-                            round.GameList.Add(game);
-                            Game.AddGameToRound(game.Id, round.Id);
-                        }
+                            Home = homeTeam,
+                            Guest = guestTeam
+                        };
+                        var team = teams.FirstOrDefault();
+                        var rot = teams[1];
+                        teams.RemoveAt(1);
+                        teams.Add(rot);
+                        gamesDone.Add(game);
+                        round.GameList.Add(game);
                     }
+                }
+
+                foreach(var round in rounds)
+                {
+                    round.Id = NewRound(round);
                     AddRoundToGroup(round.Id, groupId);
+                    round.GameList = round.GameList.OrderBy(x => Guid.NewGuid()).ToList();
+                    foreach(var game in round.GameList)
+                    {
+                        game.Id = Game.NewGame(game);
+                        Game.AddGameToRound(game.Id, round.Id);
+                    }
                 }
             }
             catch (Exception ex)

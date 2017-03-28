@@ -194,6 +194,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\PublishProfiles\federicofeliziani.com - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\legagladio.it - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Localhost.pubxml" />
   </ItemGroup>

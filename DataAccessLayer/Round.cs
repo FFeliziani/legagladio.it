@@ -73,11 +73,13 @@ namespace DataAccessLayer
             rta.RemoveRoundFromGroup(roundId, groupId);
         }
 
-        public static void NewRound(LegaGladio.Entities.Round round)
+        public static Int32 NewRound(LegaGladio.Entities.Round round)
         {
             var rta = new roundTableAdapter();
 
-            rta.Insert(round.Name, round.Number);
+            var ret = rta.InsertRound(round.Name, round.Number);
+
+            return Convert.ToInt32(ret);
         }
 
         public static void UpdateRound(LegaGladio.Entities.Round round, Int32 oldId)
