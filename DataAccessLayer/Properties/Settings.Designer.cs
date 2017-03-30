@@ -12,7 +12,7 @@ namespace DataAccessLayer.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "15.0.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -26,8 +26,8 @@ namespace DataAccessLayer.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("server=www.legagladio.it;user id=legagladio-next;password=legagladio80;database=l" +
-            "egagladio-next")]
+        [global::System.Configuration.DefaultSettingValueAttribute("server=192.168.1.5;user id=legagladio;password=gcipRg5OECMzbi7W9LUfEbfzMHTV8wmL;d" +
+            "atabase=legagladio")]
         public string legagladioConnectionString2 {
             get {
                 return ((string)(this["legagladioConnectionString2"]));
