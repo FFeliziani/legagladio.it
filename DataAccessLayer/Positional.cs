@@ -120,21 +120,21 @@ namespace DataAccessLayer
             var pta = new positionalTableAdapter();
 
             //g, a, s, p, m, e
-            pta.Insert(positional.Qty, positional.Title, positional.Cost, positional.Ma, positional.St, positional.Ag, positional.Av, positional.General, positional.Agility, positional.Strength, positional.Passing, positional.Mutation);
+            pta.InsertPositional(positional.Qty, positional.Title, positional.Cost, positional.Ma, positional.St, positional.Ag, positional.Av, positional.General, positional.Agility, positional.Strength, positional.Passing, positional.Mutation);
         }
 
         public static void UpdatePositional(LegaGladio.Entities.Positional positional, int oldId)
         {
             var pta = new positionalTableAdapter();
 
-            pta.Update(positional.Qty, positional.Title, positional.Cost, positional.Ma, positional.St, positional.Ag, positional.Av, positional.General, positional.Agility, positional.Strength, positional.Passing, positional.Mutation, oldId);
+            pta.UpdatePositional(positional.Qty, positional.Title, positional.Cost, positional.Ma, positional.St, positional.Ag, positional.Av, positional.General, positional.Agility, positional.Strength, positional.Passing, positional.Mutation, oldId);
         }
 
         public static void DeletePositional(int id)
         {
             var pta = new positionalTableAdapter();
 
-            pta.Delete(id);
+            pta.DeletePositional(id);
         }
     }
 }

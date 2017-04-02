@@ -1,8 +1,11 @@
 ﻿namespace DataAccessLayer
 {
+}
 
+namespace DataAccessLayer
+{
+}
 
-    partial class LegaGladioDS
-    {
-    }
+namespace DataAccessLayer
+{
 }

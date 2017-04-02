@@ -26,16 +26,6 @@ namespace DataAccessLayer.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\sqlexpress;Initial Catalog=Legagladio;Integrated Security=True")]
-        public string legagladioConnectionString2 {
-            get {
-                return ((string)(this["legagladioConnectionString2"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LEGAGLADIO1;Initial Catalog=Legagladio;Persist Security Info=True;Use" +
             "r ID=Legagladio;Password=gcipRg5OECMzbi7W9LUfEbfzMHTV8wmL")]
         public string LegagladioConnectionString {

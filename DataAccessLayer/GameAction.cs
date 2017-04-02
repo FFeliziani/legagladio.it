@@ -45,14 +45,14 @@ namespace DataAccessLayer
         {
             var gata = new game_actionTableAdapter();
 
-            gata.Insert(ga.Game.Id, ga.Action.Id, ga.Player.Id, ga.Notes);
+            gata.InsertGameAction(ga.Game.Id, ga.Action.Id, ga.Player.Id, ga.Notes);
         }
 
         public static void DeleteGameAction(Int32 id)
         {
             var gata = new game_actionTableAdapter();
 
-            gata.Delete(id);
+            gata.DeleteGameAction(id);
         }
     }
 }

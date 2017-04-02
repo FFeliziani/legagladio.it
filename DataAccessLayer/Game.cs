@@ -244,7 +244,7 @@ namespace DataAccessLayer
         {
             var gta = new gameTableAdapter();
 
-            var ret = gta.InsertGame(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFfHome, game.VarFfGuest, game.Notes, game.GameDate);
+            var ret = gta.InsertGame(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFfHome, game.VarFfGuest, game.GameDate, game.Notes);
 
             return Convert.ToInt32(ret);
         }
@@ -258,7 +258,7 @@ namespace DataAccessLayer
             game.Home = oldGame.Home;
             game.Guest = oldGame.Guest;
 
-            gta.UpdateGame(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFfHome, game.VarFfGuest, game.Notes, game.GameDate, oldId);
+            gta.UpdateGame(game.Home.Id, game.Guest.Id, game.TdHome, game.TdGuest, game.CasHome, game.CasGuest, game.SpHome, game.SpGuest, game.EarningHome, game.EarningGuest, game.VarFfHome, game.VarFfGuest, game.GameDate, game.Notes,  oldId);
         }
 
         public static void DeleteGame(Int32 id)

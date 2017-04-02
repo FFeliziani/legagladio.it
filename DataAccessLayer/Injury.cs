@@ -36,21 +36,21 @@ namespace DataAccessLayer
         {
             var ita = new injuryTableAdapter();
 
-            ita.Insert(injury.Name);
+            ita.InsertInjury(injury.Name);
         }
 
         public static void UpdateInjury(LegaGladio.Entities.Injury injury, Int32 oldId)
         {
             var ita = new injuryTableAdapter();
 
-            ita.Update(injury.Name, oldId);
+            ita.UpdateInjury(injury.Name, oldId);
         }
 
         public static void DeleteInjury(Int32 id)
         {
             var ita = new injuryTableAdapter();
 
-            ita.Delete(id);
+            ita.DeleteInjury(id);
         }
     }
 }

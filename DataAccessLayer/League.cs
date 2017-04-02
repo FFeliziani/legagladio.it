@@ -36,21 +36,21 @@ namespace DataAccessLayer
         {
             var lta = new leagueTableAdapter();
 
-            lta.Insert(league.Name, league.Details, league.Notes);
+            lta.InsertLeague(league.Name, league.Details, league.Notes);
         }
 
         public static void UpdateLeague(LegaGladio.Entities.League league, Int32 oldId)
         {
             var lta = new leagueTableAdapter();
 
-            lta.Update(league.Name, league.Details, league.Notes, oldId);
+            lta.UpdateLeague(league.Name, league.Details, league.Notes, oldId);
         }
 
         public static void RemoveLeague(Int32 id)
         {
             var lta = new leagueTableAdapter();
 
-            lta.Delete(id);
+            lta.DeleteLeague(id);
         }
     }
 }

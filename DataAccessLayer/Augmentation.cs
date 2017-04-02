@@ -39,21 +39,21 @@ namespace DataAccessLayer
         {
             var ata = new augmentationTableAdapter();
 
-            ata.Insert(augmentation.Name);
+            ata.InsertAugmentation(augmentation.Name);
         }
 
         public static void UpdateAugmentation(LegaGladio.Entities.Augmentation augmentation, Int32 oldId)
         {
             var ata = new augmentationTableAdapter();
 
-            ata.Update(augmentation.Name, oldId);
+            ata.UpdateAugmentation(augmentation.Name, oldId);
         }
 
         public static void DeleteAugmentation(Int32 id)
         {
             var ata = new augmentationTableAdapter();
 
-            ata.Delete(id);
+            ata.DeleteAugmentation(id);
         }
     }
 }

@@ -59,21 +59,21 @@ namespace DataAccessLayer
         {
             var sta = new seriesTableAdapter();
 
-            sta.Insert(series.Name, series.Notes);
+            sta.InsertSeries(series.Name, series.Notes);
         }
 
         public static void UpdateSeries(LegaGladio.Entities.Series series, Int32 oldId)
         {
             var sta = new seriesTableAdapter();
 
-            sta.Update(series.Name, series.Notes, oldId);
+            sta.UpdateSeries(series.Name, series.Notes, oldId);
         }
 
         public static void DeleteSeries(Int32 id)
         {
             var sta = new seriesTableAdapter();
 
-            sta.Delete(id);
+            sta.DeleteSeries(id);
         }
     }
 }

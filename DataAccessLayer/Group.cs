@@ -56,21 +56,21 @@ namespace DataAccessLayer
         {
             var gta = new groupTableAdapter();
 
-            gta.Insert(group.Name, group.Notes);
+            gta.InsertGroup(group.Name, group.Notes);
         }
 
         public static void UpdateGroup(LegaGladio.Entities.Group group, Int32 oldId)
         {
             var gta = new groupTableAdapter();
 
-            gta.Update(group.Name, group.Notes, oldId);
+            gta.UpdateGroup(group.Name, group.Notes, oldId);
         }
 
         public static void RemoveGroup(Int32 id)
         {
             var gta = new groupTableAdapter();
 
-            gta.Delete(id);
+            gta.DeleteGroup(id);
         }
     }
 }

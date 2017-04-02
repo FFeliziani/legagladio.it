@@ -51,20 +51,20 @@ namespace DataAccessLayer
         public static void NewRace(LegaGladio.Entities.Race race)
         {
             var rta = new raceTableAdapter();
-            rta.Insert(race.Name, race.Reroll);
+            rta.InsertRace(race.Name, race.Reroll);
         }
 
         public static void UpdateRace(LegaGladio.Entities.Race race, int oldId)
         {
             var rta = new raceTableAdapter();
 
-            rta.Update(race.Name, race.Reroll, oldId);
+            rta.UpdateRace(race.Name, race.Reroll, oldId);
         }
 
         public static void DeleteRace(int id)
         {
             var rta = new raceTableAdapter();
-            rta.Delete(id);
+            rta.DeleteRace(id);
         }
     }
 }

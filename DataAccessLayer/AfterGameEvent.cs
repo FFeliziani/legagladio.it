@@ -47,21 +47,21 @@ namespace DataAccessLayer
         {
             var ageta = new after_game_eventTableAdapter();
 
-            ageta.Insert(afterGameEvent.Player.Id, afterGameEvent.Skill?.Id ?? 0, afterGameEvent.Injury?.Id ?? 0, afterGameEvent.Augmentation?.Id ?? 0, afterGameEvent.Game.Id);
+            ageta.InsertAfterGameEvent(afterGameEvent.Player.Id, afterGameEvent.Skill?.Id ?? 0, afterGameEvent.Injury?.Id ?? 0, afterGameEvent.Augmentation?.Id ?? 0, afterGameEvent.Game.Id);
         }
 
         public static void UpdateAfterGameEvent(LegaGladio.Entities.AfterGameEvent afterGameEvent, Int32 oldId)
         {
             var ageta = new after_game_eventTableAdapter();
 
-            ageta.Update(afterGameEvent.Game.Id, afterGameEvent.Skill.Id, afterGameEvent.Injury.Id, afterGameEvent.Augmentation.Id, afterGameEvent.Game.Id, oldId);
+            ageta.UpdateAfterGameEvent(afterGameEvent.Game.Id, afterGameEvent.Skill.Id, afterGameEvent.Injury.Id, afterGameEvent.Augmentation.Id, afterGameEvent.Game.Id, oldId);
         }
 
         public static void DeleteAfterGameEvent(Int32 id)
         {
             var ageta = new after_game_eventTableAdapter();
 
-            ageta.Delete(id);
+            ageta.DeleteAfterGameEvent(id);
         }
     }
 }

@@ -86,14 +86,14 @@ namespace DataAccessLayer
         {
             var rta = new roundTableAdapter();
 
-            rta.Update(round.Name, round.Number, oldId);
+            rta.UpdateRound(round.Name, round.Number, oldId);
         }
 
         public static void RemoveRound(Int32 id)
         {
             var rta = new roundTableAdapter();
 
-            rta.Delete(id);
+            rta.DeleteRound(id);
         }
     }
 }
