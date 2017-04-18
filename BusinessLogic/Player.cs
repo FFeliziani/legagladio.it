@@ -6,7 +6,7 @@ namespace BusinessLogic
 {
     public static class Player
     {
-        private readonly static Logger Logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger Logger = LogManager.GetCurrentClassLogger();
         
         public static int Count()
         {

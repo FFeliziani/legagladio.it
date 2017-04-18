@@ -1521,8 +1521,6 @@ namespace DataAccessLayer {
             
             private global::System.Data.DataColumn columnstm;
             
-            private global::System.Data.DataColumn columncat;
-            
             private global::System.Data.DataColumn columninter;
             
             private global::System.Data.DataColumn columnpositionalId;
@@ -1694,14 +1692,6 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn catColumn {
-                get {
-                    return this.columncat;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public global::System.Data.DataColumn interColumn {
                 get {
                     return this.columninter;
@@ -1816,7 +1806,6 @@ namespace DataAccessLayer {
                         int agm, 
                         int avm, 
                         int stm, 
-                        int cat, 
                         int inter, 
                         positionalRow parentpositionalRowByFK_PLAYER_POSITIONAL, 
                         int position, 
@@ -1842,7 +1831,6 @@ namespace DataAccessLayer {
                         agm,
                         avm,
                         stm,
-                        cat,
                         inter,
                         null,
                         position,
@@ -1852,7 +1840,7 @@ namespace DataAccessLayer {
                         retired,
                         dead};
                 if ((parentpositionalRowByFK_PLAYER_POSITIONAL != null)) {
-                    columnValuesArray[17] = parentpositionalRowByFK_PLAYER_POSITIONAL[0];
+                    columnValuesArray[16] = parentpositionalRowByFK_PLAYER_POSITIONAL[0];
                 }
                 rowplayerRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowplayerRow);
@@ -1898,7 +1886,6 @@ namespace DataAccessLayer {
                 this.columnagm = base.Columns["agm"];
                 this.columnavm = base.Columns["avm"];
                 this.columnstm = base.Columns["stm"];
-                this.columncat = base.Columns["cat"];
                 this.columninter = base.Columns["inter"];
                 this.columnpositionalId = base.Columns["positionalId"];
                 this.columnposition = base.Columns["position"];
@@ -1942,8 +1929,6 @@ namespace DataAccessLayer {
                 base.Columns.Add(this.columnavm);
                 this.columnstm = new global::System.Data.DataColumn("stm", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnstm);
-                this.columncat = new global::System.Data.DataColumn("cat", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columncat);
                 this.columninter = new global::System.Data.DataColumn("inter", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columninter);
                 this.columnpositionalId = new global::System.Data.DataColumn("positionalId", typeof(int), null, global::System.Data.MappingType.Element);
@@ -10393,22 +10378,6 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public int cat {
-                get {
-                    try {
-                        return ((int)(this[this.tableplayer.catColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("The value for column \'cat\' in table \'player\' is DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableplayer.catColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public int inter {
                 get {
                     try {
@@ -10734,18 +10703,6 @@ namespace DataAccessLayer {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetstmNull() {
                 this[this.tableplayer.stmColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public bool IscatNull() {
-                return this.IsNull(this.tableplayer.catColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public void SetcatNull() {
-                this[this.tableplayer.catColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -15783,7 +15740,6 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             tableMapping.ColumnMappings.Add("agm", "agm");
             tableMapping.ColumnMappings.Add("avm", "avm");
             tableMapping.ColumnMappings.Add("stm", "stm");
-            tableMapping.ColumnMappings.Add("cat", "cat");
             tableMapping.ColumnMappings.Add("inter", "inter");
             tableMapping.ColumnMappings.Add("positionalId", "positionalId");
             tableMapping.ColumnMappings.Add("position", "position");
@@ -15795,27 +15751,27 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [player] WHERE (([id] = @Original_id) AND ((@IsNull_map = 1 AND [map]" +
-                " IS NULL) OR ([map] = @Original_map)) AND ((@IsNull_agp = 1 AND [agp] IS NULL) O" +
-                "R ([agp] = @Original_agp)) AND ((@IsNull_avp = 1 AND [avp] IS NULL) OR ([avp] = " +
-                "@Original_avp)) AND ((@IsNull_stp = 1 AND [stp] IS NULL) OR ([stp] = @Original_s" +
-                "tp)) AND ((@IsNull_cost = 1 AND [cost] IS NULL) OR ([cost] = @Original_cost)) AN" +
-                "D ((@IsNull_spp = 1 AND [spp] IS NULL) OR ([spp] = @Original_spp)) AND ((@IsNull" +
-                "_td = 1 AND [td] IS NULL) OR ([td] = @Original_td)) AND ((@IsNull_cas = 1 AND [c" +
-                "as] IS NULL) OR ([cas] = @Original_cas)) AND ((@IsNull_pass = 1 AND [pass] IS NU" +
-                "LL) OR ([pass] = @Original_pass)) AND ((@IsNull_inter = 1 AND [inter] IS NULL) O" +
-                "R ([inter] = @Original_inter)) AND ((@IsNull_mvp = 1 AND [mvp] IS NULL) OR ([mvp" +
-                "] = @Original_mvp)) AND ((@IsNull_niggling = 1 AND [niggling] IS NULL) OR ([nigg" +
-                "ling] = @Original_niggling)) AND ((@IsNull_missNextGame = 1 AND [missNextGame] I" +
-                "S NULL) OR ([missNextGame] = @Original_missNextGame)) AND ((@IsNull_mam = 1 AND " +
-                "[mam] IS NULL) OR ([mam] = @Original_mam)) AND ((@IsNull_agm = 1 AND [agm] IS NU" +
-                "LL) OR ([agm] = @Original_agm)) AND ((@IsNull_avm = 1 AND [avm] IS NULL) OR ([av" +
-                "m] = @Original_avm)) AND ((@IsNull_stm = 1 AND [stm] IS NULL) OR ([stm] = @Origi" +
-                "nal_stm)) AND ((@IsNull_retired = 1 AND [retired] IS NULL) OR ([retired] = @Orig" +
-                "inal_retired)) AND ((@IsNull_dead = 1 AND [dead] IS NULL) OR ([dead] = @Original" +
-                "_dead)) AND ((@IsNull_positionalId = 1 AND [positionalId] IS NULL) OR ([position" +
-                "alId] = @Original_positionalId)) AND ((@IsNull_position = 1 AND [position] IS NU" +
-                "LL) OR ([position] = @Original_position)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [legagladio].[player] WHERE (([id] = @Original_id) AND ((@IsNull_map " +
+                "= 1 AND [map] IS NULL) OR ([map] = @Original_map)) AND ((@IsNull_agp = 1 AND [ag" +
+                "p] IS NULL) OR ([agp] = @Original_agp)) AND ((@IsNull_avp = 1 AND [avp] IS NULL)" +
+                " OR ([avp] = @Original_avp)) AND ((@IsNull_stp = 1 AND [stp] IS NULL) OR ([stp] " +
+                "= @Original_stp)) AND ((@IsNull_cost = 1 AND [cost] IS NULL) OR ([cost] = @Origi" +
+                "nal_cost)) AND ((@IsNull_spp = 1 AND [spp] IS NULL) OR ([spp] = @Original_spp)) " +
+                "AND ((@IsNull_td = 1 AND [td] IS NULL) OR ([td] = @Original_td)) AND ((@IsNull_c" +
+                "as = 1 AND [cas] IS NULL) OR ([cas] = @Original_cas)) AND ((@IsNull_pass = 1 AND" +
+                " [pass] IS NULL) OR ([pass] = @Original_pass)) AND ((@IsNull_inter = 1 AND [inte" +
+                "r] IS NULL) OR ([inter] = @Original_inter)) AND ((@IsNull_mvp = 1 AND [mvp] IS N" +
+                "ULL) OR ([mvp] = @Original_mvp)) AND ((@IsNull_niggling = 1 AND [niggling] IS NU" +
+                "LL) OR ([niggling] = @Original_niggling)) AND ((@IsNull_missNextGame = 1 AND [mi" +
+                "ssNextGame] IS NULL) OR ([missNextGame] = @Original_missNextGame)) AND ((@IsNull" +
+                "_mam = 1 AND [mam] IS NULL) OR ([mam] = @Original_mam)) AND ((@IsNull_agm = 1 AN" +
+                "D [agm] IS NULL) OR ([agm] = @Original_agm)) AND ((@IsNull_avm = 1 AND [avm] IS " +
+                "NULL) OR ([avm] = @Original_avm)) AND ((@IsNull_stm = 1 AND [stm] IS NULL) OR ([" +
+                "stm] = @Original_stm)) AND ((@IsNull_retired = 1 AND [retired] IS NULL) OR ([ret" +
+                "ired] = @Original_retired)) AND ((@IsNull_dead = 1 AND [dead] IS NULL) OR ([dead" +
+                "] = @Original_dead)) AND ((@IsNull_positionalId = 1 AND [positionalId] IS NULL) " +
+                "OR ([positionalId] = @Original_positionalId)) AND ((@IsNull_position = 1 AND [po" +
+                "sition] IS NULL) OR ([position] = @Original_position)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_map", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "map", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -15862,8 +15818,8 @@ namespace DataAccessLayer.LegaGladioDSTableAdapters {
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_position", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "position", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [player] ([name], [map], [agp], [avp], [stp], [cost], [spp], [td], [cas], [pass], [inter], [mvp], [niggling], [missNextGame], [mam], [agm], [avm], [stm], [retired], [dead], [positionalId], [position]) VALUES (@name, @map, @agp, @avp, @stp, @cost, @spp, @td, @cas, @pass, @inter, @mvp, @niggling, @missNextGame, @mam, @agm, @avm, @stm, @retired, @dead, @positionalId, @position);
-SELECT id, name, map, agp, avp, stp, cost, spp, td, cas, pass, inter, mvp, niggling, missNextGame, mam, agm, avm, stm, retired, dead, positionalId, position FROM player WHERE (id = SCOPE_IDENTITY()) ORDER BY position";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [legagladio].[player] ([name], [map], [agp], [avp], [stp], [cost], [spp], [td], [cas], [pass], [inter], [mvp], [niggling], [missNextGame], [mam], [agm], [avm], [stm], [retired], [dead], [positionalId], [position]) VALUES (@name, @map, @agp, @avp, @stp, @cost, @spp, @td, @cas, @pass, @inter, @mvp, @niggling, @missNextGame, @mam, @agm, @avm, @stm, @retired, @dead, @positionalId, @position);
+SELECT id, name, map, agp, avp, stp, cost, spp, td, cas, pass, inter, mvp, niggling, missNextGame, mam, agm, avm, stm, retired, dead, positionalId, position FROM legagladio.player WHERE (id = SCOPE_IDENTITY()) ORDER BY position";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@map", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "map", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -15889,34 +15845,35 @@ SELECT id, name, map, agp, avp, stp, cost, spp, td, cas, pass, inter, mvp, niggl
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@position", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "position", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [player] SET [name] = @name, [map] = @map, [agp] = @agp, [avp] = @avp, [st" +
-                "p] = @stp, [cost] = @cost, [spp] = @spp, [td] = @td, [cas] = @cas, [pass] = @pas" +
-                "s, [inter] = @inter, [mvp] = @mvp, [niggling] = @niggling, [missNextGame] = @mis" +
-                "sNextGame, [mam] = @mam, [agm] = @agm, [avm] = @avm, [stm] = @stm, [retired] = @" +
-                "retired, [dead] = @dead, [positionalId] = @positionalId, [position] = @position " +
-                "WHERE (([id] = @Original_id) AND ((@IsNull_map = 1 AND [map] IS NULL) OR ([map] " +
-                "= @Original_map)) AND ((@IsNull_agp = 1 AND [agp] IS NULL) OR ([agp] = @Original" +
-                "_agp)) AND ((@IsNull_avp = 1 AND [avp] IS NULL) OR ([avp] = @Original_avp)) AND " +
-                "((@IsNull_stp = 1 AND [stp] IS NULL) OR ([stp] = @Original_stp)) AND ((@IsNull_c" +
-                "ost = 1 AND [cost] IS NULL) OR ([cost] = @Original_cost)) AND ((@IsNull_spp = 1 " +
-                "AND [spp] IS NULL) OR ([spp] = @Original_spp)) AND ((@IsNull_td = 1 AND [td] IS " +
-                "NULL) OR ([td] = @Original_td)) AND ((@IsNull_cas = 1 AND [cas] IS NULL) OR ([ca" +
-                "s] = @Original_cas)) AND ((@IsNull_pass = 1 AND [pass] IS NULL) OR ([pass] = @Or" +
-                "iginal_pass)) AND ((@IsNull_inter = 1 AND [inter] IS NULL) OR ([inter] = @Origin" +
-                "al_inter)) AND ((@IsNull_mvp = 1 AND [mvp] IS NULL) OR ([mvp] = @Original_mvp)) " +
-                "AND ((@IsNull_niggling = 1 AND [niggling] IS NULL) OR ([niggling] = @Original_ni" +
-                "ggling)) AND ((@IsNull_missNextGame = 1 AND [missNextGame] IS NULL) OR ([missNex" +
-                "tGame] = @Original_missNextGame)) AND ((@IsNull_mam = 1 AND [mam] IS NULL) OR ([" +
-                "mam] = @Original_mam)) AND ((@IsNull_agm = 1 AND [agm] IS NULL) OR ([agm] = @Ori" +
-                "ginal_agm)) AND ((@IsNull_avm = 1 AND [avm] IS NULL) OR ([avm] = @Original_avm))" +
-                " AND ((@IsNull_stm = 1 AND [stm] IS NULL) OR ([stm] = @Original_stm)) AND ((@IsN" +
-                "ull_retired = 1 AND [retired] IS NULL) OR ([retired] = @Original_retired)) AND (" +
-                "(@IsNull_dead = 1 AND [dead] IS NULL) OR ([dead] = @Original_dead)) AND ((@IsNul" +
-                "l_positionalId = 1 AND [positionalId] IS NULL) OR ([positionalId] = @Original_po" +
-                "sitionalId)) AND ((@IsNull_position = 1 AND [position] IS NULL) OR ([position] =" +
-                " @Original_position)));\r\nSELECT id, name, map, agp, avp, stp, cost, spp, td, cas" +
-                ", pass, inter, mvp, niggling, missNextGame, mam, agm, avm, stm, retired, dead, p" +
-                "ositionalId, position FROM player WHERE (id = @id) ORDER BY position";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [legagladio].[player] SET [name] = @name, [map] = @map, [agp] = @agp, [avp" +
+                "] = @avp, [stp] = @stp, [cost] = @cost, [spp] = @spp, [td] = @td, [cas] = @cas, " +
+                "[pass] = @pass, [inter] = @inter, [mvp] = @mvp, [niggling] = @niggling, [missNex" +
+                "tGame] = @missNextGame, [mam] = @mam, [agm] = @agm, [avm] = @avm, [stm] = @stm, " +
+                "[retired] = @retired, [dead] = @dead, [positionalId] = @positionalId, [position]" +
+                " = @position WHERE (([id] = @Original_id) AND ((@IsNull_map = 1 AND [map] IS NUL" +
+                "L) OR ([map] = @Original_map)) AND ((@IsNull_agp = 1 AND [agp] IS NULL) OR ([agp" +
+                "] = @Original_agp)) AND ((@IsNull_avp = 1 AND [avp] IS NULL) OR ([avp] = @Origin" +
+                "al_avp)) AND ((@IsNull_stp = 1 AND [stp] IS NULL) OR ([stp] = @Original_stp)) AN" +
+                "D ((@IsNull_cost = 1 AND [cost] IS NULL) OR ([cost] = @Original_cost)) AND ((@Is" +
+                "Null_spp = 1 AND [spp] IS NULL) OR ([spp] = @Original_spp)) AND ((@IsNull_td = 1" +
+                " AND [td] IS NULL) OR ([td] = @Original_td)) AND ((@IsNull_cas = 1 AND [cas] IS " +
+                "NULL) OR ([cas] = @Original_cas)) AND ((@IsNull_pass = 1 AND [pass] IS NULL) OR " +
+                "([pass] = @Original_pass)) AND ((@IsNull_inter = 1 AND [inter] IS NULL) OR ([int" +
+                "er] = @Original_inter)) AND ((@IsNull_mvp = 1 AND [mvp] IS NULL) OR ([mvp] = @Or" +
+                "iginal_mvp)) AND ((@IsNull_niggling = 1 AND [niggling] IS NULL) OR ([niggling] =" +
+                " @Original_niggling)) AND ((@IsNull_missNextGame = 1 AND [missNextGame] IS NULL)" +
+                " OR ([missNextGame] = @Original_missNextGame)) AND ((@IsNull_mam = 1 AND [mam] I" +
+                "S NULL) OR ([mam] = @Original_mam)) AND ((@IsNull_agm = 1 AND [agm] IS NULL) OR " +
+                "([agm] = @Original_agm)) AND ((@IsNull_avm = 1 AND [avm] IS NULL) OR ([avm] = @O" +
+                "riginal_avm)) AND ((@IsNull_stm = 1 AND [stm] IS NULL) OR ([stm] = @Original_stm" +
+                ")) AND ((@IsNull_retired = 1 AND [retired] IS NULL) OR ([retired] = @Original_re" +
+                "tired)) AND ((@IsNull_dead = 1 AND [dead] IS NULL) OR ([dead] = @Original_dead))" +
+                " AND ((@IsNull_positionalId = 1 AND [positionalId] IS NULL) OR ([positionalId] =" +
+                " @Original_positionalId)) AND ((@IsNull_position = 1 AND [position] IS NULL) OR " +
+                "([position] = @Original_position)));\r\nSELECT id, name, map, agp, avp, stp, cost," +
+                " spp, td, cas, pass, inter, mvp, niggling, missNextGame, mam, agm, avm, stm, ret" +
+                "ired, dead, positionalId, position FROM legagladio.player WHERE (id = @id) ORDER" +
+                " BY position";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@map", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "map", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -15999,44 +15956,46 @@ SELECT id, name, map, agp, avp, stp, cost, spp, td, cas, pass, inter, mvp, niggl
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[10];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from player order by position asc";
+            this._commandCollection[0].CommandText = "select * from legagladio.player order by position asc";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "INSERT INTO team_player (playerId, teamId) VALUES (@playerId, @teamId)";
+            this._commandCollection[1].CommandText = "INSERT INTO legagladio.team_player (playerId, teamId) VALUES (@playerId, @teamId)" +
+                "";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT COUNT(id) FROM player";
+            this._commandCollection[2].CommandText = "SELECT COUNT(id) FROM legagladio.player";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "DELETE FROM [player] WHERE ([id] = @id)";
+            this._commandCollection[3].CommandText = "DELETE FROM [legagladio].[player] WHERE ([id] = @id)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT agm, agp, avm, avp, cas, cost, dead, id, inter, mam, map, missNextGame, mv" +
-                "p, name, niggling, pass, position, positionalId, retired, spp, stm, stp, td FROM" +
-                " player WHERE (id = @id) ORDER BY position";
+            this._commandCollection[4].CommandText = "SELECT * FROM legagladio.player WHERE (id = @id) ORDER BY position";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = @"SELECT p.agm, p.agp, p.avm, p.avp, p.cas, p.cost, p.dead, p.id, p.inter, p.mam, p.map, p.missNextGame, p.mvp, p.name, p.niggling, p.pass, p.position, p.positionalId, p.retired, p.spp, p.stm, p.stp, p.td FROM player AS p INNER JOIN team_player AS tp ON p.id = tp.playerID WHERE (tp.teamID = @teamID) ORDER BY p.position";
+            this._commandCollection[5].CommandText = "SELECT p.* FROM legagladio.player AS p INNER JOIN legagladio.team_player AS tp ON" +
+                " p.id = tp.playerID WHERE (tp.teamID = @teamID) ORDER BY p.position";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = @"SELECT p.agm, p.agp, p.avm, p.avp, p.cas, p.cost, p.dead, p.id, p.inter, p.mam, p.map, p.missNextGame, p.mvp, p.name, p.niggling, p.pass, p.position, p.positionalId, p.retired, p.spp, p.stm, p.stp, p.td FROM player AS p INNER JOIN team_player AS tp ON p.id = tp.playerID WHERE (tp.teamID = @teamID) AND (p.retired <> @active) AND (p.dead <> @active) ORDER BY p.position";
+            this._commandCollection[6].CommandText = "SELECT p.* FROM legagladio.player AS p INNER JOIN legagladio.team_player AS tp ON" +
+                " p.id = tp.playerID WHERE (tp.teamID = @teamID) AND (p.retired <> @active) AND (" +
+                "p.dead <> @active) ORDER BY p.position";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Variant, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "retired", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "retired", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[7] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[7].Connection = this.Connection;
-            this._commandCollection[7].CommandText = @"INSERT INTO [player] ([name], [map], [agp], [avp], [stp], [cost], [spp], [td], [cas], [pass], [inter], [mvp], [niggling], [missNextGame], [mam], [agm], [avm], [stm], [retired], [dead], [positionalId], [position]) VALUES (@name, @map, @agp, @avp, @stp, @cost, @spp, @td, @cas, @pass, @inter, @mvp, @niggling, @missNextGame, @mam, @agm, @avm, @stm, @retired, @dead, @positionalId, @position);
+            this._commandCollection[7].CommandText = @"INSERT INTO [legagladio].[player] ([name], [map], [agp], [avp], [stp], [cost], [spp], [td], [cas], [pass], [inter], [mvp], [niggling], [missNextGame], [mam], [agm], [avm], [stm], [retired], [dead], [positionalId], [position]) VALUES (@name, @map, @agp, @avp, @stp, @cost, @spp, @td, @cas, @pass, @inter, @mvp, @niggling, @missNextGame, @mam, @agm, @avm, @stm, @retired, @dead, @positionalId, @position);
 SELECT SCOPE_IDENTITY();";
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -16063,14 +16022,15 @@ SELECT SCOPE_IDENTITY();";
             this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@position", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "position", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[8] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[8].Connection = this.Connection;
-            this._commandCollection[8].CommandText = "DELETE FROM team_player WHERE playerId = @playerId AND teamId = @teamId";
+            this._commandCollection[8].CommandText = "DELETE FROM [legagladio].team_player WHERE playerId = @playerId AND teamId = @tea" +
+                "mId";
             this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[9] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[9].Connection = this.Connection;
-            this._commandCollection[9].CommandText = @"UPDATE [player] SET [name] = @name, [map] = @map, [agp] = @agp, [avp] = @avp, [stp] = @stp, [cost] = @cost, [spp] = @spp, [td] = @td, [cas] = @cas, [pass] = @pass, [inter] = @inter, [mvp] = @mvp, [niggling] = @niggling, [missNextGame] = @missNextGame, [mam] = @mam, [agm] = @agm, [avm] = @avm, [stm] = @stm, [retired] = @retired, [dead] = @dead, [positionalId] = @positionalId, [position] = @position WHERE ([id] = @id);
-SELECT id WHERE (id = @id);";
+            this._commandCollection[9].CommandText = @"UPDATE [legagladio].[player] SET [name] = @name, [map] = @map, [agp] = @agp, [avp] = @avp, [stp] = @stp, [cost] = @cost, [spp] = @spp, [td] = @td, [cas] = @cas, [pass] = @pass, [inter] = @inter, [mvp] = @mvp, [niggling] = @niggling, [missNextGame] = @missNextGame, [mam] = @mam, [agm] = @agm, [avm] = @avm, [stm] = @stm, [retired] = @retired, [dead] = @dead, [positionalId] = @positionalId, [position] = @position WHERE ([id] = @id);
+SELECT id FROM [legagladio].[player] WHERE (id = @id);";
             this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@map", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "map", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -16151,9 +16111,14 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByTeamId(LegaGladioDS.playerDataTable dataTable, int teamID) {
+        public virtual int FillByTeamId(LegaGladioDS.playerDataTable dataTable, global::System.Nullable<int> teamID) {
             this.Adapter.SelectCommand = this.CommandCollection[5];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(teamID));
+            if ((teamID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(teamID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -16165,9 +16130,14 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual LegaGladioDS.playerDataTable GetDataByTeamId(int teamID) {
+        public virtual LegaGladioDS.playerDataTable GetDataByTeamId(global::System.Nullable<int> teamID) {
             this.Adapter.SelectCommand = this.CommandCollection[5];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(teamID));
+            if ((teamID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(teamID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             LegaGladioDS.playerDataTable dataTable = new LegaGladioDS.playerDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -16177,14 +16147,19 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByTeamIdActive(LegaGladioDS.playerDataTable dataTable, int teamID, object active) {
+        public virtual int FillByTeamIdActive(LegaGladioDS.playerDataTable dataTable, global::System.Nullable<int> teamID, global::System.Nullable<int> active) {
             this.Adapter.SelectCommand = this.CommandCollection[6];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(teamID));
-            if ((active == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            if ((teamID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(teamID.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((object)(active));
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((active.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(active.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -16197,14 +16172,19 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual LegaGladioDS.playerDataTable GetDataByTeamIdActive(int teamID, object active) {
+        public virtual LegaGladioDS.playerDataTable GetDataByTeamIdActive(global::System.Nullable<int> teamID, global::System.Nullable<int> active) {
             this.Adapter.SelectCommand = this.CommandCollection[6];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(teamID));
-            if ((active == null)) {
-                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            if ((teamID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(teamID.Value));
             }
             else {
-                this.Adapter.SelectCommand.Parameters[1].Value = ((object)(active));
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((active.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((int)(active.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
             LegaGladioDS.playerDataTable dataTable = new LegaGladioDS.playerDataTable();
             this.Adapter.Fill(dataTable);
@@ -17051,10 +17031,20 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int AddPlayerToTeam(int playerId, int teamId) {
+        public virtual int AddPlayerToTeam(global::System.Nullable<int> playerId, global::System.Nullable<int> teamId) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
-            command.Parameters[0].Value = ((int)(playerId));
-            command.Parameters[1].Value = ((int)(teamId));
+            if ((playerId.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(playerId.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((teamId.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(teamId.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17305,10 +17295,20 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
-        public virtual int RemovePlayerFromTeam(int playerId, int teamId) {
+        public virtual int RemovePlayerFromTeam(global::System.Nullable<int> playerId, global::System.Nullable<int> teamId) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[8];
-            command.Parameters[0].Value = ((int)(playerId));
-            command.Parameters[1].Value = ((int)(teamId));
+            if ((playerId.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(playerId.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((teamId.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(teamId.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -17869,28 +17869,31 @@ SELECT id WHERE (id = @id);";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM skill\r\nWHERE        (id = @p1)";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [legagladio].[skill] WHERE (([id] = @Original_id) AND ((@IsNull_type " +
+                "= 1 AND [type] IS NULL) OR ([type] = @Original_type)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p1", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_type", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_type", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO `skill` (`name`, `type`) VALUES (@p1, @p2)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [legagladio].[skill] ([name], [type]) VALUES (@name, @type);\r\nSELECT " +
+                "id, name, type FROM legagladio.skill WHERE (id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p1", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p2", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE `skill` SET `name` = @p1, `type` = @p2 WHERE ((`id` = @p3) AND ((@p4 = 1 A" +
-                "ND `name` IS NULL) OR (`name` = @p5)) AND ((@p6 = 1 AND `type` IS NULL) OR (`typ" +
-                "e` = @p7)))";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [legagladio].[skill] SET [name] = @name, [type] = @type WHERE (([id] = @Or" +
+                "iginal_id) AND ((@IsNull_type = 1 AND [type] IS NULL) OR ([type] = @Original_typ" +
+                "e)));\r\nSELECT id, name, type FROM legagladio.skill WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p1", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p2", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p3", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p4", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p5", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p6", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p7", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_type", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_type", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17903,49 +17906,71 @@ SELECT id WHERE (id = @id);";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[8];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[11];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT `id`, `name`, `type` FROM `skill`";
+            this._commandCollection[0].CommandText = "SELECT id, name, type FROM legagladio.skill";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "INSERT INTO `player_skill` (playerId, skillID) VALUES (@playerId, @skillId)";
+            this._commandCollection[1].CommandText = "INSERT INTO [legagladio].[player_skill] (playerId, skillID) VALUES (@playerId, @s" +
+                "killId)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@skillId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "skillID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@skillId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "skillID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = "SELECT COUNT(*) FROM skill";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT id, name, type FROM skill WHERE (id = @id)";
+            this._commandCollection[3].CommandText = "DELETE FROM [legagladio].[skill] WHERE [id] = @id";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT id, name, type FROM skill WHERE (name = @name)";
+            this._commandCollection[4].CommandText = "SELECT id, name, type FROM legagladio.skill WHERE (id = @id)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "SELECT `id`, `name`, `type` FROM `skill` join `player_skill` on `player_skill`.`s" +
-                "killid` = `skill`.`id` where `player_skill`.`playerid` = @playerid";
+            this._commandCollection[5].CommandText = "SELECT id, name, type FROM legagladio.skill WHERE (name = @name)";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 255, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = "SELECT `id`, `name`, `type` FROM `skill` join positional_skill on positional_skil" +
-                "l.skillid = skill.id where positional_skill.positionalid = @positionalID";
+            this._commandCollection[6].CommandText = "SELECT s.id, s.name, s.type FROM legagladio.skill AS s INNER JOIN legagladio.play" +
+                "er_skill AS ps ON ps.skillID = s.id WHERE (ps.playerID = @playerid)";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@positionalID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "positionalID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[7] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[7].Connection = this.Connection;
-            this._commandCollection[7].CommandText = "delete from player_skill where skillid = @skillId and playerId = @playerId";
+            this._commandCollection[7].CommandText = "SELECT id, name, type FROM legagladio.skill s join legagladio.positional_skill ps" +
+                " on ps.skillid = s.id where ps.positionalid = @positionalID";
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@skillId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "skillID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@positionalID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "positionalID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[8] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[8].Connection = this.Connection;
+            this._commandCollection[8].CommandText = "INSERT INTO [legagladio].[skill] ([name], [type]) VALUES (@name, @type);\r\nSELECT " +
+                " SCOPE_IDENTITY();";
+            this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[9].Connection = this.Connection;
+            this._commandCollection[9].CommandText = "delete from [legagladio].[player_skill] where skillid = @skillId and playerId = @" +
+                "playerId";
+            this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@skillId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "skillID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[10] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[10].Connection = this.Connection;
+            this._commandCollection[10].CommandText = "UPDATE [legagladio].[skill] SET [name] = @name, [type] = @type WHERE [id] = @id;\r" +
+                "\nSELECT id FROM legagladio.skill WHERE (id = @id)";
+            this._commandCollection[10].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[10].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[10].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[10].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17977,7 +18002,7 @@ SELECT id WHERE (id = @id);";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillById(LegaGladioDS.skillDataTable dataTable, int id) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id));
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -17991,7 +18016,7 @@ SELECT id WHERE (id = @id);";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual LegaGladioDS.skillDataTable GetDataById(int id) {
-            this.Adapter.SelectCommand = this.CommandCollection[3];
+            this.Adapter.SelectCommand = this.CommandCollection[4];
             this.Adapter.SelectCommand.Parameters[0].Value = ((int)(id));
             LegaGladioDS.skillDataTable dataTable = new LegaGladioDS.skillDataTable();
             this.Adapter.Fill(dataTable);
@@ -18003,7 +18028,7 @@ SELECT id WHERE (id = @id);";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
         public virtual int FillByName(LegaGladioDS.skillDataTable dataTable, string name) {
-            this.Adapter.SelectCommand = this.CommandCollection[4];
+            this.Adapter.SelectCommand = this.CommandCollection[5];
             if ((name == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -18022,7 +18047,7 @@ SELECT id WHERE (id = @id);";
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
         public virtual LegaGladioDS.skillDataTable GetDataByName(string name) {
-            this.Adapter.SelectCommand = this.CommandCollection[4];
+            this.Adapter.SelectCommand = this.CommandCollection[5];
             if ((name == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -18038,9 +18063,14 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByPlayerId(LegaGladioDS.skillDataTable dataTable, int playerid) {
-            this.Adapter.SelectCommand = this.CommandCollection[5];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(playerid));
+        public virtual int FillByPlayerId(LegaGladioDS.skillDataTable dataTable, global::System.Nullable<int> playerid) {
+            this.Adapter.SelectCommand = this.CommandCollection[6];
+            if ((playerid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(playerid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -18052,9 +18082,14 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual LegaGladioDS.skillDataTable GetDataByPlayerId(int playerid) {
-            this.Adapter.SelectCommand = this.CommandCollection[5];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(playerid));
+        public virtual LegaGladioDS.skillDataTable GetDataByPlayerId(global::System.Nullable<int> playerid) {
+            this.Adapter.SelectCommand = this.CommandCollection[6];
+            if ((playerid.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(playerid.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             LegaGladioDS.skillDataTable dataTable = new LegaGladioDS.skillDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -18064,9 +18099,14 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, false)]
-        public virtual int FillByPositionalId(LegaGladioDS.skillDataTable dataTable, int positionalID) {
-            this.Adapter.SelectCommand = this.CommandCollection[6];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(positionalID));
+        public virtual int FillByPositionalId(LegaGladioDS.skillDataTable dataTable, global::System.Nullable<int> positionalID) {
+            this.Adapter.SelectCommand = this.CommandCollection[7];
+            if ((positionalID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(positionalID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
             }
@@ -18078,9 +18118,14 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual LegaGladioDS.skillDataTable GetDataByPositionalId(int positionalID) {
-            this.Adapter.SelectCommand = this.CommandCollection[6];
-            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(positionalID));
+        public virtual LegaGladioDS.skillDataTable GetDataByPositionalId(global::System.Nullable<int> positionalID) {
+            this.Adapter.SelectCommand = this.CommandCollection[7];
+            if ((positionalID.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((int)(positionalID.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
             LegaGladioDS.skillDataTable dataTable = new LegaGladioDS.skillDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
@@ -18119,8 +18164,16 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int p1) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(p1));
+        public virtual int Delete(int Original_id, global::System.Nullable<int> Original_type) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
+            if ((Original_type.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_type.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -18141,15 +18194,15 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string p1, global::System.Nullable<int> p2) {
-            if ((p1 == null)) {
+        public virtual int Insert(string name, global::System.Nullable<int> type) {
+            if ((name == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(p1));
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(name));
             }
-            if ((p2.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(p2.Value));
+            if ((type.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((int)(type.Value));
             }
             else {
                 this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
@@ -18174,36 +18227,29 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string p1, global::System.Nullable<int> p2, int p3, string p5, global::System.Nullable<int> p7) {
-            if ((p1 == null)) {
+        public virtual int Update(string name, global::System.Nullable<int> type, int Original_id, global::System.Nullable<int> Original_type, int id) {
+            if ((name == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(p1));
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(name));
             }
-            if ((p2.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(p2.Value));
+            if ((type.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((int)(type.Value));
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
             }
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(p3));
-            if ((p5 == null)) {
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Original_id));
+            if ((Original_type.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_type.Value));
+            }
+            else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(1));
                 this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(p5));
-            }
-            if ((p7.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(p7.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -18223,11 +18269,29 @@ SELECT id WHERE (id = @id);";
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string name, global::System.Nullable<int> type, int Original_id, global::System.Nullable<int> Original_type) {
+            return this.Update(name, type, Original_id, Original_type, Original_id);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int AddSkillToPlayer(int playerId, int skillId) {
+        public virtual int AddSkillToPlayer(global::System.Nullable<int> playerId, global::System.Nullable<int> skillId) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
-            command.Parameters[0].Value = ((int)(playerId));
-            command.Parameters[1].Value = ((int)(skillId));
+            if ((playerId.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(playerId.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((skillId.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(skillId.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -18277,10 +18341,121 @@ SELECT id WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
-        public virtual int RemoveSkillFromPlayer(int skillId, int playerId) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[7];
-            command.Parameters[0].Value = ((int)(skillId));
-            command.Parameters[1].Value = ((int)(playerId));
+        public virtual int DeleteSkill(int id) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
+            command.Parameters[0].Value = ((int)(id));
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
+        public virtual object InsertSkill(string name, global::System.Nullable<int> type) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[8];
+            if ((name == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(name));
+            }
+            if ((type.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(type.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            object returnValue;
+            try {
+                returnValue = command.ExecuteScalar();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
+        public virtual int RemoveSkillFromPlayer(global::System.Nullable<int> skillId, global::System.Nullable<int> playerId) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[9];
+            if ((skillId.HasValue == true)) {
+                command.Parameters[0].Value = ((int)(skillId.Value));
+            }
+            else {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((playerId.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(playerId.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
+            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                command.Connection.Open();
+            }
+            int returnValue;
+            try {
+                returnValue = command.ExecuteNonQuery();
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    command.Connection.Close();
+                }
+            }
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
+        public virtual int UpdateSkill(string name, global::System.Nullable<int> type, int id) {
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[10];
+            if ((name == null)) {
+                command.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                command.Parameters[0].Value = ((string)(name));
+            }
+            if ((type.HasValue == true)) {
+                command.Parameters[1].Value = ((int)(type.Value));
+            }
+            else {
+                command.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            command.Parameters[2].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -18434,7 +18609,7 @@ SELECT id WHERE (id = @id);";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [team] WHERE (([id] = @Original_id) AND ((@IsNull_value = 1 AND [value] IS NULL) OR ([value] = @Original_value)) AND ((@IsNull_funFactor = 1 AND [funFactor] IS NULL) OR ([funFactor] = @Original_funFactor)) AND ((@IsNull_reroll = 1 AND [reroll] IS NULL) OR ([reroll] = @Original_reroll)) AND ((@IsNull_hasMedic = 1 AND [hasMedic] IS NULL) OR ([hasMedic] = @Original_hasMedic)) AND ((@IsNull_cheerleader = 1 AND [cheerleader] IS NULL) OR ([cheerleader] = @Original_cheerleader)) AND ((@IsNull_assistantCoach = 1 AND [assistantCoach] IS NULL) OR ([assistantCoach] = @Original_assistantCoach)) AND ((@IsNull_active = 1 AND [active] IS NULL) OR ([active] = @Original_active)) AND ((@IsNull_treasury = 1 AND [treasury] IS NULL) OR ([treasury] = @Original_treasury)) AND ((@IsNull_imagePath = 1 AND [imagePath] IS NULL) OR ([imagePath] = @Original_imagePath)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [legagladio].[team] WHERE (([id] = @Original_id) AND ((@IsNull_value = 1 AND [value] IS NULL) OR ([value] = @Original_value)) AND ((@IsNull_funFactor = 1 AND [funFactor] IS NULL) OR ([funFactor] = @Original_funFactor)) AND ((@IsNull_reroll = 1 AND [reroll] IS NULL) OR ([reroll] = @Original_reroll)) AND ((@IsNull_hasMedic = 1 AND [hasMedic] IS NULL) OR ([hasMedic] = @Original_hasMedic)) AND ((@IsNull_cheerleader = 1 AND [cheerleader] IS NULL) OR ([cheerleader] = @Original_cheerleader)) AND ((@IsNull_assistantCoach = 1 AND [assistantCoach] IS NULL) OR ([assistantCoach] = @Original_assistantCoach)) AND ((@IsNull_active = 1 AND [active] IS NULL) OR ([active] = @Original_active)) AND ((@IsNull_treasury = 1 AND [treasury] IS NULL) OR ([treasury] = @Original_treasury)) AND ((@IsNull_imagePath = 1 AND [imagePath] IS NULL) OR ([imagePath] = @Original_imagePath)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -18457,8 +18632,8 @@ SELECT id WHERE (id = @id);";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_imagePath", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imagePath", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [team] ([value], [name], [funFactor], [reroll], [hasMedic], [cheerleader], [assistantCoach], [active], [treasury], [imagePath]) VALUES (@value, @name, @funFactor, @reroll, @hasMedic, @cheerleader, @assistantCoach, @active, @treasury, @imagePath);
-SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach, active, treasury, imagePath FROM team WHERE (id = SCOPE_IDENTITY()) ORDER BY name";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [legagladio].[team] ([value], [name], [funFactor], [reroll], [hasMedic], [cheerleader], [assistantCoach], [active], [treasury], [imagePath]) VALUES (@value, @name, @funFactor, @reroll, @hasMedic, @cheerleader, @assistantCoach, @active, @treasury, @imagePath);
+SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach, active, treasury, imagePath FROM legagladio.team WHERE (id = SCOPE_IDENTITY()) ORDER BY name";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -18472,8 +18647,8 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@imagePath", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imagePath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [team] SET [value] = @value, [name] = @name, [funFactor] = @funFactor, [reroll] = @reroll, [hasMedic] = @hasMedic, [cheerleader] = @cheerleader, [assistantCoach] = @assistantCoach, [active] = @active, [treasury] = @treasury, [imagePath] = @imagePath WHERE (([id] = @Original_id) AND ((@IsNull_value = 1 AND [value] IS NULL) OR ([value] = @Original_value)) AND ((@IsNull_funFactor = 1 AND [funFactor] IS NULL) OR ([funFactor] = @Original_funFactor)) AND ((@IsNull_reroll = 1 AND [reroll] IS NULL) OR ([reroll] = @Original_reroll)) AND ((@IsNull_hasMedic = 1 AND [hasMedic] IS NULL) OR ([hasMedic] = @Original_hasMedic)) AND ((@IsNull_cheerleader = 1 AND [cheerleader] IS NULL) OR ([cheerleader] = @Original_cheerleader)) AND ((@IsNull_assistantCoach = 1 AND [assistantCoach] IS NULL) OR ([assistantCoach] = @Original_assistantCoach)) AND ((@IsNull_active = 1 AND [active] IS NULL) OR ([active] = @Original_active)) AND ((@IsNull_treasury = 1 AND [treasury] IS NULL) OR ([treasury] = @Original_treasury)) AND ((@IsNull_imagePath = 1 AND [imagePath] IS NULL) OR ([imagePath] = @Original_imagePath)));
-SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach, active, treasury, imagePath FROM team WHERE (id = @id) ORDER BY name";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [legagladio].[team] SET [value] = @value, [name] = @name, [funFactor] = @funFactor, [reroll] = @reroll, [hasMedic] = @hasMedic, [cheerleader] = @cheerleader, [assistantCoach] = @assistantCoach, [active] = @active, [treasury] = @treasury, [imagePath] = @imagePath WHERE (([id] = @Original_id) AND ((@IsNull_value = 1 AND [value] IS NULL) OR ([value] = @Original_value)) AND ((@IsNull_funFactor = 1 AND [funFactor] IS NULL) OR ([funFactor] = @Original_funFactor)) AND ((@IsNull_reroll = 1 AND [reroll] IS NULL) OR ([reroll] = @Original_reroll)) AND ((@IsNull_hasMedic = 1 AND [hasMedic] IS NULL) OR ([hasMedic] = @Original_hasMedic)) AND ((@IsNull_cheerleader = 1 AND [cheerleader] IS NULL) OR ([cheerleader] = @Original_cheerleader)) AND ((@IsNull_assistantCoach = 1 AND [assistantCoach] IS NULL) OR ([assistantCoach] = @Original_assistantCoach)) AND ((@IsNull_active = 1 AND [active] IS NULL) OR ([active] = @Original_active)) AND ((@IsNull_treasury = 1 AND [treasury] IS NULL) OR ([treasury] = @Original_treasury)) AND ((@IsNull_imagePath = 1 AND [imagePath] IS NULL) OR ([imagePath] = @Original_imagePath)));
+SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach, active, treasury, imagePath FROM legagladio.team WHERE (id = @id) ORDER BY name";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -18520,42 +18695,41 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[10];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT * FROM team ORDER BY name";
+            this._commandCollection[0].CommandText = "SELECT * FROM [legagladio].[team] ORDER BY name";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "INSERT INTO coach_team (teamId, coachId) VALUES (@teamId, @coachID)";
+            this._commandCollection[1].CommandText = "INSERT INTO [legagladio].[coach_team] (teamId, coachId) VALUES (@teamId, @coachID" +
+                ")";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coachID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "coachID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coachID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "coachID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT COUNT(*) FROM team";
+            this._commandCollection[2].CommandText = "SELECT COUNT(*) FROM [legagladio].[team]";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "DELETE FROM `team` WHERE (`id` = @id) ";
+            this._commandCollection[3].CommandText = "DELETE FROM [legagladio].[team] WHERE ([id] = @id) ";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT active, assistantCoach, cheerleader, funFactor, hasMedic, id, imagePath, n" +
-                "ame, reroll, treasury, value FROM team WHERE (active = @active) ORDER BY name";
+            this._commandCollection[4].CommandText = "SELECT * FROM [legagladio].[team] WHERE (active = @active) ORDER BY name";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "SELECT t.active, t.assistantCoach, t.cheerleader, t.funFactor, t.hasMedic, t.id, " +
-                "t.imagePath, t.name, t.reroll, t.treasury, t.value FROM team AS t INNER JOIN coa" +
-                "ch_team AS ct ON t.id = ct.teamID WHERE (ct.coachID = @coachId) ORDER BY t.name";
+            this._commandCollection[5].CommandText = "SELECT t.* FROM [legagladio].[team] AS t INNER JOIN legagladio.coach_team AS ct O" +
+                "N t.id = ct.teamID WHERE (ct.coachID = @coachId) ORDER BY t.name";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coachId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "coachID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coachId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "coachID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[6].Connection = this.Connection;
             this._commandCollection[6].CommandText = "SELECT active, assistantCoach, cheerleader, funFactor, hasMedic, id, imagePath, n" +
-                "ame, reroll, treasury, value FROM team WHERE (id = @id)";
+                "ame, reroll, treasury, value FROM legagladio.team WHERE (id = @id)";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[7] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[7].Connection = this.Connection;
             this._commandCollection[7].CommandText = @"INSERT INTO team (value, name, funFactor, reroll, cheerleader, assistantCoach, treasury, imagePath, hasMedic, active) VALUES (@value, @name, @funFactor, @reroll, @cheerleader, @assistantCoach, @treasury, @imagePath, @hasMedic, @active); SELECT SCOPE_IDENTITY();";
@@ -18572,25 +18746,26 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
             this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[8] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[8].Connection = this.Connection;
-            this._commandCollection[8].CommandText = "DELETE FROM coach_team WHERE teamId = @teamID AND coachId = @coachId\r\n";
+            this._commandCollection[8].CommandText = "DELETE FROM [legagladio].[coach_team] WHERE teamId = @teamID AND coachId = @coach" +
+                "Id\r\n";
             this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coachId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "coachID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coachId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "coachID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[9] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[9].Connection = this.Connection;
-            this._commandCollection[9].CommandText = @"UPDATE `team` SET `value` = @value, `name` = @name, `funFactor` = @funFactor, `reroll` = @reroll, `cheerleader` = @cheerleader, `assistantCoach` = @assistantCoach, `treasury` = @treasury, `imagePath` = @imagePath, `hasMedic` = @hasMedic, `active` = @active WHERE (`id` = @p9)";
+            this._commandCollection[9].CommandText = @"UPDATE [legagladio].[team] SET [value] = @value, [name] = @name, [funFactor] = @funFactor, [reroll] = @reroll, [cheerleader] = @cheerleader, [assistantCoach] = @assistantCoach, [treasury] = @treasury, [imagePath] = @imagePath, [hasMedic] = @hasMedic, [active] = @active WHERE ([id] = @p9)";
             this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.Text, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@funFactor", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "funFactor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reroll", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reroll", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cheerleader", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "cheerleader", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assistantCoach", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "assistantCoach", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@treasury", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "treasury", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@imagePath", global::System.Data.SqlDbType.VarChar, 4000, global::System.Data.ParameterDirection.Input, 0, 0, "imagePath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hasMedic", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "hasMedic", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p9", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@value", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@funFactor", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "funFactor", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "reroll", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@cheerleader", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "cheerleader", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@assistantCoach", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "assistantCoach", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@treasury", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "treasury", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@imagePath", global::System.Data.SqlDbType.NVarChar, 4000, global::System.Data.ParameterDirection.Input, 0, 0, "imagePath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@hasMedic", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "hasMedic", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p9", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -19509,7 +19684,8 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [team_player] ([teamId], [playerID]) VALUES (@teamId, @playerID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [legagladio].[team_player] ([teamId], [playerID]) VALUES (@teamId, @p" +
+                "layerID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "teamId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -19528,7 +19704,7 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT teamId, playerID FROM team_player";
+            this._commandCollection[0].CommandText = "SELECT teamId, playerID FROM [legagladio].team_player";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -19740,7 +19916,8 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [coach_team] ([coachID], [teamID]) VALUES (@coachID, @teamID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [legagladio].[coach_team] ([coachID], [teamID]) VALUES (@coachID, @te" +
+                "amID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coachID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "coachID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -19759,7 +19936,7 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT * FROM coach_team";
+            this._commandCollection[0].CommandText = "SELECT * FROM [legagladio].[coach_team]";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -19967,24 +20144,24 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [race] WHERE (([id] = @Original_id) AND ((@IsNull_reroll = 1 AND [rer" +
-                "oll] IS NULL) OR ([reroll] = @Original_reroll)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [legagladio].[race] WHERE (([id] = @Original_id) AND ((@IsNull_reroll" +
+                " = 1 AND [reroll] IS NULL) OR ([reroll] = @Original_reroll)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_reroll", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reroll", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_reroll", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reroll", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [race] ([name], [reroll]) VALUES (@name, @reroll);\r\nSELECT id, name, " +
-                "reroll FROM race WHERE (id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [legagladio].[race] ([name], [reroll]) VALUES (@name, @reroll);\r\nSELE" +
+                "CT id, name, reroll FROM legagladio.race WHERE (id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reroll", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reroll", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [race] SET [name] = @name, [reroll] = @reroll WHERE (([id] = @Original_id)" +
-                " AND ((@IsNull_reroll = 1 AND [reroll] IS NULL) OR ([reroll] = @Original_reroll)" +
-                "));\r\nSELECT id, name, reroll FROM race WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [legagladio].[race] SET [name] = @name, [reroll] = @reroll WHERE (([id] = " +
+                "@Original_id) AND ((@IsNull_reroll = 1 AND [reroll] IS NULL) OR ([reroll] = @Ori" +
+                "ginal_reroll)));\r\nSELECT id, name, reroll FROM legagladio.race WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reroll", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "reroll", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -20007,39 +20184,40 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[7];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT * FROM race";
+            this._commandCollection[0].CommandText = "SELECT * FROM legagladio.race";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT COUNT(*) FROM race";
+            this._commandCollection[1].CommandText = "SELECT COUNT(*) FROM legagladio.race";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "DELETE FROM [race] WHERE ([id] = @id)";
+            this._commandCollection[2].CommandText = "DELETE FROM legagladio.[race] WHERE ([id] = @id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT id, name, reroll FROM race WHERE (id = @id)";
+            this._commandCollection[3].CommandText = "SELECT id, name, reroll FROM legagladio.race WHERE (id = @id)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT race.id, race.name, race.reroll FROM race INNER JOIN team_race ON team_rac" +
-                "e.raceID = race.id WHERE (team_race.teamID = @teamId)";
+            this._commandCollection[4].CommandText = "SELECT legagladio.race.id, legagladio.race.name, legagladio.race.reroll FROM lega" +
+                "gladio.race INNER JOIN legagladio.team_race ON legagladio.team_race.raceID = leg" +
+                "agladio.race.id WHERE (legagladio.team_race.teamID = @teamId)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "INSERT INTO [race] ([name], [reroll]) VALUES (@name, @reroll);\r\nSELECT SCOPE_IDEN" +
-                "TITY()";
+            this._commandCollection[5].CommandText = "INSERT INTO legagladio.[race] ([name], [reroll]) VALUES (@name, @reroll);\r\nSELECT" +
+                " SCOPE_IDENTITY()";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "reroll", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = "UPDATE [race] SET [name] = @name, [reroll] = @reroll WHERE ([id] = @id);\r\nSELECT " +
-                "id FROM race WHERE (id = @id)";
+            this._commandCollection[6].CommandText = "UPDATE legagladio.[race] SET [name] = @name, [reroll] = @reroll WHERE ([id] = @id" +
+                ");\r\nSELECT id FROM legagladio.race WHERE (id = @id)";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@reroll", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "reroll", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -20638,9 +20816,9 @@ SELECT id, qty, title, cost, ma, st, ag, av, general, agility, strength, passing
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
             this._commandCollection[3].CommandText = "SELECT ag, agility, av, cost, general, id, ma, mutation, passing, qty, st, streng" +
-                "th, title FROM positional WHERE (id = @id)";
+                "th, title FROM legagladio.positional WHERE (id = @id)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
             this._commandCollection[4].CommandText = @"SELECT positional.ag, positional.agility, positional.av, positional.cost, positional.general, positional.id, positional.ma, positional.mutation, positional.passing, positional.qty, positional.st, positional.strength, positional.title FROM positional INNER JOIN player ON player.positionalId = positional.id WHERE (player.id = @playerId)";
@@ -21640,42 +21818,44 @@ SELECT id FROM positional WHERE (id = @id)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [coach] WHERE (([id] = @Original_id) AND ((@IsNull_value = 1 AND [val" +
-                "ue] IS NULL) OR ([value] = @Original_value)) AND ((@IsNull_imagePath = 1 AND [im" +
-                "agePath] IS NULL) OR ([imagePath] = @Original_imagePath)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [legagladio].[coach] WHERE (([id] = @Original_id) AND ((@IsNull_value = 1 AND [value] IS NULL) OR ([value] = @Original_value)) AND ((@IsNull_active = 1 AND [active] IS NULL) OR ([active] = @Original_active)) AND ((@IsNull_imagePath = 1 AND [imagePath] IS NULL) OR ([imagePath] = @Original_imagePath)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_imagePath", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imagePath", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_imagePath", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imagePath", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [coach] ([name], [value], [nafID], [note], [nafNick], [imagePath]) VA" +
-                "LUES (@name, @value, @nafID, @note, @nafNick, @imagePath);\r\nSELECT id, name, val" +
-                "ue, nafID, note, nafNick, imagePath FROM coach WHERE (id = SCOPE_IDENTITY()) ORD" +
-                "ER BY name";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [legagladio].[coach] ([name], [value], [nafID], [note], [active], [nafNick], [imagePath]) VALUES (@name, @value, @nafID, @note, @active, @nafNick, @imagePath);
+SELECT id, name, value, nafID, note, active, nafNick, imagePath FROM legagladio.coach WHERE (id = SCOPE_IDENTITY()) ORDER BY name";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nafID", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "nafID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nafNick", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "nafNick", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@imagePath", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imagePath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [coach] SET [name] = @name, [value] = @value, [nafID] = @nafID, [note] = @note, [nafNick] = @nafNick, [imagePath] = @imagePath WHERE (([id] = @Original_id) AND ((@IsNull_value = 1 AND [value] IS NULL) OR ([value] = @Original_value)) AND ((@IsNull_imagePath = 1 AND [imagePath] IS NULL) OR ([imagePath] = @Original_imagePath)));
-SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @id) ORDER BY name";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [legagladio].[coach] SET [name] = @name, [value] = @value, [nafID] = @nafID, [note] = @note, [active] = @active, [nafNick] = @nafNick, [imagePath] = @imagePath WHERE (([id] = @Original_id) AND ((@IsNull_value = 1 AND [value] IS NULL) OR ([value] = @Original_value)) AND ((@IsNull_active = 1 AND [active] IS NULL) OR ([active] = @Original_active)) AND ((@IsNull_imagePath = 1 AND [imagePath] IS NULL) OR ([imagePath] = @Original_imagePath)));
+SELECT id, name, value, nafID, note, active, nafNick, imagePath FROM legagladio.coach WHERE (id = @id) ORDER BY name";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nafID", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "nafID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nafNick", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "nafNick", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@imagePath", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imagePath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_imagePath", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imagePath", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_imagePath", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "imagePath", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -21694,50 +21874,50 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[10];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach ORDER BY name";
+            this._commandCollection[0].CommandText = "SELECT * FROM [legagladio].[coach] ORDER BY name";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "SELECT COUNT(*) FROM coach ";
+            this._commandCollection[1].CommandText = "SELECT COUNT(*) FROM [legagladio].coach ";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "DELETE FROM `coach` WHERE (`id` = @p1)";
+            this._commandCollection[2].CommandText = "DELETE FROM legagladio.coach WHERE (id = @id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p1", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT id, imagePath, nafID, nafNick, name, note, value FROM coach WHERE (active " +
-                "= @active) ORDER BY name";
+            this._commandCollection[3].CommandText = "SELECT * FROM legagladio.coach WHERE (active = @active) ORDER BY name";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT id, imagePath, nafID, nafNick, name, note, value FROM coach WHERE (id = @i" +
-                "d)";
+            this._commandCollection[4].CommandText = "SELECT active, id, imagePath, nafID, nafNick, name, note, value FROM legagladio.c" +
+                "oach WHERE (id = @id)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "SELECT id, imagePath, nafID, nafNick, name, note, value FROM coach ORDER BY name";
+            this._commandCollection[5].CommandText = "SELECT active, id, imagePath, nafID, nafNick, name, note, value FROM legagladio.c" +
+                "oach ORDER BY name";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = "SELECT c.id FROM coach AS c INNER JOIN coach_team AS ct ON c.id = ct.coachID WHER" +
-                "E (ct.teamID = @teamId)";
+            this._commandCollection[6].CommandText = "SELECT c.id FROM legagladio.coach AS c INNER JOIN legagladio.coach_team AS ct ON " +
+                "c.id = ct.coachID WHERE (ct.teamID = @teamId)";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[7] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[7].Connection = this.Connection;
-            this._commandCollection[7].CommandText = "SELECT c.name FROM coach AS c INNER JOIN coach_team AS ct ON c.id = ct.coachID WH" +
-                "ERE (ct.teamID = @teamId)";
+            this._commandCollection[7].CommandText = "SELECT c.name FROM legagladio.coach AS c INNER JOIN legagladio.coach_team AS ct O" +
+                "N c.id = ct.coachID WHERE (ct.teamID = @teamId)";
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[8] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[8].Connection = this.Connection;
-            this._commandCollection[8].CommandText = "INSERT INTO coach (name, value, nafID, note, nafNick, imagePath, active) VALUES (" +
-                "@name, @value, @nafID, @note, @nafNick, @imagePath, @active); select scope_ident" +
-                "ity();";
+            this._commandCollection[8].CommandText = "INSERT INTO legagladio.coach (name, value, nafID, note, nafNick, imagePath, activ" +
+                "e) VALUES (@name, @value, @nafID, @note, @nafNick, @imagePath, @active); select " +
+                "scope_identity();";
             this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@value", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -21748,18 +21928,18 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
             this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[9] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[9].Connection = this.Connection;
-            this._commandCollection[9].CommandText = "UPDATE `coach` SET `name` = @name, `value` = @value, `nafID` = @nafID, `note` = @" +
-                "note, `nafNick` = @nafNick, `imagePath` = @imagePath, `active` = @active WHERE (" +
-                "`id` = @p7)";
+            this._commandCollection[9].CommandText = "UPDATE legagladio.coach SET name = @name, value = @value, nafID = @nafID, note = " +
+                "@note, nafNick = @nafNick, imagePath = @imagePath, active = @active WHERE (id = " +
+                "@id)";
             this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.Text, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@value", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nafID", global::System.Data.SqlDbType.Text, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "nafID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.Text, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nafNick", global::System.Data.SqlDbType.Text, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "nafNick", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@imagePath", global::System.Data.SqlDbType.VarChar, 4000, global::System.Data.ParameterDirection.Input, 0, 0, "imagePath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@p7", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@value", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "value", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nafID", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "nafID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@nafNick", global::System.Data.SqlDbType.NVarChar, 2147483647, global::System.Data.ParameterDirection.Input, 0, 0, "nafNick", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@imagePath", global::System.Data.SqlDbType.NVarChar, 4000, global::System.Data.ParameterDirection.Input, 0, 0, "imagePath", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@active", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "active", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -21905,7 +22085,7 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id, global::System.Nullable<int> Original_value, string Original_imagePath) {
+        public virtual int Delete(int Original_id, global::System.Nullable<int> Original_value, global::System.Nullable<int> Original_active, string Original_imagePath) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
             if ((Original_value.HasValue == true)) {
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
@@ -21915,13 +22095,21 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
                 this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
             }
-            if ((Original_imagePath == null)) {
+            if ((Original_active.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((int)(Original_active.Value));
+            }
+            else {
                 this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
                 this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
+            if ((Original_imagePath == null)) {
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
             else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_imagePath));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_imagePath));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -21943,7 +22131,7 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string name, global::System.Nullable<int> value, string nafID, string note, string nafNick, string imagePath) {
+        public virtual int Insert(string name, global::System.Nullable<int> value, string nafID, string note, global::System.Nullable<int> active, string nafNick, string imagePath) {
             if ((name == null)) {
                 this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -21968,17 +22156,23 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(note));
             }
-            if ((nafNick == null)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
+            if ((active.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[4].Value = ((int)(active.Value));
             }
             else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(nafNick));
+                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((imagePath == null)) {
+            if ((nafNick == null)) {
                 this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(imagePath));
+                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(nafNick));
+            }
+            if ((imagePath == null)) {
+                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(imagePath));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -22000,7 +22194,7 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string name, global::System.Nullable<int> value, string nafID, string note, string nafNick, string imagePath, int Original_id, global::System.Nullable<int> Original_value, string Original_imagePath, int id) {
+        public virtual int Update(string name, global::System.Nullable<int> value, string nafID, string note, global::System.Nullable<int> active, string nafNick, string imagePath, int Original_id, global::System.Nullable<int> Original_value, global::System.Nullable<int> Original_active, string Original_imagePath, int id) {
             if ((name == null)) {
                 this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
@@ -22025,36 +22219,50 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(note));
             }
-            if ((nafNick == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            if ((active.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(active.Value));
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(nafNick));
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
             }
-            if ((imagePath == null)) {
+            if ((nafNick == null)) {
                 this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(imagePath));
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(nafNick));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(Original_id));
-            if ((Original_value.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((int)(Original_value.Value));
+            if ((imagePath == null)) {
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(imagePath));
+            }
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_id));
+            if ((Original_value.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_value.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            if ((Original_active.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(Original_active.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
             }
             if ((Original_imagePath == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Original_imagePath));
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(Original_imagePath));
             }
-            this.Adapter.UpdateCommand.Parameters[11].Value = ((int)(id));
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -22075,8 +22283,8 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string name, global::System.Nullable<int> value, string nafID, string note, string nafNick, string imagePath, int Original_id, global::System.Nullable<int> Original_value, string Original_imagePath) {
-            return this.Update(name, value, nafID, note, nafNick, imagePath, Original_id, Original_value, Original_imagePath, Original_id);
+        public virtual int Update(string name, global::System.Nullable<int> value, string nafID, string note, global::System.Nullable<int> active, string nafNick, string imagePath, int Original_id, global::System.Nullable<int> Original_value, global::System.Nullable<int> Original_active, string Original_imagePath) {
+            return this.Update(name, value, nafID, note, active, nafNick, imagePath, Original_id, Original_value, Original_active, Original_imagePath, Original_id);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -22111,9 +22319,9 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
-        public virtual int DeleteCoach(int p1) {
+        public virtual int DeleteCoach(int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
-            command.Parameters[0].Value = ((int)(p1));
+            command.Parameters[0].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -22258,7 +22466,7 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateCoach(string name, global::System.Nullable<int> value, string nafID, string note, string nafNick, string imagePath, global::System.Nullable<int> active, int p7) {
+        public virtual int UpdateCoach(string name, global::System.Nullable<int> value, string nafID, string note, string nafNick, string imagePath, global::System.Nullable<int> active, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[9];
             if ((name == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -22302,7 +22510,7 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
             else {
                 command.Parameters[6].Value = global::System.DBNull.Value;
             }
-            command.Parameters[7].Value = ((int)(p7));
+            command.Parameters[7].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -22724,8 +22932,8 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [positional_race] ([positionalId], [raceId]) VALUES (@positionalId, @" +
-                "raceId)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [legagladio].[positional_race] ([positionalId], [raceId]) VALUES (@po" +
+                "sitionalId, @raceId)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@positionalId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "positionalId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@raceId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "raceId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -22744,7 +22952,7 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select positionalId, raceId from positional_race";
+            this._commandCollection[0].CommandText = "select positionalId, raceId from legagladio.positional_race";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -22963,7 +23171,7 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [action] WHERE (([id] = @Original_id) AND ((@IsNull_description = 1 AND [description] IS NULL) OR ([description] = @Original_description)) AND ((@IsNull_spp = 1 AND [spp] IS NULL) OR ([spp] = @Original_spp)) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Original_note)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [legagladio].[action] WHERE (([id] = @Original_id) AND ((@IsNull_description = 1 AND [description] IS NULL) OR ([description] = @Original_description)) AND ((@IsNull_spp = 1 AND [spp] IS NULL) OR ([spp] = @Original_spp)) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Original_note)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_description", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "description", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -22974,17 +23182,17 @@ SELECT id, name, value, nafID, note, nafNick, imagePath FROM coach WHERE (id = @
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [action] ([description], [spp], [note]) VALUES (@description, @spp, @" +
-                "note);\r\nSELECT id, description, spp, note FROM action WHERE (id = SCOPE_IDENTITY" +
-                "())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [legagladio].[action] ([description], [spp], [note]) VALUES (@descrip" +
+                "tion, @spp, @note);\r\nSELECT id, description, spp, note FROM legagladio.action WH" +
+                "ERE (id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@spp", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "spp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [action] SET [description] = @description, [spp] = @spp, [note] = @note WHERE (([id] = @Original_id) AND ((@IsNull_description = 1 AND [description] IS NULL) OR ([description] = @Original_description)) AND ((@IsNull_spp = 1 AND [spp] IS NULL) OR ([spp] = @Original_spp)) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Original_note)));
-SELECT id, description, spp, note FROM action WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [legagladio].[action] SET [description] = @description, [spp] = @spp, [note] = @note WHERE (([id] = @Original_id) AND ((@IsNull_description = 1 AND [description] IS NULL) OR ([description] = @Original_description)) AND ((@IsNull_spp = 1 AND [spp] IS NULL) OR ([spp] = @Original_spp)) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Original_note)));
+SELECT id, description, spp, note FROM legagladio.action WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@description", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "description", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@spp", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "spp", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -23012,31 +23220,31 @@ SELECT id, description, spp, note FROM action WHERE (id = @id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from action\r\n";
+            this._commandCollection[0].CommandText = "select * from [legagladio].action\r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "INSERT INTO game_action (actionId, teamId, playerId, gameId) VALUES (@actionId, @" +
-                "teamId, @playerId, @gameId)";
+            this._commandCollection[1].CommandText = "INSERT INTO [legagladio].game_action (actionId, teamId, playerId, gameId) VALUES " +
+                "(@actionId, @teamId, @playerId, @gameId)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actionId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "actionID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actionId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "actionID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Variant, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "teamId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT description, id, note, spp FROM action WHERE (id = @id)";
+            this._commandCollection[2].CommandText = "SELECT description, id, note, spp FROM legagladio.action WHERE (id = @id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "DELETE FROM game_action WHERE actionId = @actionId AND teamId = @teamId AND playe" +
-                "rId = @playerId AND gameId = @gameId";
+            this._commandCollection[3].CommandText = "DELETE FROM [legagladio].game_action WHERE actionId = @actionId AND teamId = @tea" +
+                "mId AND playerId = @playerId AND gameId = @gameId";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actionId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "actionID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "teamID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actionId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "actionID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Variant, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -23280,7 +23488,7 @@ SELECT id, description, spp, note FROM action WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int AddActionToGame(global::System.Nullable<int> actionId, global::System.Nullable<int> teamId, global::System.Nullable<int> playerId, global::System.Nullable<int> gameId) {
+        public virtual int AddActionToGame(global::System.Nullable<int> actionId, object teamId, global::System.Nullable<int> playerId, global::System.Nullable<int> gameId) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             if ((actionId.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(actionId.Value));
@@ -23288,11 +23496,11 @@ SELECT id, description, spp, note FROM action WHERE (id = @id)";
             else {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((teamId.HasValue == true)) {
-                command.Parameters[1].Value = ((int)(teamId.Value));
+            if ((teamId == null)) {
+                throw new global::System.ArgumentNullException("teamId");
             }
             else {
-                command.Parameters[1].Value = global::System.DBNull.Value;
+                command.Parameters[1].Value = ((object)(teamId));
             }
             if ((playerId.HasValue == true)) {
                 command.Parameters[2].Value = ((int)(playerId.Value));
@@ -23327,7 +23535,7 @@ SELECT id, description, spp, note FROM action WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, false)]
-        public virtual int RemoveActionFromGame(global::System.Nullable<int> actionId, global::System.Nullable<int> teamId, global::System.Nullable<int> playerId, global::System.Nullable<int> gameId) {
+        public virtual int RemoveActionFromGame(global::System.Nullable<int> actionId, object teamId, global::System.Nullable<int> playerId, global::System.Nullable<int> gameId) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             if ((actionId.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(actionId.Value));
@@ -23335,11 +23543,11 @@ SELECT id, description, spp, note FROM action WHERE (id = @id)";
             else {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }
-            if ((teamId.HasValue == true)) {
-                command.Parameters[1].Value = ((int)(teamId.Value));
+            if ((teamId == null)) {
+                throw new global::System.ArgumentNullException("teamId");
             }
             else {
-                command.Parameters[1].Value = global::System.DBNull.Value;
+                command.Parameters[1].Value = ((object)(teamId));
             }
             if ((playerId.HasValue == true)) {
                 command.Parameters[2].Value = ((int)(playerId.Value));
@@ -23500,7 +23708,7 @@ SELECT id, description, spp, note FROM action WHERE (id = @id)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [game_action] WHERE (([id] = @Original_id) AND ((@IsNull_gameID = 1 AND [gameID] IS NULL) OR ([gameID] = @Original_gameID)) AND ((@IsNull_actionID = 1 AND [actionID] IS NULL) OR ([actionID] = @Original_actionID)) AND ((@IsNull_playerID = 1 AND [playerID] IS NULL) OR ([playerID] = @Original_playerID)) AND ((@IsNull_notes = 1 AND [notes] IS NULL) OR ([notes] = @Original_notes)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [legagladio].[game_action] WHERE (([id] = @Original_id) AND ((@IsNull_gameID = 1 AND [gameID] IS NULL) OR ([gameID] = @Original_gameID)) AND ((@IsNull_actionID = 1 AND [actionID] IS NULL) OR ([actionID] = @Original_actionID)) AND ((@IsNull_playerID = 1 AND [playerID] IS NULL) OR ([playerID] = @Original_playerID)) AND ((@IsNull_notes = 1 AND [notes] IS NULL) OR ([notes] = @Original_notes)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_gameID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -23513,9 +23721,9 @@ SELECT id, description, spp, note FROM action WHERE (id = @id)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [game_action] ([gameID], [actionID], [playerID], [notes]) VALUES (@ga" +
-                "meID, @actionID, @playerID, @notes);\r\nSELECT id, gameID, actionID, playerID, not" +
-                "es FROM game_action WHERE (id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [legagladio].[game_action] ([gameID], [actionID], [playerID], [notes]" +
+                ") VALUES (@gameID, @actionID, @playerID, @notes);\r\nSELECT id, gameID, actionID, " +
+                "playerID, notes FROM legagladio.game_action WHERE (id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actionID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "actionID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -23523,8 +23731,8 @@ SELECT id, description, spp, note FROM action WHERE (id = @id)";
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [game_action] SET [gameID] = @gameID, [actionID] = @actionID, [playerID] = @playerID, [notes] = @notes WHERE (([id] = @Original_id) AND ((@IsNull_gameID = 1 AND [gameID] IS NULL) OR ([gameID] = @Original_gameID)) AND ((@IsNull_actionID = 1 AND [actionID] IS NULL) OR ([actionID] = @Original_actionID)) AND ((@IsNull_playerID = 1 AND [playerID] IS NULL) OR ([playerID] = @Original_playerID)) AND ((@IsNull_notes = 1 AND [notes] IS NULL) OR ([notes] = @Original_notes)));
-SELECT id, gameID, actionID, playerID, notes FROM game_action WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [legagladio].[game_action] SET [gameID] = @gameID, [actionID] = @actionID, [playerID] = @playerID, [notes] = @notes WHERE (([id] = @Original_id) AND ((@IsNull_gameID = 1 AND [gameID] IS NULL) OR ([gameID] = @Original_gameID)) AND ((@IsNull_actionID = 1 AND [actionID] IS NULL) OR ([actionID] = @Original_actionID)) AND ((@IsNull_playerID = 1 AND [playerID] IS NULL) OR ([playerID] = @Original_playerID)) AND ((@IsNull_notes = 1 AND [notes] IS NULL) OR ([notes] = @Original_notes)));
+SELECT id, gameID, actionID, playerID, notes FROM legagladio.game_action WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actionID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "actionID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -23555,28 +23763,27 @@ SELECT id, gameID, actionID, playerID, notes FROM game_action WHERE (id = @id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT * FROM game_action";
+            this._commandCollection[0].CommandText = "SELECT * FROM [legagladio].game_action";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM [game_action] WHERE ([id] = @id)";
+            this._commandCollection[1].CommandText = "DELETE FROM [legagladio].[game_action] WHERE ([id] = @id)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT actionID, gameID, id, notes, playerID FROM game_action WHERE (gameID = @ga" +
-                "meId)";
+            this._commandCollection[2].CommandText = "SELECT * FROM legagladio.game_action WHERE (gameID = @gameId)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT actionID, gameID, id, notes, playerID FROM game_action WHERE (id = @id)";
+            this._commandCollection[3].CommandText = "SELECT * FROM legagladio.game_action WHERE (id = @id)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "INSERT INTO [game_action] ([gameID], [actionID], [playerID], [notes]) VALUES (@ga" +
-                "meID, @actionID, @playerID, @notes);\r\nSELECT SCOPE_IDENTITY();";
+            this._commandCollection[4].CommandText = "INSERT INTO [legagladio].[game_action] ([gameID], [actionID], [playerID], [notes]" +
+                ") VALUES (@gameID, @actionID, @playerID, @notes);\r\nSELECT SCOPE_IDENTITY();";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@actionID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "actionID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -23584,10 +23791,11 @@ SELECT id, gameID, actionID, playerID, notes FROM game_action WHERE (id = @id)";
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@notes", global::System.Data.SqlDbType.NVarChar, 4000, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "UPDATE [game_action] SET [gameID] = @gameID, [actionID] = @actionID, [playerID] =" +
-                " @playerID, [notes] = @notes WHERE (([id] = @id) ;\r\nSELECT id WHERE (id = @id)";
+            this._commandCollection[5].CommandText = "UPDATE [legagladio].[game_action] SET [gameID] = @gameID, [actionID] = @actionID," +
+                " [playerID] = @playerID, [notes] = @notes WHERE (([id] = @id) ;\r\nSELECT id from " +
+                "[legagladio].[game_action] WHERE (id = @id)";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Variant, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -23966,14 +24174,9 @@ SELECT id, gameID, actionID, playerID, notes FROM game_action WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateGameAction(object id) {
+        public virtual int UpdateGameAction(int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
-            if ((id == null)) {
-                throw new global::System.ArgumentNullException("id");
-            }
-            else {
-                command.Parameters[0].Value = ((object)(id));
-            }
+            command.Parameters[0].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -24131,7 +24334,7 @@ SELECT id, gameID, actionID, playerID, notes FROM game_action WHERE (id = @id)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [game] WHERE (([id] = @Original_id) AND ((@IsNull_homeID = 1 AND [homeID] IS NULL) OR ([homeID] = @Original_homeID)) AND ((@IsNull_guestID = 1 AND [guestID] IS NULL) OR ([guestID] = @Original_guestID)) AND ((@IsNull_tdHome = 1 AND [tdHome] IS NULL) OR ([tdHome] = @Original_tdHome)) AND ((@IsNull_tdGuest = 1 AND [tdGuest] IS NULL) OR ([tdGuest] = @Original_tdGuest)) AND ((@IsNull_casHome = 1 AND [casHome] IS NULL) OR ([casHome] = @Original_casHome)) AND ((@IsNull_casGuest = 1 AND [casGuest] IS NULL) OR ([casGuest] = @Original_casGuest)) AND ((@IsNull_spHome = 1 AND [spHome] IS NULL) OR ([spHome] = @Original_spHome)) AND ((@IsNull_spGuest = 1 AND [spGuest] IS NULL) OR ([spGuest] = @Original_spGuest)) AND ((@IsNull_earningHome = 1 AND [earningHome] IS NULL) OR ([earningHome] = @Original_earningHome)) AND ((@IsNull_earningGuest = 1 AND [earningGuest] IS NULL) OR ([earningGuest] = @Original_earningGuest)) AND ((@IsNull_varFFHome = 1 AND [varFFHome] IS NULL) OR ([varFFHome] = @Original_varFFHome)) AND ((@IsNull_varFFGuest = 1 AND [varFFGuest] IS NULL) OR ([varFFGuest] = @Original_varFFGuest)) AND ((@IsNull_gameDate = 1 AND [gameDate] IS NULL) OR ([gameDate] = @Original_gameDate)) AND ((@IsNull_notes = 1 AND [notes] IS NULL) OR ([notes] = @Original_notes)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [legagladio].[game] WHERE (([id] = @Original_id) AND ((@IsNull_homeID = 1 AND [homeID] IS NULL) OR ([homeID] = @Original_homeID)) AND ((@IsNull_guestID = 1 AND [guestID] IS NULL) OR ([guestID] = @Original_guestID)) AND ((@IsNull_tdHome = 1 AND [tdHome] IS NULL) OR ([tdHome] = @Original_tdHome)) AND ((@IsNull_tdGuest = 1 AND [tdGuest] IS NULL) OR ([tdGuest] = @Original_tdGuest)) AND ((@IsNull_casHome = 1 AND [casHome] IS NULL) OR ([casHome] = @Original_casHome)) AND ((@IsNull_casGuest = 1 AND [casGuest] IS NULL) OR ([casGuest] = @Original_casGuest)) AND ((@IsNull_spHome = 1 AND [spHome] IS NULL) OR ([spHome] = @Original_spHome)) AND ((@IsNull_spGuest = 1 AND [spGuest] IS NULL) OR ([spGuest] = @Original_spGuest)) AND ((@IsNull_earningHome = 1 AND [earningHome] IS NULL) OR ([earningHome] = @Original_earningHome)) AND ((@IsNull_earningGuest = 1 AND [earningGuest] IS NULL) OR ([earningGuest] = @Original_earningGuest)) AND ((@IsNull_varFFHome = 1 AND [varFFHome] IS NULL) OR ([varFFHome] = @Original_varFFHome)) AND ((@IsNull_varFFGuest = 1 AND [varFFGuest] IS NULL) OR ([varFFGuest] = @Original_varFFGuest)) AND ((@IsNull_gameDate = 1 AND [gameDate] IS NULL) OR ([gameDate] = @Original_gameDate)) AND ((@IsNull_notes = 1 AND [notes] IS NULL) OR ([notes] = @Original_notes)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_homeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "homeID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -24159,13 +24362,13 @@ SELECT id, gameID, actionID, playerID, notes FROM game_action WHERE (id = @id)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_varFFGuest", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "varFFGuest", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_varFFGuest", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "varFFGuest", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_gameDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gameDate", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gameDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_notes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [game] ([homeID], [guestID], [tdHome], [tdGuest], [casHome], [casGuest], [spHome], [spGuest], [earningHome], [earningGuest], [varFFHome], [varFFGuest], [gameDate], [notes]) VALUES (@homeID, @guestID, @tdHome, @tdGuest, @casHome, @casGuest, @spHome, @spGuest, @earningHome, @earningGuest, @varFFHome, @varFFGuest, @gameDate, @notes);
-SELECT id, homeID, guestID, tdHome, tdGuest, casHome, casGuest, spHome, spGuest, earningHome, earningGuest, varFFHome, varFFGuest, gameDate, notes FROM game WHERE (id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [legagladio].[game] ([homeID], [guestID], [tdHome], [tdGuest], [casHome], [casGuest], [spHome], [spGuest], [earningHome], [earningGuest], [varFFHome], [varFFGuest], [gameDate], [notes]) VALUES (@homeID, @guestID, @tdHome, @tdGuest, @casHome, @casGuest, @spHome, @spGuest, @earningHome, @earningGuest, @varFFHome, @varFFGuest, @gameDate, @notes);
+SELECT id, homeID, guestID, tdHome, tdGuest, casHome, casGuest, spHome, spGuest, earningHome, earningGuest, varFFHome, varFFGuest, gameDate, notes FROM legagladio.game WHERE (id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@homeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "homeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@guestID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "guestID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -24179,33 +24382,33 @@ SELECT id, homeID, guestID, tdHome, tdGuest, casHome, casGuest, spHome, spGuest,
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@earningGuest", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "earningGuest", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@varFFHome", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "varFFHome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@varFFGuest", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "varFFGuest", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameDate", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [game] SET [homeID] = @homeID, [guestID] = @guestID, [tdHome] = @tdHome, [" +
-                "tdGuest] = @tdGuest, [casHome] = @casHome, [casGuest] = @casGuest, [spHome] = @s" +
-                "pHome, [spGuest] = @spGuest, [earningHome] = @earningHome, [earningGuest] = @ear" +
-                "ningGuest, [varFFHome] = @varFFHome, [varFFGuest] = @varFFGuest, [gameDate] = @g" +
-                "ameDate, [notes] = @notes WHERE (([id] = @Original_id) AND ((@IsNull_homeID = 1 " +
-                "AND [homeID] IS NULL) OR ([homeID] = @Original_homeID)) AND ((@IsNull_guestID = " +
-                "1 AND [guestID] IS NULL) OR ([guestID] = @Original_guestID)) AND ((@IsNull_tdHom" +
-                "e = 1 AND [tdHome] IS NULL) OR ([tdHome] = @Original_tdHome)) AND ((@IsNull_tdGu" +
-                "est = 1 AND [tdGuest] IS NULL) OR ([tdGuest] = @Original_tdGuest)) AND ((@IsNull" +
-                "_casHome = 1 AND [casHome] IS NULL) OR ([casHome] = @Original_casHome)) AND ((@I" +
-                "sNull_casGuest = 1 AND [casGuest] IS NULL) OR ([casGuest] = @Original_casGuest))" +
-                " AND ((@IsNull_spHome = 1 AND [spHome] IS NULL) OR ([spHome] = @Original_spHome)" +
-                ") AND ((@IsNull_spGuest = 1 AND [spGuest] IS NULL) OR ([spGuest] = @Original_spG" +
-                "uest)) AND ((@IsNull_earningHome = 1 AND [earningHome] IS NULL) OR ([earningHome" +
-                "] = @Original_earningHome)) AND ((@IsNull_earningGuest = 1 AND [earningGuest] IS" +
-                " NULL) OR ([earningGuest] = @Original_earningGuest)) AND ((@IsNull_varFFHome = 1" +
-                " AND [varFFHome] IS NULL) OR ([varFFHome] = @Original_varFFHome)) AND ((@IsNull_" +
-                "varFFGuest = 1 AND [varFFGuest] IS NULL) OR ([varFFGuest] = @Original_varFFGuest" +
-                ")) AND ((@IsNull_gameDate = 1 AND [gameDate] IS NULL) OR ([gameDate] = @Original" +
-                "_gameDate)) AND ((@IsNull_notes = 1 AND [notes] IS NULL) OR ([notes] = @Original" +
-                "_notes)));\r\nSELECT id, homeID, guestID, tdHome, tdGuest, casHome, casGuest, spHo" +
-                "me, spGuest, earningHome, earningGuest, varFFHome, varFFGuest, gameDate, notes F" +
-                "ROM game WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [legagladio].[game] SET [homeID] = @homeID, [guestID] = @guestID, [tdHome]" +
+                " = @tdHome, [tdGuest] = @tdGuest, [casHome] = @casHome, [casGuest] = @casGuest, " +
+                "[spHome] = @spHome, [spGuest] = @spGuest, [earningHome] = @earningHome, [earning" +
+                "Guest] = @earningGuest, [varFFHome] = @varFFHome, [varFFGuest] = @varFFGuest, [g" +
+                "ameDate] = @gameDate, [notes] = @notes WHERE (([id] = @Original_id) AND ((@IsNul" +
+                "l_homeID = 1 AND [homeID] IS NULL) OR ([homeID] = @Original_homeID)) AND ((@IsNu" +
+                "ll_guestID = 1 AND [guestID] IS NULL) OR ([guestID] = @Original_guestID)) AND ((" +
+                "@IsNull_tdHome = 1 AND [tdHome] IS NULL) OR ([tdHome] = @Original_tdHome)) AND (" +
+                "(@IsNull_tdGuest = 1 AND [tdGuest] IS NULL) OR ([tdGuest] = @Original_tdGuest)) " +
+                "AND ((@IsNull_casHome = 1 AND [casHome] IS NULL) OR ([casHome] = @Original_casHo" +
+                "me)) AND ((@IsNull_casGuest = 1 AND [casGuest] IS NULL) OR ([casGuest] = @Origin" +
+                "al_casGuest)) AND ((@IsNull_spHome = 1 AND [spHome] IS NULL) OR ([spHome] = @Ori" +
+                "ginal_spHome)) AND ((@IsNull_spGuest = 1 AND [spGuest] IS NULL) OR ([spGuest] = " +
+                "@Original_spGuest)) AND ((@IsNull_earningHome = 1 AND [earningHome] IS NULL) OR " +
+                "([earningHome] = @Original_earningHome)) AND ((@IsNull_earningGuest = 1 AND [ear" +
+                "ningGuest] IS NULL) OR ([earningGuest] = @Original_earningGuest)) AND ((@IsNull_" +
+                "varFFHome = 1 AND [varFFHome] IS NULL) OR ([varFFHome] = @Original_varFFHome)) A" +
+                "ND ((@IsNull_varFFGuest = 1 AND [varFFGuest] IS NULL) OR ([varFFGuest] = @Origin" +
+                "al_varFFGuest)) AND ((@IsNull_gameDate = 1 AND [gameDate] IS NULL) OR ([gameDate" +
+                "] = @Original_gameDate)) AND ((@IsNull_notes = 1 AND [notes] IS NULL) OR ([notes" +
+                "] = @Original_notes)));\r\nSELECT id, homeID, guestID, tdHome, tdGuest, casHome, c" +
+                "asGuest, spHome, spGuest, earningHome, earningGuest, varFFHome, varFFGuest, game" +
+                "Date, notes FROM legagladio.game WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@homeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "homeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@guestID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "guestID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -24219,7 +24422,7 @@ SELECT id, homeID, guestID, tdHome, tdGuest, casHome, casGuest, spHome, spGuest,
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@earningGuest", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "earningGuest", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@varFFHome", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "varFFHome", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@varFFGuest", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "varFFGuest", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameDate", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameDate", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_homeID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "homeID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -24247,7 +24450,7 @@ SELECT id, homeID, guestID, tdHome, tdGuest, casHome, casGuest, spHome, spGuest,
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_varFFGuest", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "varFFGuest", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_varFFGuest", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "varFFGuest", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_gameDate", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameDate", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gameDate", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gameDate", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameDate", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_notes", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -24266,57 +24469,56 @@ SELECT id, homeID, guestID, tdHome, tdGuest, casHome, casGuest, spHome, spGuest,
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[12];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from game";
+            this._commandCollection[0].CommandText = "select * from legagladio.game";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "INSERT INTO round_game (gameId, roundId) VALUES (@gameId, @roundId)";
+            this._commandCollection[1].CommandText = "INSERT INTO legagladio.round_game (gameId, roundId) VALUES (@gameId, @roundId)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roundId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "roundId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "gameId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roundId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "roundId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "DELETE FROM `game` WHERE ((`id` = @id) )";
+            this._commandCollection[2].CommandText = "DELETE FROM legagladio.game WHERE (id = @id) ";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = @"SELECT g.casGuest, g.casHome, g.earningGuest, g.earningHome, g.gameDate, g.guestID, g.homeID, g.id, g.notes, g.spGuest, g.spHome, g.tdGuest, g.tdHome, g.varFFGuest, g.varFFHome FROM game g INNER JOIN coach_team ct ON g.homeID = ct.teamID OR g.guestID = ct.teamID AND ct.coachID = @coachId";
+            this._commandCollection[3].CommandText = @"SELECT g.casGuest, g.casHome, g.earningGuest, g.earningHome, g.gameDate, g.guestID, g.homeID, g.id, g.notes, g.spGuest, g.spHome, g.tdGuest, g.tdHome, g.varFFGuest, g.varFFHome FROM legagladio.game AS g INNER JOIN legagladio.coach_team AS ct ON g.homeID = ct.teamID OR g.guestID = ct.teamID AND ct.coachID = @coachId";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coachId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "coachID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@coachId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "coachID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "select g.* from game g join round_game rg on g.id = rg.gameid join group_round gr" +
-                " on rg.roundid = gr.roundid where gr.groupid = @groupid";
+            this._commandCollection[4].CommandText = @"SELECT g.casGuest, g.casHome, g.earningGuest, g.earningHome, g.gameDate, g.guestID, g.homeID, g.id, g.notes, g.spGuest, g.spHome, g.tdGuest, g.tdHome, g.varFFGuest, g.varFFHome FROM legagladio.game AS g INNER JOIN legagladio.round_game AS rg ON g.id = rg.gameId INNER JOIN legagladio.group_round AS gr ON rg.roundId = gr.roundID WHERE (gr.groupID = @groupid)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@groupid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "groupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@groupid", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "groupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
             this._commandCollection[5].CommandText = "SELECT casGuest, casHome, earningGuest, earningHome, gameDate, guestID, homeID, i" +
-                "d, notes, spGuest, spHome, tdGuest, tdHome, varFFGuest, varFFHome FROM game WHER" +
-                "E (id = @ID)";
+                "d, notes, spGuest, spHome, tdGuest, tdHome, varFFGuest, varFFHome FROM legagladi" +
+                "o.game WHERE (id = @ID)";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = @"SELECT g.casGuest, g.casHome, g.earningGuest, g.earningHome, g.gameDate, g.guestID, g.homeID, g.id, g.notes, g.spGuest, g.spHome, g.tdGuest, g.tdHome, g.varFFGuest, g.varFFHome FROM game g INNER JOIN round_game rg ON rg.gameId = g.id WHERE (rg.roundId = @roundId)";
+            this._commandCollection[6].CommandText = @"SELECT g.casGuest, g.casHome, g.earningGuest, g.earningHome, g.gameDate, g.guestID, g.homeID, g.id, g.notes, g.spGuest, g.spHome, g.tdGuest, g.tdHome, g.varFFGuest, g.varFFHome FROM legagladio.game AS g INNER JOIN legagladio.round_game AS rg ON rg.gameId = g.id WHERE (rg.roundId = @roundId)";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roundId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "roundId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roundId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "roundId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[7] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[7].Connection = this.Connection;
-            this._commandCollection[7].CommandText = @"SELECT g.casGuest, g.casHome, g.earningGuest, g.earningHome, g.gameDate, g.guestID, g.homeID, g.id, g.notes, g.spGuest, g.spHome, g.tdGuest, g.tdHome, g.varFFGuest, g.varFFHome FROM game g INNER JOIN round_game rg ON rg.gameId = g.id INNER JOIN group_round gr ON gr.roundID = rg.roundId INNER JOIN series_group sg ON sg.groupId = gr.groupID WHERE (sg.seriesId = @seriesId)";
+            this._commandCollection[7].CommandText = @"SELECT g.casGuest, g.casHome, g.earningGuest, g.earningHome, g.gameDate, g.guestID, g.homeID, g.id, g.notes, g.spGuest, g.spHome, g.tdGuest, g.tdHome, g.varFFGuest, g.varFFHome FROM legagladio.game AS g INNER JOIN legagladio.round_game AS rg ON rg.gameId = g.id INNER JOIN legagladio.group_round AS gr ON gr.roundID = rg.roundId INNER JOIN legagladio.series_group AS sg ON sg.groupId = gr.groupID WHERE (sg.seriesId = @seriesId)";
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@seriesId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "seriesId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@seriesId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "seriesId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[8] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[8].Connection = this.Connection;
             this._commandCollection[8].CommandText = "SELECT casGuest, casHome, earningGuest, earningHome, gameDate, guestID, homeID, i" +
-                "d, notes, spGuest, spHome, tdGuest, tdHome, varFFGuest, varFFHome FROM game WHER" +
-                "E (homeID = @teamId) OR (guestID = @teamId)";
+                "d, notes, spGuest, spHome, tdGuest, tdHome, varFFGuest, varFFHome FROM legagladi" +
+                "o.game WHERE (homeID = @teamId) OR (guestID = @teamId)";
             this._commandCollection[8].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "homeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[8].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@teamId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "homeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[9] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[9].Connection = this.Connection;
-            this._commandCollection[9].CommandText = @"INSERT INTO [game] ([homeID], [guestID], [tdHome], [tdGuest], [casHome], [casGuest], [spHome], [spGuest], [earningHome], [earningGuest], [varFFHome], [varFFGuest], [gameDate], [notes]) VALUES (@homeID, @guestID, @tdHome, @tdGuest, @casHome, @casGuest, @spHome, @spGuest, @earningHome, @earningGuest, @varFFHome, @varFFGuest, @gameDate, @notes);
+            this._commandCollection[9].CommandText = @"INSERT INTO legagladio.[game] ([homeID], [guestID], [tdHome], [tdGuest], [casHome], [casGuest], [spHome], [spGuest], [earningHome], [earningGuest], [varFFHome], [varFFGuest], [gameDate], [notes]) VALUES (@homeID, @guestID, @tdHome, @tdGuest, @casHome, @casGuest, @spHome, @spGuest, @earningHome, @earningGuest, @varFFHome, @varFFGuest, @gameDate, @notes);
 SELECT SCOPE_IDENTITY();";
             this._commandCollection[9].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@homeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "homeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -24335,14 +24537,14 @@ SELECT SCOPE_IDENTITY();";
             this._commandCollection[9].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@notes", global::System.Data.SqlDbType.NVarChar, 4000, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[10] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[10].Connection = this.Connection;
-            this._commandCollection[10].CommandText = "delete from round_game where gameId = @gameId and roundId  =@roundId";
+            this._commandCollection[10].CommandText = "delete from legagladio.round_game where gameId = @gameId and roundId  =@roundId";
             this._commandCollection[10].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[10].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[10].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roundId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "roundId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[10].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "gameId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[10].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roundId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "roundId", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[11] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[11].Connection = this.Connection;
-            this._commandCollection[11].CommandText = @"UPDATE [game] SET [homeID] = @homeID, [guestID] = @guestID, [tdHome] = @tdHome, [tdGuest] = @tdGuest, [casHome] = @casHome, [casGuest] = @casGuest, [spHome] = @spHome, [spGuest] = @spGuest, [earningHome] = @earningHome, [earningGuest] = @earningGuest, [varFFHome] = @varFFHome, [varFFGuest] = @varFFGuest, [gameDate] = @gameDate, [notes] = @notes WHERE ([id] = @id) ;
-SELECT id FROM game WHERE (id = @id)";
+            this._commandCollection[11].CommandText = @"UPDATE legagladio.[game] SET [homeID] = @homeID, [guestID] = @guestID, [tdHome] = @tdHome, [tdGuest] = @tdGuest, [casHome] = @casHome, [casGuest] = @casGuest, [spHome] = @spHome, [spGuest] = @spGuest, [earningHome] = @earningHome, [earningGuest] = @earningGuest, [varFFHome] = @varFFHome, [varFFGuest] = @varFFGuest, [gameDate] = @gameDate, [notes] = @notes WHERE ([id] = @id) ;
+SELECT id FROM legagladio.game WHERE (id = @id)";
             this._commandCollection[11].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[11].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@homeID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "homeID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[11].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@guestID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "guestID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -25561,23 +25763,23 @@ SELECT id FROM game WHERE (id = @id)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [injury] WHERE (([id] = @Original_id) AND ((@IsNull_name = 1 AND [nam" +
-                "e] IS NULL) OR ([name] = @Original_name)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [legagladio].[injury] WHERE (([id] = @Original_id) AND ((@IsNull_name" +
+                " = 1 AND [name] IS NULL) OR ([name] = @Original_name)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [injury] ([name]) VALUES (@name);\r\nSELECT id, name FROM injury WHERE " +
-                "(id = SCOPE_IDENTITY()) ORDER BY id";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [legagladio].[injury] ([name]) VALUES (@name);\r\nSELECT id, name FROM " +
+                "legagladio.injury WHERE (id = SCOPE_IDENTITY()) ORDER BY id";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [injury] SET [name] = @name WHERE (([id] = @Original_id) AND ((@IsNull_nam" +
-                "e = 1 AND [name] IS NULL) OR ([name] = @Original_name)));\r\nSELECT id, name FROM " +
-                "injury WHERE (id = @id) ORDER BY id";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [legagladio].[injury] SET [name] = @name WHERE (([id] = @Original_id) AND " +
+                "((@IsNull_name = 1 AND [name] IS NULL) OR ([name] = @Original_name)));\r\nSELECT i" +
+                "d, name FROM legagladio.injury WHERE (id = @id) ORDER BY id";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -25599,27 +25801,28 @@ SELECT id FROM game WHERE (id = @id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from injury order by id asc";
+            this._commandCollection[0].CommandText = "select * from legagladio.injury order by id asc";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM [injury] WHERE [id] = @id";
+            this._commandCollection[1].CommandText = "DELETE FROM legagladio.[injury] WHERE [id] = @id";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT id, name FROM injury WHERE (id = @id)";
+            this._commandCollection[2].CommandText = "SELECT id, name FROM legagladio.injury WHERE (id = @id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "INSERT INTO [injury] ([name]) VALUES (@name);\r\nSELECT SCOPE_IDENTITY();";
+            this._commandCollection[3].CommandText = "INSERT INTO legagladio.[injury] ([name]) VALUES (@name);\r\nSELECT SCOPE_IDENTITY()" +
+                ";";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "UPDATE [injury] SET [name] = @name WHERE [id] = @id;\r\nSELECT id FROM injury WHERE" +
-                " (id = @id) ORDER BY id";
+            this._commandCollection[4].CommandText = "UPDATE legagladio.[injury] SET [name] = @name WHERE [id] = @id;\r\nSELECT id FROM i" +
+                "njury WHERE (id = @id) ORDER BY id";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -26020,7 +26223,7 @@ SELECT id FROM game WHERE (id = @id)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [after_game_event] WHERE (([id] = @Original_id) AND ((@IsNull_playerID = 1 AND [playerID] IS NULL) OR ([playerID] = @Original_playerID)) AND ((@IsNull_skillID = 1 AND [skillID] IS NULL) OR ([skillID] = @Original_skillID)) AND ((@IsNull_injuryID = 1 AND [injuryID] IS NULL) OR ([injuryID] = @Original_injuryID)) AND ((@IsNull_augmentationID = 1 AND [augmentationID] IS NULL) OR ([augmentationID] = @Original_augmentationID)) AND ((@IsNull_gameID = 1 AND [gameID] IS NULL) OR ([gameID] = @Original_gameID)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [legagladio].[after_game_event] WHERE (([id] = @Original_id) AND ((@IsNull_playerID = 1 AND [playerID] IS NULL) OR ([playerID] = @Original_playerID)) AND ((@IsNull_skillID = 1 AND [skillID] IS NULL) OR ([skillID] = @Original_skillID)) AND ((@IsNull_injuryID = 1 AND [injuryID] IS NULL) OR ([injuryID] = @Original_injuryID)) AND ((@IsNull_augmentationID = 1 AND [augmentationID] IS NULL) OR ([augmentationID] = @Original_augmentationID)) AND ((@IsNull_gameID = 1 AND [gameID] IS NULL) OR ([gameID] = @Original_gameID)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_playerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -26035,8 +26238,8 @@ SELECT id FROM game WHERE (id = @id)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_gameID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [after_game_event] ([playerID], [skillID], [injuryID], [augmentationID], [gameID]) VALUES (@playerID, @skillID, @injuryID, @augmentationID, @gameID);
-SELECT id, playerID, skillID, injuryID, augmentationID, gameID FROM after_game_event WHERE (id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [legagladio].[after_game_event] ([playerID], [skillID], [injuryID], [augmentationID], [gameID]) VALUES (@playerID, @skillID, @injuryID, @augmentationID, @gameID);
+SELECT id, playerID, skillID, injuryID, augmentationID, gameID FROM legagladio.after_game_event WHERE (id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@skillID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "skillID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -26045,8 +26248,8 @@ SELECT id, playerID, skillID, injuryID, augmentationID, gameID FROM after_game_e
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [after_game_event] SET [playerID] = @playerID, [skillID] = @skillID, [injuryID] = @injuryID, [augmentationID] = @augmentationID, [gameID] = @gameID WHERE (([id] = @Original_id) AND ((@IsNull_playerID = 1 AND [playerID] IS NULL) OR ([playerID] = @Original_playerID)) AND ((@IsNull_skillID = 1 AND [skillID] IS NULL) OR ([skillID] = @Original_skillID)) AND ((@IsNull_injuryID = 1 AND [injuryID] IS NULL) OR ([injuryID] = @Original_injuryID)) AND ((@IsNull_augmentationID = 1 AND [augmentationID] IS NULL) OR ([augmentationID] = @Original_augmentationID)) AND ((@IsNull_gameID = 1 AND [gameID] IS NULL) OR ([gameID] = @Original_gameID)));
-SELECT id, playerID, skillID, injuryID, augmentationID, gameID FROM after_game_event WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [legagladio].[after_game_event] SET [playerID] = @playerID, [skillID] = @skillID, [injuryID] = @injuryID, [augmentationID] = @augmentationID, [gameID] = @gameID WHERE (([id] = @Original_id) AND ((@IsNull_playerID = 1 AND [playerID] IS NULL) OR ([playerID] = @Original_playerID)) AND ((@IsNull_skillID = 1 AND [skillID] IS NULL) OR ([skillID] = @Original_skillID)) AND ((@IsNull_injuryID = 1 AND [injuryID] IS NULL) OR ([injuryID] = @Original_injuryID)) AND ((@IsNull_augmentationID = 1 AND [augmentationID] IS NULL) OR ([augmentationID] = @Original_augmentationID)) AND ((@IsNull_gameID = 1 AND [gameID] IS NULL) OR ([gameID] = @Original_gameID)));
+SELECT id, playerID, skillID, injuryID, augmentationID, gameID FROM legagladio.after_game_event WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@skillID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "skillID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -26080,30 +26283,30 @@ SELECT id, playerID, skillID, injuryID, augmentationID, gameID FROM after_game_e
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from after_game_event";
+            this._commandCollection[0].CommandText = "select * from [legagladio].[after_game_event]";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM [after_game_event] WHERE id = @id\r\n";
+            this._commandCollection[1].CommandText = "DELETE FROM [legagladio].[after_game_event] WHERE id = @id\r\n";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT augmentationID, gameID, id, injuryID, playerID, skillID FROM after_game_ev" +
-                "ent WHERE (gameID = @gameId)";
+            this._commandCollection[2].CommandText = "SELECT augmentationID, gameID, id, injuryID, playerID, skillID FROM legagladio.af" +
+                "ter_game_event WHERE (gameID = @gameId)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT augmentationID, gameID, id, injuryID, playerID, skillID FROM after_game_ev" +
-                "ent WHERE (id = @id)";
+            this._commandCollection[3].CommandText = "SELECT augmentationID, gameID, id, injuryID, playerID, skillID FROM legagladio.af" +
+                "ter_game_event WHERE (id = @id)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "INSERT INTO [after_game_event] ([playerID], [skillID], [injuryID], [augmentationI" +
-                "D], [gameID]) VALUES (@playerID, @skillID, @injuryID, @augmentationID, @gameID);" +
-                "\r\nSELECT SCOPE_IDENTITY();";
+            this._commandCollection[4].CommandText = "INSERT INTO [legagladio].[after_game_event] ([playerID], [skillID], [injuryID], [" +
+                "augmentationID], [gameID]) VALUES (@playerID, @skillID, @injuryID, @augmentation" +
+                "ID, @gameID);\r\nSELECT SCOPE_IDENTITY();";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@skillID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "skillID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -26112,9 +26315,10 @@ SELECT id, playerID, skillID, injuryID, augmentationID, gameID FROM after_game_e
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "gameID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "UPDATE [after_game_event] SET [playerID] = @playerID, [skillID] = @skillID, [inju" +
-                "ryID] = @injuryID, [augmentationID] = @augmentationID, [gameID] = @gameID WHERE " +
-                "[id] = @id;\r\nSELECT id FROM after_game_event WHERE (id = @id)";
+            this._commandCollection[5].CommandText = "UPDATE [legagladio].[after_game_event] SET [playerID] = @playerID, [skillID] = @s" +
+                "killID, [injuryID] = @injuryID, [augmentationID] = @augmentationID, [gameID] = @" +
+                "gameID WHERE [id] = @id;\r\nSELECT id FROM [legagladio].after_game_event WHERE (id" +
+                " = @id)";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@playerID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "playerID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@skillID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "skillID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -27266,9 +27470,9 @@ SELECT id, name, details, notes FROM league WHERE (id = @id) ORDER BY id DESC";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [round] WHERE (([id] = @Original_id) AND ((@IsNull_name = 1 AND [name" +
-                "] IS NULL) OR ([name] = @Original_name)) AND ((@IsNull_number = 1 AND [number] I" +
-                "S NULL) OR ([number] = @Original_number)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [legagladio].[round] WHERE (([id] = @Original_id) AND ((@IsNull_name " +
+                "= 1 AND [name] IS NULL) OR ([name] = @Original_name)) AND ((@IsNull_number = 1 A" +
+                "ND [number] IS NULL) OR ([number] = @Original_number)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -27277,15 +27481,15 @@ SELECT id, name, details, notes FROM league WHERE (id = @id) ORDER BY id DESC";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_number", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "number", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [round] ([name], [number]) VALUES (@name, @number);\r\nSELECT id, name," +
-                " number FROM round WHERE (id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [legagladio].[round] ([name], [number]) VALUES (@name, @number);\r\nSEL" +
+                "ECT id, name, number FROM legagladio.round WHERE (id = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@number", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "number", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [round] SET [name] = @name, [number] = @number WHERE (([id] = @Original_id) AND ((@IsNull_name = 1 AND [name] IS NULL) OR ([name] = @Original_name)) AND ((@IsNull_number = 1 AND [number] IS NULL) OR ([number] = @Original_number)));
-SELECT id, name, number FROM round WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [legagladio].[round] SET [name] = @name, [number] = @number WHERE (([id] = @Original_id) AND ((@IsNull_name = 1 AND [name] IS NULL) OR ([name] = @Original_name)) AND ((@IsNull_number = 1 AND [number] IS NULL) OR ([number] = @Original_number)));
+SELECT id, name, number FROM legagladio.round WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@number", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "number", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -27310,47 +27514,49 @@ SELECT id, name, number FROM round WHERE (id = @id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[8];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from round\r\n";
+            this._commandCollection[0].CommandText = "select * from [legagladio].round\r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "INSERT INTO `group_round` (`roundId`, `groupId`) VALUES (@roundId, @groupId)";
+            this._commandCollection[1].CommandText = "INSERT INTO [legagladio].[group_round] (roundId, groupId) VALUES (@roundId, @grou" +
+                "pId)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roundId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "roundID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@groupId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "groupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roundId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "roundID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@groupId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "groupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "DELETE FROM [round] WHERE [id] = @_id";
+            this._commandCollection[2].CommandText = "DELETE FROM [legagladio].[round] WHERE [id] = @_id";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "select r.* from round r join group_round gr on r.id = gr.roundid where gr.groupid" +
-                " = @groupId\r\n";
+            this._commandCollection[3].CommandText = "SELECT r.id, r.name, r.number FROM legagladio.round AS r INNER JOIN legagladio.gr" +
+                "oup_round AS gr ON r.id = gr.roundID WHERE (gr.groupID = @groupId)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@groupId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "groupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "select * from round where id = @id\r\n";
+            this._commandCollection[4].CommandText = "SELECT id, name, number FROM legagladio.round WHERE (id = @id)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "INSERT INTO round\r\n                         (name, number)\r\nVALUES        (@name," +
-                " @number); SELECT SCOPE_IDENTITY();";
+            this._commandCollection[5].CommandText = "INSERT INTO [legagladio].round\r\n                         (name, number)\r\nVALUES  " +
+                "      (@name, @number); SELECT SCOPE_IDENTITY();";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@number", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "number", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[6] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = "DELETE FROM group_round\r\nWHERE        roundId = @roundId and groupId= @groupId";
+            this._commandCollection[6].CommandText = "DELETE FROM [legagladio].group_round\r\nWHERE        roundId = @roundId and groupId" +
+                "= @groupId";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roundId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "roundID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@groupId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "groupID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roundId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "roundID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[6].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@groupId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "groupID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[7] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[7].Connection = this.Connection;
-            this._commandCollection[7].CommandText = "UPDATE [round] SET [name] = @name, [number] = @number WHERE [id] = @id;\r\nSELECT i" +
-                "d FROM round WHERE (id = @id)";
+            this._commandCollection[7].CommandText = "UPDATE [legagladio].[round] SET [name] = @name, [number] = @number WHERE [id] = @" +
+                "id;\r\nSELECT id FROM [legagladio].round WHERE (id = @id)";
             this._commandCollection[7].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[7].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@number", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "number", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -27864,7 +28070,8 @@ SELECT id, name, number FROM round WHERE (id = @id)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [round_game] ([roundId], [gameId]) VALUES (@roundId, @gameId)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [legagladio].[round_game] ([roundId], [gameId]) VALUES (@roundId, @ga" +
+                "meId)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roundId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "roundId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@gameId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "gameId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -27883,7 +28090,7 @@ SELECT id, name, number FROM round WHERE (id = @id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from round_game\r\n";
+            this._commandCollection[0].CommandText = "select * from [legagladio].round_game\r\n";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -28174,11 +28381,11 @@ SELECT id, username, password, lastlogin, lastToken FROM users WHERE (id = @id)"
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@username", global::System.Data.SqlDbType.VarChar, 4000, global::System.Data.ParameterDirection.Input, 0, 0, "username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "update users set lastToken = @token, lastLogin = SYSDATE() where username = @user" +
-                "name";
+            this._commandCollection[4].CommandText = "update users set lastToken = @token, lastLogin = CURRENT_TIMESTAMP where username" +
+                " = @username";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@token", global::System.Data.SqlDbType.VarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "lastToken", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@username", global::System.Data.SqlDbType.VarChar, 4000, global::System.Data.ParameterDirection.Input, 0, 0, "username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@token", global::System.Data.SqlDbType.NVarChar, 100, global::System.Data.ParameterDirection.Input, 0, 0, "lastToken", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@username", global::System.Data.SqlDbType.NVarChar, 4000, global::System.Data.ParameterDirection.Input, 0, 0, "username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
             this._commandCollection[5].CommandText = "update users set lastToken = null where lastToken = @token\r\n";
@@ -28765,10 +28972,11 @@ SELECT id, name, notes FROM series WHERE (id = @id) ORDER BY id";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "insert into league_series (seriesId, leagueId) VALUES (@seriesId, @leagueId)";
+            this._commandCollection[1].CommandText = "insert into [legagladio].[league_series] (seriesId, leagueId) VALUES (@seriesId, " +
+                "@leagueId)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@seriesId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "seriesId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@leagueId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "leagueId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@seriesId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "seriesId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@leagueId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "leagueId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = "DELETE FROM [series] WHERE [id] = @id";
@@ -29583,9 +29791,9 @@ SELECT id, name, notes FROM series WHERE (id = @id) ORDER BY id";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [group] WHERE (([id] = @Original_id) AND ((@IsNull_name = 1 AND [name" +
-                "] IS NULL) OR ([name] = @Original_name)) AND ((@IsNull_notes = 1 AND [notes] IS " +
-                "NULL) OR ([notes] = @Original_notes)))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [legagladio].[group] WHERE (([id] = @Original_id) AND ((@IsNull_name " +
+                "= 1 AND [name] IS NULL) OR ([name] = @Original_name)) AND ((@IsNull_notes = 1 AN" +
+                "D [notes] IS NULL) OR ([notes] = @Original_notes)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_name", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -29594,16 +29802,16 @@ SELECT id, name, notes FROM series WHERE (id = @id) ORDER BY id";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [group] ([id], [name], [notes]) VALUES (@id, @name, @notes);\r\nSELECT " +
-                "id, name, notes FROM [group] WHERE (id = @id)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [legagladio].[group] ([id], [name], [notes]) VALUES (@id, @name, @not" +
+                "es);\r\nSELECT id, name, notes FROM legagladio.[group] WHERE (id = @id)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@notes", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "notes", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [group] SET [id] = @id, [name] = @name, [notes] = @notes WHERE (([id] = @Original_id) AND ((@IsNull_name = 1 AND [name] IS NULL) OR ([name] = @Original_name)) AND ((@IsNull_notes = 1 AND [notes] IS NULL) OR ([notes] = @Original_notes)));
-SELECT id, name, notes FROM [group] WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [legagladio].[group] SET [id] = @id, [name] = @name, [notes] = @notes WHERE (([id] = @Original_id) AND ((@IsNull_name = 1 AND [name] IS NULL) OR ([name] = @Original_name)) AND ((@IsNull_notes = 1 AND [notes] IS NULL) OR ([notes] = @Original_notes)));
+SELECT id, name, notes FROM legagladio.[group] WHERE (id = @id)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -29628,14 +29836,15 @@ SELECT id, name, notes FROM [group] WHERE (id = @id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[8];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from [group]";
+            this._commandCollection[0].CommandText = "select * from legagladio.[group]";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "INSERT INTO `series_group` (`groupId`, `seriesId`) VALUES (@groupId, @seriesId)";
+            this._commandCollection[1].CommandText = "INSERT INTO [legagladio].[series_group] (groupId, seriesId) VALUES (@groupId, @se" +
+                "riesId)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@groupId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "groupId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@seriesId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "seriesId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@groupId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "groupId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@seriesId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "seriesId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = "DELETE FROM [group] WHERE [id] = @id";
@@ -29648,10 +29857,10 @@ SELECT id, name, notes FROM [group] WHERE (id = @id)";
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT g.id, g.name, g.notes FROM `group` g INNER JOIN series_group sg ON g.id = " +
-                "sg.groupId WHERE (sg.seriesId = @seriesId)";
+            this._commandCollection[4].CommandText = "SELECT g.id, g.name, g.notes FROM legagladio.[group] AS g INNER JOIN legagladio.s" +
+                "eries_group AS sg ON g.id = sg.groupId WHERE (sg.seriesId = @seriesId)";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@seriesId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "seriesId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@seriesId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "seriesId", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
             this._commandCollection[5].CommandText = "INSERT INTO [group] ([name], [notes]) VALUES (@name, @notes);\r\nSELECT SCOPE_IDENT" +
@@ -30213,7 +30422,8 @@ SELECT id, name, notes FROM [group] WHERE (id = @id)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [group_round] ([groupID], [roundID]) VALUES (@groupID, @roundID)";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [legagladio].[group_round] ([groupID], [roundID]) VALUES (@groupID, @" +
+                "roundID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@groupID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "groupID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@roundID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "roundID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -30232,7 +30442,7 @@ SELECT id, name, notes FROM [group] WHERE (id = @id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from group_round";
+            this._commandCollection[0].CommandText = "select * from [legagladio].group_round";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -30675,22 +30885,22 @@ SELECT id, name, notes FROM [group] WHERE (id = @id)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [augmentation] WHERE (([id] = @Original_id) AND ([name] = @Original_n" +
-                "ame))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [legagladio].[augmentation] WHERE (([id] = @Original_id) AND ([name] " +
+                "= @Original_name))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [augmentation] ([name]) VALUES (@name);\r\nSELECT id, name FROM augment" +
-                "ation WHERE (id = SCOPE_IDENTITY()) ORDER BY id";
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [legagladio].[augmentation] ([name]) VALUES (@name);\r\nSELECT id, name" +
+                " FROM legagladio.augmentation WHERE (id = SCOPE_IDENTITY()) ORDER BY id";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [augmentation] SET [name] = @name WHERE (([id] = @Original_id) AND ([name]" +
-                " = @Original_name));\r\nSELECT id, name FROM augmentation WHERE (id = @id) ORDER B" +
-                "Y id";
+            this._adapter.UpdateCommand.CommandText = "UPDATE [legagladio].[augmentation] SET [name] = @name WHERE (([id] = @Original_id" +
+                ") AND ([name] = @Original_name));\r\nSELECT id, name FROM legagladio.augmentation " +
+                "WHERE (id = @id) ORDER BY id";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -30711,27 +30921,28 @@ SELECT id, name, notes FROM [group] WHERE (id = @id)";
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "select * from augmentation\r\n order by id asc";
+            this._commandCollection[0].CommandText = "select * from legagladio.augmentation\r\n order by id asc";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM [augmentation] WHERE ([id] = @Original_id)";
+            this._commandCollection[1].CommandText = "DELETE FROM legagladio.[augmentation] WHERE ([id] = @Original_id)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT id, name FROM augmentation WHERE (id = @id)";
+            this._commandCollection[2].CommandText = "SELECT id, name FROM legagladio.augmentation WHERE (id = @id)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "INSERT INTO [augmentation] ([name]) VALUES (@name);\r\nSELECT SCOPE_IDENTITY()";
+            this._commandCollection[3].CommandText = "INSERT INTO legagladio.[augmentation] ([name]) VALUES (@name);\r\nSELECT SCOPE_IDEN" +
+                "TITY()";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "UPDATE [augmentation] SET [name] = @name WHERE ([id] = @id);\r\nSELECT id, name FRO" +
-                "M augmentation WHERE (id = @id) ORDER BY id";
+            this._commandCollection[4].CommandText = "UPDATE legagladio.[augmentation] SET [name] = @name WHERE ([id] = @id);\r\nSELECT i" +
+                "d, name FROM augmentation WHERE (id = @id) ORDER BY id";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@name", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
@@ -31130,7 +31341,7 @@ SELECT id, name, notes FROM [group] WHERE (id = @id)";
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [article] WHERE (([id] = @Original_id) AND ((@IsNull_title = 1 AND [title] IS NULL) OR ([title] = @Original_title)) AND ((@IsNull_content = 1 AND [content] IS NULL) OR ([content] = @Original_content)) AND ((@IsNull_created = 1 AND [created] IS NULL) OR ([created] = @Original_created)) AND ((@IsNull_updated = 1 AND [updated] IS NULL) OR ([updated] = @Original_updated)) AND ((@IsNull_ownerid = 1 AND [ownerid] IS NULL) OR ([ownerid] = @Original_ownerid)) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Original_note)) AND ((@IsNull_articletype = 1 AND [articletype] IS NULL) OR ([articletype] = @Original_articletype)))";
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [legagladio].[article] WHERE (([id] = @Original_id) AND ((@IsNull_title = 1 AND [title] IS NULL) OR ([title] = @Original_title)) AND ((@IsNull_content = 1 AND [content] IS NULL) OR ([content] = @Original_content)) AND ((@IsNull_created = 1 AND [created] IS NULL) OR ([created] = @Original_created)) AND ((@IsNull_updated = 1 AND [updated] IS NULL) OR ([updated] = @Original_updated)) AND ((@IsNull_ownerid = 1 AND [ownerid] IS NULL) OR ([ownerid] = @Original_ownerid)) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Original_note)) AND ((@IsNull_articletype = 1 AND [articletype] IS NULL) OR ([articletype] = @Original_articletype)))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_title", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "title", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -31138,9 +31349,9 @@ SELECT id, name, notes FROM [group] WHERE (id = @id)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_content", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "content", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_content", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "content", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_created", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "created", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_created", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "created", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_created", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "created", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_updated", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "updated", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_updated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "updated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_updated", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "updated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ownerid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ownerid", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ownerid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ownerid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_note", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -31149,25 +31360,25 @@ SELECT id, name, notes FROM [group] WHERE (id = @id)";
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_articletype", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "articletype", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [article] ([title], [content], [created], [updated], [ownerid], [note], [articletype]) VALUES (@title, @content, @created, @updated, @ownerid, @note, @articletype);
-SELECT id, title, [content], created, updated, ownerid, note, articletype FROM article WHERE (id = SCOPE_IDENTITY()) ORDER BY created DESC";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [legagladio].[article] ([title], [content], [created], [updated], [ownerid], [note], [articletype]) VALUES (@title, @content, @created, @updated, @ownerid, @note, @articletype);
+SELECT id, title, [content], created, updated, ownerid, note, articletype FROM legagladio.article WHERE (id = SCOPE_IDENTITY()) ORDER BY created DESC";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@title", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "title", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@content", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "content", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@created", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "created", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@updated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "updated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@created", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "created", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@updated", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "updated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ownerid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ownerid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@articletype", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "articletype", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [article] SET [title] = @title, [content] = @content, [created] = @created, [updated] = @updated, [ownerid] = @ownerid, [note] = @note, [articletype] = @articletype WHERE (([id] = @Original_id) AND ((@IsNull_title = 1 AND [title] IS NULL) OR ([title] = @Original_title)) AND ((@IsNull_content = 1 AND [content] IS NULL) OR ([content] = @Original_content)) AND ((@IsNull_created = 1 AND [created] IS NULL) OR ([created] = @Original_created)) AND ((@IsNull_updated = 1 AND [updated] IS NULL) OR ([updated] = @Original_updated)) AND ((@IsNull_ownerid = 1 AND [ownerid] IS NULL) OR ([ownerid] = @Original_ownerid)) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Original_note)) AND ((@IsNull_articletype = 1 AND [articletype] IS NULL) OR ([articletype] = @Original_articletype)));
-SELECT id, title, [content], created, updated, ownerid, note, articletype FROM article WHERE (id = @id) ORDER BY created DESC";
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [legagladio].[article] SET [title] = @title, [content] = @content, [created] = @created, [updated] = @updated, [ownerid] = @ownerid, [note] = @note, [articletype] = @articletype WHERE (([id] = @Original_id) AND ((@IsNull_title = 1 AND [title] IS NULL) OR ([title] = @Original_title)) AND ((@IsNull_content = 1 AND [content] IS NULL) OR ([content] = @Original_content)) AND ((@IsNull_created = 1 AND [created] IS NULL) OR ([created] = @Original_created)) AND ((@IsNull_updated = 1 AND [updated] IS NULL) OR ([updated] = @Original_updated)) AND ((@IsNull_ownerid = 1 AND [ownerid] IS NULL) OR ([ownerid] = @Original_ownerid)) AND ((@IsNull_note = 1 AND [note] IS NULL) OR ([note] = @Original_note)) AND ((@IsNull_articletype = 1 AND [articletype] IS NULL) OR ([articletype] = @Original_articletype)));
+SELECT id, title, [content], created, updated, ownerid, note, articletype FROM legagladio.article WHERE (id = @id) ORDER BY created DESC";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@title", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "title", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@content", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "content", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@created", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "created", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@updated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "updated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@created", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "created", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@updated", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "updated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ownerid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ownerid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@articletype", global::System.Data.SqlDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, 0, 0, "articletype", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -31177,9 +31388,9 @@ SELECT id, title, [content], created, updated, ownerid, note, articletype FROM a
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_content", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "content", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_content", global::System.Data.SqlDbType.NVarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "content", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_created", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "created", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_created", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "created", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_created", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "created", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_updated", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "updated", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_updated", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "updated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_updated", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "updated", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ownerid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ownerid", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ownerid", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ownerid", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_note", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
@@ -31202,31 +31413,31 @@ SELECT id, title, [content], created, updated, ownerid, note, articletype FROM a
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[6];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, title, [content], created, updated, ownerid, note, articletype FROM ar" +
-                "ticle ORDER BY created DESC";
+            this._commandCollection[0].CommandText = "SELECT id, title, [content], created, updated, ownerid, note, articletype FROM le" +
+                "gagladio.article ORDER BY created DESC";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[1] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[1].Connection = this.Connection;
-            this._commandCollection[1].CommandText = "DELETE FROM `article` WHERE (`id` = @id)";
+            this._commandCollection[1].CommandText = "DELETE FROM legagladio.article WHERE (id = @id)";
             this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[1].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
-            this._commandCollection[2].CommandText = "SELECT articletype, [content], created, id, note, ownerid, title, updated FROM ar" +
-                "ticle WHERE (articletype = @articleType) ORDER BY created DESC";
+            this._commandCollection[2].CommandText = "SELECT articletype, [content], created, id, note, ownerid, title, updated FROM le" +
+                "gagladio.article WHERE (articletype = @articleType) ORDER BY created DESC";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@articleType", global::System.Data.SqlDbType.Variant, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "articletype", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT articletype, [content], created, id, note, ownerid, title, updated FROM ar" +
-                "ticle WHERE (id = @id)";
+            this._commandCollection[3].CommandText = "SELECT articletype, [content], created, id, note, ownerid, title, updated FROM le" +
+                "gagladio.article WHERE (id = @id)";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "INSERT INTO article (title, content, created, updated, ownerid, articletype, note" +
-                ") VALUES (@title, @content, @created, @updated, @ownerId, @articleType, @note); " +
-                "select scope_identity();";
+            this._commandCollection[4].CommandText = "INSERT INTO legagladio.article (title, content, created, updated, ownerid, articl" +
+                "etype, note) VALUES (@title, @content, @created, @updated, @ownerId, @articleTyp" +
+                "e, @note); select scope_identity();";
             this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@title", global::System.Data.SqlDbType.NVarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "title", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@content", global::System.Data.SqlDbType.NVarChar, 4000, global::System.Data.ParameterDirection.Input, 0, 0, "content", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -31237,19 +31448,19 @@ SELECT id, title, [content], created, updated, ownerid, note, articletype FROM a
             this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 45, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[5] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[5].Connection = this.Connection;
-            this._commandCollection[5].CommandText = "UPDATE `article` SET `id` = @id, `title` = @title, `content` = @content, `created" +
-                "` = @created, `updated` = @updated, `ownerid` = @ownerId, `articletype` = @artic" +
-                "leType, `note` = @note WHERE (`id` = @oldId)";
+            this._commandCollection[5].CommandText = "UPDATE legagladio.article SET id = @id, title = @title, content = @content, creat" +
+                "ed = @created, updated = @updated, ownerid = @ownerId, articletype = @articleTyp" +
+                "e, note = @note WHERE (id = @oldId)";
             this._commandCollection[5].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@title", global::System.Data.SqlDbType.VarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "title", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@content", global::System.Data.SqlDbType.VarChar, 900, global::System.Data.ParameterDirection.Input, 0, 0, "content", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@created", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "created", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@updated", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "updated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ownerId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ownerid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@articleType", global::System.Data.SqlDbType.Variant, 1024, global::System.Data.ParameterDirection.Input, 0, 0, "articletype", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.VarChar, 45, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@oldId", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@title", global::System.Data.SqlDbType.NVarChar, 300, global::System.Data.ParameterDirection.Input, 0, 0, "title", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@content", global::System.Data.SqlDbType.NVarChar, 4000, global::System.Data.ParameterDirection.Input, 0, 0, "content", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@created", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "created", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@updated", global::System.Data.SqlDbType.DateTime, 8, global::System.Data.ParameterDirection.Input, 0, 0, "updated", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ownerId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "ownerid", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@articleType", global::System.Data.SqlDbType.SmallInt, 2, global::System.Data.ParameterDirection.Input, 0, 0, "articletype", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@note", global::System.Data.SqlDbType.NVarChar, 45, global::System.Data.ParameterDirection.Input, 0, 0, "note", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[5].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@oldId", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -31746,7 +31957,7 @@ SELECT id, title, [content], created, updated, ownerid, note, articletype FROM a
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateArticle(int id, string title, string content, global::System.Nullable<global::System.DateTime> created, global::System.Nullable<global::System.DateTime> updated, global::System.Nullable<int> ownerId, object articleType, string note, int oldId) {
+        public virtual int UpdateArticle(int id, string title, string content, global::System.Nullable<global::System.DateTime> created, global::System.Nullable<global::System.DateTime> updated, global::System.Nullable<int> ownerId, global::System.Nullable<short> articleType, string note, int oldId) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             command.Parameters[0].Value = ((int)(id));
             if ((title == null)) {
@@ -31779,11 +31990,11 @@ SELECT id, title, [content], created, updated, ownerid, note, articletype FROM a
             else {
                 command.Parameters[5].Value = global::System.DBNull.Value;
             }
-            if ((articleType == null)) {
-                command.Parameters[6].Value = global::System.DBNull.Value;
+            if ((articleType.HasValue == true)) {
+                command.Parameters[6].Value = ((short)(articleType.Value));
             }
             else {
-                command.Parameters[6].Value = ((object)(articleType));
+                command.Parameters[6].Value = global::System.DBNull.Value;
             }
             if ((note == null)) {
                 command.Parameters[7].Value = global::System.DBNull.Value;

@@ -122,7 +122,7 @@ namespace DataAccessLayer
         public static Boolean DeleteSkill(int id)
         {
             var sta = new skillTableAdapter();
-            var rowNum = sta.Delete(id);
+            var rowNum = sta.DeleteSkill(id);
             return rowNum == 1;
         }
 

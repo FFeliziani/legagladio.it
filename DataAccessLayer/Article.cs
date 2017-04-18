@@ -55,7 +55,7 @@ namespace DataAccessLayer
         public static void UpdateArticle(LegaGladio.Entities.Article article, Int32 oldId)
         {
             var ata = new articleTableAdapter();
-            ata.UpdateArticle(article.Id, article.Title, article.Content, article.Created, article.Updated, 0, article.ArticleType, article.Note, oldId);
+            ata.UpdateArticle(article.Id, article.Title, article.Content, article.Created, article.Updated, 0, Convert.ToInt16(article.ArticleType), article.Note, oldId);
         }
 
         public static void DeleteArticle(Int32 id)

@@ -21,30 +21,31 @@ namespace DataAccessLayer
             var pta = new playerTableAdapter();
             pta.Fill(pdt);
             var playerList = new List<LegaGladio.Entities.Player>();
-            foreach (var player in from LegaGladioDS.playerRow playerRow in pdt.Rows select new LegaGladio.Entities.Player
-            {
-                Id = playerRow.id,
-                AgMinus = playerRow.agm,
-                Dead = playerRow.dead == 1,
-                Retired = playerRow.retired == 1,
-                AgPlus = playerRow.agp,
-                AvMinus = playerRow.avm,
-                AvPlus = playerRow.avp,
-                Cas = playerRow.cas,
-                Inter = playerRow.inter,
-                Mvp = playerRow.mvp,
-                MaMinus = playerRow.mam,
-                MaPlus = playerRow.map,
-                MissNextGame = playerRow.missNextGame == 1,
-                Name = playerRow.name,
-                Niggling = playerRow.niggling,
-                Pass = playerRow.pass,
-                Spp = playerRow.spp,
-                StMinus = playerRow.stm,
-                StPlus = playerRow.stp,
-                Position = playerRow.position,
-                Td = playerRow.td
-            })
+            foreach (var player in from LegaGladioDS.playerRow playerRow in pdt.Rows
+                                   select new LegaGladio.Entities.Player
+                                   {
+                                       Id = playerRow.id,
+                                       AgMinus = playerRow.agm,
+                                       Dead = playerRow.dead == 1,
+                                       Retired = playerRow.retired == 1,
+                                       AgPlus = playerRow.agp,
+                                       AvMinus = playerRow.avm,
+                                       AvPlus = playerRow.avp,
+                                       Cas = playerRow.cas,
+                                       Inter = playerRow.inter,
+                                       Mvp = playerRow.mvp,
+                                       MaMinus = playerRow.mam,
+                                       MaPlus = playerRow.map,
+                                       MissNextGame = playerRow.missNextGame == 1,
+                                       Name = playerRow.name,
+                                       Niggling = playerRow.niggling,
+                                       Pass = playerRow.pass,
+                                       Spp = playerRow.spp,
+                                       StMinus = playerRow.stm,
+                                       StPlus = playerRow.stp,
+                                       Position = playerRow.position,
+                                       Td = playerRow.td
+                                   })
             {
                 player.Cost = CalculatePlayerValue(player.Id);
                 player.ListAbility = Skill.ListSkill(player.Id);
@@ -58,32 +59,33 @@ namespace DataAccessLayer
         {
             var pdt = new LegaGladioDS.playerDataTable();
             var pta = new playerTableAdapter();
-            pta.FillByTeamIdActive(pdt, teamId, active);
+            pta.FillByTeamIdActive(pdt, teamId, active ? 1 : 0);
             var playerList = new List<LegaGladio.Entities.Player>();
-            foreach (var player in from LegaGladioDS.playerRow playerRow in pdt.Rows select new LegaGladio.Entities.Player
-            {
-                AgMinus = playerRow.agm,
-                AgPlus = playerRow.agp,
-                Dead = playerRow.dead == 1,
-                Retired = playerRow.retired == 1,
-                AvMinus = playerRow.avm,
-                AvPlus = playerRow.avp,
-                Cas = playerRow.cas,
-                Inter = playerRow.inter,
-                Id = playerRow.id,
-                MaMinus = playerRow.mam,
-                MaPlus = playerRow.map,
-                MissNextGame = playerRow.missNextGame == 1,
-                Mvp = playerRow.mvp,
-                Name = playerRow.name,
-                Niggling = playerRow.niggling,
-                Pass = playerRow.pass,
-                Spp = playerRow.spp,
-                StMinus = playerRow.stm,
-                StPlus = playerRow.stp,
-                Position = playerRow.position,
-                Td = playerRow.td
-            })
+            foreach (var player in from LegaGladioDS.playerRow playerRow in pdt.Rows
+                                   select new LegaGladio.Entities.Player
+                                   {
+                                       AgMinus = playerRow.agm,
+                                       AgPlus = playerRow.agp,
+                                       Dead = playerRow.dead == 1,
+                                       Retired = playerRow.retired == 1,
+                                       AvMinus = playerRow.avm,
+                                       AvPlus = playerRow.avp,
+                                       Cas = playerRow.cas,
+                                       Inter = playerRow.inter,
+                                       Id = playerRow.id,
+                                       MaMinus = playerRow.mam,
+                                       MaPlus = playerRow.map,
+                                       MissNextGame = playerRow.missNextGame == 1,
+                                       Mvp = playerRow.mvp,
+                                       Name = playerRow.name,
+                                       Niggling = playerRow.niggling,
+                                       Pass = playerRow.pass,
+                                       Spp = playerRow.spp,
+                                       StMinus = playerRow.stm,
+                                       StPlus = playerRow.stp,
+                                       Position = playerRow.position,
+                                       Td = playerRow.td
+                                   })
             {
                 player.Cost = CalculatePlayerValue(player.Id);
                 player.ListAbility = Skill.ListSkill(player.Id);
@@ -99,30 +101,31 @@ namespace DataAccessLayer
             var pta = new playerTableAdapter();
             pta.FillByTeamId(pdt, teamId);
             var playerList = new List<LegaGladio.Entities.Player>();
-            foreach (var player in from LegaGladioDS.playerRow playerRow in pdt.Rows select new LegaGladio.Entities.Player
-            {
-                AgMinus = playerRow.agm,
-                AgPlus = playerRow.agp,
-                Dead = playerRow.dead == 1,
-                Retired = playerRow.retired == 1,
-                AvMinus = playerRow.avm,
-                AvPlus = playerRow.avp,
-                Cas = playerRow.cas,
-                Inter = playerRow.inter,
-                Id = playerRow.id,
-                MaMinus = playerRow.mam,
-                MaPlus = playerRow.map,
-                MissNextGame = playerRow.missNextGame == 1,
-                Mvp = playerRow.mvp,
-                Name = playerRow.name,
-                Niggling = playerRow.niggling,
-                Pass = playerRow.pass,
-                Spp = playerRow.spp,
-                StMinus = playerRow.stm,
-                StPlus = playerRow.stp,
-                Position = playerRow.position,
-                Td = playerRow.td
-            })
+            foreach (var player in from LegaGladioDS.playerRow playerRow in pdt.Rows
+                                   select new LegaGladio.Entities.Player
+                                   {
+                                       AgMinus = playerRow.agm,
+                                       AgPlus = playerRow.agp,
+                                       Dead = playerRow.dead == 1,
+                                       Retired = playerRow.retired == 1,
+                                       AvMinus = playerRow.avm,
+                                       AvPlus = playerRow.avp,
+                                       Cas = playerRow.cas,
+                                       Inter = playerRow.inter,
+                                       Id = playerRow.id,
+                                       MaMinus = playerRow.mam,
+                                       MaPlus = playerRow.map,
+                                       MissNextGame = playerRow.missNextGame == 1,
+                                       Mvp = playerRow.mvp,
+                                       Name = playerRow.name,
+                                       Niggling = playerRow.niggling,
+                                       Pass = playerRow.pass,
+                                       Spp = playerRow.spp,
+                                       StMinus = playerRow.stm,
+                                       StPlus = playerRow.stp,
+                                       Position = playerRow.position,
+                                       Td = playerRow.td
+                                   })
             {
                 player.Cost = CalculatePlayerValue(player.Id);
                 player.ListAbility = Skill.ListSkill(player.Id);
@@ -186,7 +189,7 @@ namespace DataAccessLayer
         {
             var pta = new playerTableAdapter();
             //name, map, agp, avp, stp, cost, spp, td, cas, pass, inter, niggling, missNextGame, mam, agm, avm, stm, retired, dead
-            
+
             return Convert.ToInt32(pta.InsertPlayer(player.Name, player.MaPlus, player.AgPlus, player.AvPlus, player.StPlus, player.Cost, player.Spp, player.Td, player.Cas, player.Pass, player.Inter, player.Mvp, player.Niggling, (player.MissNextGame ? 1 : 0), player.MaMinus, player.AgMinus, player.AvMinus, player.StMinus, (player.Retired ? 1 : 0), (player.Dead ? 1 : 0), player.Positional.Id, player.Position));
         }
 
@@ -289,8 +292,8 @@ namespace DataAccessLayer
         public static string GenerateName(LegaGladio.Entities.Race race)
         {
             Utilities.RandomUtilities.Init();
-            var names = new List<String> {"Abrielle","Adair","Adara","Adriel","Aiyana","Alissa","Alixandra","Altair","Amara","Anatola","Anya","Arcadia","Ariadne","Arianwen","Aurelia","Aurelian","Aurelius","Avalon","Acalia","Alaire","Auristela","Bastian","Breena","Brielle","Briallan","Briseis","Cambria","Cara","Carys","Caspian","Cassia","Cassiel","Cassiopeia","Cassius","Chaniel","Cora","Corbin","Cyprian","Daire","Darius","Destin","Drake","Drystan","Dagen","Devlin","Devlyn","Eira","Eirian","Elysia","Eoin","Evadne","Eliron","Evanth","Fineas","Finian","Fyodor","Gareth","Gavriel","Griffin","Guinevere","Gaerwn","Ginerva","Hadriel","Hannelore","Hermione","Hesperos","Iagan","Ianthe","Ignacia","Ignatius","Iseult","Isolde","Jessalyn","Kara","Kerensa","Korbin","Kyler","Kyra","Katriel","Kyrielle","Leala","Leila","Lilith","Liora","Lucien","Lyra","Leira","Liriene","Liron","Maia","Marius","Mathieu","Mireille","Mireya","Maylea","Meira","Natania","Nerys","Nuriel","Nyssa","Neirin","Nyfain","Oisin","Oralie","Orion","Orpheus","Ozara","Oleisa","Orinthea","Peregrine","Persephone","Perseus","Petronela","Phelan","Pryderi","Pyralia","Pyralis","Qadira","Quintessa","Quinevere","Raisa","Remus","Rhyan","Rhydderch","Riona","Renfrew","Saoirse","Sarai","Sebastian","Seraphim","Seraphina","Sirius","Sorcha","Saira","Sarielle","Serian","Séverin","Tavish","Tearlach","Terra","Thalia","Thaniel","Theia","Torian","Torin","Tressa","Tristana","Uriela","Urien","Ulyssia","Vanora","Vespera","Vasilis","Xanthus","Xara","Xylia","Yadira","Yseult","Yakira","Yeira","Yeriel","Yestin","Zaira","Zephyr","Zora","Zorion","Zaniel","Zarek"};
-            var surnames = new List<String>{"Hillsilver","Quiverautumn","Macequiver","Daydagger","Bornbolt","Goldflame","Fullhillbull","Glidedark","Redcapemane","Paladinshield","Ramhell","Earbreaker","Heartseaspear","Leafdusk","Treebright","Firebreak","Shademourne","Shieldwinter","Wormnose","Glazemane","Brave","Shadowdark","Bloodblue","Moonpaladin","Glazegate","Sidecloak","Walker","Falconhelm","Bladeriver","Shadowred","Ragewalker","Land-bull","Dusk-nose","Staff","Pickersand","Blade","Greyax","Huntershade","Glazesun","Wolfwhite","Shadowelf","Shadowgaze","Shinelord","Plainsfury","Dwarfgaze","Wulfborn","Wormflare","Firebow","Bloodeagle","Watershield","Elvenbull","Arrowsummerore","Oakengoat","Hammerdark","Borne-worm","Eyebreak","Moonbolt","Blood-silver","Gazehalf","Manman"};
+            var names = new List<String> { "Abrielle", "Adair", "Adara", "Adriel", "Aiyana", "Alissa", "Alixandra", "Altair", "Amara", "Anatola", "Anya", "Arcadia", "Ariadne", "Arianwen", "Aurelia", "Aurelian", "Aurelius", "Avalon", "Acalia", "Alaire", "Auristela", "Bastian", "Breena", "Brielle", "Briallan", "Briseis", "Cambria", "Cara", "Carys", "Caspian", "Cassia", "Cassiel", "Cassiopeia", "Cassius", "Chaniel", "Cora", "Corbin", "Cyprian", "Daire", "Darius", "Destin", "Drake", "Drystan", "Dagen", "Devlin", "Devlyn", "Eira", "Eirian", "Elysia", "Eoin", "Evadne", "Eliron", "Evanth", "Fineas", "Finian", "Fyodor", "Gareth", "Gavriel", "Griffin", "Guinevere", "Gaerwn", "Ginerva", "Hadriel", "Hannelore", "Hermione", "Hesperos", "Iagan", "Ianthe", "Ignacia", "Ignatius", "Iseult", "Isolde", "Jessalyn", "Kara", "Kerensa", "Korbin", "Kyler", "Kyra", "Katriel", "Kyrielle", "Leala", "Leila", "Lilith", "Liora", "Lucien", "Lyra", "Leira", "Liriene", "Liron", "Maia", "Marius", "Mathieu", "Mireille", "Mireya", "Maylea", "Meira", "Natania", "Nerys", "Nuriel", "Nyssa", "Neirin", "Nyfain", "Oisin", "Oralie", "Orion", "Orpheus", "Ozara", "Oleisa", "Orinthea", "Peregrine", "Persephone", "Perseus", "Petronela", "Phelan", "Pryderi", "Pyralia", "Pyralis", "Qadira", "Quintessa", "Quinevere", "Raisa", "Remus", "Rhyan", "Rhydderch", "Riona", "Renfrew", "Saoirse", "Sarai", "Sebastian", "Seraphim", "Seraphina", "Sirius", "Sorcha", "Saira", "Sarielle", "Serian", "Séverin", "Tavish", "Tearlach", "Terra", "Thalia", "Thaniel", "Theia", "Torian", "Torin", "Tressa", "Tristana", "Uriela", "Urien", "Ulyssia", "Vanora", "Vespera", "Vasilis", "Xanthus", "Xara", "Xylia", "Yadira", "Yseult", "Yakira", "Yeira", "Yeriel", "Yestin", "Zaira", "Zephyr", "Zora", "Zorion", "Zaniel", "Zarek" };
+            var surnames = new List<String> { "Hillsilver", "Quiverautumn", "Macequiver", "Daydagger", "Bornbolt", "Goldflame", "Fullhillbull", "Glidedark", "Redcapemane", "Paladinshield", "Ramhell", "Earbreaker", "Heartseaspear", "Leafdusk", "Treebright", "Firebreak", "Shademourne", "Shieldwinter", "Wormnose", "Glazemane", "Brave", "Shadowdark", "Bloodblue", "Moonpaladin", "Glazegate", "Sidecloak", "Walker", "Falconhelm", "Bladeriver", "Shadowred", "Ragewalker", "Land-bull", "Dusk-nose", "Staff", "Pickersand", "Blade", "Greyax", "Huntershade", "Glazesun", "Wolfwhite", "Shadowelf", "Shadowgaze", "Shinelord", "Plainsfury", "Dwarfgaze", "Wulfborn", "Wormflare", "Firebow", "Bloodeagle", "Watershield", "Elvenbull", "Arrowsummerore", "Oakengoat", "Hammerdark", "Borne-worm", "Eyebreak", "Moonbolt", "Blood-silver", "Gazehalf", "Manman" };
 
             var name = names[Utilities.RandomUtilities.Random.Next(names.Count)] + " " + surnames[Utilities.RandomUtilities.Random.Next(surnames.Count)];
             return name;
