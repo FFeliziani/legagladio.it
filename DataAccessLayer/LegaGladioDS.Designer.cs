@@ -78,13 +78,13 @@ namespace DataAccessLayer {
         
         private articleDataTable tablearticle;
         
-        private global::System.Data.DataRelation relationFK_team_player_player;
-        
         private global::System.Data.DataRelation relationFK_player_skill_player;
         
-        private global::System.Data.DataRelation relationFK_positional_skill_skill;
+        private global::System.Data.DataRelation relationFK_team_player_player;
         
         private global::System.Data.DataRelation relationFK_player_skill_skill;
+        
+        private global::System.Data.DataRelation relationFK_positional_skill_skill;
         
         private global::System.Data.DataRelation relationFK_coach_team_team;
         
@@ -880,10 +880,10 @@ namespace DataAccessLayer {
                     this.tablearticle.InitVars();
                 }
             }
-            this.relationFK_team_player_player = this.Relations["FK_team_player_player"];
             this.relationFK_player_skill_player = this.Relations["FK_player_skill_player"];
-            this.relationFK_positional_skill_skill = this.Relations["FK_positional_skill_skill"];
+            this.relationFK_team_player_player = this.Relations["FK_team_player_player"];
             this.relationFK_player_skill_skill = this.Relations["FK_player_skill_skill"];
+            this.relationFK_positional_skill_skill = this.Relations["FK_positional_skill_skill"];
             this.relationFK_coach_team_team = this.Relations["FK_coach_team_team"];
             this.relationFK_positional_race_race = this.Relations["FK_positional_race_race"];
             this.relationFK_positional_skill_positional = this.Relations["FK_positional_skill_positional"];
@@ -976,13 +976,6 @@ namespace DataAccessLayer {
             this.tablearticle = new articleDataTable();
             base.Tables.Add(this.tablearticle);
             global::System.Data.ForeignKeyConstraint fkc;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_team_player_player", new global::System.Data.DataColumn[] {
-                        this.tableteam_player.playerIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableplayer.idColumn});
-            this.tableplayer.Constraints.Add(fkc);
-            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
-            fkc.DeleteRule = global::System.Data.Rule.Cascade;
-            fkc.UpdateRule = global::System.Data.Rule.Cascade;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_player_skill_player", new global::System.Data.DataColumn[] {
                         this.tableplayer_skill.playerIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableplayer.idColumn});
@@ -990,15 +983,22 @@ namespace DataAccessLayer {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            fkc = new global::System.Data.ForeignKeyConstraint("FK_positional_skill_skill", new global::System.Data.DataColumn[] {
-                        this.tablepositional_skill.skillIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableskill.idColumn});
-            this.tableskill.Constraints.Add(fkc);
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_team_player_player", new global::System.Data.DataColumn[] {
+                        this.tableteam_player.playerIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableplayer.idColumn});
+            this.tableplayer.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
             fkc = new global::System.Data.ForeignKeyConstraint("FK_player_skill_skill", new global::System.Data.DataColumn[] {
                         this.tableplayer_skill.skillIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableskill.idColumn});
+            this.tableskill.Constraints.Add(fkc);
+            fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
+            fkc.DeleteRule = global::System.Data.Rule.Cascade;
+            fkc.UpdateRule = global::System.Data.Rule.Cascade;
+            fkc = new global::System.Data.ForeignKeyConstraint("FK_positional_skill_skill", new global::System.Data.DataColumn[] {
+                        this.tablepositional_skill.skillIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableskill.idColumn});
             this.tableskill.Constraints.Add(fkc);
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
@@ -1060,22 +1060,22 @@ namespace DataAccessLayer {
             fkc.AcceptRejectRule = global::System.Data.AcceptRejectRule.None;
             fkc.DeleteRule = global::System.Data.Rule.Cascade;
             fkc.UpdateRule = global::System.Data.Rule.Cascade;
-            this.relationFK_team_player_player = new global::System.Data.DataRelation("FK_team_player_player", new global::System.Data.DataColumn[] {
-                        this.tableteam_player.playerIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableplayer.idColumn}, false);
-            this.Relations.Add(this.relationFK_team_player_player);
             this.relationFK_player_skill_player = new global::System.Data.DataRelation("FK_player_skill_player", new global::System.Data.DataColumn[] {
                         this.tableplayer_skill.playerIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableplayer.idColumn}, false);
             this.Relations.Add(this.relationFK_player_skill_player);
-            this.relationFK_positional_skill_skill = new global::System.Data.DataRelation("FK_positional_skill_skill", new global::System.Data.DataColumn[] {
-                        this.tablepositional_skill.skillIDColumn}, new global::System.Data.DataColumn[] {
-                        this.tableskill.idColumn}, false);
-            this.Relations.Add(this.relationFK_positional_skill_skill);
+            this.relationFK_team_player_player = new global::System.Data.DataRelation("FK_team_player_player", new global::System.Data.DataColumn[] {
+                        this.tableteam_player.playerIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableplayer.idColumn}, false);
+            this.Relations.Add(this.relationFK_team_player_player);
             this.relationFK_player_skill_skill = new global::System.Data.DataRelation("FK_player_skill_skill", new global::System.Data.DataColumn[] {
                         this.tableplayer_skill.skillIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableskill.idColumn}, false);
             this.Relations.Add(this.relationFK_player_skill_skill);
+            this.relationFK_positional_skill_skill = new global::System.Data.DataRelation("FK_positional_skill_skill", new global::System.Data.DataColumn[] {
+                        this.tablepositional_skill.skillIDColumn}, new global::System.Data.DataColumn[] {
+                        this.tableskill.idColumn}, false);
+            this.Relations.Add(this.relationFK_positional_skill_skill);
             this.relationFK_coach_team_team = new global::System.Data.DataRelation("FK_coach_team_team", new global::System.Data.DataColumn[] {
                         this.tablecoach_team.teamIDColumn}, new global::System.Data.DataColumn[] {
                         this.tableteam.idColumn}, false);
@@ -2456,14 +2456,14 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public skillRow AddskillRow(positional_skillRow parentpositional_skillRowByFK_positional_skill_skill, string name, int type) {
+            public skillRow AddskillRow(player_skillRow parentplayer_skillRowByFK_player_skill_skill, string name, int type) {
                 skillRow rowskillRow = ((skillRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         name,
                         type};
-                if ((parentpositional_skillRowByFK_positional_skill_skill != null)) {
-                    columnValuesArray[0] = parentpositional_skillRowByFK_positional_skill_skill[0];
+                if ((parentplayer_skillRowByFK_player_skill_skill != null)) {
+                    columnValuesArray[0] = parentplayer_skillRowByFK_player_skill_skill[1];
                 }
                 rowskillRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowskillRow);
@@ -10506,23 +10506,23 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public team_playerRow team_playerRow {
-                get {
-                    return ((team_playerRow)(this.GetParentRow(this.Table.ParentRelations["FK_team_player_player"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_team_player_player"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public player_skillRow player_skillRow {
                 get {
                     return ((player_skillRow)(this.GetParentRow(this.Table.ParentRelations["FK_player_skill_player"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_player_skill_player"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public team_playerRow team_playerRow {
+                get {
+                    return ((team_playerRow)(this.GetParentRow(this.Table.ParentRelations["FK_team_player_player"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_team_player_player"]);
                 }
             }
             
@@ -11009,23 +11009,23 @@ namespace DataAccessLayer {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public positional_skillRow positional_skillRow {
-                get {
-                    return ((positional_skillRow)(this.GetParentRow(this.Table.ParentRelations["FK_positional_skill_skill"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["FK_positional_skill_skill"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public player_skillRow player_skillRow {
                 get {
                     return ((player_skillRow)(this.GetParentRow(this.Table.ParentRelations["FK_player_skill_skill"])));
                 }
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_player_skill_skill"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public positional_skillRow positional_skillRow {
+                get {
+                    return ((positional_skillRow)(this.GetParentRow(this.Table.ParentRelations["FK_positional_skill_skill"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_positional_skill_skill"]);
                 }
             }
             
@@ -17118,7 +17118,7 @@ SELECT id FROM [legagladio].[player] WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertPlayer(
+        public virtual object InsertPlayer(
                     string name, 
                     global::System.Nullable<int> map, 
                     global::System.Nullable<int> agp, 
@@ -17279,16 +17279,22 @@ SELECT id FROM [legagladio].[player] WHERE (id = @id);";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -17330,7 +17336,7 @@ SELECT id FROM [legagladio].[player] WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdatePlayer(
+        public virtual object UpdatePlayer(
                     string name, 
                     global::System.Nullable<int> map, 
                     global::System.Nullable<int> agp, 
@@ -17493,16 +17499,22 @@ SELECT id FROM [legagladio].[player] WHERE (id = @id);";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -18441,7 +18453,7 @@ SELECT id FROM [legagladio].[player] WHERE (id = @id);";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateSkill(string name, global::System.Nullable<int> type, int id) {
+        public virtual object UpdateSkill(string name, global::System.Nullable<int> type, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[10];
             if ((name == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -18461,16 +18473,22 @@ SELECT id FROM [legagladio].[player] WHERE (id = @id);";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -19369,7 +19387,7 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertTeam(global::System.Nullable<int> value, string name, global::System.Nullable<int> funFactor, global::System.Nullable<int> reroll, global::System.Nullable<int> cheerleader, global::System.Nullable<int> assistantCoach, global::System.Nullable<int> treasury, string imagePath, global::System.Nullable<int> hasMedic, global::System.Nullable<int> active) {
+        public virtual object InsertTeam(global::System.Nullable<int> value, string name, global::System.Nullable<int> funFactor, global::System.Nullable<int> reroll, global::System.Nullable<int> cheerleader, global::System.Nullable<int> assistantCoach, global::System.Nullable<int> treasury, string imagePath, global::System.Nullable<int> hasMedic, global::System.Nullable<int> active) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[7];
             if ((value.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(value.Value));
@@ -19436,16 +19454,22 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -19477,7 +19501,7 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateTeam(global::System.Nullable<int> value, string name, global::System.Nullable<int> funFactor, global::System.Nullable<int> reroll, global::System.Nullable<int> cheerleader, global::System.Nullable<int> assistantCoach, global::System.Nullable<int> treasury, string imagePath, global::System.Nullable<int> hasMedic, global::System.Nullable<int> active, int p9) {
+        public virtual object UpdateTeam(global::System.Nullable<int> value, string name, global::System.Nullable<int> funFactor, global::System.Nullable<int> reroll, global::System.Nullable<int> cheerleader, global::System.Nullable<int> assistantCoach, global::System.Nullable<int> treasury, string imagePath, global::System.Nullable<int> hasMedic, global::System.Nullable<int> active, int p9) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[9];
             if ((value.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(value.Value));
@@ -19545,16 +19569,22 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -20499,7 +20529,7 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertRace(string name, global::System.Nullable<int> reroll) {
+        public virtual object InsertRace(string name, global::System.Nullable<int> reroll) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             if ((name == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -20518,23 +20548,29 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateRace(string name, global::System.Nullable<int> reroll, int id) {
+        public virtual object UpdateRace(string name, global::System.Nullable<int> reroll, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[6];
             if ((name == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -20554,16 +20590,22 @@ SELECT id, value, name, funFactor, reroll, hasMedic, cheerleader, assistantCoach
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -21498,7 +21540,7 @@ SELECT id FROM positional WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertPositional(global::System.Nullable<int> qty, string title, global::System.Nullable<int> cost, global::System.Nullable<int> ma, global::System.Nullable<int> st, global::System.Nullable<int> ag, global::System.Nullable<int> av, global::System.Nullable<int> general, global::System.Nullable<int> agility, global::System.Nullable<int> strength, global::System.Nullable<int> passing, global::System.Nullable<int> mutation) {
+        public virtual object InsertPositional(global::System.Nullable<int> qty, string title, global::System.Nullable<int> cost, global::System.Nullable<int> ma, global::System.Nullable<int> st, global::System.Nullable<int> ag, global::System.Nullable<int> av, global::System.Nullable<int> general, global::System.Nullable<int> agility, global::System.Nullable<int> strength, global::System.Nullable<int> passing, global::System.Nullable<int> mutation) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[6];
             if ((qty.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(qty.Value));
@@ -21577,23 +21619,29 @@ SELECT id FROM positional WHERE (id = @id)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdatePositional(global::System.Nullable<int> qty, string title, global::System.Nullable<int> cost, global::System.Nullable<int> ma, global::System.Nullable<int> st, global::System.Nullable<int> ag, global::System.Nullable<int> av, global::System.Nullable<int> general, global::System.Nullable<int> agility, global::System.Nullable<int> strength, global::System.Nullable<int> passing, global::System.Nullable<int> mutation, int id) {
+        public virtual object UpdatePositional(global::System.Nullable<int> qty, string title, global::System.Nullable<int> cost, global::System.Nullable<int> ma, global::System.Nullable<int> st, global::System.Nullable<int> ag, global::System.Nullable<int> av, global::System.Nullable<int> general, global::System.Nullable<int> agility, global::System.Nullable<int> strength, global::System.Nullable<int> passing, global::System.Nullable<int> mutation, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[7];
             if ((qty.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(qty.Value));
@@ -21673,16 +21721,22 @@ SELECT id FROM positional WHERE (id = @id)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -24127,7 +24181,7 @@ SELECT id, gameID, actionID, playerID, notes FROM legagladio.game_action WHERE (
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertGameAction(global::System.Nullable<int> gameID, global::System.Nullable<int> actionID, global::System.Nullable<int> playerID, string notes) {
+        public virtual object InsertGameAction(global::System.Nullable<int> gameID, global::System.Nullable<int> actionID, global::System.Nullable<int> playerID, string notes) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             if ((gameID.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(gameID.Value));
@@ -24158,23 +24212,29 @@ SELECT id, gameID, actionID, playerID, notes FROM legagladio.game_action WHERE (
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateGameAction(int id) {
+        public virtual object UpdateGameAction(int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             command.Parameters[0].Value = ((int)(id));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
@@ -24182,16 +24242,22 @@ SELECT id, gameID, actionID, playerID, notes FROM legagladio.game_action WHERE (
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -25390,7 +25456,7 @@ SELECT id FROM legagladio.game WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertGame(global::System.Nullable<int> homeID, global::System.Nullable<int> guestID, global::System.Nullable<int> tdHome, global::System.Nullable<int> tdGuest, global::System.Nullable<int> casHome, global::System.Nullable<int> casGuest, global::System.Nullable<int> spHome, global::System.Nullable<int> spGuest, global::System.Nullable<int> earningHome, global::System.Nullable<int> earningGuest, global::System.Nullable<int> varFFHome, global::System.Nullable<int> varFFGuest, global::System.Nullable<global::System.DateTime> gameDate, string notes) {
+        public virtual object InsertGame(global::System.Nullable<int> homeID, global::System.Nullable<int> guestID, global::System.Nullable<int> tdHome, global::System.Nullable<int> tdGuest, global::System.Nullable<int> casHome, global::System.Nullable<int> casGuest, global::System.Nullable<int> spHome, global::System.Nullable<int> spGuest, global::System.Nullable<int> earningHome, global::System.Nullable<int> earningGuest, global::System.Nullable<int> varFFHome, global::System.Nullable<int> varFFGuest, global::System.Nullable<global::System.DateTime> gameDate, string notes) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[9];
             if ((homeID.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(homeID.Value));
@@ -25481,16 +25547,22 @@ SELECT id FROM legagladio.game WHERE (id = @id)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -25532,7 +25604,7 @@ SELECT id FROM legagladio.game WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateGame(global::System.Nullable<int> homeID, global::System.Nullable<int> guestID, global::System.Nullable<int> tdHome, global::System.Nullable<int> tdGuest, global::System.Nullable<int> casHome, global::System.Nullable<int> casGuest, global::System.Nullable<int> spHome, global::System.Nullable<int> spGuest, global::System.Nullable<int> earningHome, global::System.Nullable<int> earningGuest, global::System.Nullable<int> varFFHome, global::System.Nullable<int> varFFGuest, global::System.Nullable<global::System.DateTime> gameDate, string notes, int id) {
+        public virtual object UpdateGame(global::System.Nullable<int> homeID, global::System.Nullable<int> guestID, global::System.Nullable<int> tdHome, global::System.Nullable<int> tdGuest, global::System.Nullable<int> casHome, global::System.Nullable<int> casGuest, global::System.Nullable<int> spHome, global::System.Nullable<int> spGuest, global::System.Nullable<int> earningHome, global::System.Nullable<int> earningGuest, global::System.Nullable<int> varFFHome, global::System.Nullable<int> varFFGuest, global::System.Nullable<global::System.DateTime> gameDate, string notes, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[11];
             if ((homeID.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(homeID.Value));
@@ -25624,16 +25696,22 @@ SELECT id FROM legagladio.game WHERE (id = @id)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -26037,7 +26115,7 @@ SELECT id FROM legagladio.game WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertInjury(string name) {
+        public virtual object InsertInjury(string name) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             if ((name == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -26050,23 +26128,29 @@ SELECT id FROM legagladio.game WHERE (id = @id)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateInjury(string name, int id) {
+        public virtual object UpdateInjury(string name, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             if ((name == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -26080,16 +26164,22 @@ SELECT id FROM legagladio.game WHERE (id = @id)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -26685,7 +26775,7 @@ SELECT id, playerID, skillID, injuryID, augmentationID, gameID FROM legagladio.a
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertAfterGameEvent(global::System.Nullable<int> playerID, global::System.Nullable<int> skillID, global::System.Nullable<int> injuryID, global::System.Nullable<int> augmentationID, global::System.Nullable<int> gameID) {
+        public virtual object InsertAfterGameEvent(global::System.Nullable<int> playerID, global::System.Nullable<int> skillID, global::System.Nullable<int> injuryID, global::System.Nullable<int> augmentationID, global::System.Nullable<int> gameID) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             if ((playerID.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(playerID.Value));
@@ -26722,23 +26812,29 @@ SELECT id, playerID, skillID, injuryID, augmentationID, gameID FROM legagladio.a
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateAfterGameEvent(global::System.Nullable<int> playerID, global::System.Nullable<int> skillID, global::System.Nullable<int> injuryID, global::System.Nullable<int> augmentationID, global::System.Nullable<int> gameID, int id) {
+        public virtual object UpdateAfterGameEvent(global::System.Nullable<int> playerID, global::System.Nullable<int> skillID, global::System.Nullable<int> injuryID, global::System.Nullable<int> augmentationID, global::System.Nullable<int> gameID, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             if ((playerID.HasValue == true)) {
                 command.Parameters[0].Value = ((int)(playerID.Value));
@@ -26776,16 +26872,22 @@ SELECT id, playerID, skillID, injuryID, augmentationID, gameID FROM legagladio.a
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -27851,7 +27953,7 @@ SELECT id, name, number FROM legagladio.round WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertRound(string name, global::System.Nullable<int> number) {
+        public virtual object InsertRound(string name, global::System.Nullable<int> number) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             if ((name == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -27870,16 +27972,22 @@ SELECT id, name, number FROM legagladio.round WHERE (id = @id)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -27911,7 +28019,7 @@ SELECT id, name, number FROM legagladio.round WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateRound(string name, global::System.Nullable<int> number, int id) {
+        public virtual object UpdateRound(string name, global::System.Nullable<int> number, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[7];
             if ((name == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -27931,16 +28039,22 @@ SELECT id, name, number FROM legagladio.round WHERE (id = @id)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -29324,7 +29438,7 @@ SELECT id, name, notes FROM series WHERE (id = @id) ORDER BY id";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertSeries(string name, string notes) {
+        public virtual object InsertSeries(string name, string notes) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             if ((name == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -29343,16 +29457,22 @@ SELECT id, name, notes FROM series WHERE (id = @id) ORDER BY id";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -29394,7 +29514,7 @@ SELECT id, name, notes FROM series WHERE (id = @id) ORDER BY id";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateSeries(string name, string notes, int id) {
+        public virtual object UpdateSeries(string name, string notes, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[7];
             if ((name == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -29414,16 +29534,22 @@ SELECT id, name, notes FROM series WHERE (id = @id) ORDER BY id";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -30193,7 +30319,7 @@ SELECT id, name, notes FROM legagladio.[group] WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertGroup(string name, string notes) {
+        public virtual object InsertGroup(string name, string notes) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[5];
             if ((name == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -30212,16 +30338,22 @@ SELECT id, name, notes FROM legagladio.[group] WHERE (id = @id)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -30263,7 +30395,7 @@ SELECT id, name, notes FROM legagladio.[group] WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateGroup(string name, string notes, int id) {
+        public virtual object UpdateGroup(string name, string notes, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[7];
             if ((name == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
@@ -30283,16 +30415,22 @@ SELECT id, name, notes FROM legagladio.[group] WHERE (id = @id)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
@@ -31153,7 +31291,7 @@ SELECT id, name, notes FROM legagladio.[group] WHERE (id = @id)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, false)]
-        public virtual int InsertAugmentation(string name) {
+        public virtual object InsertAugmentation(string name) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             if ((name == null)) {
                 throw new global::System.ArgumentNullException("name");
@@ -31166,23 +31304,29 @@ SELECT id, name, notes FROM legagladio.[group] WHERE (id = @id)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, false)]
-        public virtual int UpdateAugmentation(string name, int id) {
+        public virtual object UpdateAugmentation(string name, int id) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
             if ((name == null)) {
                 throw new global::System.ArgumentNullException("name");
@@ -31196,16 +31340,22 @@ SELECT id, name, notes FROM legagladio.[group] WHERE (id = @id)";
                         != global::System.Data.ConnectionState.Open)) {
                 command.Connection.Open();
             }
-            int returnValue;
+            object returnValue;
             try {
-                returnValue = command.ExecuteNonQuery();
+                returnValue = command.ExecuteScalar();
             }
             finally {
                 if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
                     command.Connection.Close();
                 }
             }
-            return returnValue;
+            if (((returnValue == null) 
+                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
+                return null;
+            }
+            else {
+                return ((object)(returnValue));
+            }
         }
     }
     
