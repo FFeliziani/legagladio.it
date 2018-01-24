@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 15
+VisualStudioVersion = 15.0.27004.2008
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "LegaGladio\PresentationLayer.csproj", "{035E85AB-E388-44B4-B4E6-1ECD9D2A0E8A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entities", "Entities\Entities.csproj", "{293115F6-4BA5-428D-A109-080C58282CEC}"
@@ -10,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{47ED3579-BC67-4E3A-85B2-5E3EDE034B72}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{21BABCD2-D585-4184-A9ED-2556FAC1906F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LegagladioCore", "LegagladioCore\LegagladioCore.csproj", "{1C589913-4214-45F9-8680-0D48B4058996}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,8 +41,15 @@ Global
 		{21BABCD2-D585-4184-A9ED-2556FAC1906F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21BABCD2-D585-4184-A9ED-2556FAC1906F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21BABCD2-D585-4184-A9ED-2556FAC1906F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C589913-4214-45F9-8680-0D48B4058996}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C589913-4214-45F9-8680-0D48B4058996}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C589913-4214-45F9-8680-0D48B4058996}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C589913-4214-45F9-8680-0D48B4058996}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FBC6D9E9-E8A7-4275-842E-4620D8F96F0B}
 	EndGlobalSection
 EndGlobal
